@@ -350,4 +350,10 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
     else if(lastMode==='custom'&&lastNatal) renderCustom();
   }
 
-  if(wi
+  if(window.ZI18N) window.ZI18N.mount($("langPick"));
+  window.addEventListener('zlangchange', applyLang);
+  applyLang();
+})();
+</script>
+</body>
+</html>

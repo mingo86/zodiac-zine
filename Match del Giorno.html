@@ -270,4 +270,14 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
     $("foot").innerHTML=u.foot;
     document.querySelectorAll(".pill[data-k]").forEach(p=>{ if(u.nav[p.dataset.k]) p.textContent=u.nav[p.dataset.k]; });
     document.documentElement.lang=L;
-    if(
+    if(chosen) run();
+  }
+
+  if(window.ZI18N) window.ZI18N.mount($("langPick"));
+  window.addEventListener('zlangchange', applyLang);
+  applyLang();
+  (function(){var sp=new URLSearchParams(location.search).get("sign");if(sp){var b=$("signGrid").querySelector('.signbtn[data-k="'+sp+'"]');if(b)b.click();}})();
+})();
+</script>
+</body>
+</html>
