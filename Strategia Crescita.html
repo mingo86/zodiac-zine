@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac — Brand & Growth Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff6e3;--red:#ec2e36;--red-d:#b81f27;--yellow:#ffd23f;--blue:#2f9bdb;--green:#36b06a;--ink:#15110d;--head:#2c2138;--purple:#6b4ff0;--pink:#ff2d6f;}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background-image:radial-gradient(circle,rgba(0,0,0,.13) 1.5px,transparent 1.7px),linear-gradient(135deg,#2c2138,#181226);background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;line-height:1.55}
+.wrap{max-width:940px;margin:clamp(8px,3vw,34px) auto;padding:0 0 50px;background:var(--paper);background-image:radial-gradient(circle,rgba(0,0,0,.045) 1.4px,transparent 1.5px);background-size:12px 12px;border:5px solid var(--ink);border-radius:22px;box-shadow:0 16px 0 rgba(0,0,0,.3);overflow:hidden}
+.hero{padding:34px 26px 12px;text-align:center}
+.ksuper{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:3px;color:var(--purple);text-transform:uppercase}
+h1.t{font-family:'Bangers',cursive;font-size:clamp(40px,9vw,80px);color:var(--blue);-webkit-text-stroke:2.5px var(--ink);text-shadow:5px 5px 0 var(--ink);letter-spacing:2px;margin:6px 0 2px;line-height:.95}
+.hsub{font-weight:600;color:#5b5347;max-width:600px;margin:8px auto 0;font-size:15px}
+section{margin:24px 24px}
+h2{font-family:'Bangers',cursive;font-size:28px;letter-spacing:1px;color:var(--ink);margin:34px 0 4px;display:flex;align-items:center;gap:10px}
+h2 .num{font-family:'Space Mono',monospace;font-size:14px;background:var(--ink);color:var(--yellow);border-radius:8px;padding:2px 9px;-webkit-text-stroke:0}
+h3{font-family:'Bangers',cursive;letter-spacing:1px;font-size:21px;margin:20px 0 4px}
+.lead{font-weight:600;color:#4a4337;margin:8px 0 14px}
+.panel{border:4px solid var(--ink);background:#fff;border-radius:16px;padding:18px 20px;margin:14px 0;box-shadow:6px 6px 0 var(--blue)}
+.panel.y{box-shadow:6px 6px 0 var(--yellow)}.panel.p{box-shadow:6px 6px 0 var(--pink)}.panel.g{box-shadow:6px 6px 0 var(--green)}
+.pitch{background:var(--ink);color:var(--paper);border:none;box-shadow:8px 8px 0 var(--red)}
+.pitch h3{font-family:'Bangers',cursive;color:var(--yellow);font-size:24px;letter-spacing:1px;margin:0 0 8px}
+.pitch b{color:var(--yellow)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{border:3px solid var(--ink);border-radius:13px;background:var(--paper);padding:13px;text-align:center;box-shadow:4px 4px 0 var(--ink)}
+.stat .big{font-family:'Bangers',cursive;font-size:27px;color:var(--red);line-height:1}
+.stat .lab{font-size:12px;font-weight:700;color:#6b6356;margin-top:3px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+th,td{text-align:left;padding:8px 9px;border-bottom:2px solid #e3dcc8;vertical-align:top}
+th{font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--head);border-bottom:3px solid var(--ink)}
+td b{color:var(--ink)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.cols{grid-template-columns:1fr}}
+.mini{border:3px solid var(--ink);border-radius:12px;padding:13px;background:#fff;box-shadow:4px 4px 0 var(--ink)}
+.mini h4{margin:0 0 6px;font-family:'Bangers',cursive;letter-spacing:.5px;font-size:18px}
+ul{margin:6px 0;padding-left:20px}li{margin:4px 0;font-weight:600;color:#403930}
+.kbox{background:var(--yellow);border:3px solid var(--ink);border-radius:13px;padding:13px 15px;font-weight:700;box-shadow:4px 4px 0 var(--ink);margin:12px 0}
+.verdict{background:var(--green);color:#fff;border:3px solid var(--ink);border-radius:13px;padding:14px 16px;font-weight:700;font-size:15px;box-shadow:5px 5px 0 var(--ink);margin:12px 0}
+.flag{font-size:15px}
+.tagi{display:inline-block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;border:2px solid var(--ink);text-transform:uppercase}
+.win{background:var(--green);color:#fff}.mid{background:var(--yellow)}.cost{background:var(--red);color:#fff}
+.scen{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+@media(max-width:680px){.scen{grid-template-columns:1fr}}
+.scard{border:3.5px solid var(--ink);border-radius:14px;padding:14px;background:var(--paper)}
+.scard.c1{box-shadow:5px 5px 0 #9aa1b6}.scard.c2{box-shadow:5px 5px 0 var(--blue)}.scard.c3{box-shadow:5px 5px 0 var(--green)}
+.scard .nm{font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;font-weight:700;color:var(--head)}
+.scard .rev{font-family:'Bangers',cursive;font-size:26px;color:var(--ink);line-height:1;margin:4px 0}
+.scard small{display:block;font-size:12px;color:#6b6356;font-weight:600;margin-top:6px;line-height:1.4}
+.road{border-left:4px solid var(--ink);margin:10px 0 0 8px}
+.phase{position:relative;padding:0 0 16px 22px;margin-left:2px}
+.phase::before{content:"";position:absolute;left:-9px;top:3px;width:14px;height:14px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink)}
+.phase .ph-t{font-family:'Space Mono',monospace;font-size:11px;color:var(--purple);font-weight:700;text-transform:uppercase}
+.note{font-size:12px;color:#8a8275;font-weight:600}
+.foot{margin:26px 24px 0;font-size:11px;color:#9a9183;font-weight:600;line-height:1.6;border-top:2px dashed #d8cdb0;padding-top:14px}
+.foot a{color:#8a8275}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="ksuper">★ brand &amp; growth strategy · giugno 2026</div>
+    <h1 class="t">ZODIAC · CRESCITA</h1>
+    <p class="hsub">Ora che l'app è in 5 lingue: quali mercati prendere, quanti utenti hanno i concorrenti, quanto investire per entrare, e come farsi conoscere gratis su Instagram e TikTok.</p>
+  </div>
+
+  <section>
+    <div class="panel pitch">
+      <h3>★ La tesi, in breve</h3>
+      <p>Passare a 5 lingue non aggiunge un mercato: <b>moltiplica</b> il pubblico raggiungibile da ~60M di italiani a oltre <b>1,5 miliardi</b> di parlanti (EN/ES/PT/FR). Ma non tutti i mercati sono uguali: alcuni costano 15× di più per acquisire un utente.</p>
+      <p style="margin-bottom:0">La mossa furba: <b>attaccare da Brasile e America Latina</b> — costo per installazione bassissimo (~$0,34 vs $5,28 in USA), crescita esplosiva (×5 in 5 anni) e una Gen Z ossessionata dall'astrologia che adora il tuo stile pop. Si cresce <b>gratis</b> col motore social (le 12 mascotte che si taggano a vicenda), e si paga solo dove l'acquisizione costa poco. L'inglese arriva dopo, quando la monetizzazione è provata.</p>
+    </div>
+  </section>
+
+  <!-- 1. LO SPOSTAMENTO -->
+  <section>
+    <h2><span class="num">01</span> Cosa cambia col multilingua</h2>
+    <p class="lead">Il mercato globale delle app di astrologia vale ~$3 mld (2024) e va verso ~$9 mld nel 2030 (+20%/anno). Oggi ci sono già <b>180M+ download cumulati</b> e <b>120M+ utenti attivi al mese</b> sulle app top. Con 5 lingue ti apri la quasi totalità di questo mercato.</p>
+    <div class="stats">
+      <div class="stat"><div class="big">~60M → 1,5MM+</div><div class="lab">parlanti raggiungibili (IT → +EN/ES/PT/FR)</div></div>
+      <div class="stat"><div class="big">~$9B</div><div class="lab">mercato app astrologia 2030</div></div>
+      <div class="stat"><div class="big">120M+</div><div class="lab">utenti attivi/mese sulle app top</div></div>
+      <div class="stat"><div class="big">40%</div><div class="lab">di Gen Z/Millennial segue astrologia sui social</div></div>
+    </div>
+  </section>
+
+  <!-- 2. I MERCATI -->
+  <section>
+    <h2><span class="num">02</span> I 5 mercati che sblocchi</h2>
+    <p class="lead">La metrica che conta non è quanto è grande il mercato, ma <b>quanto costa entrarci</b> (CPI = costo per installazione) incrociato con la crescita. Ecco la mappa.</p>
+    <table>
+      <tr><th>Lingua / Area</th><th>Pubblico</th><th>Crescita & note</th><th>Costo per install</th><th>Verdetto</th></tr>
+      <tr><td><b>🇧🇷 Portoghese (Brasile)</b></td><td>~210M</td><td>Astrologia + spiritualità in boom; pagamenti Pix; Gen Z fortissima</td><td><b>basso</b> (~$0,34, area LatAm)</td><td><span class="tagi win">priorità 1</span></td></tr>
+      <tr><td><b>🇪🇸 Spagnolo (Spagna + LatAm)</b></td><td>~490M</td><td>LatAm: ricavi astrologia $39M→$205M in 5 anni (×5). Messico, Argentina, Colombia</td><td><b>basso</b> in LatAm (~$0,34)</td><td><span class="tagi win">priorità 1</span></td></tr>
+      <tr><td><b>🇮🇹 Italiano (casa)</b></td><td>~60M</td><td>Meno presidiato dai big (sono US-first). Base di partenza, costo medio</td><td>medio (EMEA ~€1)</td><td><span class="tagi mid">base</span></td></tr>
+      <tr><td><b>🇫🇷 Francese (Francia + franco.)</b></td><td>~310M</td><td>Mercato maturo, buona spesa; CPI europeo medio</td><td>medio (EMEA ~€1)</td><td><span class="tagi mid">fase 2</span></td></tr>
+      <tr><td><b>🇬🇧🇺🇸 Inglese (US/UK/globale)</b></td><td>~1,5MM</td><td>Il mercato più grande e ricco… ma anche il più affollato (Co-Star, Nebula) e caro</td><td><b>alto</b> (USA ~$5,28)</td><td><span class="tagi cost">fase 3</span></td></tr>
+    </table>
+    <div class="kbox">💡 La regola d'oro: <b>€1.000 spesi in Brasile/LatAm comprano ~3.000 installazioni; gli stessi €1.000 in USA ne comprano ~190.</b> All'inizio, ogni euro va dove costa poco e cresce in fretta. L'inglese è un premio che ti dai dopo aver dimostrato che gli utenti restano e pagano.</div>
+  </section>
+
+  <!-- 3. COMPETITOR USERS -->
+  <section>
+    <h2><span class="num">03</span> Quanti utenti hanno i concorrenti, oggi</h2>
+    <p class="lead">Il campo è grande ma concentrato in pochi nomi. Nessuno di loro è "il divertente a fumetti, multilingue, con le coppie al centro".</p>
+    <table>
+      <tr><th>App</th><th>Download</th><th>Utenti attivi</th><th>Soldi</th><th>Posizionamento</th></tr>
+      <tr><td><b>Co-Star</b></td><td>30M+</td><td>20M+ utenti · <b>1M+ al giorno</b></td><td>~$400K/mese</td><td>Minimal, freddo, push taglienti. Gen Z USA</td></tr>
+      <tr><td><b>Nebula</b> (OBRIO)</td><td>12M+</td><td>4M+ al mese</td><td><b>~$50M ARR</b></td><td>Mainstream + letture live, marketing aggressivo</td></tr>
+      <tr><td><b>Sanctuary</b></td><td>7M+</td><td>3M+ al mese</td><td>Live $2,99/min</td><td>Letture dal vivo on-demand</td></tr>
+      <tr><td><b>The Pattern</b></td><td>~10M+</td><td>—</td><td>Sub da $14,99/mese</td><td>Psicologico/relazioni, profondo</td></tr>
+      <tr><td><b>CHANI</b></td><td>nicchia</td><td>—</td><td>$108/anno</td><td>Premium, valoriale, inclusivo</td></tr>
+      <tr style="background:rgba(255,210,63,.25)"><td><b>★ Zodiac</b></td><td><b>da lanciare</b></td><td>—</td><td><b>freemium + premium</b></td><td><b>Caldo, a fumetti, 5 lingue, coppie come gancio</b></td></tr>
+    </table>
+    <div class="cols">
+      <div class="mini"><h4>Cosa significa per te</h4><ul><li>Co-Star ha 1M di persone <b>ogni giorno</b>: la categoria ha un'abitudine d'uso quotidiana fortissima (l'oroscopo del giorno).</li><li>Nebula fa $50M l'anno <b>con gli abbonamenti + le letture</b>: c'è disponibilità a pagare.</li><li>Il modello vincente di tutti: <b>oroscopo personalizzato giornaliero</b> → è il tuo premium.</li></ul></div>
+      <div class="mini"><h4>Dove non ti battono</h4><ul><li>Sono tutti <b>US-first, in inglese</b>: Brasile/LatAm/Italia sono semi-scoperti.</li><li>Sono <b>seriosi o freddi</b>: nessuno è "carino e divertente da condividere".</li><li>La <b>coppia</b> è la tua arma virale e premium (Match + Componi), poco sfruttata dagli altri.</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 4. QUANTO INVESTIRE -->
+  <section>
+    <h2><span class="num">04</span> Quanto investire per "farti strada"</h2>
+    <p class="lead">Due verità da tenere insieme: (1) acquisire utenti a pagamento costa, e oggi il costo medio per un cliente è schizzato a ~$29; (2) la tua app ha <b>costo marginale ~zero</b> e contenuti <b>virali</b>. Quindi la leva numero uno è l'organico, e il budget paga solo dove rende.</p>
+    <table>
+      <tr><th>Livello</th><th>Budget/mese</th><th>Dove</th><th>Cosa ottieni (ordine di grandezza)</th></tr>
+      <tr><td><b>Bootstrap</b></td><td>€0–500</td><td>Solo organico: social + ASO + il "Match" virale</td><td>Crescita lenta ma a costo ~0; valida il prodotto e la voce</td></tr>
+      <tr><td><b>Starter</b></td><td>€1–3k</td><td>Paid mirato in <b>Brasile + LatAm</b> (CPI ~$0,34)</td><td>~3.000–9.000 installazioni/mese a budget</td></tr>
+      <tr><td><b>Scala</b></td><td>€10k+</td><td>+ Francia/Italia, poi <b>inglese</b> quando retention/ricavi reggono</td><td>Decine di migliaia di installazioni; qui servono numeri di retention solidi</td></tr>
+    </table>
+    <div class="kbox">Il numero che ti salva: il <b>CPI per area</b>. Nord America ~$5,28 · Europa ~€1,03 · LatAm ~$0,34 · iOS ~$4,70 vs Android ~$3,70. Tradotto: parti <b>Android + LatAm/Brasile</b> per massimizzare le installazioni per euro, e tieni l'iOS-USA per quando puoi permettertelo.</div>
+    <p class="note">Regola pratica: non spendere in paid finché non sai due numeri tuoi — quanti utenti gratis diventano premium (%) e quanto resta un utente (retention a 30 giorni). Sotto una certa soglia, il paid brucia soldi; sopra, lo moltiplica.</p>
+  </section>
+
+  <!-- 5. SOCIAL ENGINE -->
+  <section>
+    <h2><span class="num">05</span> Il motore social: l'idea delle 12 pagine</h2>
+    <p class="lead">La tua intuizione — un account dell'app + uno per ogni segno che si taggano a vicenda — è <b>azzeccata</b>, perché l'app <b>genera già</b> il contenuto (oroscopo per segno, match del giorno, "componi la frase"). Ma va dosata: gestire 13 account è tanto, e gli algoritmi puniscono i tag a tappeto se sembrano spam.</p>
+    <div class="cols">
+      <div class="mini g"><h4>✓ Perché funziona</h4><ul><li>Ogni account-segno parla a una <b>nicchia iper-coinvolta</b>: la gente segue il PROPRIO segno.</li><li>Il cross-tag è <b>nativo del prodotto</b>: @zodiac.ariete posta "il tuo match di oggi è la Bilancia" e tagga @zodiac.bilancia. È il tuo Match, fatto social.</li><li>Contenuto <b>infinito e automatico</b> dall'app: 12 oroscopi/giorno + card match + frasi.</li></ul></div>
+      <div class="mini p"><h4>⚠ Attenzione</h4><ul><li>13 account = <b>tanto lavoro</b> e account nuovi partono con poca portata.</li><li>Tag uguali su tutti ogni giorno = rischio <b>flag spam</b>.</li><li>Rischio dispersione se il "master" non ha una voce forte.</li></ul></div>
+    </div>
+    <h3>Il piano consigliato (a fasi)</h3>
+    <ul>
+      <li><b>Fase 1 — 1 master + 4 elementi.</b> Un account forte <b>@zodiac.zine</b> + 4 account per elemento (🔥Fuoco, 🌍Terra, 💨Aria, 💧Acqua). Meno overhead di 12, ma già segmentato. Il master ripubblica il meglio; gli account-elemento si taggano nelle compatibilità.</li>
+      <li><b>Fase 2 — i 12 segni.</b> Quando il master ha trazione e la macchina di contenuti gira, apri i 12 account-segno. Cross-tag <b>solo dove ha senso</b> (il segno + il suo match del giorno), mai a tappeto.</li>
+      <li><b>Format che girano:</b> "il tuo match di oggi" (card condivisibile), "componi la frase" (meme), le mascotte come sticker/GIF, e l'oroscopo del giorno in 9:16. Tutto già prodotto dall'app.</li>
+      <li><b>Stesso identico schema su TikTok</b> (dove la portata organica per account nuovi è oggi la più alta): video 9:16 dell'oroscopo/match con le mascotte animate.</li>
+    </ul>
+    <div class="verdict">In una riga: <b>sì all'idea, ma parti con 5 account (1+4), non 13.</b> Il valore non è il numero di pagine — è che ogni post è una mini-pubblicità gratuita dell'app, e il Match trasforma il cross-tag in contenuto naturale invece che spam.</div>
+  </section>
+
+  <!-- 6. IG/TIKTOK PAGANO? -->
+  <section>
+    <h2><span class="num">06</span> Instagram e TikTok ti pagano?</h2>
+    <p class="lead">Sì, al raggiungimento di certe soglie — ma i pagamenti ai creator sono <b>piccoli</b>. Il vero guadagno del social non sono quei soldi: sono le <b>installazioni gratis</b> e gli abbonati che porti all'app.</p>
+    <table>
+      <tr><th>Piattaforma</th><th>Soglia per essere pagato</th><th>Quanto paga davvero</th></tr>
+      <tr><td><b>TikTok</b> (Creator Rewards)</td><td>18+, <b>10.000 follower</b> + <b>100.000 visualizzazioni in 30 giorni</b>, video ≥ 1 minuto</td><td>~$0,40–1,00 ogni 1.000 visualizzazioni qualificate → 1M di views ≈ $400–1.000</td></tr>
+      <tr><td><b>Instagram</b> — Regali (Gifts)</td><td>account Pro, <b>500 follower</b></td><td>$0,01 a "stella" (100 stelle = $1). Simbolico</td></tr>
+      <tr><td><b>Instagram</b> — Abbonamenti / quota ads sui Reels</td><td><b>10.000 follower</b></td><td>Abbonamenti ricorrenti + 55% degli incassi pubblicitari sui tuoi Reels</td></tr>
+      <tr><td><b>Instagram</b> — Bonus</td><td>su invito</td><td>Pagamenti a obiettivi di engagement (variabile)</td></tr>
+    </table>
+    <div class="kbox">Verità scomoda: con questi numeri, i pagamenti dei creator coprono a malapena il lavoro. Esempio: un Reel virale da 1M di views ti dà ~$400–1.000 dal programma TikTok… <b>ma se quel Reel porta 5.000 installazioni, vale molto di più</b> (a $0,34–5 l'una di costo risparmiato, più gli abbonati). Tratta la monetizzazione creator come un <b>bonus</b>, non come il business. Il business è l'app.</div>
+    <p class="note">Disponibilità monetizzazione creator: attiva in Italia, Francia, Spagna, Brasile, USA/UK e molti altri — quindi copre tutti i tuoi mercati.</p>
+  </section>
+
+  <!-- 7. PROIEZIONI -->
+  <section>
+    <h2><span class="num">07</span> Potenziale aggiornato (Anno 1, multilingua)</h2>
+    <p class="lead">Scenari illustrativi con assunzioni esplicite. Mix di installazioni organiche (social) + paid mirato in LatAm/Brasile. Premium €4,99/mese o €34,99/anno (ARPU abbonato ~€32/anno) + ebook €9,99. Conversione freemium→premium 3–4%.</p>
+    <div class="scen">
+      <div class="scard c1"><div class="nm">Conservativo · solo organico</div><div class="rev">~€70k</div><small>60.000 installazioni (social, 5 lingue) · 3% premium = 1.800 abbonati · + ebook. Budget paid ~0.</small></div>
+      <div class="scard c2"><div class="nm">Base · organico + paid LatAm</div><div class="rev">~€320k</div><small>200.000 installazioni (social + ~€1,5k/mese paid in Brasile/LatAm) · 4% = 8.000 abbonati · + ebook.</small></div>
+      <div class="scard c3"><div class="nm">Ottimistico · Match virale</div><div class="rev">~€1,2M</div><small>600.000 installazioni (il "match" diventa virale su TikTok/IG) · 5% = 30.000 abbonati · + ebook.</small></div>
+    </div>
+    <p class="note">Rispetto alla stima solo-italiana di prima (~€48k / €240k / €1M), il multilingua alza il tetto e — soprattutto — <b>abbassa il costo</b> di arrivarci, perché apre i mercati dove acquisire costa pochissimo.</p>
+  </section>
+
+  <!-- 8. PIANO 90 GIORNI -->
+  <section>
+    <h2><span class="num">08</span> Piano dei primi 90 giorni</h2>
+    <div class="road">
+      <div class="phase"><div class="ph-t">Settimane 1–2 · online</div><b>Pubblica il sito (GitHub/Vercel) + PWA installabile.</b> Apri @zodiac.zine su IG e TikTok + i 4 account-elemento. Imposta la macchina di contenuti dall'app (match del giorno, oroscopo per segno).</div>
+      <div class="phase"><div class="ph-t">Settimane 3–6 · contenuto & lingua</div><b>1 post/giorno per account, focus PT/ES.</b> Spingi il "Match del giorno" condivisibile. Misura quali format girano. Zero o pochissimo budget.</div>
+      <div class="phase"><div class="ph-t">Settimane 7–10 · primo paid</div><b>€500–1.000 di test in Brasile/LatAm (Android).</b> Manda al sito/app. Misura costo per installazione reale e conversione premium.</div>
+      <div class="phase"><div class="ph-t">Settimane 11–13 · decidi</div><b>Se i numeri reggono (retention + % premium), scala il paid dove rende e apri i 12 account-segno.</b> Altrimenti, raffina prodotto e voce e resta organico.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">★</span> In sintesi</h2>
+    <div class="verdict">Il multilingua non raddoppia il potenziale: lo moltiplica <b>e lo rende più economico da realizzare</b>, perché apre Brasile e LatAm — dove l'astrologia esplode e acquisire un utente costa una frazione. Strategia: <b>vinci gratis col social</b> (1 master + 4 elementi, poi i 12 segni), <b>paga solo dove costa poco</b>, e tratta i pagamenti dei creator come un bonus. L'inglese è il trofeo finale, non il punto di partenza.</div>
+  </section>
+
+  <div class="foot">
+    <b>Fonti (giugno 2026).</b> Mercato & crescita: The Business Research Company, MarkNtel Advisors, EconMarketResearch. Utenti competitor: Statista (Top astrology apps US 2024), Business of Apps, Analytics Insight, Apptunix. LatAm/Brasile: EconMarketResearch, PayAtlas. CPI/CAC per area: Business of Apps (User Acquisition Costs 2025), Mapendo (Cost per Install 2025). TikTok Creator Rewards: TikTok Support, Influencer Marketing Hub. Instagram: creators.instagram.com (Bonuses), help.instagram.com (eligibility), Flowgent/Fliki.<br><br>
+    I numeri di mercato variano tra le fonti (metodologie diverse): qui si usano stime mediane prudenti. Le proiezioni sono scenari illustrativi con assunzioni dichiarate, non previsioni garantite. I CPI sono medie di categoria/area: i costi reali dipendono da creatività, targeting e stagione.
+  </div>
+</div>
+</body>
+</html>
