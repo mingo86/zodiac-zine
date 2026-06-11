@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac — Edizione Fumetto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>:root{--paper:#fff6e3;--red:#ec2e36;--red-d:#b81f27;--yellow:#ffd23f;--blue:#2f9bdb;--ink:#15110d;
+ --wstroke:#15110d;--wa:#2f9bdb;--wb:#ec2e36;--wfill:#fff;--wctext:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#f0473f,#d9272f);background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;font-weight:500;line-height:1.55;min-height:100vh;position:relative}
+
+.nav{position:sticky;top:0;z-index:50;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:10px clamp(14px,4vw,28px)}
+.nav .logo{font-family:'Bangers',cursive;font-size:22px;letter-spacing:.04em;color:var(--yellow);cursor:pointer;-webkit-text-stroke:1px #000}
+.nav .links{display:flex;gap:8px;flex-wrap:wrap}
+.nav button{font-family:'Bangers',cursive;font-size:15px;letter-spacing:.03em;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);padding:3px 12px;cursor:pointer;transform:rotate(-1deg);transition:.12s}
+.nav button.b{background:var(--blue);color:#fff}
+.nav button:hover{transform:rotate(0) scale(1.05)}
+
+.wrap{max-width:880px;margin:clamp(14px,3.5vw,34px) auto;background:var(--paper);background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.4px,transparent 1.5px);background-size:12px 12px;border:5px solid var(--ink);border-radius:22px;box-shadow:12px 12px 0 rgba(0,0,0,.45);padding:clamp(20px,4vw,42px) clamp(16px,4vw,38px) clamp(28px,4vw,44px);position:relative;z-index:1}
+
+.cover{display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(14px,4vw,32px) 0 8px}
+.cover .ey{font-family:'Bangers',cursive;font-size:16px;letter-spacing:.05em;background:var(--ink);color:var(--paper);display:inline-block;padding:5px 14px;transform:rotate(-1.5deg)}
+.cover h1,.hero h1,.bigpct{font-family:'Bangers',cursive;color:var(--blue);position:relative;display:inline-block;text-transform:uppercase;letter-spacing:.02em;-webkit-text-stroke:2.5px var(--ink)}
+.cover h1{font-size:clamp(46px,13vw,104px);line-height:.86;margin:14px 0 6px}
+.cover h1::after,.hero h1::after,.bigpct::after{content:attr(data-t);position:absolute;left:4px;top:4px;color:var(--yellow);z-index:-1;-webkit-text-stroke:0;white-space:nowrap}
+.cover .tag{font-family:'Space Mono',monospace;display:none}
+.cover .tag,.cover .tag *{}
+.cover .tag{display:inline-block;font-family:'Bangers',cursive;background:var(--yellow);border:3px solid var(--ink);border-radius:30px;padding:4px 16px;font-size:15px;margin-top:12px;transform:rotate(-1deg);box-shadow:3px 3px 0 var(--ink);color:var(--ink)}
+
+.idx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:28px}
+.idx-card{border:4px solid var(--ink);background:#fff;padding:16px 10px;text-align:center;cursor:pointer;box-shadow:5px 5px 0 var(--blue);transition:.12s}
+.idx-card:nth-child(2n){box-shadow:5px 5px 0 var(--red)}
+.idx-card:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:7px 7px 0 var(--ink)}
+.idx-card .g{font-size:34px;line-height:1;color:var(--blue)}
+.idx-card .n{font-family:'Bangers',cursive;font-size:21px;letter-spacing:.02em;margin-top:6px;color:var(--ink)}
+.idx-card .d{font-family:'Space Mono',monospace;font-size:10.5px;color:#666;margin-top:2px}
+.idx-card.special{background:var(--ink);box-shadow:5px 5px 0 var(--yellow)}
+.idx-card.special .g{color:var(--yellow)}.idx-card.special .n{color:var(--paper)}.idx-card.special .d{color:var(--yellow)}
+
+.back{font-family:'Bangers',cursive;font-size:15px;letter-spacing:.03em;background:var(--yellow);border:3px solid var(--ink);padding:4px 14px;cursor:pointer;margin-bottom:10px;box-shadow:3px 3px 0 var(--ink)}
+.back:hover{transform:translate(-1px,-1px)}
+
+.hero{position:relative;text-align:center;padding:12px 0 6px}
+.glyphblob{position:relative;width:104px;height:104px;margin:0 auto 8px}
+.glyphblob .bg{position:absolute;inset:0;background:var(--yellow);border:4px solid var(--ink);border-radius:50%}
+.glyphblob .bg2{position:absolute;inset:0;background:var(--blue);border:4px solid var(--ink);border-radius:50%;transform:translate(5px,5px);z-index:-1}
+.glyphblob .g{position:absolute;inset:0;display:grid;place-items:center;font-size:52px;color:var(--ink)}
+.hero h1{font-size:clamp(40px,12vw,88px);line-height:.86}
+.sub{font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.04em;margin-top:12px;display:inline-block;background:var(--ink);color:var(--paper);padding:5px 13px;transform:rotate(-1.5deg)}
+
+.panel{margin-top:24px;border:4px solid var(--ink);background:#fff;box-shadow:7px 7px 0 var(--blue);padding:18px 20px;position:relative}
+.panel.alt{box-shadow:7px 7px 0 var(--red)}
+.tag{font-family:'Bangers',cursive;font-size:17px;letter-spacing:.03em;text-transform:uppercase;background:var(--red);color:#fff;display:inline-block;padding:3px 13px;margin-bottom:11px;transform:rotate(-1.5deg);box-shadow:2px 2px 0 var(--ink);border:2px solid var(--ink)}
+.tag.bl{background:var(--blue)}
+.panel p{font-size:16px;color:#241f30;font-weight:500}.panel p b{background:var(--yellow);padding:0 3px;box-shadow:1px 1px 0 var(--ink)}
+
+.pull{margin-top:24px;background:var(--blue);color:var(--paper);border:4px solid var(--ink);padding:20px 22px;font-family:'Bangers',cursive;font-size:clamp(18px,4.4vw,28px);line-height:1.25;letter-spacing:.02em;transform:rotate(-.7deg);box-shadow:7px 7px 0 var(--red)}
+
+.listpanel{margin-top:24px;border:4px dashed var(--ink);padding:16px 18px;background:rgba(255,255,255,.6)}
+.zlist{list-style:none;margin-top:6px}
+.zlist li{font-family:'Baloo 2';font-weight:600;font-size:15px;padding:7px 0 7px 28px;position:relative;color:#241f30}
+.zlist li+li{border-top:2px dotted rgba(0,0,0,.2)}
+.zlist.num{counter-reset:s}.zlist.num li{counter-increment:s}
+.zlist.num li::before{content:counter(s);position:absolute;left:0;top:6px;background:var(--red);color:#fff;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-family:'Bangers';font-size:13px;border:2px solid var(--ink)}
+.zlist.no li::before{content:"\2715";position:absolute;left:2px;color:var(--red);font-weight:800}
+.zlist.ck li::before{content:"\2713";position:absolute;left:2px;color:var(--blue);font-weight:800}
+
+.stickers{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;justify-content:center}
+.stick{font-family:'Baloo 2';font-weight:800;font-size:13px;border:3px solid var(--ink);background:var(--paper);padding:6px 13px;box-shadow:3px 3px 0 var(--ink)}
+.stick:nth-child(2n){background:var(--yellow);transform:rotate(2deg)}
+.stick:nth-child(3n){background:var(--blue);color:#fff;transform:rotate(-2deg)}
+
+.flags{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+@media(max-width:560px){.flags{grid-template-columns:1fr}}
+.flag{border:4px solid var(--ink);padding:14px 16px;background:#fff;box-shadow:5px 5px 0 var(--ink)}
+.flag h4{font-family:'Bangers',cursive;font-size:18px;text-transform:uppercase;margin-bottom:9px;color:#fff;display:inline-block;padding:2px 12px;border:2px solid var(--ink);transform:rotate(-1deg)}
+.flag.gf h4{background:var(--blue)}.flag.rf h4{background:var(--red)}
+.flag ul{list-style:none}.flag li{font-family:'Baloo 2';font-weight:600;font-size:13.5px;padding:5px 0 5px 20px;position:relative;color:#241f30}
+.flag.gf li::before{content:"\2713";position:absolute;left:2px;color:var(--blue);font-weight:800}
+.flag.rf li::before{content:"!";position:absolute;left:5px;color:var(--red);font-weight:800}
+
+.lifegrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+@media(max-width:560px){.lifegrid{grid-template-columns:1fr}}
+.lifecard{border:4px solid var(--ink);padding:14px 16px;background:#fff;box-shadow:4px 4px 0 var(--blue)}
+.lifecard:nth-child(2n){box-shadow:4px 4px 0 var(--red)}
+.lifecard .lt{font-family:'Bangers',cursive;font-size:15px;letter-spacing:.03em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:5px}
+.lifecard p{font-size:14px;color:#241f30;font-weight:500}
+
+.slr{margin-top:10px}
+.slrrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:2px dotted rgba(0,0,0,.2)}
+.slrrow:last-child{border-bottom:0}
+.slrrow b{font-family:'Bangers',cursive;font-size:15px;min-width:108px;color:var(--red)}
+.slrrow span{font-size:14.5px;color:#241f30;font-weight:500}.slrrow i{font-style:italic;color:#666}
+
+.chart{margin-top:26px;border:4px solid var(--ink);padding:18px 20px;background:#fff;box-shadow:7px 7px 0 var(--blue)}
+.chart h3{font-family:'Bangers',cursive;font-size:clamp(20px,5vw,30px);text-transform:uppercase;margin-bottom:6px;color:var(--ink)}
+.chart .hint{font-family:'Space Mono',monospace;font-size:11px;margin-bottom:14px;color:#666}
+.crow{margin-bottom:12px;cursor:pointer}
+.crow .ln{display:grid;grid-template-columns:104px 1fr 28px;align-items:center;gap:10px}
+.crow .nm{font-family:'Bangers',cursive;font-size:15px;letter-spacing:.02em}
+.ctrack{height:15px;background:repeating-linear-gradient(45deg,#0001 0 4px,transparent 4px 8px);border:2px solid var(--ink)}
+.cfill{height:100%;background:var(--red)}.crow:nth-child(2n) .cfill{background:var(--blue)}
+.crow .sc{font-family:'Bangers',cursive;font-size:16px;text-align:right}
+.crow .cnote{font-family:'Baloo 2';font-weight:600;font-size:12px;color:#555;margin:4px 0 0 2px}
+@media(max-width:480px){.crow .ln{grid-template-columns:84px 1fr 24px}}
+
+.prevnext{display:flex;justify-content:space-between;margin-top:30px;gap:10px}
+.prevnext button{flex:1;font-family:'Bangers',cursive;font-size:16px;border:4px solid var(--ink);background:var(--paper);padding:10px;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
+.prevnext button:hover{transform:translate(-1px,-1px)}
+
+.pickers{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-top:22px}
+@media(max-width:560px){.pickers{grid-template-columns:1fr;text-align:center}}
+select{width:100%;font-family:'Bangers',cursive;font-size:clamp(18px,4.2vw,24px);letter-spacing:.02em;text-transform:uppercase;background:var(--paper);color:var(--ink);border:4px solid var(--ink);padding:11px;box-shadow:4px 4px 0 var(--blue);cursor:pointer}
+.pickers select:nth-child(3){box-shadow:4px 4px 0 var(--red)}
+.vs-mid{font-family:'Bangers',cursive;font-size:28px;color:var(--red)}
+
+.scoretop{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center;margin-top:26px}
+.scoretop .gg{font-size:48px;color:var(--blue)}
+.bigpct{font-size:clamp(46px,14vw,84px);line-height:1}
+.vbadge{font-family:'Bangers',cursive;font-size:15px;letter-spacing:.03em;background:var(--ink);color:var(--paper);padding:5px 15px;display:inline-block;margin-top:8px;transform:rotate(-1.5deg)}
+
+.dims{margin-top:24px;border:4px solid var(--ink);padding:18px 20px;background:#fff;box-shadow:7px 7px 0 var(--red)}
+.drow{display:grid;grid-template-columns:108px 1fr 26px;align-items:center;gap:10px;margin-bottom:11px}
+.drow:last-child{margin-bottom:0}
+.drow .dn{font-family:'Baloo 2';font-weight:800;font-size:13.5px}
+.dtrack{height:17px;background:repeating-linear-gradient(45deg,#0001 0 4px,transparent 4px 8px);border:2px solid var(--ink)}
+.dfill{height:100%;background:var(--blue)}.drow:nth-child(2n) .dfill{background:var(--red)}
+.drow .ds{font-family:'Bangers',cursive;font-size:16px;text-align:right}
+@media(max-width:480px){.drow{grid-template-columns:84px 1fr 22px}}
+
+.twoflow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+@media(max-width:560px){.twoflow{grid-template-columns:1fr}}
+
+.reveal{list-style:none;margin-top:8px;columns:2;column-gap:22px}
+@media(max-width:560px){.reveal{columns:1}}
+.reveal li{font-family:'Baloo 2';font-weight:600;font-size:13.5px;padding:7px 0 7px 20px;position:relative;color:#241f30;break-inside:avoid}
+.reveal li::before{content:"\2605";position:absolute;left:0;color:var(--red)}
+
+.wheelwrap{display:flex;justify-content:center;margin:10px 0 4px}.wheel{width:min(320px,86vw);height:auto}
+/* ===== le 12 mascotte incuriosite attorno al tema natale ===== */
+.natalscene{position:relative;width:min(560px,94vw);aspect-ratio:1;margin:14px auto 6px}
+.natalwheel{position:absolute;left:19%;top:19%;width:62%}
+.natalwheel .wheel{width:100%;height:auto;display:block}
+.npet{position:absolute;width:14.5%;transform:translate(-50%,-50%);z-index:2}
+.npet-i{width:100%;transform-origin:50% 90%;animation-name:npeek;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.npet-i svg{width:100%;height:auto;display:block;overflow:visible}
+@keyframes npeek{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(calc(var(--ix)*8px),calc(var(--iy)*8px)) rotate(var(--tilt))}}
+.npet-q{position:absolute;top:-10%;left:62%;font-family:'Bangers',cursive;font-size:clamp(13px,2.5vw,19px);line-height:1;color:var(--red);-webkit-text-stroke:1.4px var(--ink);paint-order:stroke fill;opacity:0;animation:nq 3.4s ease-in-out infinite;z-index:3}
+@keyframes nq{0%,62%,100%{opacity:0;transform:translateY(4px) scale(.5) rotate(-6deg)}18%,46%{opacity:1;transform:translateY(-3px) scale(1) rotate(6deg)}}
+@media(prefers-reduced-motion:reduce){.npet-i{animation:none}.npet-q{display:none}}
+.composer{margin-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:560px){.composer{grid-template-columns:1fr}}
+.sentence{margin-top:18px;font-family:'Bangers',cursive;font-size:clamp(18px,4.2vw,26px);line-height:1.3;letter-spacing:.02em}
+.sentence b{color:var(--blue)}.sentence b.p{color:var(--red)}
+
+.houses{list-style:none;margin-top:8px}
+.houses li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:9px 0;border-bottom:2px dotted rgba(0,0,0,.2)}
+.houses .hn{font-family:'Bangers',cursive;font-size:20px;color:var(--blue)}
+.houses .ht{font-family:'Baloo 2';font-weight:800;font-size:14px}
+.houses .hd{font-size:13px;color:#555;display:block}
+.planets{list-style:none;margin-top:8px}
+.planets li{font-family:'Baloo 2';font-weight:600;font-size:14px;padding:8px 0;border-bottom:2px dotted rgba(0,0,0,.2)}
+.planets b{font-family:'Bangers',cursive;color:var(--red);letter-spacing:.02em}
+
+.el-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:8px}
+.el-card{border:4px solid var(--ink);padding:14px;background:#fff;box-shadow:4px 4px 0 var(--yellow)}
+.el-card h4{font-family:'Bangers',cursive;font-size:20px;margin-bottom:4px}
+.el-card p{font-size:13px;font-weight:500}.el-card .sgs{font-family:'Space Mono',monospace;font-size:11px;color:#555;margin-top:6px}
+
+.foot{margin-top:34px;text-align:center;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;color:#666;border-top:3px dashed var(--ink);padding-top:14px}
+
+.couple-hero{--ink:#15110d;--figA:#2f9bdb;--figB:#ffd23f;--badge:#fff;text-align:center;border:4px solid var(--ink);background:#fff;box-shadow:7px 7px 0 var(--blue);padding:18px 16px;margin-top:24px}
+.couple-hero.good{--bond:#ec2e36}.couple-hero.mid{--bond:#2f9bdb}.couple-hero.bad{--bond:#15110d}
+.cscene{width:min(330px,90%);height:auto;display:block;margin:0 auto 6px}
+.ctitle{font-family:'Bangers',cursive;font-size:clamp(22px,6vw,36px);letter-spacing:.02em;color:var(--blue);-webkit-text-stroke:2px var(--ink);line-height:1.05;margin-bottom:4px}
+.csym{color:var(--bond);-webkit-text-stroke:0}
+.h2h{width:100%;border-collapse:collapse;margin-top:6px}
+.h2h th{font-family:'Bangers',cursive;font-size:17px;padding:6px 4px;color:var(--ink);border-bottom:3px solid var(--ink)}
+.h2h td{padding:7px 6px;border-bottom:2px dotted rgba(0,0,0,.2);font-size:13.5px;font-weight:600;vertical-align:top}
+.h2h .hl{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;color:#666;text-align:center;white-space:nowrap}
+.h2h .ha{text-align:right;color:#241f30}.h2h .hb{text-align:left;color:#241f30}
+
+
+.lenstabs{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:14px 0 4px}
+.lenstab{font-family:'Bangers',cursive;font-size:14px;letter-spacing:.02em;background:var(--paper);color:var(--ink);border:3px solid var(--ink);padding:3px 11px;cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.lenstab.active{background:var(--yellow);box-shadow:2px 2px 0 var(--blue)}
+
+
+/* ===== theme switch in nav ===== */
+.themeswitch{display:flex;gap:5px;margin-right:4px}
+.nav{flex-wrap:wrap;gap:8px 10px}
+.nav .logo{white-space:nowrap}
+.nav button{white-space:nowrap}
+.cover .tag{white-space:nowrap}
+.cover h1{font-size:clamp(44px,11.5vw,90px)}
+.dfill,.cfill{display:block}
+.idx-grid{margin-top:42px}
+.nav .themebtn{font-family:'Bangers',cursive;font-size:13px;letter-spacing:.03em;background:transparent;color:var(--paper);border:2px solid rgba(255,246,227,.5);padding:3px 10px;cursor:pointer;transform:none}
+.nav .themebtn:hover{transform:none;border-color:var(--paper)}
+.nav .themebtn.on{background:var(--yellow);color:#15110d;border-color:#15110d}
+
+/* ===== mascots in index + hero ===== */
+.idx-m{width:78px;height:78px;margin:0 auto 2px}
+.idx-m svg{width:100%;height:100%;display:block;overflow:visible}
+.idx-card{transition:transform .12s,box-shadow .12s}
+.idx-card:hover .idx-m svg{transform:scale(1.05)}
+.hero{position:relative;display:flex;align-items:center;justify-content:space-between;gap:clamp(12px,3vw,34px);flex-wrap:wrap;text-align:left;padding:8px 0 4px;margin-top:30px;padding-left:clamp(8px,4vw,38px)}
+.hero{position:relative;display:flex;align-items:center;justify-content:space-between;gap:clamp(14px,4vw,40px);flex-wrap:wrap;text-align:left;padding:8px 0 4px;margin-top:30px;padding-left:clamp(8px,3vw,28px);padding-right:clamp(8px,2.5vw,26px)}
+.hero-left{display:flex;align-items:center;justify-content:center;gap:clamp(8px,2.2vw,22px);min-width:0;flex:1 1 auto}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:3px;flex:0 0 auto;align-self:center;margin-top:42px}
+.hero-name{font-size:clamp(38px,7.6vw,80px)}
+.hero .hero-name{font-size:clamp(38px,7.6vw,80px)}
+.hero-m{width:clamp(124px,17vw,172px);margin:0;flex:0 0 auto}
+@media(max-width:600px){.hero{flex-direction:column;text-align:center;gap:10px;justify-content:center}.hero-left{flex-direction:column;gap:6px}.hero-right{align-items:center;text-align:center;align-self:center;margin-top:4px}.achips{justify-content:center}}
+.hero-m svg{width:100%;height:auto;display:block;overflow:visible}
+/* ===== testata segno: chip attributi + mascotte parlante ===== */
+.achips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;justify-content:flex-end}
+.achip{flex:0 0 auto;font-family:'Bangers',cursive;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:#15110d;border:3px solid var(--ink);border-radius:8px;padding:4px 13px;box-shadow:2px 2px 0 var(--ink);line-height:1.25;white-space:nowrap}
+.achip.mod{background:#6b4ff0}
+.achip.plan{background:#1f9e8f}
+@media(max-width:600px){.achips{justify-content:center}}
+.hero-mwrap{position:relative;flex:0 0 auto;width:clamp(124px,17vw,172px)}
+.hero-mwrap .hero-m{width:100%}
+.hero-m svg{transform-origin:50% 88%}
+.el-fuoco .hero-m svg{animation:idleFuoco 1.8s ease-in-out infinite}
+@keyframes idleFuoco{0%,100%{transform:translateY(0) rotate(0)}22%{transform:translateY(-8px) rotate(-5deg)}48%{transform:translateY(0) rotate(0)}64%{transform:translateY(-3px) rotate(5deg)}}
+.el-terra .hero-m svg{animation:idleTerra 3.4s ease-in-out infinite}
+@keyframes idleTerra{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
+.el-aria .hero-m svg{animation:idleAria 3s ease-in-out infinite}
+@keyframes idleAria{0%,100%{transform:translateY(0) rotate(-3.5deg)}50%{transform:translateY(-9px) rotate(3.5deg)}}
+.el-acqua .hero-m svg{animation:idleAcqua 2.9s ease-in-out infinite}
+@keyframes idleAcqua{0%,100%{transform:translateX(0) rotate(-2deg)}25%{transform:translateX(-5px) rotate(0)}50%{transform:translateX(0) rotate(2deg)}75%{transform:translateX(5px) rotate(0)}}
+.talk{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:visible}
+.bubble{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:15px;padding:8px 13px 10px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:13.5px;color:var(--ink);line-height:1.15;box-shadow:3px 3px 0 var(--ink);width:max-content;max-width:198px;text-align:center;opacity:0;transform:scale(.4)}
+.bubble.show{opacity:1;transform:scale(1)}
+@keyframes bubIn{0%{opacity:0;transform:scale(.4)}60%{opacity:1;transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+.bubble::after{content:"";position:absolute;width:13px;height:13px;background:#fff}
+.bubble.tail-tl::after{left:14px;bottom:-11px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(38deg)}
+.bubble.tail-tr::after{right:14px;bottom:-11px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(38deg)}
+.bubble.tail-bc::after{left:50%;margin-left:-7px;bottom:-11px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(38deg)}
+.bubble.tail-l::after{left:-11px;top:50%;margin-top:-7px;border-left:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(38deg)}
+.bubble.tail-tl{transform-origin:bottom left}
+.bubble.tail-tr{transform-origin:bottom right}
+.bubble.tail-bc{transform-origin:bottom center}
+.bubble.tail-l{transform-origin:left center}
+.hero-m{position:relative;z-index:1}
+.hero-m.react{animation:faceReact .5s cubic-bezier(.25,1.6,.4,1)}
+@keyframes faceReact{0%{transform:scale(1) rotate(0)}30%{transform:scale(.9) rotate(-4deg)}62%{transform:scale(1.08) rotate(2deg)}100%{transform:scale(1) rotate(0)}}
+.heroBurst{position:absolute;left:50%;top:53%;width:134%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:0;pointer-events:none;--bcol:#ffe08a}
+.heroBurst::before{content:"";position:absolute;inset:-8%;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(0,0,0,.05) 0deg 5deg,transparent 5deg 10deg);-webkit-mask:radial-gradient(circle,#000 38%,transparent 64%);mask:radial-gradient(circle,#000 38%,transparent 64%);animation:burstSpin 26s linear infinite;opacity:.7}
+.heroBurst .hbstar{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:hbStarPulse 3.4s ease-in-out infinite}
+.heroBurst .hbstar polygon{fill:var(--bcol);stroke:var(--ink);stroke-width:2.4;stroke-linejoin:round;opacity:.92}
+.heroBurst.bpop .hbstar{animation:burstPop .5s cubic-bezier(.2,1.5,.4,1),hbStarPulse 3.4s ease-in-out .5s infinite}
+@keyframes burstSpin{to{transform:rotate(360deg)}}
+@keyframes hbStarPulse{0%,100%{transform:rotate(-3deg) scale(.98)}50%{transform:rotate(3deg) scale(1.03)}}
+@keyframes burstPop{0%{transform:scale(.6) rotate(-8deg)}60%{transform:scale(1.12) rotate(4deg)}100%{transform:scale(1) rotate(0)}}
+.hfx{position:absolute;opacity:0}
+.hfx-heart{color:#ff2d6f;font-size:15px;animation:hfxFloat 1.5s ease-in infinite}
+.hfx-spark{color:var(--yellow);-webkit-text-stroke:1px var(--ink);font-size:15px;animation:hfxPopf 1.4s ease-out infinite}
+.hfx-star{color:#ffd23f;-webkit-text-stroke:1px var(--ink);font-size:16px;animation:hfxPopf 1.5s ease-out infinite}
+.hfx-qmark{color:#6b4ff0;-webkit-text-stroke:1px var(--ink);font-weight:800;font-size:17px;animation:hfxPopf 1.6s ease-out infinite}
+.hfx-word.wow{color:#7fe0ff}
+.hfx-vein{width:22px;height:22px;animation:hfxVein .6s ease-in-out infinite}
+.hfx-vein svg{width:22px;height:22px;display:block}
+.hfx-puff{color:#9b9bb0;font-weight:800;font-size:14px;animation:hfxPuff 1.1s ease-in infinite}
+.hfx-word{font-family:'Bangers',cursive;letter-spacing:.02em;color:#ffe14d;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;font-size:21px;text-shadow:2px 2px 0 rgba(0,0,0,.25);opacity:0;animation:hfxWord 1.9s ease-out infinite}
+.hfx-word.angry{color:#ff5252}
+@keyframes hfxFloat{0%{opacity:0;transform:translateY(6px) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translateY(-34px) scale(1.1)}}
+@keyframes hfxPopf{0%{opacity:0;transform:scale(.3)}40%{opacity:1;transform:scale(1.15)}100%{opacity:0;transform:scale(1) translateY(-10px)}}
+@keyframes hfxVein{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes hfxPuff{0%{opacity:0;transform:translateY(5px) scale(.6)}30%{opacity:.7}100%{opacity:0;transform:translateY(-16px) scale(1.1)}}
+@keyframes hfxWord{0%,72%,100%{opacity:0;transform:scale(.4) rotate(-8deg)}13%{opacity:1;transform:scale(1.18) rotate(-8deg)}24%,56%{opacity:1;transform:scale(1) rotate(-8deg)}}
+@media(prefers-reduced-motion:reduce){.hero-m svg{animation:none}.hero-m.react{animation:none}.hfx{animation:none!important;opacity:0!important}.heroBurst::before,.heroBurst .hbstar{animation:none!important}.bubble.show{animation:none;opacity:1;transform:scale(1)}}
+
+/* ===== couple stage · coreografia ad hoc per fascia di affinità ===== */
+.couple-hero{overflow:hidden}
+.cstage{position:relative;height:236px;max-width:440px;margin:0 auto 10px}
+.cfig{position:absolute;top:50%;width:130px;z-index:2;will-change:transform}
+.cfig svg{width:100%;height:auto;display:block;overflow:visible;transform-origin:50% 86%}
+.cfig-left{left:17%;opacity:0;transform:translate(-190px,-50%) rotate(-12deg)}
+.cfig-right{right:17%;opacity:0;transform:translate(190px,-50%) rotate(12deg)}
+.cstage.play .cfig-left,.cstage.play .cfig-right{opacity:1;transform:translate(0,-50%) rotate(0);transition:transform .6s cubic-bezier(.2,.85,.3,1.25),opacity .4s ease}
+
+/* pose d'incontro per livello (transition sul .cfig) */
+.cstage.play.met.lvl-5 .cfig-left{transform:translate(50px,-50%) rotate(8deg)}
+.cstage.play.met.lvl-5 .cfig-right{transform:translate(-50px,-50%) rotate(-8deg)}
+.cstage.play.met.lvl-4 .cfig-left{transform:translate(34px,-50%) rotate(5deg)}
+.cstage.play.met.lvl-4 .cfig-right{transform:translate(-34px,-50%) rotate(-5deg)}
+.cstage.play.met.lvl-3 .cfig-left{transform:translate(18px,-50%)}
+.cstage.play.met.lvl-3 .cfig-right{transform:translate(-18px,-50%)}
+.cstage.play.met.lvl-2 .cfig-left{transform:translate(-14px,-50%) rotate(-8deg)}
+.cstage.play.met.lvl-2 .cfig-right{transform:translate(14px,-50%) rotate(8deg)}
+
+/* micro-coreografia in loop (transform sul .cfig svg: non confligge con la posa del .cfig) */
+/* 100% · si baciano */
+.cstage.met.lvl-5 .cfig-left svg{animation:kissL 1.7s ease-in-out .8s infinite}
+.cstage.met.lvl-5 .cfig-right svg{animation:kissR 1.7s ease-in-out .8s infinite}
+@keyframes kissL{0%,100%{transform:translateX(0) rotate(0)}40%{transform:translateX(11px) rotate(3deg)}60%{transform:translateX(11px) rotate(3deg)}}
+@keyframes kissR{0%,100%{transform:translateX(0) rotate(0)}40%{transform:translateX(-11px) rotate(-3deg)}60%{transform:translateX(-11px) rotate(-3deg)}}
+/* 80% · si abbracciano */
+.cstage.met.lvl-4 .cfig-left svg{animation:hugL 2.6s ease-in-out .8s infinite}
+.cstage.met.lvl-4 .cfig-right svg{animation:hugR 2.6s ease-in-out .8s infinite}
+@keyframes hugL{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(3deg)}}
+@keyframes hugR{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-3deg)}}
+/* 60% · equilibrio da costruire (tira e molla) */
+.cstage.met.lvl-3 .cfig-left svg{animation:balL 2.6s ease-in-out .8s infinite}
+.cstage.met.lvl-3 .cfig-right svg{animation:balR 2.6s ease-in-out .8s infinite}
+@keyframes balL{0%,100%{transform:translateX(10px) rotate(3deg)}50%{transform:translateX(-5px) rotate(-2deg)}}
+@keyframes balR{0%,100%{transform:translateX(-10px) rotate(-3deg)}50%{transform:translateX(5px) rotate(2deg)}}
+/* 40% · scontro tra opposti */
+.cstage.met.lvl-2 .cfig-left svg{animation:clashL 1.5s ease-in-out .8s infinite}
+.cstage.met.lvl-2 .cfig-right svg{animation:clashR 1.5s ease-in-out .8s infinite}
+@keyframes clashL{0%,100%{transform:translateX(0) rotate(0)}16%{transform:translateX(30px) rotate(6deg)}24%{transform:translateX(23px) rotate(4deg)}40%{transform:translateX(-8px) rotate(-4deg)}66%{transform:translateX(0) rotate(0)}}
+@keyframes clashR{0%,100%{transform:translateX(0) rotate(0)}16%{transform:translateX(-30px) rotate(-6deg)}24%{transform:translateX(-23px) rotate(-4deg)}40%{transform:translateX(8px) rotate(4deg)}66%{transform:translateX(0) rotate(0)}}
+.cstage.met.lvl-2{animation:cclash 1.5s ease-in-out .8s infinite}
+@keyframes cclash{0%,12%,100%{transform:translateX(0)}19%{transform:translateX(-5px)}23%{transform:translateX(5px)}28%{transform:translateX(-3px)}34%{transform:translateX(0)}}
+
+/* simbolo del legame */
+.cbond{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%) scale(0);z-index:3}
+.cbond-sym{font-family:'Bangers',cursive;font-size:42px;line-height:1;color:var(--bond);-webkit-text-stroke:2px var(--ink);display:inline-block}
+.couple-hero.bad .cbond-sym{-webkit-text-stroke:0}
+.cstage.met .cbond{opacity:1;transform:translate(-50%,-50%) scale(1);transition:transform .5s cubic-bezier(.2,1.6,.4,1),opacity .3s}
+.cstage.met.lvl-5 .cbond-sym,.cstage.met.lvl-4 .cbond-sym{animation:cbeat 1s ease-in-out 1s infinite}
+.cstage.met.lvl-3 .cbond-sym{animation:cscale 2.6s ease-in-out 1s infinite}
+.cstage.met.lvl-2 .cbond-sym{animation:cbuzz .5s linear 1s infinite}
+@keyframes cbeat{0%,100%{transform:scale(1)}30%{transform:scale(1.18)}}
+@keyframes cscale{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(13deg)}}
+@keyframes cbuzz{0%,100%{transform:translate(0,0) rotate(-4deg)}25%{transform:translate(-2px,1px) rotate(3deg)}50%{transform:translate(2px,-1px) rotate(-2deg)}75%{transform:translate(-1px,1px) rotate(4deg)}}
+
+/* decorazioni */
+.cdeco{position:absolute;inset:0;z-index:4;pointer-events:none}
+.cdeco span{position:absolute;opacity:0;color:var(--bond);font-size:17px}
+.cstage.met .cdeco span{animation:cpop .5s ease-out forwards}
+.cstage.met.lvl-5 .cdeco span{animation:cfloat 1.9s ease-in infinite}
+.cstage.met.lvl-2 .cdeco span{animation:cflash 1.5s ease-out .8s infinite}
+.cdeco .d1{left:37%;top:40%;animation-delay:.7s}.cdeco .d2{left:58%;top:44%;font-size:13px;animation-delay:1.35s}.cdeco .d3{left:48%;top:36%;font-size:22px;animation-delay:1.05s}
+.cdeco .b1{left:40%;top:30%;font-size:23px;animation-delay:.5s}.cdeco .b2{left:57%;top:34%;font-size:18px;animation-delay:.62s}
+@keyframes cpop{0%{opacity:0;transform:scale(0) translateY(5px)}60%{opacity:1;transform:scale(1.2) translateY(-4px)}100%{opacity:1;transform:scale(1) translateY(-7px)}}
+@keyframes cfloat{0%{opacity:0;transform:translateY(10px) scale(.4)}25%{opacity:1}100%{opacity:0;transform:translateY(-62px) scale(1.12)}}
+@keyframes cflash{0%,55%,100%{opacity:0;transform:scale(.4)}12%{opacity:1;transform:scale(1.3)}22%{opacity:.85;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.cfig{opacity:1!important;transform:translate(0,-50%)!important}.cfig svg{animation:none!important}.cstage.met.lvl-2{animation:none!important}.cbond{opacity:1!important;transform:translate(-50%,-50%) scale(1)!important}.cbond-sym{animation:none!important}.cdeco span{opacity:1!important;animation:none!important}}
+
+/* ============================================================
+   ░░░ VERSIONE ADESIVI — riso sticker (stesso contenuto) ░░░
+   ============================================================ */
+body.theme-adesivi{--paper:#fdf4e6;--ink:#2c2138;--red:#ff5d73;--red-d:#e7455c;--blue:#4a86d8;--yellow:#ffc24b;
+  background:
+   radial-gradient(circle at 12% 16%,rgba(255,93,115,.16) 0 9px,transparent 10px),
+   radial-gradient(circle at 86% 11%,rgba(74,134,216,.16) 0 7px,transparent 8px),
+   radial-gradient(circle at 80% 84%,rgba(76,178,133,.15) 0 8px,transparent 9px),
+   radial-gradient(circle at 20% 88%,rgba(255,194,75,.18) 0 6px,transparent 7px),
+   linear-gradient(160deg,#ffe0b0,#ffc0cb)}
+body.theme-adesivi .wrap{border-radius:30px;box-shadow:10px 10px 0 rgba(44,33,56,.22);background-image:none}
+body.theme-adesivi .nav{background:#2c2138}
+body.theme-adesivi .panel,body.theme-adesivi .chart,body.theme-adesivi .dims,body.theme-adesivi .el-card,body.theme-adesivi .lifecard,body.theme-adesivi .flag,body.theme-adesivi .couple-hero{border-radius:18px}
+body.theme-adesivi .panel{box-shadow:5px 5px 0 var(--blue)}
+body.theme-adesivi .panel.alt{box-shadow:5px 5px 0 var(--red)}
+body.theme-adesivi .couple-hero{box-shadow:5px 5px 0 var(--blue)}
+body.theme-adesivi .idx-card{border-radius:16px}
+body.theme-adesivi .listpanel{border-radius:18px;border-style:solid;border-width:3px}
+body.theme-adesivi .tag,body.theme-adesivi .lenstab,body.theme-adesivi .stick,body.theme-adesivi .pull,body.theme-adesivi .sub,body.theme-adesivi .vbadge,body.theme-adesivi .cover .ey,body.theme-adesivi .flag h4,body.theme-adesivi .nav button,body.theme-adesivi .back,body.theme-adesivi .prevnext button,body.theme-adesivi select{border-radius:16px}
+body.theme-adesivi .tag,body.theme-adesivi .stick,body.theme-adesivi .pull,body.theme-adesivi .sub,body.theme-adesivi .vbadge,body.theme-adesivi .cover .ey,body.theme-adesivi .flag h4,body.theme-adesivi .nav button{transform:none}
+body.theme-adesivi .stick:nth-child(2n),body.theme-adesivi .stick:nth-child(3n){transform:none}
+body.theme-adesivi .pull{box-shadow:5px 5px 0 var(--red)}
+body.theme-adesivi .tag{border-radius:20px}
+body.theme-adesivi .lenstab{border-radius:20px}
+body.theme-adesivi .stick{border-radius:20px}
+
+/* ===== COMIC BOOK · mascotte animate ===== */
+/* sfondi pannelli: sunburst + retino a pois */
+.comicbg{position:relative;overflow:hidden}
+.comicbg::before{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg at var(--bx,80%) 50%, rgba(0,0,0,.05) 0deg 4.5deg, transparent 4.5deg 9deg)}
+.comicbg::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:multiply;
+  background-image:radial-gradient(rgba(0,0,0,.08) 1.1px, transparent 1.7px);background-size:9px 9px}
+.comicbg>*{position:relative;z-index:1}
+body.theme-adesivi .comicbg::before{background:repeating-conic-gradient(from 0deg at var(--bx,80%) 50%, rgba(120,90,160,.07) 0deg 4.5deg, transparent 4.5deg 9deg)}
+body.theme-adesivi .comicbg::after{background-image:radial-gradient(rgba(150,110,180,.13) 1.1px, transparent 1.7px)}
+
+.listpanel.haspet{display:grid;grid-template-columns:1fr 150px;column-gap:18px;align-items:center}
+.listpanel.haspet>.tag{grid-column:1 / -1}
+.listpanel.haspet>.zlist{grid-column:1;grid-row:2;margin-top:8px}
+.m-anim{grid-column:2;grid-row:2;position:relative;width:144px;height:144px;margin:0;justify-self:center;align-self:center;animation:popIn .55s cubic-bezier(.2,1.45,.45,1) both}
+.m-anim svg.omino{position:relative;z-index:1;width:120px;height:auto;display:block;margin:0 auto;overflow:visible}
+@media(max-width:560px){.listpanel.haspet{grid-template-columns:1fr}.listpanel.haspet>.tag{grid-column:1}.listpanel.haspet>.zlist{grid-column:1;grid-row:auto}.m-anim{grid-column:1;grid-row:auto;margin:2px auto 6px}}
+.m-anim .fx{position:absolute;opacity:0;pointer-events:none}
+@keyframes popIn{0%{transform:scale(0) rotate(-14deg)}100%{transform:scale(1) rotate(0)}}
+
+/* comic burst (esplosione a stella dietro la mascotte) */
+.burst{position:absolute;left:50%;top:50%;width:150px;height:150px;z-index:0;pointer-events:none;
+  transform:translate(-50%,-50%);transform-origin:center;animation:burstPulse 3.2s ease-in-out infinite}
+.burst polygon{stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+.m-side .burst{width:118px;height:118px}
+@keyframes burstPulse{0%,100%{transform:translate(-50%,-50%) rotate(-4deg) scale(.98)}50%{transform:translate(-50%,-50%) rotate(4deg) scale(1.05)}}
+
+/* onomatopee comic */
+.onoma{position:absolute;z-index:3;font-family:'Bangers',cursive;letter-spacing:.02em;line-height:.9;
+  color:#fff;-webkit-text-stroke:2.4px var(--ink);paint-order:stroke fill;
+  text-shadow:3px 3px 0 rgba(0,0,0,.28);pointer-events:none;white-space:nowrap;opacity:0}
+@keyframes onomaPop{0%,8%{opacity:0;transform:var(--ot,rotate(-8deg)) scale(.2)}
+  18%{opacity:1;transform:var(--ot,rotate(-8deg)) scale(1.18)}26%{transform:var(--ot,rotate(-8deg)) scale(1)}
+  78%{opacity:1}100%{opacity:0;transform:var(--ot,rotate(-8deg)) scale(1)}}
+
+/* ♥ come conquistarmi */
+.m-love .burst polygon{fill:#ff8fb0}
+.m-love svg.omino{animation:loveBob 1.5s ease-in-out infinite;transform-origin:50% 82%}
+@keyframes loveBob{0%,100%{transform:translateY(0) rotate(-2.5deg)}50%{transform:translateY(-6px) rotate(2.5deg)}}
+.m-love .fx{color:#ff2d6f;font-size:18px;top:30%}
+.m-love .h1{left:44%;animation:floatH 1.9s ease-in infinite}
+.m-love .h2{left:26%;font-size:13px;animation:floatH 1.9s ease-in .65s infinite}
+.m-love .h3{left:62%;font-size:22px;animation:floatH 1.9s ease-in 1.25s infinite}
+@keyframes floatH{0%{opacity:0;transform:translateY(8px) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translateY(-52px) scale(1.15)}}
+.m-love .onoma{color:#ffe14d;font-size:27px;right:-8px;top:-6px;--ot:rotate(9deg);animation:onomaPop 2.3s ease-out infinite}
+
+/* ✕ cosa chiude la porta */
+.m-angry .burst polygon{fill:#9aa1b6}
+.m-angry svg.omino{animation:angShake .5s ease-in-out infinite}
+@keyframes angShake{0%,100%{transform:translateX(0) rotate(0)}20%{transform:translateX(-3px) rotate(-2.5deg)}40%{transform:translateX(3px) rotate(2.5deg)}60%{transform:translateX(-2px) rotate(-1.5deg)}80%{transform:translateX(2px) rotate(1.5deg)}}
+.m-angry .vein{top:2%;left:60%;width:26px;height:26px;animation:veinP .7s ease-in-out infinite}
+.m-angry .vein svg{width:26px;height:26px;display:block}
+@keyframes veinP{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+.m-angry .puff,.m-angry .puff2{color:#6f7488;font-weight:800;top:4%}
+.m-angry .puff{left:30%;font-size:17px;animation:puffUp 1.2s ease-in infinite}
+.m-angry .puff2{left:56%;font-size:13px;animation:puffUp 1.2s ease-in .5s infinite}
+@keyframes puffUp{0%{opacity:0;transform:translateY(6px) scale(.6)}30%{opacity:.75}100%{opacity:0;transform:translateY(-22px) scale(1.1)}}
+.m-angry .onoma{color:#ff4747;font-size:30px;left:-6px;top:-8px;--ot:rotate(-10deg);animation:onomaPop 1.9s ease-out infinite}
+
+/* lui & lei a lato (float) */
+.m-side{position:relative;float:right;width:118px;margin:-4px 0 2px 14px;shape-outside:circle(48%)}
+.m-side svg.omino{position:relative;z-index:1;width:96px;height:auto;display:block;margin:0 auto;overflow:visible}
+.m-side .fx{position:absolute;opacity:0;pointer-events:none;line-height:1}
+.m-side.m-lui{animation:popIn .55s cubic-bezier(.2,1.45,.45,1) both}
+.m-side.m-lei{animation:popIn .55s cubic-bezier(.2,1.45,.45,1) .08s both}
+
+/* ♂ lui — sposta gli occhi e sbuffa */
+.m-lui .burst polygon{fill:#7fc7ff}
+.m-lui svg.omino{animation:luiIdle 3.4s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes luiIdle{0%,100%{transform:translateY(0) rotate(0)}45%{transform:translateY(-1.5px) rotate(.6deg)}}
+.m-lui .zpup{animation:eyeDart 2.6s ease-in-out infinite}
+@keyframes eyeDart{0%,16%{transform:translateX(-2.6px)}38%,56%{transform:translateX(2.6px)}80%,100%{transform:translateX(-2.6px)}}
+.m-lui .puff{color:#7b8198;font-weight:800;font-size:15px;left:6%;top:22%;animation:puffUp 1.5s ease-in infinite}
+.m-lui .onoma{color:#bfe0ff;font-size:21px;left:-2px;top:-4px;--ot:rotate(-9deg);animation:onomaPop 2.8s ease-out infinite}
+
+/* ♀ lei — ride felice */
+.m-lei .burst polygon{fill:#ffc1de}
+.m-lei svg.omino{animation:leiGiggle 1.15s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes leiGiggle{0%,100%{transform:translateY(0) rotate(-2.5deg) scaleY(1)}25%{transform:translateY(-4px) rotate(2.5deg)}50%{transform:translateY(0) rotate(-2deg) scaleY(.96)}75%{transform:translateY(-2px) rotate(1.5deg)}}
+.m-lei .fx{color:#ff5d8f;font-size:13px}
+.m-lei .s1{left:2%;top:22%;animation:twinkle 1.7s ease-in-out infinite}
+.m-lei .s2{left:82%;top:30%;font-size:11px;animation:twinkle 1.7s ease-in-out .85s infinite}
+@keyframes twinkle{0%,100%{opacity:0;transform:translateY(0) scale(.4) rotate(0)}45%{opacity:.95}100%{opacity:0;transform:translateY(-13px) scale(1.05) rotate(28deg)}}
+.m-lei .onoma{color:#fff0a6;font-size:20px;right:-6px;top:-6px;--ot:rotate(10deg);animation:onomaPop 1.8s ease-out infinite}
+
+@media(prefers-reduced-motion:reduce){
+  .m-love svg.omino,.m-angry svg.omino,.m-lui svg.omino,.m-lei svg.omino,.m-lui .zpup,.burst{animation:none}
+  .m-anim,.m-side.m-lui,.m-side.m-lei{animation:none}
+  .m-anim .fx,.m-side .fx,.onoma{display:none}}
+
+/* --- widget pagina segno (oroscopo/natal/affinità/componi) --- */
+.hero-cta{display:inline-block;margin-top:10px;font-family:'Baloo 2';font-weight:800;font-size:13px;text-decoration:none;color:#fff;background:var(--ink);border:2.5px solid var(--ink);border-radius:999px;padding:7px 14px;box-shadow:3px 3px 0 var(--blue);transition:transform .05s}
+.hero-cta:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--blue)}
+@media(max-width:600px){.achips+.hero-cta{margin-top:8px}}
+.bigcta{display:inline-block;margin-top:10px;font-family:'Bangers',cursive;font-size:20px;letter-spacing:.5px;text-decoration:none;color:#fff;background:var(--red);border:3px solid var(--ink);border-radius:12px;padding:10px 18px;box-shadow:4px 4px 0 var(--ink);transition:transform .05s}
+.bigcta.sm{font-size:14px;padding:7px 13px;background:var(--ink);box-shadow:3px 3px 0 var(--blue)}
+.bigcta:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.affctrls,.composeline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 0;font-weight:700}
+.fixsign{font-family:'Baloo 2';font-weight:800;font-size:14px;padding:6px 12px;border-radius:999px;border:2.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.vsx{font-family:'Bangers',cursive;font-size:20px}
+.affctrls select,.composeline select{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:8px 10px;border:2.5px solid var(--ink);border-radius:10px;background:#fff;color:var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer;max-width:100%}
+.affres{margin-top:12px;border:3px solid var(--ink);border-radius:12px;background:var(--paper);padding:13px;box-shadow:4px 4px 0 var(--yellow)}
+.affscore{display:flex;align-items:baseline;gap:5px;margin-bottom:4px}
+.affnum{font-family:'Bangers',cursive;font-size:32px;color:var(--red);line-height:1}
+.affmax{font-family:'Space Mono',monospace;font-weight:700;color:#999}
+.afflab{margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;font-weight:700;color:var(--ink)}
+.afftrack{height:14px;background:#efe7d2;border:2px solid var(--ink);border-radius:999px;overflow:hidden;margin:6px 0}
+.afffill{display:block;height:100%;background:var(--red)}
+.affverdict{font-weight:800;color:var(--ink);margin:6px 0}
+.affadv{font-weight:600;margin:6px 0 0}
+.composeSentence{font-family:'Baloo 2';font-weight:800;font-size:18px;color:var(--ink);margin:10px 0 0;line-height:1.3}
+.composeBox .afftrack{margin-top:8px}
+</style><template id="__bundler_thumbnail" data-bg-color="#f4ecd8">
+  <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="80" fill="#f4ecd8"/>
+    <circle cx="60" cy="38" r="22" fill="#ec2e36" stroke="#15110d" stroke-width="3"/>
+    <text x="60" y="46" text-anchor="middle" font-family="serif" font-weight="900" font-size="22" fill="#f4ecd8">♈</text>
+    <text x="60" y="70" text-anchor="middle" font-family="serif" font-weight="900" font-size="8" fill="#15110d" letter-spacing="2">ZODIAC ZINE</text>
+  </svg>
+</template>
+</head><body>
+<div class="nav"><span class="logo" onclick="go('index')">★ Zodiac Zine</span><span class="links"><button onclick="go('basi')" id="navBasi">Le basi</button><button onclick="go('index')" id="navSegni">Segni</button><button class="b" onclick="go('compat')" id="navCoppie">♥ Coppie</button><span id="langPick"></span></span></div><div class="wrap" id="app"></div>
+<script src="coppie/mascots.js"></script>
+<script src="coppie/anim.js"></script>
+<script src="lang/i18n.js"></script>
+<script src="lang/signs.en.js"></script>
+<script src="lang/signs.fr.js"></script>
+<script src="lang/signs.es.js"></script>
+<script src="lang/signs.pt.js"></script>
+<script src="lang/zine-extra.js"></script>
+<script src="lang/zine-couples.js"></script>
+<script src="lang/wire.js"></script>
+<script>
+const ELCOLOR={stampa:{fuoco:"#ec2e36",terra:"#36b06a",aria:"#f5b700",acqua:"#2f9bdb"},adesivi:{fuoco:"#ff5d73",terra:"#4cb285",aria:"#ffc24b",acqua:"#4a86d8"}};
+let THEME="stampa";
+function mc(sign,look,mood,variant){return window.MASCOT(sign,ELCOLOR[THEME][sign.el],THEME,look||1,mood||"happy",variant);}
+function burst(){var n=15,pts=[];for(var i=0;i<n*2;i++){var R=(i%2===0)?50:(34+(i%4===1?3:0));var a=(Math.PI/n)*i-Math.PI/2;pts.push((50+R*Math.cos(a)).toFixed(1)+","+(50+R*Math.sin(a)).toFixed(1));}return '<svg class="burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="'+pts.join(" ")+'"/></svg>';}
+function syncThemeBtns(){document.querySelectorAll(".themebtn").forEach(function(b){b.classList.toggle("on",b.dataset.t===THEME);});}
+function setTheme(t){THEME=t;try{localStorage.setItem("zz_theme",t);}catch(e){}document.body.classList.remove("theme-stampa","theme-adesivi");document.body.classList.add("theme-"+t);syncThemeBtns();render();}
+const SIGNS_IT = [
+ {k:"ariete",n:"Ariete",d:"21 mar — 19 apr",el:"fuoco",mod:"cardinale",ru:"Marte",g:"\u2648",
+  ess:"L'Ariete non entra in una stanza: la apre. Primo segno dello zodiaco, governato da Marte, è la scintilla che mette in moto tutto. Vive al presente, decide d'istinto e la noia, per lui, è morte lenta.",
+  ess2:"Coraggio puro: parte per primo e non chiede permesso. Ma brucia in fretta — e a volte lascia più cenere di quanta ne vorrebbe.",
+  am:"Diretto e senza strategia: se ti vuole, lo sai subito. L'inseguimento lo elettrizza, la conquista lo appaga. Generoso e protettivo, ma una volta vinto rischia di annoiarsi: vuole un partner che resti una sfida.",
+  let:"Impaziente, fisico, istintivo. Spontaneità sopra ogni cosa, e si accende quando deve ancora «vincere» l'altro. Ama guidare, ma il vero fuoco scatta con chi gli risponde colpo su colpo.",
+  sap:["Vado dritto al punto, sempre.","La noia è morte lenta.","Parto per primo.","O mi interessi o no.","Mi accendo in un secondo."],
+  con:["Tieni il ritmo, niente lentezza.","Lanciami una sfida.","Sii indipendente quanto me.","Niente giochini.","Sorprendimi."],
+  deal:["La noia e la routine.","L'indecisione cronica.","Chi vuole possedermi.","La gelosia soffocante.","Chi non sta al passo."],
+  gf:["Coraggioso e diretto","Protettivo con chi ama","Un'energia che trascina"],
+  rf:["Impulsivo e impaziente","Si infiamma e poi sparisce","Egocentrico quando vince"],
+  ami:"È il leader del gruppo: ti trascina nelle avventure e ti difende come un fratello, ma sparisce se ti lamenti troppo.",
+  lav:"Il pioniere: avvia mille progetti con entusiasmo, odia la burocrazia e i tempi morti.",
+  ang:"Esplode subito e forte — sfogo veloce, poi è già passato. Niente rancori, niente diplomazia.",
+  ll:"Gesti d'azione e tempo di qualità ad alta adrenalina.",
+  sun:"il pioniere che parte per primo, tutto slancio e coraggio.",moon:"reagisce d'impulso, ha bisogno di sfogarsi subito.",asc:"energico, diretto, un filo sfrontato.",
+  adv:"L'Ariete ha bisogno di un partner avventuroso che non lo annoi, lo sfidi e lo apprezzi per l'energia che è.",
+  q:"Datemi una sfida e divento inarrestabile."},
+
+ {k:"toro",n:"Toro",d:"20 apr — 20 mag",el:"terra",mod:"fisso",ru:"Venere",g:"\u2649",
+  ess:"Il Toro è il segno del piacere solido. Governato da Venere, cerca bellezza, comodità e stabilità tangibile. Lento a muoversi, immovibile quando ha deciso.",
+  ess2:"Apprezza le cose buone — cibo, denaro, contatto, tempo — e le difende con una testardaggine leggendaria.",
+  am:"Leale, sensuale, possessivo. Ci mette tempo a fidarsi, ma quando si lega è una roccia. Mostra l'amore con gesti concreti e presenza fisica. Tradiscilo e non perdona.",
+  let:"Il maestro della lentezza. Tutto sensi: tatto, profumo, sapore. Niente fretta, niente acrobazie — pura qualità e resistenza.",
+  sap:["La pazienza è la mia arma.","Quando decido, non torno indietro.","Amo il bello e il buono.","Testardo? Coerente.","Sicurezza prima di tutto."],
+  con:["Offrigli stabilità (e buon cibo).","Niente fretta.","Sii leale e presente.","Apprezza il bello.","Mantieni le promesse."],
+  deal:["Il tradimento, mai.","L'instabilità e il caos.","Chi spreca i soldi.","Le forzature.","La superficialità."],
+  gf:["Leale e affidabile","Sensuale e presente","Calmo sotto stress"],
+  rf:["Testardo fino all'assurdo","Possessivo","Pigro quando si comoda"],
+  ami:"Amico per la vita: lento a entrare nella cerchia, ma poi c'è sempre, con una cena buona e zero drammi.",
+  lav:"La roccia del team: paziente, costante, affidabile. Non lo smuovi dai suoi metodi, ma porta tutto a casa.",
+  ang:"Una lenta marea: ci mette tanto a scaldarsi, ma quando esplode è una furia che non perdona.",
+  ll:"Contatto fisico e gesti concreti (cibo, comfort, presenza).",
+  sun:"il costruttore tranquillo che ama il bello e il buono.",moon:"ha bisogno di stabilità, comfort e sicurezza materiale.",asc:"calmo, solido, rassicurante.",
+  adv:"Il Toro fiorisce con chi gli dà sicurezza, lealtà e tempo: niente lo spaventa più dell'imprevedibilità.",
+  q:"La conquista lenta è l'unica che dura."},
+
+ {k:"gemelli",n:"Gemelli",d:"21 mag — 20 giu",el:"aria",mod:"mobile",ru:"Mercurio",g:"\u264A",
+  ess:"Due menti in un corpo solo. Governato da Mercurio, vive di parole, idee e curiosità: cambia argomento, umore e direzione alla velocità del pensiero.",
+  ess2:"Brillante, socievole, irrequieto. Si annoia di tutto, tranne che della conversazione giusta.",
+  am:"Ha bisogno di stimolo mentale prima che fisico: seducilo con la testa. Giocoso e leggero, fatica con la pesantezza emotiva. Vuole un complice che lo faccia ridere e ragionare.",
+  let:"Giocoso e sperimentale: per lui il sesso è un gioco da provare in mille modi. Le parole lo accendono quanto i gesti.",
+  sap:["Parlo, quindi sono.","Mi annoio alla velocità della luce.","Mille interessi insieme.","Cambio idea, è un mio diritto.","La curiosità mi muove."],
+  con:["Fammi ridere e ragionare.","Tieni viva la conversazione.","Dammi spazio e varietà.","Niente possessività.","Sorprendimi con le idee."],
+  deal:["La noia e la routine.","La gelosia opprimente.","Chi è troppo serioso.","Le costrizioni.","I silenzi e la chiusura."],
+  gf:["Brillante e divertente","Adattabile","Curioso di tutto"],
+  rf:["Incostante","A volte superficiale","Dice tutto e il contrario"],
+  ami:"L'amico con cui non ti annoi mai: mille interessi e mille storie. Difficile però fissare un piano e tenerlo.",
+  lav:"Versatile e veloce: ottimo a comunicare e a fare dieci cose insieme, meno nella costanza.",
+  ang:"Diventa tagliente a parole: ti smonta con logica e sarcasmo, poi cambia argomento.",
+  ll:"Parole, battute e conversazioni infinite.",
+  sun:"il comunicatore curioso dalle mille facce.",moon:"razionalizza i sentimenti e ha bisogno di parlarne.",asc:"arguto, socievole, irrequieto.",
+  adv:"I Gemelli hanno bisogno di varietà e di una mente al loro passo: la noia, per loro, è il vero tradimento.",
+  q:"Conquistami la testa e avrai tutto il resto."},
+
+ {k:"cancro",n:"Cancro",d:"21 giu — 22 lug",el:"acqua",mod:"cardinale",ru:"Luna",g:"\u264B",
+  ess:"Il Cancro sente tutto. Governato dalla Luna, vive di maree emotive, memoria e bisogno di appartenenza. Protettivo fino all'osso con i suoi, chiuso nel guscio coi nuovi.",
+  ess2:"Casa, famiglia e sicurezza sono il suo centro di gravità.",
+  am:"Romantico, premuroso, profondamente leale — ma facile da ferire. Ama nutrire e proteggere, e ha bisogno di sentirsi al sicuro per aprirsi. Dagli rassicurazione e ti darà il mondo.",
+  let:"Tutto emozione e intimità: per il Cancro il sesso è connessione, non prestazione. Si lascia andare solo dove si sente al sicuro.",
+  sap:["Sento tutto, anche troppo.","La mia casa è il mio regno.","Proteggo chi amo, sempre.","Mi ferisco facile.","Ho bisogno di appartenere."],
+  con:["Fallo sentire al sicuro.","Sii dolce e presente.","Rispetta la sua famiglia.","Niente freddezza.","Costruisci un nido insieme."],
+  deal:["La freddezza emotiva.","L'instabilità.","Sentirsi poco importante.","Mancanza di rispetto per la famiglia.","I giochi crudeli."],
+  gf:["Empatico e premuroso","Leale fino in fondo","Protettivo"],
+  rf:["Lunatico","Si chiude nel guscio","Passivo-aggressivo"],
+  ami:"L'amico che ti adotta: ti nutre, ti ascolta, ricorda ogni dettaglio. Permaloso se lo trascuri.",
+  lav:"Protettivo e intuitivo: ottimo nei ruoli di cura e nei team affiatati; risente molto del clima emotivo.",
+  ang:"Si ritira e fa il broncio: non sbatte porte, ti gela col silenzio e il muso.",
+  ll:"Gesti di cura e tempo di qualità, a casa.",
+  sun:"il custode emotivo del gruppo.",moon:"il cuore dello zodiaco: sente e ricorda tutto (Luna a casa sua).",asc:"dolce, riservato, un po' diffidente.",
+  adv:"Il Cancro ha bisogno di sicurezza e tenerezza: tradisci la sua fiducia e si chiude nel guscio per sempre.",
+  q:"Dammi un posto sicuro e ti darò tutta me stessa."},
+
+ {k:"leone",n:"Leone",d:"23 lug — 22 ago",el:"fuoco",mod:"fisso",ru:"Sole",g:"\u264C",
+  ess:"Il Leone è nato per brillare. Governato dal Sole, irradia calore, orgoglio e generosità — e ha bisogno di un palco.",
+  ess2:"Leale, magnanimo, drammatico. Ama essere visto, ma sotto la criniera batte un cuore enorme.",
+  am:"Romantico spettacolare: corteggia in grande e ama essere adorato. Fedele e protettivo finché si sente apprezzato. L'indifferenza lo ferisce più di qualsiasi litigio.",
+  let:"Generoso, caldo, teatrale: vuole passione e applausi. Dà tantissimo e si aspetta entusiasmo in cambio.",
+  sap:["Sono fatto per brillare.","La lealtà è tutto.","Amo in grande.","L'indifferenza mi spegne.","Cuore enorme sotto l'orgoglio."],
+  con:["Ammiralo (con sincerità).","Sii orgoglioso al suo fianco.","Dagli attenzione e calore.","Niente giochi di gelosia.","Fai grandi gesti."],
+  deal:["L'indifferenza.","Essere sminuito.","La meschinità.","La slealtà.","Chi gli ruba la scena con cattiveria."],
+  gf:["Generoso e caloroso","Leale","Sa accendere una stanza"],
+  rf:["Egocentrico","Bisognoso di applausi","Drammatico"],
+  ami:"L'amico che organizza tutto e ti fa sentire speciale — finché resti uno dei suoi. Si offende se lo ignori.",
+  lav:"Il leader naturale: ispira, prende il palco, vuole riconoscimenti. Brilla quando è visto.",
+  ang:"Ruggisce: grande scena, orgoglio ferito, poi torna magnanimo se gli chiedi scusa.",
+  ll:"Complimenti, attenzione e gesti spettacolari.",
+  sun:"la star generosa (Sole a casa sua).",moon:"ha bisogno di sentirsi adorato e visto.",asc:"magnetico, fiero, caloroso.",
+  adv:"Il Leone fiorisce con chi lo ammira davvero e cammina al suo fianco con orgoglio: l'indifferenza è il suo unico vero nemico.",
+  q:"Amami forte e ti amerò più forte."},
+
+ {k:"vergine",n:"Vergine",d:"23 ago — 22 set",el:"terra",mod:"mobile",ru:"Mercurio",g:"\u264D",
+  ess:"La Vergine vede ciò che gli altri non notano. Governata da Mercurio, analizza, perfeziona, sistema. Pratica, precisa, instancabile nel migliorare le cose (e le persone).",
+  ess2:"Sotto l'aria critica si nasconde un bisogno profondo di essere utile.",
+  am:"Mostra l'amore servendo: cura i dettagli, risolve i tuoi problemi, c'è quando serve. Riservata e selettiva, fatica a lasciarsi andare.",
+  let:"Riservata fuori, sorprendente dentro: una volta che si fida è attenta, precisa e generosa. Le piace sapere cosa ti piace — e farlo bene.",
+  sap:["Noto ogni dettaglio.","Aiutare è il mio modo di amare.","Esigente con me più che con te.","Mi serve ordine.","Penso troppo, lo so."],
+  con:["Sii pulito e affidabile.","Apprezza i suoi gesti pratici.","Niente caos.","Mostra di migliorarti.","Sii sincero, sempre."],
+  deal:["Il disordine.","Le bugie.","L'inaffidabilità.","La pigrizia.","La volgarità gratuita."],
+  gf:["Affidabile e preciso","Si fa in quattro per te","Concreto"],
+  rf:["Ipercritico","Ansioso","Perfezionista paralizzante"],
+  ami:"L'amico che ti risolve i problemi: organizza, consiglia, c'è. A volte critica troppo, per amore.",
+  lav:"Oro puro: preciso, metodico, attento ai dettagli che salvano i progetti. Si stressa col disordine.",
+  ang:"Diventa freddo e critico: ti elenca tutto ciò che non va, con chirurgica lucidità.",
+  ll:"Atti di servizio: ti aiuta, ti cura, risolve.",
+  sun:"l'analista che migliora tutto.",moon:"gestisce l'ansia con ordine e routine.",asc:"composto, attento, riservato.",
+  adv:"La Vergine ama attraverso i fatti: apprezza la sua cura invece di scambiarla per critica, e ti sarà devota.",
+  q:"Te lo dimostro nei dettagli, non nelle promesse."},
+
+ {k:"bilancia",n:"Bilancia",d:"23 set — 22 ott",el:"aria",mod:"cardinale",ru:"Venere",g:"\u264E",
+  ess:"La Bilancia cerca armonia in tutto. Governata da Venere, vive di relazioni, estetica ed equilibrio. Diplomatica, affascinante, indecisa: pesa ogni opzione due volte.",
+  ess2:"Detesta il conflitto e la bruttezza quanto ama la bellezza e la compagnia.",
+  am:"Nata per la coppia: il partner è il suo specchio. Romantica e galante, cerca un pari con cui condividere tutto — ma l'indecisione e la voglia di piacere a tutti complicano le cose.",
+  let:"Raffinata e attenta al piacere reciproco: vuole bellezza, atmosfera e reciprocità. Niente di volgare, tutto di stile.",
+  sap:["Cerco equilibrio in tutto.","Decidere è la mia croce.","La bellezza mi nutre.","Odio i conflitti.","Sto meglio in coppia."],
+  con:["Crea armonia e bellezza.","Sii un partner alla pari.","Aiutala a decidere senza forzare.","Cura le maniere.","Niente scenate."],
+  deal:["La volgarità.","Il conflitto continuo.","L'egoismo.","Chi rompe l'equilibrio.","La trascuratezza."],
+  gf:["Affascinante e diplomatico","Equo","Romantico"],
+  rf:["Indeciso","Evita anche i conflitti necessari","Vuole piacere a tutti"],
+  ami:"Il paciere del gruppo: elegante, socievole, sempre giusto. Fatica a dire di no e a scegliere.",
+  lav:"Eccelle nelle relazioni, nelle trattative e dove serve armonia; rimanda le decisioni difficili.",
+  ang:"Evita lo scontro frontale: diventa freddamente cortese, oppure ti tiene il muso con stile.",
+  ll:"Gesti romantici, tempo di qualità e armonia condivisa.",
+  sun:"l'esteta che cerca equilibrio.",moon:"ha bisogno di pace e di un partner per sentirsi completa.",asc:"affascinante, garbato, gradevole.",
+  adv:"La Bilancia ha bisogno di un partner equilibrato e raffinato: dalle armonia e reciprocità, evita i conflitti inutili.",
+  q:"In due siamo la versione migliore di noi."},
+
+ {k:"scorpione",n:"Scorpione",d:"23 ott — 21 nov",el:"acqua",mod:"fisso",ru:"Marte/Plutone",g:"\u264F",
+  ess:"Lo Scorpione non fa niente a metà. Governato da Marte e Plutone, vive di intensità, profondità e trasformazione. Magnetico, riservato, leale fino all'ossessione.",
+  ess2:"Vede oltre le maschere — e non dimentica un torto.",
+  am:"Tutto o niente: quando ama, ama in apnea. Geloso e possessivo, ma capace di una devozione che pochi conoscono. Il tradimento è l'unico peccato imperdonabile.",
+  let:"Il segno più intenso dello zodiaco: magnetico, dominante, profondo. Per lo Scorpione il sesso è potere, intimità e trasformazione.",
+  sap:["Tutto o niente, sempre.","Vedo oltre le maschere.","Leale fino all'ossessione.","Non dimentico un torto.","La profondità mi muove."],
+  con:["Sii vero, niente maschere.","Guadagnati la fiducia, lentamente.","Mostra intensità e lealtà.","Niente giochini.","Reggi la sua profondità."],
+  deal:["Il tradimento.","Le bugie.","La superficialità.","Chi gioca coi suoi sentimenti.","La slealtà."],
+  gf:["Leale e profondo","Intenso","Protettivo come pochi"],
+  rf:["Geloso e possessivo","Vendicativo","Controllante"],
+  ami:"L'amico che ti protegge dietro le quinte e custodisce i tuoi segreti come un caveau. Tradiscilo una volta e sei fuori.",
+  lav:"Strategico e implacabile: legge le persone, va in profondità, raggiunge l'obiettivo a ogni costo.",
+  ang:"Silenzio e ghiaccio — poi colpisce dove fa più male. Non dimentica.",
+  ll:"Intimità totale, lealtà e intensità.",
+  sun:"il trasformatore magnetico (Plutone/Marte).",moon:"sente tutto in profondità, ma lo nasconde.",asc:"misterioso, intenso, magnetico.",
+  adv:"Lo Scorpione cerca verità e fedeltà assolute: guadagna la sua fiducia con sincerità e ti darà una devozione totale.",
+  q:"Ti voglio tutto, o non ti voglio affatto."},
+
+ {k:"sagittario",n:"Sagittario",d:"22 nov — 21 dic",el:"fuoco",mod:"mobile",ru:"Giove",g:"\u2650",
+  ess:"Il Sagittario è un'anima libera con la freccia puntata all'orizzonte. Governato da Giove, vive di avventura, verità e significato.",
+  ess2:"Ottimista, schietto, insofferente alle catene. Cerca sempre il prossimo viaggio — fisico o mentale.",
+  am:"Ama la libertà quanto il partner: vuole un compagno d'avventura, non un guinzaglio. Onesto fino alla brutalità, allergico alla routine.",
+  let:"Energico, giocoso, esploratore: il sesso è avventura e divertimento. Spontaneo e senza inibizioni, odia la prevedibilità.",
+  sap:["L'orizzonte mi chiama.","Dico la verità, anche scomoda.","La libertà non si tocca.","Mi annoio se mi ingabbi.","Ottimista per natura."],
+  con:["Sii compagno d'avventura.","Dagli libertà e spazio.","Tieni il ritmo, niente pesi.","Ridi con lui.","Niente catene."],
+  deal:["Le costrizioni e la gelosia.","La routine soffocante.","La pesantezza emotiva.","Le bugie.","Chi gli taglia le ali."],
+  gf:["Ottimista e divertente","Onesto","Avventuroso"],
+  rf:["Irrequieto","Brutalmente schietto","Allergico agli impegni"],
+  ami:"Il compagno di viaggio: ti porta all'avventura e ti dice la verità in faccia. Sparisce se ti fai troppo pesante.",
+  lav:"Visione ed entusiasmo: grande sui grandi quadri e le idee, meno sui dettagli e la routine.",
+  ang:"Spara verità scomode senza filtro, poi vuole solo aria e libertà per sbollire.",
+  ll:"Avventure condivise, risate e libertà.",
+  sun:"l'esploratore filosofo.",moon:"ha bisogno di spazio e ottimismo per stare bene.",asc:"spontaneo, allegro, schietto.",
+  adv:"Il Sagittario ha bisogno di libertà e avventura: dagli spazio e lo terrai accanto più di qualsiasi catena.",
+  q:"Vieni a esplorare con me — o lasciami andare."},
+
+ {k:"capricorno",n:"Capricorno",d:"22 dic — 19 gen",el:"terra",mod:"cardinale",ru:"Saturno",g:"\u2651",
+  ess:"Il Capricorno gioca sempre a lungo termine. Governato da Saturno — pianeta del tempo e della disciplina — costruisce mentre gli altri sognano. Non lo seduce la scintilla del momento, ma ciò che resta tra dieci anni.",
+  ess2:"Dietro l'autocontrollo si cela un'ambizione lucidissima e un umorismo asciutto. Unico vero nemico: la corazza. A forza di controllare tutto, rischia di scordarsi di vivere.",
+  am:"Lento, selettivo e maledettamente serio. Non si lancia: osserva, valuta, si apre solo quando è certo. Te lo dimostrerà coi fatti. Una volta dentro, lealtà totale; ma tradisci la fiducia e quella porta non si riapre.",
+  let:"Sotto la corazza da manager, uno dei segni più sorprendentemente sensuali dello zodiaco — ma a porte chiuse, e solo quando si fida. Qualità, controllo, resistenza.",
+  sap:["Grazia sotto pressione.","Se voglio qualcosa, la faccio accadere.","Il karma esiste, non farmi arrabbiare.","Sono affidabile come pochi.","Vinco sempre, magari non subito."],
+  con:["Sappi gestire il denaro.","Dai valore alla famiglia.","Sii responsabile.","Rispetta i miei obiettivi.","Accetta che sono un workaholic."],
+  deal:["L'inaffidabilità.","La pigrizia e zero ambizione.","Le scenate in pubblico.","L'irresponsabilità coi soldi.","Chiedermi di scegliere tra te e i miei traguardi."],
+  gf:["Affidabile e ambizioso","Maturo","Leale a lungo termine"],
+  rf:["Workaholic distante","Freddo in apparenza","Troppo controllante"],
+  ami:"L'amico solido nei momenti seri: pochi ma fidati. Ci mette ad aprirsi, ma non ti molla mai.",
+  lav:"La spina dorsale: disciplinato, strategico, costruisce carriere e imperi un mattone alla volta.",
+  ang:"Diventa freddo e tagliente, poi si chiude nel lavoro. Controllo glaciale, niente scenate.",
+  ll:"Affidabilità, impegno concreto e tempo dedicato.",
+  sun:"il costruttore ambizioso (Saturno).",moon:"trattiene tutto, si sente sicuro solo nel controllo.",asc:"serio, composto, autorevole.",
+  adv:"Il Capricorno dà il meglio con chi apprezza la sua determinazione e pretende standard alti come i suoi: sarà una scalata lenta e costante.",
+  q:"O accetti la mia scalata, o non sei della partita.",
+  notes:{toro:{s:5,t:"Due terra: ci capiamo d'istinto e costruiamo. Occhio solo alla routine a letto."},vergine:{s:5,t:"Attrazione forte e stessa etica del lavoro. Funziona sul serio."},scorpione:{s:4,t:"Coppia di potere: lealtà e ambizione, ma liti apocalittiche."},cancro:{s:4,t:"Emozioni da gestire, ma ne vale la pena. Brava gente."},pesci:{s:4,t:"Io concretezza, tu sogno: ci completiamo."},leone:{s:3,t:"Entrambi ambiziosi: regge se tieni a freno i drammi."},bilancia:{s:3,t:"Soci d'affari perfetti, amanti molto meno."},ariete:{s:2,t:"Promette troppo e mantiene poco. A me serve costanza."},gemelli:{s:2,t:"Vivono nel grigio e sono inaffidabili."},sagittario:{s:2,t:"Difficile amare chi non è mai a casa."},acquario:{s:2,t:"Come crescere un adolescente. Passo."}}},
+
+ {k:"acquario",n:"Acquario",d:"20 gen — 18 feb",el:"aria",mod:"fisso",ru:"Saturno/Urano",g:"\u2652",
+  ess:"L'Acquario marcia al ritmo di un tamburo che solo lui sente. Governato da Saturno e Urano, vive di idee, ideali e indipendenza. Originale, ribelle, cerebrale.",
+  ess2:"Ama l'umanità in generale e custodisce gelosamente la sua libertà.",
+  am:"Ha bisogno di amicizia e spazio prima che romanticismo: ama da pari, non da possessore. Leale ma distaccato, dà il meglio con chi rispetta la sua indipendenza e ne stimola la mente.",
+  let:"Sperimentale e mentale: per l'Acquario il sesso parte dalla testa e dalla curiosità. La libertà lo accende, le pretese lo gelano.",
+  sap:["Penso fuori dagli schemi.","La libertà è sacra.","Amo l'umanità, a modo mio.","Ribelle per natura.","Le idee prima delle emozioni."],
+  con:["Sii prima di tutto un amico.","Rispetta la sua indipendenza.","Stimola la sua mente.","Niente possessività.","Accetta la sua stranezza."],
+  deal:["La possessività.","La banalità.","Le pretese emotive eccessive.","Il controllo.","La chiusura mentale."],
+  gf:["Originale e indipendente","Mente aperta","Idealista"],
+  rf:["Distaccato","Testardo nelle idee","Imprevedibile"],
+  ami:"L'anticonformista che conosce tutti ma resta un po' alieno: leale alla causa, meno alle convenzioni.",
+  lav:"L'innovatore: idee fuori dagli schemi e visione del futuro; mal sopporta gerarchie e regole rigide.",
+  ang:"Si raffredda e prende le distanze: razionalizza, si distacca, può tagliarti fuori di colpo.",
+  ll:"Libertà rispettata, complicità mentale e cause condivise.",
+  sun:"il ribelle visionario (Urano).",moon:"razionalizza i sentimenti e teme la dipendenza.",asc:"originale, amichevole ma distante.",
+  adv:"L'Acquario ha bisogno di libertà e di una mente affine: trattalo da amico-amante alla pari e non cercare di possederlo.",
+  q:"Amami da libero, mai da padrone."},
+
+ {k:"pesci",n:"Pesci",d:"19 feb — 20 mar",el:"acqua",mod:"mobile",ru:"Giove/Nettuno",g:"\u2653",
+  ess:"I Pesci vivono tra due mondi. Governati da Giove e Nettuno, nuotano in sogni, empatia e immaginazione. Sensibili, artistici, sfuggenti.",
+  ess2:"Assorbono le emozioni di tutti e sfumano i confini tra sé e l'altro.",
+  am:"Romantici incurabili: amano in modo totale e idealizzante. Empatici e teneri, ma sfuggenti quando la realtà fa male. Cercano un'anima gemella con cui fondersi.",
+  let:"Sensuali, intuitivi, trasportati: per i Pesci il sesso è fusione spirituale ed emotiva. Percepiscono ciò che vuoi prima che tu lo dica.",
+  sap:["Sento le emozioni di tutti.","Vivo metà nei sogni.","Amo fino a perdermi.","Sfuggo quando la realtà punge.","L'arte è la mia lingua."],
+  con:["Sii dolce e romantico.","Crea magia e atmosfera.","Proteggi la sua sensibilità.","Niente durezza.","Sogna insieme a lui."],
+  deal:["La durezza e la freddezza.","Il cinismo.","Chi approfitta della sua bontà.","I conflitti brutali.","La mancanza di romanticismo."],
+  gf:["Empatico e dolce","Creativo","Compassionevole"],
+  rf:["Sfuggente","Tende al vittimismo","Confini deboli"],
+  ami:"L'amico che ti capisce senza parole e c'è nei momenti bui. A volte sparisce nel suo mondo o si fa travolgere dai tuoi problemi.",
+  lav:"Creativo e intuitivo: ottimo nell'arte e nella cura; fatica con scadenze rigide e ambienti freddi.",
+  ang:"Raramente esplode: si ferisce, si chiude, sparisce o gioca la carta del martire.",
+  ll:"Romanticismo, tenerezza e fusione emotiva.",
+  sun:"il sognatore empatico (Nettuno).",moon:"spugna emotiva: sente tutto e tutti.",asc:"gentile, etereo, un po' sfuggente.",
+  adv:"I Pesci hanno bisogno di tenerezza e di un porto emotivo: proteggi la loro sensibilità e ricambieranno con devozione totale.",
+  q:"Perdiamoci insieme, lontano dal mondo."}
+];
+const EXTRA_IT={
+ariete:{mind:"La mente dell'Ariete vive in modalità «agisci ora, pensa dopo». È mossa dal bisogno di essere primo e dalla paura segreta di essere irrilevante o lento. Non rumina: scarica l'energia nell'azione e si annoia a morte nell'attesa.",work:"Al lavoro è il motore d'avvio: parte per primo, rompe gli indugi, trascina il gruppo nei progetti nuovi. Come collega è energico ma impaziente; come capo ispira e delega in fretta; come collaboratore rende al massimo con autonomia e obiettivi sfidanti, malissimo se lo ingabbi in procedure e riunioni infinite.",spot:["Risponde in tre secondi o mai più.","Ha già iniziato mentre gli altri pianificano.","Si accende per un'idea e la abbandona alla successiva."],growth:"La sua crescita è la pazienza: finire ciò che inizia e capire che aspettare non è perdere."},
+toro:{mind:"Il Toro pensa per certezze concrete: tocca, valuta, decide lentamente e poi non torna indietro. È mosso dal bisogno di sicurezza e dal piacere dei sensi; la sua paura profonda è perdere ciò che ha costruito.",work:"Al lavoro è affidabilità pura: lento ad avviarsi, inarrestabile una volta partito. Come collega è la roccia che non molla; come capo è paziente ma inflessibile sui metodi; come collaboratore dà il meglio con stabilità, routine chiare e riconoscimenti tangibili — odia i cambi di rotta improvvisi.",spot:["Ha un posto fisso preferito ovunque vada.","Non lo convinci con la fretta, mai.","Spende poco, ma sul buono non bada a spese."],growth:"La sua sfida è il cambiamento: capire che lasciar andare a volte protegge più che trattenere."},
+gemelli:{mind:"La mente dei Gemelli gira a doppia velocità: collega idee, salta da un tema all'altro, si annoia appena ha capito. È mossa dalla curiosità e dalla paura di restare bloccata — in un'idea, in una routine, in una sola versione di sé.",work:"Al lavoro è il jolly: comunica, impara in fretta, gestisce dieci cose insieme. Come collega è brillante e divertente ma volubile; come capo è agile ma incostante; come collaboratore rende dove c'è varietà e parola — soffre la monotonia e i compiti ripetitivi.",spot:["Inizia tre libri e tre serie insieme.","Cambia idea e lo chiama «evoluzione».","Conosce un po' di tutto e tutti."],growth:"La sua crescita è la profondità: scegliere una cosa e restarci abbastanza da padroneggiarla."},
+cancro:{mind:"Il Cancro pensa con la pancia: filtra tutto attraverso emozione e memoria, e ricorda ogni sfumatura. È mosso dal bisogno di appartenere e proteggere; la sua paura è l'abbandono e il sentirsi non al sicuro.",work:"Al lavoro è il collante umano del team: intuitivo, premuroso, attento al clima. Come collega ti adotta e ti copre; come capo è protettivo ma umorale; come collaboratore dà tantissimo in un ambiente che sente «famiglia», malissimo dove regnano freddezza e competizione tossica.",spot:["Ti porta da mangiare quando sei giù.","Ricorda date e dettagli che tu hai scordato.","Se tace, qualcosa l'ha ferito."],growth:"La sua sfida è non chiudersi nel guscio: chiedere invece di aspettare di essere capito."},
+leone:{mind:"Il Leone pensa in grande e in scena: vuole significare qualcosa, lasciare il segno, essere visto. È mosso dall'orgoglio e dalla generosità; la sua paura nascosta è l'irrilevanza e il non essere amato abbastanza.",work:"Al lavoro è il leader carismatico: motiva, prende il palco, alza l'asticella. Come collega è generoso finché brilla anche lui; come capo è ispiratore ma vuole lealtà e riconoscimento; come collaboratore dà il massimo se valorizzato, si spegne se ignorato o sminuito.",spot:["Entra in una stanza e la stanza se ne accorge.","Regala con larghezza, si offende con stile.","Racconta le storie con sé al centro."],growth:"La sua crescita è l'umiltà: capire che la luce vera non ha bisogno di applausi continui."},
+vergine:{mind:"La Vergine pensa per liste, dettagli e «come migliorare questo». Analizza tutto, sé compresa, spesso troppo. È mossa dal bisogno di essere utile e dalla paura del caos e dell'errore.",work:"Al lavoro è oro puro: precisa, metodica, vede i problemi prima che esplodano. Come collega risolve e si fa in quattro; come capo è esigente sui dettagli; come collaboratore eccelle con compiti chiari e standard alti — va in tilt nel disordine e con la fretta sciatta.",spot:["Nota il refuso che nessuno ha visto.","Ha un sistema per tutto, anche per rilassarsi.","Dice «sto bene» mentre sistema qualcosa."],growth:"La sua sfida è lasciar andare il perfetto: «fatto» spesso vale più di «perfetto»."},
+bilancia:{mind:"La Bilancia pensa pesando: ogni scelta ha due piatti e li soppesa all'infinito. È mossa dal bisogno di armonia, bellezza e relazione; la sua paura è il conflitto e la solitudine.",work:"Al lavoro brilla dove servono relazioni, mediazione ed estetica: trattative, team, design. Come collega è diplomatica e gradevole; come capo cerca consenso (e rimanda le decisioni dure); come collaboratrice rende in ambienti armoniosi, soffre tensioni e scelte impopolari.",spot:["Ci mette mezz'ora a scegliere dove mangiare.","Disinnesca le liti con un sorriso.","Tutto, attorno a lei, è curato ed estetico."],growth:"La sua crescita è decidere: scegliere per sé anche a costo di scontentare qualcuno."},
+scorpione:{mind:"Lo Scorpione pensa in profondità e in bianco e nero: legge sottotesti, bugie, intenzioni. È mosso dal bisogno di verità, controllo e intimità totale; la sua paura è il tradimento e la perdita di potere.",work:"Al lavoro è stratega implacabile: va al cuore delle cose, legge le persone, raggiunge l'obiettivo. Come collega è leale e riservato; come capo è intenso e pretende dedizione; come collaboratore dà tutto per chi si è guadagnato la sua fiducia — diventa un avversario freddo se lo tradisci.",spot:["Capisce chi sei prima che tu parli.","Non dimentica un favore né un torto.","Risponde poco, osserva tutto."],growth:"La sua sfida è fidarsi e mollare il controllo: non tutto è una minaccia."},
+sagittario:{mind:"Il Sagittario pensa per orizzonti: cerca il senso, la libertà, la prossima avventura. È mosso dall'ottimismo e dalla fame di esperienza; la sua paura è la gabbia, la routine, il sentirsi intrappolato.",work:"Al lavoro è visione ed entusiasmo: grande sulle idee e i grandi quadri. Come collega contagia energia; come capo ispira ma trascura i dettagli; come collaboratore rende con libertà, scopo e movimento — appassisce nella micro-gestione e alla scrivania fissa.",spot:["Ha sempre un viaggio in programma.","Ti dice la verità in faccia, sempre.","Promette di esserci e poi sparisce all'orizzonte."],growth:"La sua crescita è la costanza: restare abbastanza da raccogliere ciò che semina."},
+capricorno:{mind:"Il Capricorno pensa a lungo termine: pianifica, calcola, costruisce mentre gli altri sognano. È mosso dall'ambizione e dal senso del dovere; la sua paura è il fallimento e il non essere all'altezza.",work:"Al lavoro è la spina dorsale: disciplinato, strategico, instancabile. Come collega è serio e affidabile; come capo è autorevole ed esigente (ma giusto); come collaboratore è un investimento sicuro che cresce nel tempo — gli servono rispetto, struttura e una scala da salire.",spot:["Lavora anche quando dice che si riposa.","Ha un piano a cinque anni, davvero.","Sembra freddo, poi ti spiazza con l'ironia secca."],growth:"La sua sfida è vivere adesso: capire che non tutto va guadagnato, qualcosa va solo goduto."},
+acquario:{mind:"L'Acquario pensa fuori dagli schemi: vede il futuro, i sistemi, l'insieme prima del singolo. È mosso dagli ideali e dall'indipendenza; la sua paura è perdere la libertà e la propria unicità.",work:"Al lavoro è l'innovatore: idee laterali, visione del domani, zero rispetto per il «si è sempre fatto così». Come collega è originale e leale alla causa; come capo è democratico ma distaccato; come collaboratore rende con autonomia e una missione in cui credere, mal sopporta gerarchie rigide e regole insensate.",spot:["Ha l'opinione che non ti aspetti.","Amico di tutti, intimo di pochi.","Difende cause prima che diventino di moda."],growth:"La sua crescita è la vicinanza: lasciar entrare le persone, non solo le idee."},
+pesci:{mind:"I Pesci pensano per immagini, sensazioni e intuizioni, con confini sfumati tra sé e gli altri. Sono mossi dall'empatia e dal sogno; la loro paura è la durezza del mondo reale, da cui tendono a fuggire.",work:"Al lavoro sono creativi e intuitivi: arte, cura, immaginazione, lettura delle persone. Come colleghi sono dolci e disponibili; come capi sono empatici ma poco strutturati; come collaboratori rendono in ruoli creativi o d'aiuto, soffrono scadenze rigide, freddezza e ambienti spietati.",spot:["Sa come ti senti prima che tu lo dica.","Si perde nei suoi mondi a occhi aperti.","Dà più di quanto chiede, a volte troppo."],growth:"La loro sfida sono i confini: imparare a dire no e restare nel reale senza fuggire."}
+};
+const DECANS_IT={
+ariete:[{r:"21–30 mar",sub:"Ariete",ru:"Marte",t:"Ariete al 100%: il più impulsivo, diretto e competitivo. Parte a razzo e non guarda indietro."},{r:"31 mar–9 apr",sub:"Leone",ru:"Sole",t:"Tocco da Leone: più caldo, fiero e teatrale. Vuole vincere, ma anche essere ammirato."},{r:"10–19 apr",sub:"Sagittario",ru:"Giove",t:"Tocco da Sagittario: più avventuroso e idealista. L'Ariete che parte… per il mondo."}],
+toro:[{r:"20–29 apr",sub:"Toro",ru:"Venere",t:"Toro puro: il più sensuale, godereccio e ostinato. Ama il bello e il comodo."},{r:"30 apr–10 mag",sub:"Vergine",ru:"Mercurio",t:"Tocco da Vergine: più pratico, preciso e critico. Sensualità con metodo."},{r:"11–20 mag",sub:"Capricorno",ru:"Saturno",t:"Tocco da Capricorno: più ambizioso e disciplinato. Il Toro che costruisce un impero."}],
+gemelli:[{r:"21–31 mag",sub:"Gemelli",ru:"Mercurio",t:"Gemelli puro: il più chiacchierone, curioso e volubile. Mente che non sta ferma un secondo."},{r:"1–10 giu",sub:"Bilancia",ru:"Venere",t:"Tocco da Bilancia: più affascinante, diplomatico e socievole. Parole che seducono."},{r:"11–20 giu",sub:"Acquario",ru:"Urano",t:"Tocco da Acquario: più originale e ribelle. Idee fuori dagli schemi."}],
+cancro:[{r:"21 giu–1 lug",sub:"Cancro",ru:"Luna",t:"Cancro puro: il più emotivo, protettivo e legato alla famiglia. Pura Luna."},{r:"2–12 lug",sub:"Scorpione",ru:"Plutone",t:"Tocco da Scorpione: più intenso, magnetico e geloso. Emozioni profonde e poco perdono."},{r:"13–22 lug",sub:"Pesci",ru:"Nettuno",t:"Tocco da Pesci: più sognatore, artistico ed empatico. Sensibilità allo stato puro."}],
+leone:[{r:"23 lug–1 ago",sub:"Leone",ru:"Sole",t:"Leone puro: il più regale, generoso e bisognoso di palco. Nato per brillare."},{r:"2–12 ago",sub:"Sagittario",ru:"Giove",t:"Tocco da Sagittario: più avventuroso, ottimista e filosofo. Il Leone esploratore."},{r:"13–22 ago",sub:"Ariete",ru:"Marte",t:"Tocco da Ariete: più impulsivo e combattivo. Leone con la marcia in più."}],
+vergine:[{r:"23 ago–1 set",sub:"Vergine",ru:"Mercurio",t:"Vergine pura: la più analitica, precisa e perfezionista. Occhio chirurgico."},{r:"2–12 set",sub:"Capricorno",ru:"Saturno",t:"Tocco da Capricorno: più ambiziosa e disciplinata. Precisione al servizio della carriera."},{r:"13–22 set",sub:"Toro",ru:"Venere",t:"Tocco da Toro: più sensuale e concreta. La Vergine che si gode anche il bello."}],
+bilancia:[{r:"23 set–2 ott",sub:"Bilancia",ru:"Venere",t:"Bilancia pura: la più estetica, diplomatica e relazionale. Cerca armonia ovunque."},{r:"3–13 ott",sub:"Acquario",ru:"Urano",t:"Tocco da Acquario: più indipendente e originale. Armonia con idee anticonformiste."},{r:"14–22 ott",sub:"Gemelli",ru:"Mercurio",t:"Tocco da Gemelli: più brillante e chiacchierona. Charme che passa dalle parole."}],
+scorpione:[{r:"23 ott–1 nov",sub:"Scorpione",ru:"Plutone",t:"Scorpione puro: il più intenso, magnetico e implacabile. Profondità assoluta."},{r:"2–11 nov",sub:"Pesci",ru:"Nettuno",t:"Tocco da Pesci: più sognatore e artistico. Intensità che diventa poesia (o fuga)."},{r:"12–21 nov",sub:"Cancro",ru:"Luna",t:"Tocco da Cancro: più protettivo ed emotivo. Lo Scorpione che nasconde un cuore tenero."}],
+sagittario:[{r:"22 nov–1 dic",sub:"Sagittario",ru:"Giove",t:"Sagittario puro: il più libero, ottimista e schietto. Sempre con la valigia pronta."},{r:"2–11 dic",sub:"Ariete",ru:"Marte",t:"Tocco da Ariete: più impulsivo e combattivo. Avventura a tutta velocità."},{r:"12–21 dic",sub:"Leone",ru:"Sole",t:"Tocco da Leone: più caldo e teatrale. L'esploratore che ama anche il palco."}],
+capricorno:[{r:"22–31 dic",sub:"Capricorno",ru:"Saturno",t:"Capricorno puro: il più ambizioso, disciplinato e serio. Saturno senza sconti — il classico «nato vecchio» che punta dritto in alto."},{r:"1–10 gen",sub:"Toro",ru:"Venere",t:"Tocco da Toro: più sensuale, paziente e amante del comfort. L'ambizione si concede anche i piaceri."},{r:"11–19 gen",sub:"Vergine",ru:"Mercurio",t:"Tocco da Vergine: più analitico, pratico e perfezionista. Ambizione con occhio ai dettagli."}],
+acquario:[{r:"20–29 gen",sub:"Acquario",ru:"Urano",t:"Acquario puro: il più ribelle, visionario e indipendente. Marcia a un ritmo tutto suo."},{r:"30 gen–8 feb",sub:"Gemelli",ru:"Mercurio",t:"Tocco da Gemelli: più comunicativo e curioso. Idee originali e tante parole."},{r:"9–18 feb",sub:"Bilancia",ru:"Venere",t:"Tocco da Bilancia: più socievole e diplomatico. Ribellione con grazia."}],
+pesci:[{r:"19–28 feb",sub:"Pesci",ru:"Nettuno",t:"Pesci puro: il più sognatore, empatico e sfuggente. Vive metà in un altro mondo."},{r:"1–10 mar",sub:"Cancro",ru:"Luna",t:"Tocco da Cancro: più protettivo e domestico. Sogno con bisogno di nido."},{r:"11–20 mar",sub:"Scorpione",ru:"Plutone",t:"Tocco da Scorpione: più intenso e magnetico. Il Pesce con un fondo profondo e oscuro."}]
+};
+const GEN_IT={
+ariete:{lui:"L'uomo Ariete è il cacciatore per eccellenza: diretto, sicuro, ti punta e va dritto al bersaglio. Adora la conquista e la competizione, e si annoia se ottiene tutto troppo facile. Protettivo e passionale, ma l'ego va gestito: vuole sentirsi il tuo eroe.",lei:"La donna Ariete è fuoco e indipendenza: fa lei la prima mossa e non aspetta il permesso di nessuno. Diretta e leale, odia i giochini e la passività. Amarla significa starle al passo — mai provare a domarla."},
+toro:{lui:"L'uomo Toro è solido, sensuale e protettivo: lento a innamorarsi, fedelissimo una volta deciso. Mostra l'amore con gesti concreti, comfort e buon cibo. Geloso e ostinato, ha bisogno di sentirsi sicuro del tuo posto al suo fianco.",lei:"La donna Toro è magnetica e concreta: sensuale ma coi piedi per terra. Cerca sicurezza e lealtà, e dà in cambio una presenza calda e affidabile. Pazientissima, finché non la tradisci: lì la porta si chiude per sempre."},
+gemelli:{lui:"L'uomo Gemelli conquista con la testa e la parola: brillante, divertente, imprevedibile. Ti tiene sulla corda perché si annoia in fretta — vuole stimoli, leggerezza e mente sveglia. Difficile da inchiodare, facilissimo da amare quando scatta la complicità.",lei:"La donna Gemelli è vivace, sociale e cerebrale: seduce con le idee e le conversazioni infinite. Curiosa e indipendente, ha bisogno di libertà e varietà. Non sopporta la noia né la gelosia: vuole un complice, non un guardiano."},
+cancro:{lui:"L'uomo Cancro è il romantico riservato: sotto la corazza, un cuore tenero e protettivo. Ci mette a fidarsi, ma quando ama costruisce un nido. Premuroso e leale, diventa umorale e si chiude se si sente trascurato.",lei:"La donna Cancro è dolce, intuitiva e profondamente leale: ama prendersi cura e crea casa ovunque. Cerca sicurezza emotiva e tenerezza. Sensibile fino alla suscettibilità: ferita, si ritira nel guscio invece di litigare."},
+leone:{lui:"L'uomo Leone è il re che corteggia in grande: generoso, fiero, spettacolare. Vuole una partner di cui essere orgoglioso e che lo faccia sentire ammirato. Leale e protettivo finché brilla la sua luce; l'indifferenza, per lui, è l'offesa peggiore.",lei:"La donna Leone è regale e magnetica: entra e la stanza se ne accorge. Vuole essere adorata, non posseduta, e dà in cambio calore e lealtà enormi. Orgogliosa: trattala da regina e avrai tutto, sminuiscila e l'hai persa."},
+vergine:{lui:"L'uomo Vergine ama coi fatti, non con le parole: ti risolve i problemi, ti cura nei dettagli, c'è sempre. Riservato e selettivo, fatica a lasciarsi andare e critica per amore. Lo conquisti con sincerità e ordine, lo perdi col caos e le bugie.",lei:"La donna Vergine è elegante, attenta e leale: osserva tutto e si dà a chi se lo merita. Mostra l'amore migliorando ciò che ama. Esigente con sé prima che con te; ha bisogno di sentirsi utile e apprezzata, non corretta a sua volta."},
+bilancia:{lui:"L'uomo Bilancia è il gentleman affascinante: galante, diplomatico, esteta. Cerca una partner alla pari con cui condividere bellezza e armonia. Indeciso e allergico ai conflitti, a volte tergiversa troppo: stare in coppia, per lui, è quasi tutto.",lei:"La donna Bilancia è grazia e charme: socievole, romantica, raffinata. Cerca equilibrio e un compagno con cui specchiarsi. Sa farsi desiderare ma odia le scenate; conquistala con eleganza e reciprocità, niente volgarità e niente drammi."},
+scorpione:{lui:"L'uomo Scorpione è intensità pura: magnetico, riservato, totalizzante. Quando ama, ama in apnea — geloso, possessivo, devoto. Vuole verità e fedeltà assolute: guadagna la sua fiducia lentamente e ti darà tutto, tradiscilo e diventa ghiaccio.",lei:"La donna Scorpione è seduzione e profondità: legge dentro di te e non si accontenta della superficie. Leale e appassionata fino all'ossessione, pretende lealtà pari alla sua. Misteriosa e fortissima: coi suoi sentimenti non si gioca due volte."},
+sagittario:{lui:"L'uomo Sagittario è l'avventuriero libero: ottimista, schietto, allergico alle catene. Vuole una compagna di viaggio, non un guinzaglio. Divertente e generoso, scappa davanti alla pesantezza e alla gelosia: lo tieni dandogli spazio e avventura.",lei:"La donna Sagittario è indipendente e solare: ama la libertà quanto te. Onesta fino alla brutalità, cerca un partner che condivida la sua fame di mondo. Mai possessiva, mai possedibile: corri con lei, o restala a guardare mentre parte."},
+capricorno:{lui:"L'uomo Capricorno è serio e ambizioso: lento ad aprirsi, affidabile come una roccia. Corteggia coi fatti e gioca a lungo termine — non cerca un'avventura, cerca qualcosa che duri. Sotto la corazza da manager, una sensualità e un'ironia che pochi conoscono.",lei:"La donna Capricorno è elegante, determinata e selettiva: sa cosa vuole e non perde tempo. Indipendente e ambiziosa, cerca un pari che rispetti i suoi obiettivi. Fredda in apparenza, profondamente leale e calorosa con chi entra nella sua cerchia."},
+acquario:{lui:"L'uomo Acquario è l'originale affascinante: amico prima che amante, mente aperta, un po' alieno. Ha bisogno di libertà e stimolo intellettuale; la possessività lo fa scappare. Lo conquisti diventando la sua persona preferita con cui pensare il mondo.",lei:"La donna Acquario è indipendente e anticonformista: imprevedibile, brillante, libera. Cerca complicità mentale e rispetto dei suoi spazi, non un copione romantico. Distaccata in apparenza, leale alla causa e alle persone che sceglie davvero."},
+pesci:{lui:"L'uomo Pesci è il romantico sognatore: dolce, empatico, profondamente sensibile. Ama in modo totale e idealizzante, sente ciò che provi prima che tu lo dica. Sfugge quando la realtà fa male: proteggi la sua tenerezza e ti darà un mondo di poesia.",lei:"La donna Pesci è magnetica e sfuggente: intuitiva, artistica, piena di mistero gentile. Ama con tutta sé stessa e cerca un'anima con cui fondersi. Ha bisogno di romanticismo e protezione; durezza e cinismo la fanno ritirare nei suoi mondi."}
+};
+
+/* ===== MULTILINGUA: lingua attiva + dati dipendenti dalla lingua ===== */
+let LANG=(window.ZI18N?window.ZI18N.get():"it");
+let SIGNS, BY, EXTRA, DECANS, GEN, VOCI;
+function buildSigns(){
+  // base: ZSIGNS tradotti (campi base+notes), fallback IT; merge EXTRA tradotto (mind/work/spot/growth)
+  const base = (LANG==="it") ? SIGNS_IT
+    : (window.ZWIRE ? window.ZWIRE.signs(LANG, SIGNS_IT) : (window["ZSIGNS_"+LANG.toUpperCase()]||SIGNS_IT));
+  EXTRA  = (LANG==="it") ? EXTRA_IT  : (window["ZEXTRA_"+LANG.toUpperCase()]  || EXTRA_IT);
+  DECANS = (LANG==="it") ? DECANS_IT : (window["ZDECANS_"+LANG.toUpperCase()] || DECANS_IT);
+  GEN    = (LANG==="it") ? GEN_IT    : (window["ZGEN_"+LANG.toUpperCase()]    || GEN_IT);
+  VOCI   = (LANG==="it") ? VOCI_IT   : (window["ZVOCI_"+LANG.toUpperCase()]   || VOCI_IT);
+  // copia profonda leggera dei segni per non mutare gli array sorgente coi merge EXTRA
+  SIGNS = base.map(s=>Object.assign({}, s, EXTRA[s.k]||{}));
+  BY = Object.fromEntries(SIGNS.map(s=>[s.k,s]));
+}
+
+/* dizionario UI (chrome + tag sezioni + widget + label motore coppie) per lingua */
+const UI_DICT={
+ it:{
+  navBasi:"Le basi",navSegni:"Segni",navCoppie:"♥ Coppie",theStampa:"Stampa",theAdesivi:"Adesivi",
+  idxEy:"ASTROLOGIA & COMPATIBILITÀ",idxTag:"// le basi · 12 segni · coppie",idxBasi:"Le basi",idxBasiD:"tema natale · elementi · case",idxCoppie:"Coppie",idxCoppieD:"confronta 2 segni",
+  footIndex:"campione · libro completo · stile riso-zine",
+  backIndex:"← indice",backBasi:"← le basi",
+  basiTitle:"LE BASI",basiName:"Le basi",
+  bNatale:"Tema natale",bNataleD:"cosa può rivelare",bBig3:"Sole·Luna·Asc",bBig3D:"i tuoi tre pilastri",bElem:"I 4 elementi",bElemD:"fuoco · terra · aria · acqua",bCase:"Case & modalità",bCaseD:"+ pianeti governatori",
+  ctaNatal:"✦ calcola il tuo tema natale",ctaOro:"☀ guarda l'oroscopo di oggi",footBasi:"campione · le basi",
+  natTitle:"TEMA NATALE",natName:"Tema natale",natTag1:">> cos'è",natBody1:"Il tema natale è la <b>fotografia del cielo</b> nell'istante esatto in cui sei nato. Non è solo «il tuo segno» (cioè il Sole): è la mappa completa di dove si trovavano tutti i pianeti, divisa in <b>12 Case</b>. Letta insieme, racconta molto più di un oroscopo.",natTag2:">> cosa può rivelare",
+  natReveal:["Le tue paure più profonde","Problemi con genitori e famiglia","Che relazioni ti rendono felice","I traumi che ti porti dietro","Le lezioni principali di questa vita","I tuoi meccanismi di difesa","Il tuo karma (amore, famiglia, amicizia)","Come comunichi le emozioni","Le aree in cui hai nodi da sciogliere","Le abitudini che ripeti","Quando aspettarti periodi sfidanti","Cosa cerchi davvero in un partner"],
+  natCta:"✦ calcola il tuo tema natale →",footNat:"campione · tema natale",
+  big3Title:"I TRE PILASTRI",big3Name:"I tre pilastri",big3T1:">> ☉ il sole — identità",big3B1:"È <b>chi sei</b>: l'ego, la volontà, come brilli. È la parte di te più riconoscibile, quella che la gente intende quando chiede «di che segno sei?».",big3T2:">> ☽ la luna — l'anima",big3B2:"È <b>come senti</b>: il mondo emotivo, gli istinti, ciò di cui hai bisogno per sentirti al sicuro. È la parte privata, quella che mostri solo a chi ti è vicino.",big3T3:">> ↗ l'ascendente — la maschera",big3B3:"È <b>come affronti il mondo</b> e come ti vedono gli altri al primo incontro. Cambia ogni paio d'ore, perciò serve l'<b>ora di nascita</b> per calcolarlo.",big3T4:">> comporre la frase",big3Hint:"// scegli i tuoi tre segni",
+  big3Sentence:(a,b,c)=>`Sono un <b>${a}</b>, con l'anima di un <b class="p">${b}</b>, che indossa la maschera di un <b>${c}</b>.`,big3Sun:"☉ Sole",big3Moon:"☽ Luna",big3Asc:"↗ Ascendente",footBig3:"campione · sole · luna · ascendente",
+  elTitle:"I 4 ELEMENTI",elName:"I 4 elementi",elSignsLab:"SEGNI",elHousesLab:"CASE",elTag:">> come interagiscono",elBody:"<b>Acqua e Terra</b> vanno d'accordo (l'acqua nutre la terra), così come <b>Fuoco e Aria</b> (l'aria alimenta il fuoco). Gli incroci tra famiglie diverse creano più attrito — ma anche più scintille.",footEl:"campione · i 4 elementi",
+  caseTitle:"CASE & CO.",caseName:"Case & co.",caseTag1:">> le 12 case",caseBody1:"Le Case sono le <b>aree della vita</b>: dove un pianeta «cade» dice in quale settore agisce.",caseTag2:">> le 3 modalità",caseTag3:">> i pianeti governatori",footCase:"campione · case, modalità & pianeti",
+  modCard:"Cardinale",modCardD:"Gli iniziatori: aprono le stagioni, avviano, prendono l'iniziativa.",modFix:"Fisso",modFixD:"I costruttori: consolidano, resistono, portano avanti. Testardi.",modMob:"Mobile",modMobD:"Gli adattatori: chiudono le stagioni, si trasformano, sono flessibili.",
+  sEss:">> l'essenza",sMind:">> come funziona la sua mente",sLove:">> in amore",sBed:">> tra le lenzuola",sWork:">> al lavoro",sSpot:">> lo riconosci se…",sCon:">> come conquistarmi",sDeal:">> cosa chiude la porta",sSlr:">> sole · luna · ascendente",sSlrIntro:"Lo stesso segno cambia molto a seconda di dove cade nel tema:",sSun:"☉ come Sole",sMoon:"☽ come Luna",sAsc:"↗ come Asc.",
+  sDecani:">> i tre volti del segno · i decani",sDecaniIntro:"Chi nasce all'inizio, a metà o alla fine del segno ne vive una sfumatura diversa — è il sistema dei <b>decani</b>, tre fasce di circa 10 giorni ciascuna:",
+  sGen:">> lui & lei · stesso segno",sGenIntro:"Stesso segno, due archetipi: come la stessa energia si esprime al maschile e al femminile — archetipi giocosi, non regole.",sLui:"♂ lui",sLei:"♀ lei",sAdv:">> il consiglio",
+  gf:"green flag",rf:"red flag",lcAmi:"In amicizia",lcAng:"Quando è arrabbiato",lcLove:"Linguaggio d'amore",lcGrow:"La sfida di crescita",
+  affLove:"Affinità // in amore",affWork:"Affinità // al lavoro",chartHint:"// tocca una riga per il confronto completo",
+  ctaOroSign:"☀ guarda il tuo oroscopo di oggi →",
+  natalBoxTag:">> il tuo tema natale completo",natalBoxBody:(n)=>`Questa è la scheda del segno ${n} — il tuo <b>Sole</b>. Ma tu sei molto di più: Luna, Ascendente e tutti i pianeti del tuo cielo esatto raccontano chi sei davvero.`,natalBoxCta:"✦ calcola il tuo tema natale →",
+  affBoxTag:">> testa la tua affinità con gli altri segni",affBoxBody:(n)=>`${n} con chi? Scegli un segno e la lente del rapporto.`,
+  composeBoxTag:">> componi la frase",composeBoxBody:"Costruisci la tua situazione e ricevi il consiglio su misura.",composeSo:"Sono",
+  affUnisce:"Vi unisce:",affScotta:"Può scottare:",affFullCmp:"vedi il confronto completo →",advLabel:"Il consiglio:",
+  footSign:(n)=>`campione · ${n}`,
+  compatTitle:"COPPIE",compatName:"Coppie",compatHint:"// scegli due segni e la lente del rapporto",footCompat:"campione · esploratore di compatibilità",
+  cmpDirect:">> confronto diretto",cmpPortrait:">> il ritratto del rapporto",cmpUnisce:">> cosa vi unisce",cmpScotta:">> dove scotta",
+  thElem:"elemento",thMod:"modalità",thPlan:"pianeta",thLL:"linguaggio d'amore",thRF:"red flag",
+  composeActs:["voglio sedurre…","voglio conquistare…","devo lavorare con…","ho come capo…","convivo con…","sono amico di…","ho un ex…","in famiglia ho…"],
+  art:{ariete:'un',toro:'un',gemelli:'un',cancro:'un',leone:'un',vergine:'una',bilancia:'una',scorpione:'uno',sagittario:'un',capricorno:'un',acquario:'un',pesci:'un'},
+  composeTmpl:[
+   (aA,aN,bA,bN)=>'Sono '+aA+' <b>'+aN+'</b> e voglio sedurre '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sono '+aA+' <b>'+aN+'</b> e voglio conquistare '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sono '+aA+' <b>'+aN+'</b> e lavoro con '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sono '+aA+' <b>'+aN+'</b> e il mio capo è '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sono '+aA+' <b>'+aN+'</b> e convivo con '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sono '+aA+' <b>'+aN+'</b> e il mio migliore amico è '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sono '+aA+' <b>'+aN+'</b> e il mio ex è '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sono '+aA+' <b>'+aN+'</b> e in famiglia ho '+bA+' <b>'+bN+'</b>.'
+  ]
+ },
+ en:{
+  navBasi:"Basics",navSegni:"Signs",navCoppie:"♥ Couples",theStampa:"Print",theAdesivi:"Stickers",
+  idxEy:"ASTROLOGY & COMPATIBILITY",idxTag:"// the basics · 12 signs · couples",idxBasi:"Basics",idxBasiD:"birth chart · elements · houses",idxCoppie:"Couples",idxCoppieD:"compare 2 signs",
+  footIndex:"sample · full book · riso-zine style",
+  backIndex:"← index",backBasi:"← basics",
+  basiTitle:"THE BASICS",basiName:"The basics",
+  bNatale:"Birth chart",bNataleD:"what it can reveal",bBig3:"Sun·Moon·Asc",bBig3D:"your three pillars",bElem:"The 4 elements",bElemD:"fire · earth · air · water",bCase:"Houses & modes",bCaseD:"+ ruling planets",
+  ctaNatal:"✦ calculate your birth chart",ctaOro:"☀ check today's horoscope",footBasi:"sample · the basics",
+  natTitle:"BIRTH CHART",natName:"Birth chart",natTag1:">> what it is",natBody1:"The birth chart is the <b>snapshot of the sky</b> at the exact moment you were born. It's not just «your sign» (the Sun): it's the full map of where all the planets were, split into <b>12 Houses</b>. Read together, it tells far more than a horoscope.",natTag2:">> what it can reveal",
+  natReveal:["Your deepest fears","Issues with parents and family","Which relationships make you happy","The traumas you carry","The main lessons of this life","Your defence mechanisms","Your karma (love, family, friendship)","How you communicate emotions","The areas with knots to untie","The habits you repeat","When to expect challenging periods","What you truly seek in a partner"],
+  natCta:"✦ calculate your birth chart →",footNat:"sample · birth chart",
+  big3Title:"THE THREE PILLARS",big3Name:"The three pillars",big3T1:">> ☉ the sun — identity",big3B1:"It's <b>who you are</b>: the ego, the will, how you shine. It's the most recognisable part of you, what people mean when they ask «what's your sign?».",big3T2:">> ☽ the moon — the soul",big3B2:"It's <b>how you feel</b>: the emotional world, the instincts, what you need to feel safe. It's the private part, the one you show only to those close to you.",big3T3:">> ↗ the ascendant — the mask",big3B3:"It's <b>how you face the world</b> and how others see you at first meeting. It changes every couple of hours, so you need your <b>birth time</b> to calculate it.",big3T4:">> compose the sentence",big3Hint:"// pick your three signs",
+  big3Sentence:(a,b,c)=>`I'm a <b>${a}</b>, with the soul of a <b class="p">${b}</b>, wearing the mask of a <b>${c}</b>.`,big3Sun:"☉ Sun",big3Moon:"☽ Moon",big3Asc:"↗ Ascendant",footBig3:"sample · sun · moon · ascendant",
+  elTitle:"THE 4 ELEMENTS",elName:"The 4 elements",elSignsLab:"SIGNS",elHousesLab:"HOUSES",elTag:">> how they interact",elBody:"<b>Water and Earth</b> get along (water nurtures earth), as do <b>Fire and Air</b> (air feeds fire). Crossings between different families create more friction — but also more sparks.",footEl:"sample · the 4 elements",
+  caseTitle:"HOUSES & CO.",caseName:"Houses & co.",caseTag1:">> the 12 houses",caseBody1:"The Houses are the <b>areas of life</b>: where a planet «falls» tells in which sector it acts.",caseTag2:">> the 3 modes",caseTag3:">> the ruling planets",footCase:"sample · houses, modes & planets",
+  modCard:"Cardinal",modCardD:"The initiators: they open the seasons, start things, take the lead.",modFix:"Fixed",modFixD:"The builders: they consolidate, endure, carry on. Stubborn.",modMob:"Mutable",modMobD:"The adapters: they close the seasons, transform, stay flexible.",
+  sEss:">> the essence",sMind:">> how its mind works",sLove:">> in love",sBed:">> between the sheets",sWork:">> at work",sSpot:">> you'll spot it if…",sCon:">> how to win me over",sDeal:">> what closes the door",sSlr:">> sun · moon · ascendant",sSlrIntro:"The same sign changes a lot depending on where it falls in the chart:",sSun:"☉ as Sun",sMoon:"☽ as Moon",sAsc:"↗ as Asc.",
+  sDecani:">> the three faces of the sign · the decans",sDecaniIntro:"Those born at the start, middle or end of the sign live a different shade of it — that's the <b>decans</b> system, three bands of about 10 days each:",
+  sGen:">> him & her · same sign",sGenIntro:"Same sign, two archetypes: how the same energy expresses in masculine and feminine — playful archetypes, not rules.",sLui:"♂ him",sLei:"♀ her",sAdv:">> the advice",
+  gf:"green flag",rf:"red flag",lcAmi:"In friendship",lcAng:"When angry",lcLove:"Love language",lcGrow:"The growth challenge",
+  affLove:"Affinity // in love",affWork:"Affinity // at work",chartHint:"// tap a row for the full comparison",
+  ctaOroSign:"☀ check your horoscope for today →",
+  natalBoxTag:">> your full birth chart",natalBoxBody:(n)=>`This is the ${n} sign card — your <b>Sun</b>. But you're much more: Moon, Ascendant and all the planets of your exact sky tell who you really are.`,natalBoxCta:"✦ calculate your birth chart →",
+  affBoxTag:">> test your affinity with the other signs",affBoxBody:(n)=>`${n} with whom? Pick a sign and the lens of the bond.`,
+  composeBoxTag:">> compose the sentence",composeBoxBody:"Build your situation and get tailored advice.",composeSo:"I'm",
+  affUnisce:"What brings you together:",affScotta:"What can burn:",affFullCmp:"see the full comparison →",advLabel:"The advice:",
+  footSign:(n)=>`sample · ${n}`,
+  compatTitle:"COUPLES",compatName:"Couples",compatHint:"// pick two signs and the lens of the bond",footCompat:"sample · compatibility explorer",
+  cmpDirect:">> head to head",cmpPortrait:">> the portrait of the bond",cmpUnisce:">> what brings you together",cmpScotta:">> where it burns",
+  thElem:"element",thMod:"mode",thPlan:"planet",thLL:"love language",thRF:"red flag",
+  composeActs:["I want to seduce…","I want to win over…","I work with…","my boss is…","I live with…","my best friend is…","my ex is…","in my family there's…"],
+  art:{ariete:'an',toro:'a',gemelli:'a',cancro:'a',leone:'a',vergine:'a',bilancia:'a',scorpione:'a',sagittario:'a',capricorno:'a',acquario:'an',pesci:'a'},
+  composeTmpl:[
+   (aA,aN,bA,bN)=>"I'm "+aA+' <b>'+aN+'</b> and I want to seduce '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>"I'm "+aA+' <b>'+aN+'</b> and I want to win over '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>"I'm "+aA+' <b>'+aN+'</b> and I work with '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>"I'm "+aA+' <b>'+aN+'</b> and my boss is '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>"I'm "+aA+' <b>'+aN+'</b> and I live with '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>"I'm "+aA+' <b>'+aN+'</b> and my best friend is '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>"I'm "+aA+' <b>'+aN+'</b> and my ex is '+bA+' <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>"I'm "+aA+" <b>"+aN+"</b> and in my family there's "+bA+" <b>"+bN+"</b>."
+  ]
+ },
+ fr:{
+  navBasi:"Les bases",navSegni:"Signes",navCoppie:"♥ Couples",theStampa:"Imprimé",theAdesivi:"Stickers",
+  idxEy:"ASTROLOGIE & COMPATIBILITÉ",idxTag:"// les bases · 12 signes · couples",idxBasi:"Les bases",idxBasiD:"thème natal · éléments · maisons",idxCoppie:"Couples",idxCoppieD:"compare 2 signes",
+  footIndex:"échantillon · livre complet · style riso-zine",
+  backIndex:"← index",backBasi:"← les bases",
+  basiTitle:"LES BASES",basiName:"Les bases",
+  bNatale:"Thème natal",bNataleD:"ce qu'il peut révéler",bBig3:"Soleil·Lune·Asc",bBig3D:"tes trois piliers",bElem:"Les 4 éléments",bElemD:"feu · terre · air · eau",bCase:"Maisons & modes",bCaseD:"+ planètes maîtresses",
+  ctaNatal:"✦ calcule ton thème natal",ctaOro:"☀ vois l'horoscope du jour",footBasi:"échantillon · les bases",
+  natTitle:"THÈME NATAL",natName:"Thème natal",natTag1:">> c'est quoi",natBody1:"Le thème natal est la <b>photographie du ciel</b> à l'instant exact de ta naissance. Ce n'est pas juste «ton signe» (le Soleil): c'est la carte complète de la position de toutes les planètes, divisée en <b>12 Maisons</b>. Lue ensemble, elle raconte bien plus qu'un horoscope.",natTag2:">> ce qu'il peut révéler",
+  natReveal:["Tes peurs les plus profondes","Problèmes avec parents et famille","Quelles relations te rendent heureux","Les traumatismes que tu portes","Les grandes leçons de cette vie","Tes mécanismes de défense","Ton karma (amour, famille, amitié)","Comment tu communiques les émotions","Les zones avec des nœuds à dénouer","Les habitudes que tu répètes","Quand t'attendre à des périodes difficiles","Ce que tu cherches vraiment chez un partenaire"],
+  natCta:"✦ calcule ton thème natal →",footNat:"échantillon · thème natal",
+  big3Title:"LES TROIS PILIERS",big3Name:"Les trois piliers",big3T1:">> ☉ le soleil — l'identité",big3B1:"C'est <b>qui tu es</b>: l'ego, la volonté, comment tu brilles. C'est la part la plus reconnaissable de toi, ce qu'on entend en demandant «t'es de quel signe ?».",big3T2:">> ☽ la lune — l'âme",big3B2:"C'est <b>comment tu ressens</b>: le monde émotionnel, les instincts, ce dont tu as besoin pour te sentir en sécurité. C'est la part privée, celle que tu montres aux proches.",big3T3:">> ↗ l'ascendant — le masque",big3B3:"C'est <b>comment tu affrontes le monde</b> et comment on te voit au premier contact. Il change toutes les deux heures, il faut donc ton <b>heure de naissance</b> pour le calculer.",big3T4:">> composer la phrase",big3Hint:"// choisis tes trois signes",
+  big3Sentence:(a,b,c)=>`Je suis <b>${a}</b>, avec l'âme d'un <b class="p">${b}</b>, qui porte le masque d'un <b>${c}</b>.`,big3Sun:"☉ Soleil",big3Moon:"☽ Lune",big3Asc:"↗ Ascendant",footBig3:"échantillon · soleil · lune · ascendant",
+  elTitle:"LES 4 ÉLÉMENTS",elName:"Les 4 éléments",elSignsLab:"SIGNES",elHousesLab:"MAISONS",elTag:">> comment ils interagissent",elBody:"<b>Eau et Terre</b> s'entendent (l'eau nourrit la terre), tout comme <b>Feu et Air</b> (l'air alimente le feu). Les croisements entre familles différentes créent plus de friction — mais aussi plus d'étincelles.",footEl:"échantillon · les 4 éléments",
+  caseTitle:"MAISONS & CO.",caseName:"Maisons & co.",caseTag1:">> les 12 maisons",caseBody1:"Les Maisons sont les <b>domaines de la vie</b>: là où une planète «tombe» dit dans quel secteur elle agit.",caseTag2:">> les 3 modes",caseTag3:">> les planètes maîtresses",footCase:"échantillon · maisons, modes & planètes",
+  modCard:"Cardinal",modCardD:"Les initiateurs: ils ouvrent les saisons, démarrent, prennent l'initiative.",modFix:"Fixe",modFixD:"Les bâtisseurs: ils consolident, résistent, poursuivent. Têtus.",modMob:"Mutable",modMobD:"Les adaptateurs: ils ferment les saisons, se transforment, sont flexibles.",
+  sEss:">> l'essence",sMind:">> comment fonctionne son esprit",sLove:">> en amour",sBed:">> entre les draps",sWork:">> au travail",sSpot:">> tu le reconnais si…",sCon:">> comment me conquérir",sDeal:">> ce qui ferme la porte",sSlr:">> soleil · lune · ascendant",sSlrIntro:"Le même signe change beaucoup selon où il tombe dans le thème:",sSun:"☉ en Soleil",sMoon:"☽ en Lune",sAsc:"↗ en Asc.",
+  sDecani:">> les trois visages du signe · les décans",sDecaniIntro:"Celui qui naît au début, au milieu ou à la fin du signe en vit une nuance différente — c'est le système des <b>décans</b>, trois bandes d'environ 10 jours chacune:",
+  sGen:">> lui & elle · même signe",sGenIntro:"Même signe, deux archétypes: comment la même énergie s'exprime au masculin et au féminin — archétypes ludiques, pas des règles.",sLui:"♂ lui",sLei:"♀ elle",sAdv:">> le conseil",
+  gf:"green flag",rf:"red flag",lcAmi:"En amitié",lcAng:"Quand il/elle est en colère",lcLove:"Langage de l'amour",lcGrow:"Le défi de croissance",
+  affLove:"Affinité // en amour",affWork:"Affinité // au travail",chartHint:"// touche une ligne pour la comparaison complète",
+  ctaOroSign:"☀ vois ton horoscope du jour →",
+  natalBoxTag:">> ton thème natal complet",natalBoxBody:(n)=>`Voici la fiche du signe ${n} — ton <b>Soleil</b>. Mais tu es bien plus: Lune, Ascendant et toutes les planètes de ton ciel exact disent qui tu es vraiment.`,natalBoxCta:"✦ calcule ton thème natal →",
+  affBoxTag:">> teste ton affinité avec les autres signes",affBoxBody:(n)=>`${n} avec qui ? Choisis un signe et la lentille de la relation.`,
+  composeBoxTag:">> compose la phrase",composeBoxBody:"Construis ta situation et reçois un conseil sur mesure.",composeSo:"Je suis",
+  affUnisce:"Ce qui vous unit :",affScotta:"Ce qui peut brûler :",affFullCmp:"voir la comparaison complète →",advLabel:"Le conseil :",
+  footSign:(n)=>`échantillon · ${n}`,
+  compatTitle:"COUPLES",compatName:"Couples",compatHint:"// choisis deux signes et la lentille de la relation",footCompat:"échantillon · explorateur de compatibilité",
+  cmpDirect:">> face à face",cmpPortrait:">> le portrait de la relation",cmpUnisce:">> ce qui vous unit",cmpScotta:">> là où ça brûle",
+  thElem:"élément",thMod:"mode",thPlan:"planète",thLL:"langage de l'amour",thRF:"red flag",
+  composeActs:["je veux séduire…","je veux conquérir…","je bosse avec…","mon boss est…","je vis avec…","mon meilleur pote est…","j'ai un ex…","dans ma famille il y a…"],
+  art:{ariete:'',toro:'',gemelli:'',cancro:'',leone:'',vergine:'',bilancia:'',scorpione:'',sagittario:'',capricorno:'',acquario:'',pesci:''},
+  composeTmpl:[
+   (aA,aN,bA,bN)=>'Je suis <b>'+aN+'</b> et je veux séduire <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Je suis <b>'+aN+'</b> et je veux conquérir <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Je suis <b>'+aN+'</b> et je bosse avec <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Je suis <b>'+aN+'</b> et mon boss est <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Je suis <b>'+aN+'</b> et je vis avec <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Je suis <b>'+aN+'</b> et mon meilleur pote est <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Je suis <b>'+aN+'</b> et mon ex est <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Je suis <b>'+aN+'</b> et dans ma famille il y a <b>'+bN+'</b>.'
+  ]
+ },
+ es:{
+  navBasi:"Lo básico",navSegni:"Signos",navCoppie:"♥ Parejas",theStampa:"Impreso",theAdesivi:"Pegatinas",
+  idxEy:"ASTROLOGÍA & COMPATIBILIDAD",idxTag:"// lo básico · 12 signos · parejas",idxBasi:"Lo básico",idxBasiD:"carta natal · elementos · casas",idxCoppie:"Parejas",idxCoppieD:"compara 2 signos",
+  footIndex:"muestra · libro completo · estilo riso-zine",
+  backIndex:"← índice",backBasi:"← lo básico",
+  basiTitle:"LO BÁSICO",basiName:"Lo básico",
+  bNatale:"Carta natal",bNataleD:"qué puede revelar",bBig3:"Sol·Luna·Asc",bBig3D:"tus tres pilares",bElem:"Los 4 elementos",bElemD:"fuego · tierra · aire · agua",bCase:"Casas & modalidades",bCaseD:"+ planetas regentes",
+  ctaNatal:"✦ calcula tu carta natal",ctaOro:"☀ mira el horóscopo de hoy",footBasi:"muestra · lo básico",
+  natTitle:"CARTA NATAL",natName:"Carta natal",natTag1:">> qué es",natBody1:"La carta natal es la <b>fotografía del cielo</b> en el instante exacto en que naciste. No es solo «tu signo» (el Sol): es el mapa completo de dónde estaban todos los planetas, dividido en <b>12 Casas</b>. Leída en conjunto, cuenta mucho más que un horóscopo.",natTag2:">> qué puede revelar",
+  natReveal:["Tus miedos más profundos","Problemas con padres y familia","Qué relaciones te hacen feliz","Los traumas que cargas","Las lecciones principales de esta vida","Tus mecanismos de defensa","Tu karma (amor, familia, amistad)","Cómo comunicas las emociones","Las áreas con nudos por desatar","Los hábitos que repites","Cuándo esperar periodos difíciles","Qué buscas de verdad en una pareja"],
+  natCta:"✦ calcula tu carta natal →",footNat:"muestra · carta natal",
+  big3Title:"LOS TRES PILARES",big3Name:"Los tres pilares",big3T1:">> ☉ el sol — identidad",big3B1:"Es <b>quién eres</b>: el ego, la voluntad, cómo brillas. Es la parte más reconocible de ti, lo que la gente quiere decir al preguntar «¿de qué signo eres?».",big3T2:">> ☽ la luna — el alma",big3B2:"Es <b>cómo sientes</b>: el mundo emocional, los instintos, lo que necesitas para sentirte seguro. Es la parte privada, la que muestras solo a quien te es cercano.",big3T3:">> ↗ el ascendente — la máscara",big3B3:"Es <b>cómo afrontas el mundo</b> y cómo te ven los demás al primer encuentro. Cambia cada par de horas, por eso hace falta tu <b>hora de nacimiento</b> para calcularlo.",big3T4:">> componer la frase",big3Hint:"// elige tus tres signos",
+  big3Sentence:(a,b,c)=>`Soy <b>${a}</b>, con el alma de un <b class="p">${b}</b>, que lleva la máscara de un <b>${c}</b>.`,big3Sun:"☉ Sol",big3Moon:"☽ Luna",big3Asc:"↗ Ascendente",footBig3:"muestra · sol · luna · ascendente",
+  elTitle:"LOS 4 ELEMENTOS",elName:"Los 4 elementos",elSignsLab:"SIGNOS",elHousesLab:"CASAS",elTag:">> cómo interactúan",elBody:"<b>Agua y Tierra</b> se llevan bien (el agua nutre la tierra), igual que <b>Fuego y Aire</b> (el aire alimenta el fuego). Los cruces entre familias distintas crean más fricción — pero también más chispas.",footEl:"muestra · los 4 elementos",
+  caseTitle:"CASAS & CO.",caseName:"Casas & co.",caseTag1:">> las 12 casas",caseBody1:"Las Casas son las <b>áreas de la vida</b>: donde un planeta «cae» dice en qué sector actúa.",caseTag2:">> las 3 modalidades",caseTag3:">> los planetas regentes",footCase:"muestra · casas, modalidades & planetas",
+  modCard:"Cardinal",modCardD:"Los iniciadores: abren las estaciones, arrancan, toman la iniciativa.",modFix:"Fijo",modFixD:"Los constructores: consolidan, resisten, llevan adelante. Tercos.",modMob:"Mutable",modMobD:"Los adaptadores: cierran las estaciones, se transforman, son flexibles.",
+  sEss:">> la esencia",sMind:">> cómo funciona su mente",sLove:">> en el amor",sBed:">> entre las sábanas",sWork:">> en el trabajo",sSpot:">> lo reconoces si…",sCon:">> cómo conquistarme",sDeal:">> qué cierra la puerta",sSlr:">> sol · luna · ascendente",sSlrIntro:"El mismo signo cambia mucho según dónde caiga en la carta:",sSun:"☉ como Sol",sMoon:"☽ como Luna",sAsc:"↗ como Asc.",
+  sDecani:">> las tres caras del signo · los decanatos",sDecaniIntro:"Quien nace al inicio, en medio o al final del signo vive un matiz distinto — es el sistema de los <b>decanatos</b>, tres franjas de unos 10 días cada una:",
+  sGen:">> él & ella · mismo signo",sGenIntro:"Mismo signo, dos arquetipos: cómo la misma energía se expresa en masculino y femenino — arquetipos lúdicos, no reglas.",sLui:"♂ él",sLei:"♀ ella",sAdv:">> el consejo",
+  gf:"green flag",rf:"red flag",lcAmi:"En la amistad",lcAng:"Cuando se enfada",lcLove:"Lenguaje del amor",lcGrow:"El reto de crecer",
+  affLove:"Afinidad // en el amor",affWork:"Afinidad // en el trabajo",chartHint:"// toca una fila para la comparación completa",
+  ctaOroSign:"☀ mira tu horóscopo de hoy →",
+  natalBoxTag:">> tu carta natal completa",natalBoxBody:(n)=>`Esta es la ficha del signo ${n} — tu <b>Sol</b>. Pero eres mucho más: Luna, Ascendente y todos los planetas de tu cielo exacto dicen quién eres de verdad.`,natalBoxCta:"✦ calcula tu carta natal →",
+  affBoxTag:">> prueba tu afinidad con los demás signos",affBoxBody:(n)=>`${n} ¿con quién? Elige un signo y la lente de la relación.`,
+  composeBoxTag:">> arma la frase",composeBoxBody:"Construye tu situación y recibe el consejo a medida.",composeSo:"Soy",
+  affUnisce:"Lo que os une:",affScotta:"Lo que puede quemar:",affFullCmp:"ver la comparación completa →",advLabel:"El consejo:",
+  footSign:(n)=>`muestra · ${n}`,
+  compatTitle:"PAREJAS",compatName:"Parejas",compatHint:"// elige dos signos y la lente de la relación",footCompat:"muestra · explorador de compatibilidad",
+  cmpDirect:">> cara a cara",cmpPortrait:">> el retrato de la relación",cmpUnisce:">> qué os une",cmpScotta:">> dónde quema",
+  thElem:"elemento",thMod:"modalidad",thPlan:"planeta",thLL:"lenguaje del amor",thRF:"red flag",
+  composeActs:["quiero seducir…","quiero conquistar…","trabajo con…","mi jefe es…","convivo con…","soy amigo de…","tengo un ex…","en mi familia hay…"],
+  art:{ariete:'',toro:'',gemelli:'',cancro:'',leone:'',vergine:'',bilancia:'',scorpione:'',sagittario:'',capricorno:'',acquario:'',pesci:''},
+  composeTmpl:[
+   (aA,aN,bA,bN)=>'Soy <b>'+aN+'</b> y quiero seducir a <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Soy <b>'+aN+'</b> y quiero conquistar a <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Soy <b>'+aN+'</b> y trabajo con <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Soy <b>'+aN+'</b> y mi jefe es <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Soy <b>'+aN+'</b> y convivo con <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Soy <b>'+aN+'</b> y mi mejor amigo es <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Soy <b>'+aN+'</b> y mi ex es <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Soy <b>'+aN+'</b> y en mi familia hay <b>'+bN+'</b>.'
+  ]
+ },
+ pt:{
+  navBasi:"O básico",navSegni:"Signos",navCoppie:"♥ Casais",theStampa:"Impresso",theAdesivi:"Adesivos",
+  idxEy:"ASTROLOGIA & COMPATIBILIDADE",idxTag:"// o básico · 12 signos · casais",idxBasi:"O básico",idxBasiD:"mapa astral · elementos · casas",idxCoppie:"Casais",idxCoppieD:"compare 2 signos",
+  footIndex:"amostra · livro completo · estilo riso-zine",
+  backIndex:"← índice",backBasi:"← o básico",
+  basiTitle:"O BÁSICO",basiName:"O básico",
+  bNatale:"Mapa astral",bNataleD:"o que pode revelar",bBig3:"Sol·Lua·Asc",bBig3D:"seus três pilares",bElem:"Os 4 elementos",bElemD:"fogo · terra · ar · água",bCase:"Casas & modalidades",bCaseD:"+ planetas regentes",
+  ctaNatal:"✦ calcule seu mapa astral",ctaOro:"☀ veja o horóscopo de hoje",footBasi:"amostra · o básico",
+  natTitle:"MAPA ASTRAL",natName:"Mapa astral",natTag1:">> o que é",natBody1:"O mapa astral é a <b>fotografia do céu</b> no instante exato em que você nasceu. Não é só «o seu signo» (o Sol): é o mapa completo de onde estavam todos os planetas, dividido em <b>12 Casas</b>. Lido em conjunto, conta muito mais que um horóscopo.",natTag2:">> o que pode revelar",
+  natReveal:["Seus medos mais profundos","Problemas com pais e família","Quais relações te fazem feliz","Os traumas que você carrega","As lições principais desta vida","Seus mecanismos de defesa","Seu karma (amor, família, amizade)","Como você comunica as emoções","As áreas com nós para desatar","Os hábitos que você repete","Quando esperar períodos desafiadores","O que você realmente busca num parceiro"],
+  natCta:"✦ calcule seu mapa astral →",footNat:"amostra · mapa astral",
+  big3Title:"OS TRÊS PILARES",big3Name:"Os três pilares",big3T1:">> ☉ o sol — identidade",big3B1:"É <b>quem você é</b>: o ego, a vontade, como você brilha. É a parte mais reconhecível de você, o que as pessoas querem dizer ao perguntar «qual é o seu signo?».",big3T2:">> ☽ a lua — a alma",big3B2:"É <b>como você sente</b>: o mundo emocional, os instintos, o que você precisa para se sentir seguro. É a parte privada, a que você mostra só a quem é próximo.",big3T3:">> ↗ o ascendente — a máscara",big3B3:"É <b>como você enfrenta o mundo</b> e como os outros te veem no primeiro encontro. Muda a cada duas horas, por isso é preciso a sua <b>hora de nascimento</b> para calcular.",big3T4:">> compor a frase",big3Hint:"// escolha seus três signos",
+  big3Sentence:(a,b,c)=>`Sou de <b>${a}</b>, com a alma de um <b class="p">${b}</b>, que veste a máscara de um <b>${c}</b>.`,big3Sun:"☉ Sol",big3Moon:"☽ Lua",big3Asc:"↗ Ascendente",footBig3:"amostra · sol · lua · ascendente",
+  elTitle:"OS 4 ELEMENTOS",elName:"Os 4 elementos",elSignsLab:"SIGNOS",elHousesLab:"CASAS",elTag:">> como interagem",elBody:"<b>Água e Terra</b> se dão bem (a água nutre a terra), assim como <b>Fogo e Ar</b> (o ar alimenta o fogo). Os cruzamentos entre famílias diferentes criam mais atrito — mas também mais faíscas.",footEl:"amostra · os 4 elementos",
+  caseTitle:"CASAS & CO.",caseName:"Casas & co.",caseTag1:">> as 12 casas",caseBody1:"As Casas são as <b>áreas da vida</b>: onde um planeta «cai» diz em qual setor ele age.",caseTag2:">> as 3 modalidades",caseTag3:">> os planetas regentes",footCase:"amostra · casas, modalidades & planetas",
+  modCard:"Cardinal",modCardD:"Os iniciadores: abrem as estações, arrancam, tomam a iniciativa.",modFix:"Fixo",modFixD:"Os construtores: consolidam, resistem, levam adiante. Teimosos.",modMob:"Mutável",modMobD:"Os adaptadores: fecham as estações, se transformam, são flexíveis.",
+  sEss:">> a essência",sMind:">> como funciona a mente dele",sLove:">> no amor",sBed:">> entre os lençóis",sWork:">> no trabalho",sSpot:">> você reconhece se…",sCon:">> como me conquistar",sDeal:">> o que fecha a porta",sSlr:">> sol · lua · ascendente",sSlrIntro:"O mesmo signo muda muito dependendo de onde cai no mapa:",sSun:"☉ como Sol",sMoon:"☽ como Lua",sAsc:"↗ como Asc.",
+  sDecani:">> os três rostos do signo · os decanatos",sDecaniIntro:"Quem nasce no início, no meio ou no fim do signo vive um matiz diferente — é o sistema dos <b>decanatos</b>, três faixas de cerca de 10 dias cada:",
+  sGen:">> ele & ela · mesmo signo",sGenIntro:"Mesmo signo, dois arquétipos: como a mesma energia se expressa no masculino e no feminino — arquétipos lúdicos, não regras.",sLui:"♂ ele",sLei:"♀ ela",sAdv:">> o conselho",
+  gf:"green flag",rf:"red flag",lcAmi:"Na amizade",lcAng:"Quando está com raiva",lcLove:"Linguagem do amor",lcGrow:"O desafio de crescer",
+  affLove:"Afinidade // no amor",affWork:"Afinidade // no trabalho",chartHint:"// toque numa linha para a comparação completa",
+  ctaOroSign:"☀ veja seu horóscopo de hoje →",
+  natalBoxTag:">> seu mapa astral completo",natalBoxBody:(n)=>`Esta é a ficha do signo ${n} — o seu <b>Sol</b>. Mas você é muito mais: Lua, Ascendente e todos os planetas do seu céu exato dizem quem você é de verdade.`,natalBoxCta:"✦ calcule seu mapa astral →",
+  affBoxTag:">> teste sua afinidade com os outros signos",affBoxBody:(n)=>`${n} com quem? Escolha um signo e a lente da relação.`,
+  composeBoxTag:">> monte a frase",composeBoxBody:"Monte a sua situação e receba o conselho sob medida.",composeSo:"Sou de",
+  affUnisce:"O que une vocês:",affScotta:"O que pode pegar fogo:",affFullCmp:"ver a comparação completa →",advLabel:"O conselho:",
+  footSign:(n)=>`amostra · ${n}`,
+  compatTitle:"CASAIS",compatName:"Casais",compatHint:"// escolha dois signos e a lente da relação",footCompat:"amostra · explorador de compatibilidade",
+  cmpDirect:">> frente a frente",cmpPortrait:">> o retrato da relação",cmpUnisce:">> o que une vocês",cmpScotta:">> onde pega fogo",
+  thElem:"elemento",thMod:"modalidade",thPlan:"planeta",thLL:"linguagem do amor",thRF:"red flag",
+  composeActs:["quero seduzir…","quero conquistar…","trabalho com…","meu chefe é…","moro com…","sou amigo de…","tenho um ex…","na minha família tem…"],
+  art:{ariete:'',toro:'',gemelli:'',cancro:'',leone:'',vergine:'',bilancia:'',scorpione:'',sagittario:'',capricorno:'',acquario:'',pesci:''},
+  composeTmpl:[
+   (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e quero seduzir <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e quero conquistar <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e trabalho com <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e meu chefe é <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e moro com <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e meu melhor amigo é <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e meu ex é <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e na minha família tem <b>'+bN+'</b>.'
+  ]
+ }
+};
+
+const ELEMENTS_DICT={
+ it:[
+ {key:"fuoco",g:"🔥",name:"Fuoco",motto:"Senza paura & impulsivo",signs:"Ariete · Leone · Sagittario",houses:"1ª identità · 5ª espressione · 9ª crescita",
+  traits:["Vive nel futuro","Tipo schietto","Pensa a cosa è possibile","Grande fiducia in sé"],
+  kw:["entusiasta","forte volontà","impaziente","libertà","ottimista"],
+  noi:["Non lasciamo che la paura ci freni","Viviamo e amiamo nel presente","Proviamo tutto almeno una volta","Siamo azione, avventura, rischio","Ci serve qualcosa che ci ispiri"]},
+ {key:"terra",g:"🌍",name:"Terra",motto:"Pratico & concreto",signs:"Toro · Vergine · Capricorno",houses:"2ª denaro · 6ª servizio · 10ª carriera",
+  traits:["Vive nella realtà","Tipo fattuale","O lo vedo o non esiste","Concreto"],
+  kw:["pratico","disciplinato","realista","cauto","affidabile"],
+  noi:["La sicurezza viene prima di tutto","Impariamo dai nostri errori","Siamo affidabili e responsabili","Non amiamo sprecare nulla","Tratteniamo le emozioni, pensiamo logico"]},
+ {key:"aria",g:"🌬️",name:"Aria",motto:"Intellettuale & sociale",signs:"Gemelli · Bilancia · Acquario",houses:"3ª comunicazione · 7ª relazioni · 11ª amicizie",
+  traits:["Tipo pensatore","Vive nella mente","Ha bisogno di capire","Relaziona idee, non sentimenti"],
+  kw:["sociale","oggettivo","intellettuale","razionalizza","poco emotivo"],
+  noi:["Ci serve varietà e cambiamento","Analizziamo le emozioni invece di sentirle","Abbiamo bisogno di condividere idee","Temiamo l'isolamento sociale","Comunicare è la nostra linfa vitale"]},
+ {key:"acqua",g:"💧",name:"Acqua",motto:"Emotivo & intuitivo",signs:"Cancro · Scorpione · Pesci",houses:"4ª casa · 8ª intimità · 12ª inconscio",
+  traits:["Percepisce tutto","Intuitivo e psichico","Empatico","Nutriente"],
+  kw:["emotivo","intuitivo","empatico","nutriente","sensibile"],
+  noi:["Abbiamo bisogno di appartenere","Capiamo i bisogni degli altri","Amiamo nutrire e aiutare","Ci serve la nostra privacy","I nostri sentimenti si feriscono facilmente"]}
+ ],
+ en:[
+ {key:"fuoco",g:"🔥",name:"Fire",motto:"Fearless & impulsive",signs:"Aries · Leo · Sagittarius",houses:"1st identity · 5th expression · 9th growth",traits:["Lives in the future","Straight-talker type","Thinks about what's possible","Great self-confidence"],kw:["enthusiastic","strong-willed","impatient","freedom","optimist"],noi:["We don't let fear hold us back","We live and love in the present","We try everything at least once","We are action, adventure, risk","We need something that inspires us"]},
+ {key:"terra",g:"🌍",name:"Earth",motto:"Practical & concrete",signs:"Taurus · Virgo · Capricorn",houses:"2nd money · 6th service · 10th career",traits:["Lives in reality","Factual type","I see it or it doesn't exist","Concrete"],kw:["practical","disciplined","realistic","cautious","reliable"],noi:["Security comes first","We learn from our mistakes","We are reliable and responsible","We hate wasting anything","We hold emotions back, we think logically"]},
+ {key:"aria",g:"🌬️",name:"Air",motto:"Intellectual & social",signs:"Gemini · Libra · Aquarius",houses:"3rd communication · 7th relationships · 11th friendships",traits:["Thinker type","Lives in the mind","Needs to understand","Relates ideas, not feelings"],kw:["social","objective","intellectual","rationalises","unemotional"],noi:["We need variety and change","We analyse emotions instead of feeling them","We need to share ideas","We fear social isolation","Communication is our lifeblood"]},
+ {key:"acqua",g:"💧",name:"Water",motto:"Emotional & intuitive",signs:"Cancer · Scorpio · Pisces",houses:"4th home · 8th intimacy · 12th unconscious",traits:["Senses everything","Intuitive and psychic","Empathetic","Nurturing"],kw:["emotional","intuitive","empathetic","nurturing","sensitive"],noi:["We need to belong","We understand others' needs","We love to nurture and help","We need our privacy","Our feelings hurt easily"]}
+ ],
+ fr:[
+ {key:"fuoco",g:"🔥",name:"Feu",motto:"Sans peur & impulsif",signs:"Bélier · Lion · Sagittaire",houses:"1re identité · 5e expression · 9e croissance",traits:["Vit dans le futur","Type franc","Pense à ce qui est possible","Grande confiance en soi"],kw:["enthousiaste","volontaire","impatient","liberté","optimiste"],noi:["On ne laisse pas la peur nous freiner","On vit et on aime au présent","On essaie tout au moins une fois","On est action, aventure, risque","Il nous faut quelque chose qui nous inspire"]},
+ {key:"terra",g:"🌍",name:"Terre",motto:"Pratique & concret",signs:"Taureau · Vierge · Capricorne",houses:"2e argent · 6e service · 10e carrière",traits:["Vit dans le réel","Type factuel","Soit je le vois soit ça n'existe pas","Concret"],kw:["pratique","discipliné","réaliste","prudent","fiable"],noi:["La sécurité avant tout","On apprend de nos erreurs","On est fiables et responsables","On déteste gaspiller","On retient les émotions, on pense logique"]},
+ {key:"aria",g:"🌬️",name:"Air",motto:"Intellectuel & social",signs:"Gémeaux · Balance · Verseau",houses:"3e communication · 7e relations · 11e amitiés",traits:["Type penseur","Vit dans la tête","A besoin de comprendre","Relie des idées, pas des sentiments"],kw:["social","objectif","intellectuel","rationalise","peu émotif"],noi:["On a besoin de variété et de changement","On analyse les émotions au lieu de les sentir","On a besoin de partager des idées","On craint l'isolement social","Communiquer est notre sève"]},
+ {key:"acqua",g:"💧",name:"Eau",motto:"Émotif & intuitif",signs:"Cancer · Scorpion · Poissons",houses:"4e foyer · 8e intimité · 12e inconscient",traits:["Perçoit tout","Intuitif et psychique","Empathique","Nourricier"],kw:["émotif","intuitif","empathique","nourricier","sensible"],noi:["On a besoin d'appartenir","On comprend les besoins des autres","On aime nourrir et aider","Il nous faut notre intimité","Nos sentiments se blessent facilement"]}
+ ],
+ es:[
+ {key:"fuoco",g:"🔥",name:"Fuego",motto:"Sin miedo & impulsivo",signs:"Aries · Leo · Sagitario",houses:"1ª identidad · 5ª expresión · 9ª crecimiento",traits:["Vive en el futuro","Tipo franco","Piensa en lo posible","Gran confianza en sí mismo"],kw:["entusiasta","voluntarioso","impaciente","libertad","optimista"],noi:["No dejamos que el miedo nos frene","Vivimos y amamos en el presente","Probamos todo al menos una vez","Somos acción, aventura, riesgo","Necesitamos algo que nos inspire"]},
+ {key:"terra",g:"🌍",name:"Tierra",motto:"Práctico & concreto",signs:"Tauro · Virgo · Capricornio",houses:"2ª dinero · 6ª servicio · 10ª carrera",traits:["Vive en la realidad","Tipo factual","O lo veo o no existe","Concreto"],kw:["práctico","disciplinado","realista","cauto","fiable"],noi:["La seguridad ante todo","Aprendemos de nuestros errores","Somos fiables y responsables","No nos gusta desperdiciar nada","Retenemos las emociones, pensamos lógico"]},
+ {key:"aria",g:"🌬️",name:"Aire",motto:"Intelectual & social",signs:"Géminis · Libra · Acuario",houses:"3ª comunicación · 7ª relaciones · 11ª amistades",traits:["Tipo pensador","Vive en la mente","Necesita entender","Relaciona ideas, no sentimientos"],kw:["social","objetivo","intelectual","racionaliza","poco emotivo"],noi:["Necesitamos variedad y cambio","Analizamos las emociones en vez de sentirlas","Necesitamos compartir ideas","Tememos el aislamiento social","Comunicar es nuestra savia"]},
+ {key:"acqua",g:"💧",name:"Agua",motto:"Emocional & intuitivo",signs:"Cáncer · Escorpio · Piscis",houses:"4ª hogar · 8ª intimidad · 12ª inconsciente",traits:["Percibe todo","Intuitivo y psíquico","Empático","Nutritivo"],kw:["emocional","intuitivo","empático","nutritivo","sensible"],noi:["Necesitamos pertenecer","Entendemos las necesidades de los demás","Amamos nutrir y ayudar","Necesitamos nuestra privacidad","Nuestros sentimientos se hieren fácil"]}
+ ],
+ pt:[
+ {key:"fuoco",g:"🔥",name:"Fogo",motto:"Sem medo & impulsivo",signs:"Áries · Leão · Sagitário",houses:"1ª identidade · 5ª expressão · 9ª crescimento",traits:["Vive no futuro","Tipo franco","Pensa no que é possível","Grande autoconfiança"],kw:["entusiasta","determinado","impaciente","liberdade","otimista"],noi:["Não deixamos o medo nos travar","Vivemos e amamos no presente","Experimentamos tudo ao menos uma vez","Somos ação, aventura, risco","Precisamos de algo que nos inspire"]},
+ {key:"terra",g:"🌍",name:"Terra",motto:"Prático & concreto",signs:"Touro · Virgem · Capricórnio",houses:"2ª dinheiro · 6ª serviço · 10ª carreira",traits:["Vive na realidade","Tipo factual","Ou vejo ou não existe","Concreto"],kw:["prático","disciplinado","realista","cauteloso","confiável"],noi:["A segurança vem primeiro","Aprendemos com nossos erros","Somos confiáveis e responsáveis","Não gostamos de desperdiçar nada","Seguramos as emoções, pensamos lógico"]},
+ {key:"aria",g:"🌬️",name:"Ar",motto:"Intelectual & social",signs:"Gêmeos · Libra · Aquário",houses:"3ª comunicação · 7ª relações · 11ª amizades",traits:["Tipo pensador","Vive na mente","Precisa entender","Relaciona ideias, não sentimentos"],kw:["social","objetivo","intelectual","racionaliza","pouco emotivo"],noi:["Precisamos de variedade e mudança","Analisamos as emoções em vez de senti-las","Precisamos compartilhar ideias","Tememos o isolamento social","Comunicar é nossa seiva"]},
+ {key:"acqua",g:"💧",name:"Água",motto:"Emotivo & intuitivo",signs:"Câncer · Escorpião · Peixes",houses:"4ª lar · 8ª intimidade · 12ª inconsciente",traits:["Percebe tudo","Intuitivo e psíquico","Empático","Acolhedor"],kw:["emotivo","intuitivo","empático","acolhedor","sensível"],noi:["Precisamos pertencer","Entendemos as necessidades dos outros","Amamos acolher e ajudar","Precisamos da nossa privacidade","Nossos sentimentos se ferem fácil"]}
+ ]
+};
+const HOUSES_DICT={
+ it:[["I","Identità & corpo","chi sei, l'Ascendente, come ti presenti"],["II","Denaro & valori","ciò che possiedi e a cui dai valore"],["III","Comunicazione","mente, parola, fratelli, brevi viaggi"],["IV","Casa & famiglia","radici, genitori, il tuo nido"],["V","Creatività & amore","romanticismo, figli, gioco, espressione"],["VI","Lavoro & salute","routine, servizio, corpo, abitudini"],["VII","Relazioni","coppia, partner, contratti"],["VIII","Intimità & trasformazione","sesso, eredità, morte/rinascita"],["IX","Viaggi & filosofia","studi, fede, avventura, senso"],["X","Carriera & reputazione","status, vocazione, immagine pubblica"],["XI","Amicizie & comunità","gruppi, sogni, cause, futuro"],["XII","Inconscio & spiritualità","segreti, sogni, karma, il nascosto"]],
+ en:[["I","Identity & body","who you are, the Ascendant, how you present"],["II","Money & values","what you own and value"],["III","Communication","mind, speech, siblings, short trips"],["IV","Home & family","roots, parents, your nest"],["V","Creativity & love","romance, children, play, expression"],["VI","Work & health","routine, service, body, habits"],["VII","Relationships","couple, partners, contracts"],["VIII","Intimacy & transformation","sex, inheritance, death/rebirth"],["IX","Travel & philosophy","studies, faith, adventure, meaning"],["X","Career & reputation","status, vocation, public image"],["XI","Friendships & community","groups, dreams, causes, future"],["XII","Unconscious & spirituality","secrets, dreams, karma, the hidden"]],
+ fr:[["I","Identité & corps","qui tu es, l'Ascendant, comment tu te présentes"],["II","Argent & valeurs","ce que tu possèdes et valorises"],["III","Communication","esprit, parole, fratrie, courts voyages"],["IV","Foyer & famille","racines, parents, ton nid"],["V","Créativité & amour","romance, enfants, jeu, expression"],["VI","Travail & santé","routine, service, corps, habitudes"],["VII","Relations","couple, partenaires, contrats"],["VIII","Intimité & transformation","sexe, héritage, mort/renaissance"],["IX","Voyages & philosophie","études, foi, aventure, sens"],["X","Carrière & réputation","statut, vocation, image publique"],["XI","Amitiés & communauté","groupes, rêves, causes, futur"],["XII","Inconscient & spiritualité","secrets, rêves, karma, le caché"]],
+ es:[["I","Identidad & cuerpo","quién eres, el Ascendente, cómo te presentas"],["II","Dinero & valores","lo que posees y valoras"],["III","Comunicación","mente, palabra, hermanos, viajes cortos"],["IV","Hogar & familia","raíces, padres, tu nido"],["V","Creatividad & amor","romance, hijos, juego, expresión"],["VI","Trabajo & salud","rutina, servicio, cuerpo, hábitos"],["VII","Relaciones","pareja, socios, contratos"],["VIII","Intimidad & transformación","sexo, herencia, muerte/renacimiento"],["IX","Viajes & filosofía","estudios, fe, aventura, sentido"],["X","Carrera & reputación","estatus, vocación, imagen pública"],["XI","Amistades & comunidad","grupos, sueños, causas, futuro"],["XII","Inconsciente & espiritualidad","secretos, sueños, karma, lo oculto"]],
+ pt:[["I","Identidade & corpo","quem você é, o Ascendente, como se apresenta"],["II","Dinheiro & valores","o que você possui e valoriza"],["III","Comunicação","mente, palavra, irmãos, viagens curtas"],["IV","Lar & família","raízes, pais, seu ninho"],["V","Criatividade & amor","romance, filhos, jogo, expressão"],["VI","Trabalho & saúde","rotina, serviço, corpo, hábitos"],["VII","Relações","casal, parceiros, contratos"],["VIII","Intimidade & transformação","sexo, herança, morte/renascimento"],["IX","Viagens & filosofia","estudos, fé, aventura, sentido"],["X","Carreira & reputação","status, vocação, imagem pública"],["XI","Amizades & comunidade","grupos, sonhos, causas, futuro"],["XII","Inconsciente & espiritualidade","segredos, sonhos, karma, o oculto"]]
+};
+const PLANETS_DICT={
+ it:[["☉ Sole","Leone","identità, ego, vitalità"],["☽ Luna","Cancro","emozioni, istinti, bisogni"],["☿ Mercurio","Gemelli & Vergine","mente, parola, logica"],["♀ Venere","Toro & Bilancia","amore, bellezza, valori"],["♂ Marte","Ariete","azione, desiderio, grinta"],["♃ Giove","Sagittario","espansione, fortuna, fede"],["♄ Saturno","Capricorno","disciplina, limiti, tempo"],["♅ Urano","Acquario","rivoluzione, genio, libertà"],["♆ Nettuno","Pesci","sogno, arte, illusione"],["♇ Plutone","Scorpione","potere, trasformazione"]],
+ en:[["☉ Sun","Leo","identity, ego, vitality"],["☽ Moon","Cancer","emotions, instincts, needs"],["☿ Mercury","Gemini & Virgo","mind, speech, logic"],["♀ Venus","Taurus & Libra","love, beauty, values"],["♂ Mars","Aries","action, desire, drive"],["♃ Jupiter","Sagittarius","expansion, luck, faith"],["♄ Saturn","Capricorn","discipline, limits, time"],["♅ Uranus","Aquarius","revolution, genius, freedom"],["♆ Neptune","Pisces","dream, art, illusion"],["♇ Pluto","Scorpio","power, transformation"]],
+ fr:[["☉ Soleil","Lion","identité, ego, vitalité"],["☽ Lune","Cancer","émotions, instincts, besoins"],["☿ Mercure","Gémeaux & Vierge","esprit, parole, logique"],["♀ Vénus","Taureau & Balance","amour, beauté, valeurs"],["♂ Mars","Bélier","action, désir, énergie"],["♃ Jupiter","Sagittaire","expansion, chance, foi"],["♄ Saturne","Capricorne","discipline, limites, temps"],["♅ Uranus","Verseau","révolution, génie, liberté"],["♆ Neptune","Poissons","rêve, art, illusion"],["♇ Pluton","Scorpion","pouvoir, transformation"]],
+ es:[["☉ Sol","Leo","identidad, ego, vitalidad"],["☽ Luna","Cáncer","emociones, instintos, necesidades"],["☿ Mercurio","Géminis & Virgo","mente, palabra, lógica"],["♀ Venus","Tauro & Libra","amor, belleza, valores"],["♂ Marte","Aries","acción, deseo, garra"],["♃ Júpiter","Sagitario","expansión, suerte, fe"],["♄ Saturno","Capricornio","disciplina, límites, tiempo"],["♅ Urano","Acuario","revolución, genio, libertad"],["♆ Neptuno","Piscis","sueño, arte, ilusión"],["♇ Plutón","Escorpio","poder, transformación"]],
+ pt:[["☉ Sol","Leão","identidade, ego, vitalidade"],["☽ Lua","Câncer","emoções, instintos, necessidades"],["☿ Mercúrio","Gêmeos & Virgem","mente, palavra, lógica"],["♀ Vênus","Touro & Libra","amor, beleza, valores"],["♂ Marte","Áries","ação, desejo, garra"],["♃ Júpiter","Sagitário","expansão, sorte, fé"],["♄ Saturno","Capricórnio","disciplina, limites, tempo"],["♅ Urano","Aquário","revolução, gênio, liberdade"],["♆ Netuno","Peixes","sonho, arte, ilusão"],["♇ Plutão","Escorpião","poder, transformação"]]
+};
+let ELEMENTS, HOUSES, PLANETS, U, CPL;
+
+/* ENGINE */
+function elScore(a,b){if(a===b)return 5;const k=[a,b].sort().join("|");return {"aria|fuoco":4,"acqua|terra":4,"acqua|aria":3,"aria|terra":3,"fuoco|terra":3,"acqua|fuoco":2}[k]||3;}
+function modAdj(a,b){return a===b?-0.5:0.25;}
+function overall(a,b){return Math.min(5,Math.max(2,Math.round(elScore(a.el,b.el)+modAdj(a.mod,b.mod))));}
+function dims(a,b){const e=[a.el,b.el];const has=x=>e.includes(x);const both=x=>e[0]===x&&e[1]===x;let P=3,E=3,I=3,S=3;
+  if(has("fuoco"))P++; if(both("fuoco"))P=5; if(has("fuoco")&&has("aria"))P=Math.max(P,5);
+  if(has("acqua"))E++; if(both("acqua"))E=5;
+  if(has("aria"))I++; if(both("aria"))I=5; if(a.el===b.el)I++;
+  if(has("terra"))S++; if(both("terra"))S=5; if(a.mod==="fisso"&&b.mod==="fisso")S++; if(a.mod==="cardinale"&&b.mod==="cardinale")S--;
+  const c=x=>Math.min(5,Math.max(1,x));return{Passione:c(P),Emozione:c(E),Intesa:c(I),Stabilità:c(S)};}
+const ELTX={"acqua|acqua":["profondità emotiva e bisogno di intimità vera","due mari in tempesta: gli umori si amplificano"],"terra|terra":["concretezza, lealtà e progetti condivisi","la scintilla può spegnersi nella routine"],"fuoco|fuoco":["passione, energia e voglia di vivere al massimo","due ego che vogliono comandare lo stesso fuoco"],"aria|aria":["intesa mentale, leggerezza e mille conversazioni","tanta testa e poca pancia: l'emotività latita"],"aria|fuoco":["l'aria alimenta il fuoco: stimolo e movimento continui","si rischia di bruciare in fretta, senza radici"],"acqua|terra":["l'acqua nutre la terra: sicurezza che fa crescere","la terra può soffocare e l'acqua allagare"],"fuoco|terra":["ambizione condivisa e voglia di costruire","ritmi opposti: uno corre, l'altro pianifica"],"acqua|fuoco":["un'attrazione magnetica tra opposti","il fuoco evapora l'acqua, l'acqua spegne il fuoco"],"aria|terra":["idee più concretezza, se ci si incontra a metà","uno troppo astratto, l'altro troppo pratico"],"acqua|aria":["sensibilità e immaginazione che si sfiorano","logica contro emozione: ci si fraintende facile"]};
+const MODTX={"cardinale|cardinale":"due leader: braccio di ferro su chi guida","fisso|fisso":"solidi e leali, ma testardi come muli","mobile|mobile":"flessibili e curiosi, ma un po' dispersivi","cardinale|fisso":"uno avvia, l'altro consolida: buon equilibrio","cardinale|mobile":"iniziativa più adattabilità: si seguono bene","fisso|mobile":"radici più movimento: stabilità che resta viva"};
+function _ELTX(){return (CPL&&CPL.ELTX)||ELTX;}
+function _MODTX(){return (CPL&&CPL.MODTX)||MODTX;}
+function dyn(a,b){const ek=[a.el,b.el].sort().join("|");const mk=[a.mod,b.mod].sort().join("|");const e=_ELTX()[ek]||["",""];return{unisce:e[0],scotta:e[1],mod:_MODTX()[mk]||""};}
+function verdict(s){if(CPL&&CPL.verdict)return CPL.verdict(s);return s>=5?"Coppia da manuale: scocca e dura.":s>=4?"Grande potenziale: con un po' di lavoro, vola.":s>=3?"Funziona, ma bisogna incontrarsi a metà.":"Sfida vera: opposti che faticano a capirsi.";}
+
+/* RENDER */
+const app=document.getElementById("app");
+function go(v){location.hash=v;render();window.scrollTo(0,0);}
+function render(){stopSignTalk();const h=location.hash.replace("#","")||"index";
+  if(h==="index")renderIndex();
+  else if(h==="compat")renderCompat();
+  else if(h==="basi")renderBasi();
+  else if(h==="natale")renderNatal();
+  else if(h==="bigthree")renderBigThree();
+  else if(h==="elementi")renderElements();
+  else if(h==="case")renderHouses();
+  else if(h.startsWith("sign-"))renderSign(h.slice(5));
+  else renderIndex();
+  if(window.ZANIM)window.ZANIM.idle(app);}
+
+function renderIndex(){
+  const cards=SIGNS.map(s=>`<div class="idx-card" onclick="go('sign-${s.k}')"><div class="idx-m">${mc(s)}</div><div class="n">${s.n}</div><div class="d">${s.d}</div></div>`).join("");
+  app.innerHTML=`<div class="cover"><span class="ey">${U.idxEy}</span><h1 data-t="ZODIAC ZINE">Zodiac Zine</h1><div class="tag">${U.idxTag}</div></div>
+  <div class="idx-grid">
+    <div class="idx-card special" onclick="go('basi')"><div class="g">✦</div><div class="n">${U.idxBasi}</div><div class="d">${U.idxBasiD}</div></div>
+    ${cards}
+    <div class="idx-card special" onclick="go('compat')"><div class="g">♥</div><div class="n">${U.idxCoppie}</div><div class="d">${U.idxCoppieD}</div></div>
+  </div><div class="foot">${U.footIndex}</div>`;
+}
+
+function renderBasi(){
+  app.innerHTML=`<button class="back" onclick="go('index')">${U.backIndex}</button>
+  <div class="hero"><h1 data-t="${U.basiTitle}">${U.basiName}</h1></div>
+  <div class="idx-grid">
+    <div class="idx-card" onclick="go('natale')"><div class="g">◉</div><div class="n">${U.bNatale}</div><div class="d">${U.bNataleD}</div></div>
+    <div class="idx-card" onclick="go('bigthree')"><div class="g">☉☽↗</div><div class="n">${U.bBig3}</div><div class="d">${U.bBig3D}</div></div>
+    <div class="idx-card" onclick="go('elementi')"><div class="g">🔥💧</div><div class="n">${U.bElem}</div><div class="d">${U.bElemD}</div></div>
+    <div class="idx-card" onclick="go('case')"><div class="g">🏠</div><div class="n">${U.bCase}</div><div class="d">${U.bCaseD}</div></div>
+  </div>
+  <div style="text-align:center;margin:18px 0 4px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="bigcta" href="Tema%20Natale.html">${U.ctaNatal}</a><a class="bigcta" href="Oroscopo%20del%20Giorno.html">${U.ctaOro}</a></div>
+  <div class="foot">${U.footBasi}</div>`;
+}
+
+function natalWheelSVG(){
+  const cx=160,cy=160,rO=150,rI=92,rG=121;let s="";
+  for(let i=0;i<12;i++){const a=(-90+i*30+15)*Math.PI/180;const x1=cx+rI*Math.cos(a),y1=cy+rI*Math.sin(a),x2=cx+rO*Math.cos(a),y2=cy+rO*Math.sin(a);s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--wstroke)" stroke-width="2"/>`;}
+  for(let i=0;i<12;i++){const a=(-90+i*30)*Math.PI/180;const x=cx+rG*Math.cos(a),y=cy+rG*Math.sin(a);s+=`<text x="${x.toFixed(1)}" y="${(y+7).toFixed(1)}" text-anchor="middle" font-size="20" fill="var(--wa)">${SIGNS[i].g}</text>`;
+    const hx=cx+(rI-14)*Math.cos(a),hy=cy+(rI-14)*Math.sin(a);s+=`<text x="${hx.toFixed(1)}" y="${(hy+4).toFixed(1)}" text-anchor="middle" font-size="10" font-family="'Space Mono',monospace" fill="var(--wb)">${i+1}</text>`;}
+  return `<svg class="wheel" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg"><circle cx="160" cy="160" r="150" fill="var(--wfill)" stroke="var(--wstroke)" stroke-width="4"/><circle cx="160" cy="160" r="92" fill="none" stroke="var(--wstroke)" stroke-width="3"/><circle cx="160" cy="160" r="40" fill="var(--wb)" stroke="var(--wstroke)" stroke-width="3"/><text x="160" y="166" text-anchor="middle" font-size="26" fill="var(--wctext)">✦</text>${s}</svg>`;
+}
+function natalSceneHTML(){
+  let pets="";
+  for(let i=0;i<12;i++){
+    const sg=SIGNS[i];
+    const a=(-90+i*30)*Math.PI/180, R=40;
+    const left=(50+R*Math.cos(a)).toFixed(2), top=(50+R*Math.sin(a)).toFixed(2);
+    const ix=(-Math.cos(a)).toFixed(3), iy=(-Math.sin(a)).toFixed(3);
+    const look=Math.cos(a)>=0?-1:1;
+    const tilt=(Math.cos(a)>=0?7:-7)+"deg";
+    const dur=(3.4+(i%3)*0.5).toFixed(1), pdelay=(i*0.22).toFixed(2);
+    const q=(i%3===0)?`<span class="npet-q">?</span>`:"";
+    pets+=`<div class="npet" style="left:${left}%;top:${top}%;--ix:${ix};--iy:${iy};--tilt:${tilt}">${q}<div class="npet-i" style="animation-delay:${pdelay}s;animation-duration:${dur}s">${mc(sg,look,'happy')}</div></div>`;
+  }
+  return `<div class="natalscene">${pets}<div class="natalwheel">${natalWheelSVG()}</div></div>`;
+}
+function renderNatal(){
+  const reveal=U.natReveal;
+  app.innerHTML=`<button class="back" onclick="go('basi')">${U.backBasi}</button>
+  <div class="hero"><h1 data-t="${U.natTitle}">${U.natName}</h1></div>
+  <div class="panel"><span class="tag">${U.natTag1}</span><p>${U.natBody1}</p></div>
+  <div class="wheelwrap">${natalSceneHTML()}</div>
+  <div class="panel alt"><span class="tag bl">${U.natTag2}</span><ul class="reveal">${reveal.map(r=>`<li>${r}</li>`).join("")}</ul></div>
+  <div style="text-align:center;margin:20px 0 6px"><a class="bigcta" href="Tema%20Natale.html">${U.natCta}</a></div>
+  <div class="foot">${U.footNat}</div>`;
+}
+
+function renderBigThree(){
+  const opts=SIGNS.map(s=>`<option value="${s.k}">${s.g} ${s.n}</option>`).join("");
+  app.innerHTML=`<button class="back" onclick="go('basi')">${U.backBasi}</button>
+  <div class="hero"><h1 data-t="${U.big3Title}">${U.big3Name}</h1></div>
+  <div class="panel"><span class="tag">${U.big3T1}</span><p>${U.big3B1}</p></div>
+  <div class="panel alt"><span class="tag bl">${U.big3T2}</span><p>${U.big3B2}</p></div>
+  <div class="panel"><span class="tag">${U.big3T3}</span><p>${U.big3B3}</p></div>
+  <div class="listpanel"><span class="tag bl">${U.big3T4}</span>
+    <p style="font-family:'Space Mono',monospace;font-size:12px;color:#555;margin-bottom:4px">${U.big3Hint}</p>
+    <div class="composer"><select id="bSun">${opts}</select><select id="bMoon">${opts}</select><select id="bRis">${opts}</select></div>
+    <div id="sentence" class="sentence"></div>
+  </div>
+  <div class="foot">${U.footBig3}</div>`;
+  const S=document.getElementById("bSun"),M=document.getElementById("bMoon"),R=document.getElementById("bRis");
+  S.value="ariete";M.value="cancro";R.value="bilancia";
+  const upd=()=>{const a=BY[S.value],b=BY[M.value],c=BY[R.value];
+    document.getElementById("sentence").innerHTML=`${U.big3Sentence(a.n,b.n,c.n)}
+    <div class="slr"><div class="slrrow"><b>${U.big3Sun}</b><span>${a.n}: ${a.sun}</span></div><div class="slrrow"><b>${U.big3Moon}</b><span>${b.n}: ${b.moon}</span></div><div class="slrrow"><b>${U.big3Asc}</b><span>${c.n}: ${c.asc}</span></div></div>`;};
+  S.onchange=M.onchange=R.onchange=upd;upd();
+}
+
+function renderElements(){
+  const cards=ELEMENTS.map(e=>`<div class="panel ${e.key==='terra'||e.key==='acqua'?'alt':''}">
+    <span class="tag ${e.key==='terra'||e.key==='acqua'?'bl':''}">${e.g} ${e.name} — «${e.motto}»</span>
+    <p style="font-family:'Space Mono',monospace;font-size:12px;color:#555">${U.elSignsLab}: ${e.signs}<br>${U.elHousesLab}: ${e.houses}</p>
+    <div class="stickers" style="justify-content:flex-start;margin-top:10px">${e.kw.map(k=>`<span class="stick">${k}</span>`).join("")}</div>
+    <ul class="zlist ck" style="margin-top:12px">${e.noi.map(n=>`<li>${n}</li>`).join("")}</ul>
+  </div>`).join("");
+  app.innerHTML=`<button class="back" onclick="go('basi')">${U.backBasi}</button>
+  <div class="hero"><h1 data-t="${U.elTitle}">${U.elName}</h1></div>
+  <div class="panel"><span class="tag">${U.elTag}</span><p>${U.elBody}</p></div>
+  ${cards}<div class="foot">${U.footEl}</div>`;
+}
+
+function renderHouses(){
+  const nm=k=>BY[k]?BY[k].n:k;
+  const modCard=`${nm('ariete')} · ${nm('cancro')} · ${nm('bilancia')} · ${nm('capricorno')}`;
+  const modFix=`${nm('toro')} · ${nm('leone')} · ${nm('scorpione')} · ${nm('acquario')}`;
+  const modMob=`${nm('gemelli')} · ${nm('vergine')} · ${nm('sagittario')} · ${nm('pesci')}`;
+  app.innerHTML=`<button class="back" onclick="go('basi')">${U.backBasi}</button>
+  <div class="hero"><h1 data-t="${U.caseTitle}">${U.caseName}</h1></div>
+  <div class="panel"><span class="tag">${U.caseTag1}</span><p>${U.caseBody1}</p>
+    <ul class="houses">${HOUSES.map(h=>`<li><span class="hn">${h[0]}</span><span><span class="ht">${h[1]}</span><span class="hd">${h[2]}</span></span></li>`).join("")}</ul></div>
+  <div class="panel alt"><span class="tag bl">${U.caseTag2}</span>
+    <div class="slr"><div class="slrrow"><b>${U.modCard}</b><span>${U.modCardD} <i>(${modCard})</i></span></div>
+    <div class="slrrow"><b>${U.modFix}</b><span>${U.modFixD} <i>(${modFix})</i></span></div>
+    <div class="slrrow"><b>${U.modMob}</b><span>${U.modMobD} <i>(${modMob})</i></span></div></div></div>
+  <div class="panel"><span class="tag">${U.caseTag3}</span>
+    <ul class="planets">${PLANETS.map(p=>`<li><b>${p[0]}</b> → ${p[1]} — ${p[2]}</li>`).join("")}</ul></div>
+  <div class="foot">${U.footCase}</div>`;
+}
+
+const VOCI_IT={
+ ariete:[{t:"Non pormi limiti.",m:"angry"},{t:"Voglio guidare io.",m:"happy"},{t:"Sorprendimi.",m:"love"},{t:"Chi arriva primo, vince.",m:"happy"},{t:"Non farmi aspettare.",m:"angry"},{t:"Ci sto, partiamo!",m:"happy"},{t:"Sfidami, ti aspetto.",m:"angry"},{t:"Sei la mia scintilla.",m:"love"},{t:"Il coraggio non si insegna.",m:"happy"},{t:"Annoiarmi? Mai.",m:"neutral"}],
+ toro:[{t:"Con calma si gode.",m:"happy"},{t:"Viziami un po'.",m:"love"},{t:"Non mi sposti di un passo.",m:"angry"},{t:"Il bello si merita.",m:"happy"},{t:"Prima la comodità.",m:"neutral"},{t:"Toccami il piatto e finisce male.",m:"angry"},{t:"Stammi vicino.",m:"love"},{t:"Le cose belle aspettano.",m:"neutral"},{t:"Mi fido di chi resta.",m:"happy"},{t:"La fretta non mi appartiene.",m:"neutral"}],
+ gemelli:[{t:"Ho mille idee al minuto.",m:"happy"},{t:"Raccontami tutto!",m:"love"},{t:"Mi annoio? Cambio.",m:"neutral"},{t:"Non chiudermi in gabbia.",m:"angry"},{t:"Parliamone… e ancora.",m:"happy"},{t:"Due di me sono meglio di uno.",m:"happy"},{t:"Stupiscimi con la testa.",m:"love"},{t:"Dipende dai punti di vista.",m:"neutral"},{t:"Non ripetermi le stesse cose.",m:"angry"},{t:"Curioso di tutto, sempre.",m:"happy"}],
+ cancro:[{t:"Casa è dove sei tu.",m:"love"},{t:"Ci penso io a te.",m:"happy"},{t:"Non ferire i miei.",m:"angry"},{t:"Non dimentico niente.",m:"neutral"},{t:"Abbracciami forte.",m:"love"},{t:"Mi chiudo nel guscio, lo so.",m:"neutral"},{t:"La famiglia prima di tutto.",m:"happy"},{t:"Non tradire la mia fiducia.",m:"angry"},{t:"Sento ogni tua parola.",m:"love"},{t:"Ho bisogno di sentirmi al sicuro.",m:"neutral"}],
+ leone:[{t:"Sono nato per brillare.",m:"happy"},{t:"Adorami un po'.",m:"love"},{t:"Non rubarmi la scena.",m:"angry"},{t:"Datemi il palco.",m:"happy"},{t:"Il mio cuore è enorme.",m:"love"},{t:"Guarda come si fa.",m:"happy"},{t:"Non ferire il mio orgoglio.",m:"angry"},{t:"Ti copro di regali.",m:"love"},{t:"Applausi, prego.",m:"happy"},{t:"Io non passo inosservato.",m:"neutral"}],
+ vergine:[{t:"È tutto nei dettagli.",m:"neutral"},{t:"Mi prendo cura di te.",m:"love"},{t:"Così non va bene.",m:"angry"},{t:"Te lo dimostro coi fatti.",m:"happy"},{t:"Posso sistemarlo io.",m:"happy"},{t:"Quasi perfetto… rifacciamolo.",m:"neutral"},{t:"L'ordine mi calma.",m:"neutral"},{t:"Non sopporto la sciatteria.",m:"angry"},{t:"Ci sono nei piccoli gesti.",m:"love"},{t:"Analizzo, quindi capisco.",m:"neutral"}],
+ bilancia:[{t:"Troviamo l'equilibrio.",m:"happy"},{t:"Meglio in due.",m:"love"},{t:"Odio i conflitti.",m:"angry"},{t:"E se invece…?",m:"neutral"},{t:"Tutto deve essere bello.",m:"happy"},{t:"Decido io… forse.",m:"neutral"},{t:"Sei la mia metà.",m:"love"},{t:"Le ingiustizie mi fanno arrabbiare.",m:"angry"},{t:"Cerco sempre l'accordo.",m:"happy"},{t:"L'eleganza non è un dettaglio.",m:"neutral"}],
+ scorpione:[{t:"So già tutto di te.",m:"neutral"},{t:"O tutto, o niente.",m:"love"},{t:"Non tradirmi.",m:"angry"},{t:"Vado fino in fondo.",m:"happy"},{t:"Ti leggo dentro.",m:"neutral"},{t:"La mia lealtà ha un prezzo.",m:"neutral"},{t:"Sei solo mio.",m:"love"},{t:"Non scordo un torto.",m:"angry"},{t:"L'intensità è il mio linguaggio.",m:"love"},{t:"I segreti? Li custodisco.",m:"neutral"}],
+ sagittario:[{t:"Si parte!",m:"happy"},{t:"Vieni con me?",m:"love"},{t:"Niente catene.",m:"angry"},{t:"Dico come la penso.",m:"neutral"},{t:"Il mondo è piccolo.",m:"happy"},{t:"Avventura o niente.",m:"happy"},{t:"Stringimi, poi corriamo via.",m:"love"},{t:"Non rinchiudermi.",m:"angry"},{t:"Rido di gusto, sempre.",m:"happy"},{t:"Ho la valigia pronta.",m:"neutral"}],
+ capricorno:[{t:"Gioco a lungo termine.",m:"neutral"},{t:"Con te costruisco.",m:"love"},{t:"Non farmi perdere tempo.",m:"angry"},{t:"Scalo, passo dopo passo.",m:"happy"},{t:"Il tempo mi dà ragione.",m:"neutral"},{t:"Prima il dovere.",m:"neutral"},{t:"Sei il mio progetto più serio.",m:"love"},{t:"Niente scorciatoie.",m:"angry"},{t:"Arrivo in cima, vedrai.",m:"happy"},{t:"Sotto la corazza c'è di più.",m:"neutral"}],
+ acquario:[{t:"Penso fuori dagli schemi.",m:"happy"},{t:"Stupiscimi.",m:"love"},{t:"Le regole le riscrivo.",m:"angry"},{t:"Vado controcorrente.",m:"neutral"},{t:"Il futuro è adesso.",m:"happy"},{t:"Non incasellarmi.",m:"angry"},{t:"La tua mente mi conquista.",m:"love"},{t:"Sono diverso, e va bene.",m:"neutral"},{t:"Idee prima delle emozioni.",m:"neutral"},{t:"Cambiamo il mondo?",m:"happy"}],
+ pesci:[{t:"Sento tutto.",m:"neutral"},{t:"Mi sciolgo per amore.",m:"love"},{t:"Non deludermi.",m:"angry"},{t:"Sogno a occhi aperti.",m:"happy"},{t:"La mia anima è altrove.",m:"neutral"},{t:"Perdonami sempre, lo so.",m:"neutral"},{t:"Ti amo come nei film.",m:"love"},{t:"La durezza mi spegne.",m:"angry"},{t:"L'arte mi salva.",m:"happy"},{t:"Vivo metà in un altro mondo.",m:"neutral"}]
+};
+const PSEQ=["rt","lc","top","lt","rc","rt","top","lc","lt","rc"];
+const TALKPOS={
+ rt:{tail:"tl",css:"left:50%;bottom:82%"},
+ top:{tail:"bc",css:"left:4%;bottom:98%"},
+ lt:{tail:"tr",css:"left:-18%;bottom:82%"},
+ lc:{tail:"tr",css:"left:-26%;bottom:94%"},
+ rc:{tail:"tl",css:"left:58%;bottom:98%"}
+};
+const BURSTCOL={love:"#ffb3d1",angry:"#ff9a9a",happy:"#ffe08a",neutral:"#cdd6ff",sad:"#bcd3ff"};
+const VEIN_SVG='<svg viewBox="0 0 22 22"><g fill="none" stroke="#ec2e36" stroke-width="2.4" stroke-linecap="round"><path d="M11 3 L9 6 L12 5 L10 9"/><path d="M19 11 L16 9 L17 12 L13 10"/><path d="M11 19 L13 16 L10 17 L12 13"/><path d="M3 11 L6 13 L5 10 L9 12"/></g></svg>';
+function heroBurstSVG(){
+ const n=18,pts=[];for(let k=0;k<n*2;k++){const R=(k%2===0)?50:34+(k%4===1?2:0);const a=(Math.PI/n)*k-Math.PI/2;pts.push((50+R*Math.cos(a)).toFixed(1)+","+(50+R*Math.sin(a)).toFixed(1));}
+ return `<svg class="hbstar" viewBox="0 0 100 100" aria-hidden="true"><polygon points="${pts.join(" ")}"/></svg>`;
+}
+function heroFxHTML(mood,i){
+ if(mood==="love") return `<span class="hfx hfx-heart" style="left:56%;top:34%">♥</span><span class="hfx hfx-heart" style="left:38%;top:30%;font-size:12px;animation-delay:.4s">♥</span><span class="hfx hfx-heart" style="left:70%;top:42%;font-size:19px;animation-delay:.8s">♥</span><span class="hfx hfx-heart" style="left:48%;top:24%;font-size:11px;animation-delay:1.1s">♥</span><span class="hfx hfx-word" style="left:60%;top:2%">LOVE!</span>`;
+ if(mood==="angry") return `<span class="hfx hfx-vein" style="left:58%;top:18%">${VEIN_SVG}</span><span class="hfx hfx-vein" style="left:28%;top:24%;animation-delay:.3s">${VEIN_SVG}</span><span class="hfx hfx-puff" style="left:36%;top:28%">~</span><span class="hfx hfx-puff" style="left:54%;top:24%;animation-delay:.5s">~</span><span class="hfx hfx-word angry" style="left:2%;top:2%">GRR!</span>`;
+ if(mood==="happy") return `<span class="hfx hfx-spark" style="left:60%;top:26%">✦</span><span class="hfx hfx-spark" style="left:34%;top:32%;animation-delay:.5s">✧</span><span class="hfx hfx-star" style="left:72%;top:34%;animation-delay:.3s">★</span>`+(i%2===0?`<span class="hfx hfx-word wow" style="left:58%;top:2%">WOW!</span>`:`<span class="hfx hfx-spark" style="left:46%;top:22%;animation-delay:.8s">✦</span>`);
+ if(mood==="neutral") return `<span class="hfx hfx-qmark" style="left:60%;top:18%">?</span><span class="hfx hfx-spark" style="left:40%;top:30%;font-size:11px;animation-delay:.4s">·</span>`;
+ return "";
+}
+let signTalkTimer=null;
+function stopSignTalk(){ if(signTalkTimer){clearTimeout(signTalkTimer);signTalkTimer=null;} }
+function startSignTalk(s){
+ stopSignTalk();
+ const mEl=document.getElementById("heroMascot"), bub=document.getElementById("heroBubble"), fx=document.getElementById("heroFx"), bst=document.getElementById("heroBurst");
+ if(!mEl||!bub||!fx) return;
+ if(bst) bst.innerHTML=heroBurstSVG();
+ const list=VOCI[s.k]||[]; if(!list.length) return;
+ const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(reduce){ const ph=list[0],pos=TALKPOS[PSEQ[0]]; mEl.innerHTML=mc(s,1,ph.m); if(bst)bst.style.setProperty("--bcol",BURSTCOL[ph.m]||"#cdd6ff"); bub.className="bubble tail-"+pos.tail; bub.style.cssText=pos.css; bub.textContent=ph.t; bub.classList.add("show"); return; }
+ let i=-1;
+ function step(){
+  i=(i+1)%list.length; const ph=list[i]; const pos=TALKPOS[PSEQ[i%PSEQ.length]]||TALKPOS.rt;
+  mEl.innerHTML=mc(s,1,ph.m);
+  mEl.classList.remove("react"); void mEl.offsetWidth; mEl.classList.add("react");
+  fx.innerHTML=heroFxHTML(ph.m,i);
+  if(bst){ bst.style.setProperty("--bcol",BURSTCOL[ph.m]||"#cdd6ff"); bst.classList.remove("bpop"); void bst.offsetWidth; bst.classList.add("bpop"); }
+  bub.className="bubble tail-"+pos.tail; bub.style.cssText=pos.css; bub.textContent=ph.t;
+  void bub.offsetWidth; bub.classList.add("show");
+  signTalkTimer=setTimeout(function(){ bub.classList.remove("show"); signTalkTimer=setTimeout(step,600); },2300);
+ }
+ step();
+}
+function renderSign(k){const s=BY[k];if(!s)return renderIndex();
+  const order=SIGNS.map(x=>x.k);const i=order.indexOf(k);const prev=order[(i+11)%12],next=order[(i+1)%12];
+  const modName=m=>m==='cardinale'?U.modCard:m==='fisso'?U.modFix:U.modMob;
+  const elName=e=>(window.ZWIRE?window.ZWIRE.elName(e,LANG):e);
+  const aff=(lensKey,title)=>{
+    const rows=SIGNS.filter(x=>x.k!==s.k).map(o=>{let sc,note;if(lensKey==="amore"&&s.notes&&s.notes[o.k]){sc=s.notes[o.k].s;note=s.notes[o.k].t;}else{sc=lensScore(lensKey,s,o);note=lensDyn(lensKey,s,o).uni;}return {o,sc,note};}).sort((x,y)=>y.sc-x.sc);
+    return `<div class="chart"><h3>${title}</h3><div class="hint">${U.chartHint}</div>`+rows.map(r=>`<div class="crow" onclick="jumpPair('${lensKey}','${s.k}','${r.o.k}')"><div class="ln"><span class="nm">${r.o.n.toUpperCase()}</span><span class="ctrack"><span class="cfill" style="width:${r.sc*20}%"></span></span><span class="sc">${r.sc}</span></div><div class="cnote">// ${r.note}</div></div>`).join("")+`</div>`;
+  };
+  app.innerHTML=`<button class="back" onclick="go('index')">${U.backIndex}</button>
+  <div class="hero"><div class="hero-left"><div class="hero-mwrap el-${s.el}"><div class="heroBurst" id="heroBurst"></div><div class="heroFx" id="heroFx"></div><div class="hero-m" id="heroMascot">${mc(s,1,'happy')}</div><div class="talk"><span class="bubble" id="heroBubble"></span></div></div></div><div class="hero-right"><h1 class="hero-name" data-t="${s.n.toUpperCase()}">${s.n}</h1><div class="sub">${s.d.toUpperCase()}</div><div class="achips"><span class="achip el" style="background:${ELCOLOR[THEME][s.el]};color:${s.el==='aria'?'var(--ink)':'#fff'}">${elName(s.el)}</span><span class="achip mod">${modName(s.mod)}</span><span class="achip plan">${s.ru}</span></div><a class="hero-cta" href="Oroscopo del Giorno.html?sign=${s.k}">${U.ctaOroSign}</a></div></div>
+  <div class="panel"><span class="tag">${U.sEss}</span><p>${s.ess}</p><p>${s.ess2}</p></div>
+  <div class="panel alt"><span class="tag bl">${U.sMind}</span><p>${s.mind}</p></div>
+  <div class="panel"><span class="tag">${U.sLove}</span><p>${s.am}</p></div>
+  <div class="panel alt"><span class="tag bl">${U.sBed}</span><p>${s.let}</p></div>
+  <div class="stickers">${s.sap.map(x=>`<span class="stick">${x}</span>`).join("")}</div>
+  <div class="flags"><div class="flag gf"><h4>${U.gf}</h4><ul>${s.gf.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="flag rf"><h4>${U.rf}</h4><ul>${s.rf.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>
+  <div class="panel"><span class="tag">${U.sWork}</span><p>${s.work}</p></div>
+  <div class="lifegrid">
+    <div class="lifecard"><span class="lt">${U.lcAmi}</span><p>${s.ami}</p></div>
+    <div class="lifecard"><span class="lt">${U.lcAng}</span><p>${s.ang}</p></div>
+    <div class="lifecard"><span class="lt">${U.lcLove}</span><p>${s.ll}</p></div>
+    <div class="lifecard"><span class="lt">${U.lcGrow}</span><p>${s.growth}</p></div>
+  </div>
+  <div class="listpanel"><span class="tag bl">${U.sSpot}</span><ul class="zlist ck">${s.spot.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+  <div class="listpanel haspet comicbg"><span class="tag">${U.sCon}</span><div class="m-anim m-love">${burst()}${mc(s,1,'love')}<span class="fx h1">♥</span><span class="fx h2">♥</span><span class="fx h3">♥</span><span class="onoma">LOVE!</span></div><ul class="zlist num">${s.con.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+  <div class="listpanel haspet comicbg"><span class="tag bl">${U.sDeal}</span><div class="m-anim m-angry">${burst()}${mc(s,1,'angry')}<span class="fx vein"><svg viewBox="0 0 26 26"><g fill="none" stroke="#ec2e36" stroke-width="2.6" stroke-linecap="round"><path d="M13 3 L11 7 L14 6 L12 10"/><path d="M23 13 L19 11 L20 14 L16 12"/><path d="M13 23 L15 19 L12 20 L14 16"/><path d="M3 13 L7 15 L6 12 L10 14"/></g></svg></span><span class="fx puff">~</span><span class="fx puff2">~</span><span class="onoma">GRRR!</span></div><ul class="zlist no">${s.deal.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+  <div class="panel alt"><span class="tag bl">${U.sSlr}</span><p>${U.sSlrIntro}</p><div class="slr"><div class="slrrow"><b>${U.sSun}</b><span>${s.sun}</span></div><div class="slrrow"><b>${U.sMoon}</b><span>${s.moon}</span></div><div class="slrrow"><b>${U.sAsc}</b><span>${s.asc}</span></div></div></div>
+  <div class="panel"><span class="tag">${U.sDecani}</span><p>${U.sDecaniIntro}</p><div class="slr">${(DECANS[s.k]||[]).map((D,di)=>`<div class="slrrow"><b>${["I","II","III"][di]} · ${D.r}</b><span><b>${D.sub}</b> (${D.ru}) — ${D.t}</span></div>`).join("")}</div></div>
+  <div class="panel alt"><span class="tag bl">${U.sGen}</span><p>${U.sGenIntro}</p></div>
+  <div class="twoflow"><div class="panel comicbg"><span class="tag">${U.sLui}</span><div class="m-side m-lui">${burst()}${mc(s,1,'happy','m')}<span class="fx puff">~</span><span class="onoma">SBUFF!</span></div><p>${(GEN[s.k]||{}).lui||""}</p></div><div class="panel alt comicbg"><span class="tag bl">${U.sLei}</span><div class="m-side m-lei">${burst()}${mc(s,-1,'happy','f')}<span class="fx s1">✦</span><span class="fx s2">✦</span><span class="onoma">AH AH!</span></div><p>${(GEN[s.k]||{}).lei||""}</p></div></div>
+  <div class="pull">«${s.q}»</div>
+  <div class="panel"><span class="tag">${U.sAdv}</span><p>${s.adv}</p></div>
+  ${aff("amore",U.affLove)}
+  ${aff("lavoro",U.affWork)}
+  <div class="panel ctaNatal"><span class="tag">${U.natalBoxTag}</span><p>${U.natalBoxBody(s.n)}</p><a class="bigcta" href="Tema Natale.html">${U.natalBoxCta}</a></div>
+  <div class="panel affBox"><span class="tag">${U.affBoxTag}</span><p>${U.affBoxBody(s.n)}</p><div class="affctrls"><span class="fixsign" style="background:${ELCOLOR[THEME][s.el]};color:${s.el==='aria'?'var(--ink)':'#fff'}">${s.g} ${s.n}</span><span class="vsx">×</span><select id="affSel" onchange="signAffOut('${s.k}')">${SIGNS.filter(x=>x.k!==s.k).map(x=>`<option value="${x.k}">${x.g} ${x.n}</option>`).join("")}</select><select id="affLens" onchange="signAffOut('${s.k}')">${LENSES.map(l=>`<option value="${l.k}">${l.g} ${l.label}</option>`).join("")}</select></div><div id="affOut"></div></div>
+  <div class="panel composeBox"><span class="tag">${U.composeBoxTag}</span><p>${U.composeBoxBody}</p><div class="composeline">${U.composeSo} <select id="cmpSelf" onchange="composeRun()">${SIGNS.map(x=>`<option value="${x.k}"${x.k===s.k?' selected':''}>${x.g} ${x.n}</option>`).join("")}</select><select id="cmpAction" onchange="composeRun()">${U.composeActs.map((opt,ai)=>`<option value="${ai}">${opt}</option>`).join("")}</select><select id="cmpOther" onchange="composeRun()">${SIGNS.map(x=>`<option value="${x.k}">${x.g} ${x.n}</option>`).join("")}</select></div><div id="composeOut"></div></div>
+    <div class="prevnext"><button onclick="go('sign-${prev}')">← ${BY[prev].n}</button><button onclick="go('sign-${next}')">${BY[next].n} →</button></div>
+  <div class="foot">${U.footSign(s.n)}</div>`;
+  startSignTalk(s);
+  signAffOut(k);
+  (function(){var co=document.getElementById('cmpOther');if(co){var ord=SIGNS.map(x=>x.k);co.value=ord[(ord.indexOf(k)+1)%12];}})();
+  composeRun();
+}
+/* COMPOSE: solo le lens-key logiche; opzioni e template di testo arrivano da U */
+var COMPOSE_LENS=['amore','amore','lavoro','capo','convivenza','amicizia','ex','famiglia'];
+function signAffOut(pageKey){
+  var selO=document.getElementById('affSel'),selL=document.getElementById('affLens');
+  if(!selO||!selL)return;
+  var o=selO.value,lk=selL.value,a=BY[pageKey],b=BY[o];
+  var sc=lensScore(lk,a,b),dy=lensDyn(lk,a,b),lab=(LBY[lk]||{}).label||lk;
+  document.getElementById('affOut').innerHTML=
+    '<div class="affres">'+
+    '<div class="affscore"><span class="affnum">'+sc+'</span><span class="affmax">/5</span><span class="afflab">'+lab+'</span></div>'+
+    '<div class="afftrack"><span class="afffill" style="width:'+(sc*20)+'%"></span></div>'+
+    '<p class="affverdict">'+lensVerdict(lk,sc)+'</p>'+
+    '<p><b>'+U.affUnisce+'</b> '+cap(dy.uni)+'. <b>'+U.affScotta+'</b> '+cap(dy.sco)+'.</p>'+
+    '<p class="affadv">'+lensAdvice(lk,a,b,sc)+'</p>'+
+    '<button class="bigcta sm" onclick="jumpPair(\''+lk+'\',\''+pageKey+'\',\''+o+'\')">'+U.affFullCmp+'</button>'+
+    '</div>';
+}
+function composeRun(){
+  var selS=document.getElementById('cmpSelf'),selA=document.getElementById('cmpAction'),selO=document.getElementById('cmpOther');
+  if(!selS||!selA||!selO)return;
+  var a=BY[selS.value],b=BY[selO.value],ai=+selA.value||0,lens=COMPOSE_LENS[ai]||'amore';
+  var sc=lensScore(lens,a,b);
+  var aA=(U.art&&U.art[a.k])||'',bA=(U.art&&U.art[b.k])||'';
+  var tmpl=U.composeTmpl[ai]||U.composeTmpl[0];
+  document.getElementById('composeOut').innerHTML=
+    '<p class="composeSentence">'+tmpl(aA,a.n,bA,b.n)+'</p>'+
+    '<div class="afftrack"><span class="afffill" style="width:'+(sc*20)+'%"></span></div>'+
+    '<p class="affverdict">'+lensVerdict(lens,sc)+'</p>'+
+    '<p class="affadv"><b>'+U.advLabel+'</b> '+lensAdvice(lens,a,b,sc)+'</p>';
+}
+function renderCompat(){
+  const opts=SIGNS.map(s=>`<option value="${s.k}">${s.g} ${s.n}</option>`).join("");
+  app.innerHTML=`<button class="back" onclick="go('index')">${U.backIndex}</button>
+  <div class="hero" style="padding:6px 0"><h1 data-t="${U.compatTitle}">${U.compatName}</h1></div>
+  <div class="hint" style="text-align:center;font-family:'Space Mono',monospace;font-size:12px;color:#888">${U.compatHint}</div>
+  <div class="lenstabs">${LENSES.map(l=>`<button class="lenstab" data-k="${l.k}" onclick="setLens('${l.k}')">${l.g} ${l.label}</button>`).join("")}</div>
+  <div class="pickers"><select id="selA">${opts}</select><span class="vs-mid">×</span><select id="selB">${opts}</select></div>
+  <div class="result" id="result"></div><div class="foot">${U.footCompat}</div>`;
+  const A=document.getElementById("selA"),B=document.getElementById("selB");A.value="cancro";B.value="scorpione";
+  document.querySelectorAll(".lenstab").forEach(t=>t.classList.toggle("active",t.getAttribute("data-k")===curLens));
+  A.onchange=B.onchange=()=>renderResult(A.value,B.value,curLens);renderResult(A.value,B.value,curLens);
+}
+function setPair(a,b){const A=document.getElementById("selA"),B=document.getElementById("selB");if(!A)return;A.value=a;B.value=b;renderResult(a,b,curLens);}
+function coupleScene(a,b,ov,goodSym){
+  goodSym=goodSym||"♥";
+  const lvl = Math.max(2,Math.min(5,ov));
+  const state = ov>=4?"good":(ov<=2?"bad":"mid");
+  const mood = lvl===5?"love":(lvl===4?"happy":(lvl===3?"neutral":"angry"));
+  const sym = lvl>=4?goodSym:(lvl<=2?"⚡":"≈");
+  const deco = lvl===5 ? `<span class="d1">♥</span><span class="d2">♥</span><span class="d3">♥</span>`
+    : lvl===4 ? `<span class="d1">✦</span><span class="d2">✦</span><span class="d3">✧</span>`
+    : lvl===2 ? `<span class="b1">⚡</span><span class="b2">⚡</span>`
+    : `<span class="d1">·</span><span class="d2">·</span>`;
+  return `<div class="cstage ${state} lvl-${lvl}">`+
+    `<div class="cfig cfig-left">${mc(a,1,mood)}</div>`+
+    `<div class="cfig cfig-right">${mc(b,-1,mood)}</div>`+
+    `<div class="cbond"><span class="cbond-sym">${sym}</span></div>`+
+    `<div class="cdeco">${deco}</div></div>`;
+}
+function playCoupleAnim(){
+  const st=document.querySelector(".cstage"); if(!st)return;
+  setTimeout(function(){st.classList.add("play");},60);
+  setTimeout(function(){st.classList.add("met");},660);
+}
+let curLens="amore";
+/* glifi/sym = chiavi visive logiche (NON tradurre); label+dimN arrivano da CPL.lenses */
+const LENS_GLYPH={amore:{g:"♥",sym:"♥"},amicizia:{g:"✦",sym:"✦"},lavoro:{g:"⚙",sym:"⚙"},famiglia:{g:"⌂",sym:"⌂"},convivenza:{g:"◆",sym:"◆"},ex:{g:"♡",sym:"♡"},capo:{g:"★",sym:"★"}};
+const LENSES_IT=[
+ {k:"amore",label:"Amore",dimN:["Passione","Emozione","Intesa","Stabilità"]},
+ {k:"amicizia",label:"Amicizia",dimN:["Divertimento","Lealtà","Sintonia","Avventura"]},
+ {k:"lavoro",label:"Lavoro & Soci",dimN:["Complementarità","Affidabilità","Visione","Gestione conflitti"]},
+ {k:"famiglia",label:"Famiglia",dimN:["Armonia quotidiana","Supporto emotivo","Rispetto spazi","Lealtà"]},
+ {k:"convivenza",label:"Convivenza",dimN:["Ordine & gestione","Spazi condivisi","Clima in casa","Conflitti pratici"]},
+ {k:"ex",label:"Ex",dimN:["Restare amici","Chiusura serena","Rispetto reciproco","Ritorno di fiamma"]},
+ {k:"capo",label:"Capo & Team",dimN:["Leadership chiara","Fiducia & delega","Comunicazione","Crescita"]}
+];
+let LENSES, LBY;
+function buildLenses(){
+  const src=(CPL&&CPL.lenses)||LENSES_IT;
+  LENSES=src.map(l=>Object.assign({},LENS_GLYPH[l.k],l));
+  LBY=Object.fromEntries(LENSES.map(l=>[l.k,l]));
+}
+function elCat(x,y){if(x===y)return "same";const k=[x,y].sort().join("|");return (k==="aria|fuoco"||k==="acqua|terra")?"ally":"challenge";}
+function lensScore(lk,a,b){
+ if(lk==="amore")return overall(a,b);
+ const cat=elCat(a.el,b.el),cc=v=>Math.min(5,Math.max(1,Math.round(v)));
+ const has=x=>a.el===x||b.el===x;
+ const bothFire=a.el==="fuoco"&&b.el==="fuoco";
+ const cardCard=a.mod==="cardinale"&&b.mod==="cardinale",fixFix=a.mod==="fisso"&&b.mod==="fisso",mutMut=a.mod==="mobile"&&b.mod==="mobile";
+ const fixCnt=(a.mod==="fisso"?1:0)+(b.mod==="fisso"?1:0);
+ if(lk==="amicizia"){let s=cat==="same"?5:cat==="ally"?4:3;if(fixFix)s-=0.5;return cc(s);}
+ if(lk==="lavoro"){let s=cat==="challenge"?4.5:cat==="ally"?4:(bothFire?2:3);if(cardCard)s-=1.5;if(fixFix)s-=1;if(mutMut)s-=1;if(!cardCard&&!fixFix&&!mutMut)s+=0.5;return cc(s);}
+ if(lk==="famiglia"){let s=cat==="same"?4:cat==="ally"?4:3;if(bothFire)s-=1;if(has("acqua"))s+=0.5;return cc(Math.max(3,s));}
+ if(lk==="convivenza"){let s=cat==="ally"?4:cat==="same"?4:3;if(bothFire)s-=1;if(has("terra"))s+=0.5;if(fixFix)s-=0.5;return cc(s);}
+ if(lk==="ex"){let s=3;if(has("aria"))s+=1;if(has("acqua"))s-=1;if(mutMut)s+=0.5;s-=fixCnt*0.4;if(a.k==="scorpione"||b.k==="scorpione")s-=0.5;return cc(s);}
+ if(lk==="capo"){let s=3;if(cardCard)s-=1.5;else if(a.mod==="cardinale"||b.mod==="cardinale")s+=1;if(fixFix)s-=1;if(mutMut)s-=0.5;if(has("terra"))s+=0.5;return cc(s);}
+ return overall(a,b);
+}
+function lensDims(lk,a,b){
+ const e=[a.el,b.el],has=x=>e.includes(x),both=x=>e[0]===x&&e[1]===x,cc=v=>Math.min(5,Math.max(1,Math.round(v)));
+ const sameEl=a.el===b.el,cat=elCat(a.el,b.el),fixCnt=(a.mod==="fisso"?1:0)+(b.mod==="fisso"?1:0);
+ const cardCard=a.mod==="cardinale"&&b.mod==="cardinale",fixFix=a.mod==="fisso"&&b.mod==="fisso",mutMut=a.mod==="mobile"&&b.mod==="mobile";
+ if(lk==="amore"){const d=dims(a,b);return [d.Passione,d.Emozione,d.Intesa,d.Stabilità];}
+ if(lk==="amicizia"){
+  let div=3+(has("fuoco")?1:0)+(has("aria")?1:0)-(both("acqua")?1:0);
+  let lea=3+(has("acqua")?1:0)+(has("terra")?0.5:0)+fixCnt*0.5;
+  let sin=sameEl?5:cat==="ally"?4:3;
+  let avv=3+(has("fuoco")?1:0)+(mutMut?1:0)+(both("fuoco")?1:0);
+  return [cc(div),cc(lea),cc(sin),cc(avv)];}
+ if(lk==="lavoro"){
+  let com=cat==="challenge"?5:cat==="ally"?4:3;if(both("fuoco"))com=2;
+  let aff=3+(has("terra")?1:0)+(both("terra")?1:0)+fixCnt*0.5-((has("fuoco")&&has("aria"))?1:0);
+  let vis=3+(has("fuoco")?1:0)+(has("aria")?1:0);
+  let con=4-(cardCard?2:0)-(fixFix?1:0)-(mutMut?1:0);
+  return [cc(com),cc(aff),cc(vis),cc(con)];}
+ if(lk==="famiglia"){
+  let arm=(sameEl?4:cat==="ally"?4:3)-(both("fuoco")?1:0)+(has("acqua")?0.5:0);
+  let sup=3+(has("acqua")?1:0)+(both("acqua")?1:0)+(has("terra")?0.5:0);
+  let spa=4-(fixFix?1:0)+(has("aria")?0.5:0);
+  let lea=4+fixCnt*0.5+(has("acqua")?0.5:0);
+  return [cc(arm),cc(sup),cc(spa),cc(lea)];}
+ if(lk==="convivenza"){
+  let ord=3+(has("terra")?1:0)+(both("terra")?1:0)-(both("fuoco")?1:0);
+  let spa=3.5-(fixFix?1:0)+(has("aria")?0.5:0);
+  let cli=((cat==="ally"||sameEl)?4:3)-(both("fuoco")?1:0)+(has("acqua")?0.5:0);
+  let con=3.5-(cardCard?1:0)+((!cardCard&&!fixFix)?0.5:0);
+  return [cc(ord),cc(spa),cc(cli),cc(con)];}
+ if(lk==="ex"){
+  const air=has("aria"),wat=has("acqua"),fir=has("fuoco");
+  let ami=3+(air?1:0)+(mutMut?1:0)-(wat?1:0)-(fixFix?1:0);
+  let chi=3+(air?1:0)+(mutMut?1:0)-(fir?1:0)-(fixFix?0.5:0);
+  let ris=3.5+(has("terra")?0.5:0)+(air?0.5:0);
+  let fia=2+(wat?1:0)+(fir?1:0)+fixCnt*0.5-(air?0.5:0);
+  return [cc(ami),cc(chi),cc(ris),cc(fia)];}
+ if(lk==="capo"){
+  let led=cardCard?2:((a.mod==="cardinale"||b.mod==="cardinale")?5:3);
+  let fid=3+(has("terra")?1:0)-(fixFix?1:0)+(has("acqua")?0.5:0);
+  let com=3+(has("aria")?1:0)+(has("fuoco")?0.5:0);
+  let cre=3+(cat==="ally"?1:0)+(cat==="challenge"?0.5:0)-(both("fuoco")?1:0)+(has("terra")?0.5:0);
+  return [cc(led),cc(fid),cc(com),cc(cre)];}
+ const d=dims(a,b);return [d.Passione,d.Emozione,d.Intesa,d.Stabilità];
+}
+const LTX={
+ amore:{u:{same:"vi capite d'istinto, stesso linguaggio emotivo",ally:"un'attrazione che scorre naturale, vi stimolate a vicenda",challenge:"la scintilla magnetica di chi è diverso e si cerca"},s:{same:"vi somigliate troppo e amplificate gli stessi difetti",ally:"correte veloci ma servono radici",challenge:"sentite e reagite in modi opposti, ci si fraintende"}},
+ amicizia:{u:{same:"stessa lunghezza d'onda, amici a prima vista",ally:"vi trascinate nelle avventure e nelle risate",challenge:"vi completate, ognuno apre all'altro un mondo nuovo"},s:{same:"troppo simili, nessuno tira mai il freno",ally:"tanto movimento ma poca profondità nei momenti seri",challenge:"ritmi e bisogni diversi, a volte non vi capite"}},
+ lavoro:{u:{same:"stessa visione e stesso passo di lavoro",ally:"energie che si alimentano e idee a raffica",challenge:"vi completate: chi ha la visione e chi esegue"},s:{same:"ruoli sovrapposti e dubbi su chi comanda",ally:"grandi partenze ma poca tenuta sui dettagli",challenge:"priorità e tempi diversi, servono ruoli chiari"}},
+ famiglia:{u:{same:"vi riconoscete, stessa indole sotto lo stesso tetto",ally:"casa vivace e piena di energia",challenge:"diversi ma legati, vi insegnate a vicenda"},s:{same:"due caratteri uguali sbattono sugli stessi spigoli",ally:"troppa irrequietezza, la casa non si ferma mai",challenge:"modi opposti di vivere spazi ed emozioni"}},
+ convivenza:{u:{same:"stesse abitudini, la casa fila liscia",ally:"clima allegro e sociale tra le mura",challenge:"vi bilanciate, chi mette ordine e chi mette vita"},s:{same:"stessi vizi raddoppiati, ordine o rigidità",ally:"tanta vita ma poca gestione pratica",challenge:"idee opposte su pulizia, spazi e ospiti"}},
+ ex:{u:{same:"vi conoscete a memoria: nessuna sorpresa, neanche da ex",ally:"restate sulla stessa lunghezza d'onda, parlarvi è facile",challenge:"ormai vivete su pianeti diversi, più facile voltare pagina"},s:{same:"gli stessi motivi che vi legavano vi riaccendono i nervi",ally:"la vecchia complicità rischia di riaccendere il fuoco",challenge:"gli opposti che vi attiravano ora vi respingono"}},
+ capo:{u:{same:"stesso linguaggio e stesso ritmo, vi capite al volo",ally:"energie che si alimentano, leader e team in sintonia",challenge:"vi completate: chi guida e chi realizza, ruoli naturali"},s:{same:"due teste uguali: chi guida e chi esegue davvero?",ally:"tanto slancio, ma serve chi tenga i dettagli",challenge:"priorità e tempi diversi, senza ruoli chiari ci si inceppa"}}
+};
+function lensDyn(lk,a,b){const cat=elCat(a.el,b.el);const mk=[a.mod,b.mod].sort().join("|");const LT=(CPL&&CPL.LTX)||LTX;const t=LT[lk]||LT.amore;return {uni:t.u[cat],sco:t.s[cat],mod:(_MODTX()[mk]||"")};}
+const LVERD={
+ amicizia:["Amici complicati: meglio a piccole dosi.","Amicizia che funziona con un po' di sforzo.","Ottima amicizia, viene naturale.","Amici per la pelle."],
+ lavoro:["Soci difficili: alto rischio di scontri.","Funziona se vi dividete bene i compiti.","Ottimo team, con ruoli chiari.","Soci da impresa di successo."],
+ famiglia:["Tensioni in casa: serve pazienza.","Si va d'accordo con qualche compromesso.","Bel legame, casa armoniosa.","Famiglia molto affiatata."],
+ convivenza:["Convivenza tosta: meglio spazi ben separati.","Convivenza ok, con qualche regola.","Ottima convivenza.","Coinquilini perfetti."],
+ ex:["Capitolo difficile da chiudere: meglio distanza.","Da ex funzionate solo con dei paletti.","Riuscite a restare in buoni rapporti.","Ex modello: amici veri dopo l'amore."],
+ capo:["Gerarchia difficile: scontri su chi comanda.","Funziona con ruoli e regole chiare.","Buona dinamica capo-team.","Leader e braccio destro perfetti."]
+};
+function lensVerdict(lk,s){if(lk==="amore")return verdict(s);const arr=(CPL&&CPL.LVERD)?CPL.LVERD[lk]:LVERD[lk];return arr[Math.min(3,Math.max(0,s-2))];}
+const PORTRAIT_IT={
+ word:{amore:"coppia",amicizia:"amici",lavoro:"soci",famiglia:"famiglia",convivenza:"coinquilini",ex:"ex",capo:"dinamica capo-team"},
+ el:{fuoco:"porta energia e slancio",terra:"porta concretezza e radici",aria:"porta idee e parole",acqua:"porta emozione e intuito"},
+ mo:{cardinale:"ama prendere l'iniziativa",fisso:"tiene il punto",mobile:"si adatta con facilità"},
+ lead:(word,an,bn,s)=>s>=4?`Come ${word}, ${an} e ${bn} partono avvantaggiati.`:s>=3?`Come ${word}, ${an} e ${bn} possono funzionare incontrandosi a metà.`:`Come ${word}, ${an} e ${bn} sono un incastro difficile.`,
+ body:(an,ela,moa,bn,elb,mob,uni,mod,sco)=>`${an} ${ela} e ${moa}; ${bn} invece ${elb} e ${mob}. Ciò che vi lega è ${uni}; ${mod}. La tensione nasce quando ${sco}.`
+};
+function lensRitratto(lk,a,b,s,dy){
+ const P=(CPL&&CPL.portrait)||PORTRAIT_IT;
+ const word=P.word[lk]||P.word.amore;
+ const lead=P.lead(word,a.n,b.n,s);
+ return `${lead} `+P.body(a.n,P.el[a.el],P.mo[a.mod],b.n,P.el[b.el],P.mo[b.mod],dy.uni,dy.mod,dy.sco);
+}
+const LADV={
+ amicizia:"Coltivate ciò che vi diverte e rispettate gli spazi: l'amicizia regge sulla leggerezza e sulla presenza nei momenti veri.",
+ lavoro:"Definite ruoli chiari fin dall'inizio — chi decide cosa — e mettete per iscritto gli accordi: i soci litigano sull'ambiguità, non sui numeri.",
+ famiglia:"In famiglia non si vince una discussione, si tiene insieme un legame: rispettate i caratteri e i tempi di ciascuno.",
+ convivenza:"Poche regole chiare su pulizia, spazi e ospiti, decise subito: la convivenza si rompe sui non-detti, non sulle differenze.",
+ ex:"Da ex la regola è una: confini chiari e niente zone grigie. Decidete cosa siete ora — amici o lontani — e smettete di rivivere chi eravate.",
+ capo:"La gerarchia regge se i ruoli sono espliciti: chi decide decide, chi esegue ha autonomia e fiducia. Si rompe quando il capo non molla il controllo o il team non rispetta la guida."
+};
+function farla(a,b,ov){
+  if(CPL&&CPL.farla){return CPL.farla.pre(ov)+" "+CPL.farla.body(a.n,a.ll.toLowerCase(),b.n,b.ll.toLowerCase());}
+  const pre = ov>=4?"Avete una base solida — non datela per scontata."
+    : ov>=3?"Si può fare, ma con lavoro vero da entrambe le parti."
+    : "Servirà pazienza e molta comunicazione.";
+  return `${pre} La chiave è parlare la lingua dell'altro: ${a.n} vive d'amore attraverso «${a.ll.toLowerCase()}», ${b.n} attraverso «${b.ll.toLowerCase()}». Chi impara a dare ciò che conta davvero per l'altro, vince.`;
+}
+function lensAdvice(lk,a,b,s){
+  if(lk==="amore")return farla(a,b,s);
+  const ladv=(CPL&&CPL.LADV)?CPL.LADV[lk]:LADV[lk];
+  const pre=(CPL&&CPL.advice)?CPL.advice.pre(s):(s>=4?"Avete una base ottima.":s>=3?"Si può fare, con un po' di attenzione.":"Servirà impegno da entrambe le parti.");
+  return `${pre} ${ladv}`;
+}
+function setLens(k){curLens=k;const A=document.getElementById("selA"),B=document.getElementById("selB");if(!A)return;document.querySelectorAll(".lenstab").forEach(t=>t.classList.toggle("active",t.getAttribute("data-k")===k));renderResult(A.value,B.value,k);}
+function jumpPair(lk,a,b){location.hash="compat";render();setTimeout(()=>{curLens=lk;const A=document.getElementById("selA"),B=document.getElementById("selB");if(!A)return;document.querySelectorAll(".lenstab").forEach(t=>t.classList.toggle("active",t.getAttribute("data-k")===lk));A.value=a;B.value=b;renderResult(a,b,lk);},50);}
+function renderResult(ka,kb,lk){lk=lk||"amore";const a=BY[ka],b=BY[kb];const l=LBY[lk];const out=document.getElementById("result");
+  const s=lensScore(lk,a,b),da=lensDims(lk,a,b),dy=lensDyn(lk,a,b);
+  const state= s>=4?"good":(s<=2?"bad":"mid");
+  const sym = s>=4?l.sym:(s<=2?"⚡":"≈");
+  const sint = ((CPL&&CPL.sint)||["Tanta tensione","Equilibrio da costruire","Bella sintonia","Sintonia altissima"])[Math.min(3,Math.max(0,s-2))];
+  const drow=(n,v)=>`<div class="drow"><span class="dn">${n}</span><span class="dtrack"><span class="dfill" style="width:${v*20}%"></span></span><span class="ds">${v}</span></div>`;
+  const h2h=(lab,va,vb)=>`<tr><td class="ha">${va}</td><td class="hl">${lab}</td><td class="hb">${vb}</td></tr>`;
+  const elN=e=>cap(window.ZWIRE?window.ZWIRE.elName(e,LANG):e);
+  const moN=m=>m==='cardinale'?U.modCard:m==='fisso'?U.modFix:U.modMob;
+  out.innerHTML=`<div class="couple-hero ${state}">${coupleScene(a,b,s,l.sym)}
+    <div class="ctitle">${a.n.toUpperCase()} <span class="csym">${sym}</span> ${b.n.toUpperCase()}</div>
+    <div class="bigpct" data-t="${s*20}%">${s*20}%</div>
+    <div class="vbadge">${sint} · ${lensVerdict(lk,s)}</div></div>
+  <div class="panel"><span class="tag">${U.cmpDirect}</span>
+    <table class="h2h"><tr><th>${a.g} ${a.n}</th><th></th><th>${b.g} ${b.n}</th></tr>
+    ${h2h(U.thElem,elN(a.el),elN(b.el))}${h2h(U.thMod,moN(a.mod),moN(b.mod))}${h2h(U.thPlan,a.ru,b.ru)}${h2h(U.thLL,a.ll,b.ll)}${h2h(U.thRF,a.rf[0],b.rf[0])}</table></div>
+  <div class="panel alt"><span class="tag bl">${U.cmpPortrait}</span><p>${lensRitratto(lk,a,b,s,dy)}</p></div>
+  <div class="twoflow"><div class="panel"><span class="tag">${U.cmpUnisce}</span><p>${cap(dy.uni)}.</p></div>
+  <div class="panel alt"><span class="tag bl">${U.cmpScotta}</span><p>${cap(dy.sco)}.</p></div></div>
+  <div class="dims">${l.dimN.map((n,i)=>drow(n,da[i])).join("")}</div>
+  <div class="pull">${lensAdvice(lk,a,b,s)}</div>`;
+  playCoupleAnim();
+  if(window.ZANIM){const st=out.querySelector(".cstage");if(st){const sym=s>=4?"\u2665":(s<=2?"\u26a1":"\u2726"),col=s>=4?"#ff2d6f":(s<=2?"#f5b700":"#2f9bdb");setTimeout(function(){window.ZANIM.spawnFx(st,sym,col,s>=5?6:(s<=2?4:3));},700);}}
+}
+function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+
+/* ===== applyLang: ricostruisce dati + UI per lingua, poi ri-renderizza ===== */
+function applyLang(){
+  LANG=(window.ZI18N?window.ZI18N.get():"it");
+  if(window.ZWIRE) window.ZWIRE.activate(LANG);          // localizza nomi segni/pianeti in NATAL ecc.
+  U=UI_DICT[LANG]||UI_DICT.it;
+  CPL=(LANG==="it")?null:(window["ZCPL_"+LANG.toUpperCase()]||null);   // null = usa stringhe IT inline
+  ELEMENTS=ELEMENTS_DICT[LANG]||ELEMENTS_DICT.it;
+  HOUSES=HOUSES_DICT[LANG]||HOUSES_DICT.it;
+  PLANETS=PLANETS_DICT[LANG]||PLANETS_DICT.it;
+  buildSigns();
+  buildLenses();
+  // chrome statico (nav + theme buttons)
+  var set=(id,txt)=>{var el=document.getElementById(id);if(el&&txt!=null)el.textContent=txt;};
+  set("navBasi",U.navBasi);set("navSegni",U.navSegni);set("navCoppie",U.navCoppie);
+  set("btnTheStampa",U.theStampa);set("btnTheAdesivi",U.theAdesivi);
+  document.documentElement.lang=LANG;
+  if(window.ZI18N&&window.ZI18N.decorate)window.ZI18N.decorate();
+  render();
+}
+
+// init
+if(window.ZI18N&&document.getElementById("langPick")) window.ZI18N.mount(document.getElementById("langPick"));
+window.addEventListener("zlangchange", applyLang);
+document.body.classList.add("theme-"+THEME);syncThemeBtns();
+window.addEventListener("hashchange",render);
+applyLang();
+</script></body></html>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Zodiac — Tema Natale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff6e3; --red:#ec2e36; --red-d:#b81f27; --yellow:#ffd23f;
+  --blue:#2f9bdb; --green:#36b06a; --ink:#15110d; --head:#2c2138; --head2:#241f30;
+  --purple:#6b4ff0; --pink:#ff2d6f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#f0473f,#d9272f);
+  background-size:15px 15px,100% 100%;
+  color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;
+  min-height:100vh;-webkit-text-size-adjust:100%;
+}
+.wrap{
+  max-width:880px;margin:clamp(10px,3vw,30px) auto;padding:0 0 40px;
+  background:var(--paper);
+  background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.4px,transparent 1.5px);
+  background-size:12px 12px;
+  border:5px solid var(--ink);border-radius:22px;
+  box-shadow:0 14px 0 rgba(0,0,0,.25);overflow:hidden;
+}
+/* HEADER */
+.topbar{
+  background:var(--head);color:#fff;padding:14px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  border-bottom:5px solid var(--ink);
+}
+.brand{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;color:var(--yellow);display:flex;align-items:center;gap:8px}
+.brand .star{color:#fff}
+.nav{display:flex;gap:7px;flex-wrap:wrap}
+.pill{
+  font-family:'Baloo 2';font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;
+  border:2.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;
+  box-shadow:2px 2px 0 var(--ink);text-decoration:none;display:inline-block;
+}
+.pill.on{background:var(--yellow)}
+.pill.coppie{background:var(--blue);color:#fff}
+/* HERO */
+.hero{padding:22px 22px 6px;text-align:center}
+.ksuper{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--red-d);text-transform:uppercase}
+.htitle{font-family:'Bangers',cursive;font-size:clamp(40px,9vw,72px);color:var(--blue);
+  -webkit-text-stroke:2.5px var(--ink);text-shadow:4px 4px 0 var(--ink);letter-spacing:2px;margin:4px 0 2px;line-height:1}
+.hsub{font-weight:600;color:#5b5347;max-width:540px;margin:6px auto 0;font-size:15px}
+/* PANELS */
+.panel{margin:20px 22px;border:4px solid var(--ink);background:#fff;border-radius:16px;
+  box-shadow:7px 7px 0 var(--blue);padding:18px 18px}
+.panel.yellow{box-shadow:7px 7px 0 var(--yellow)}
+.panel.red{box-shadow:7px 7px 0 var(--red)}
+.panel h2{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;margin:0 0 12px;color:var(--ink)}
+/* FORM */
+.field{margin-bottom:14px;position:relative}
+.field label{display:block;font-weight:700;font-size:13px;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;color:var(--head)}
+.inp{width:100%;font-family:'Baloo 2';font-weight:600;font-size:16px;padding:11px 13px;
+  border:3px solid var(--ink);border-radius:11px;background:var(--paper);color:var(--ink);outline:none}
+.inp:focus{box-shadow:3px 3px 0 var(--blue)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row .field{flex:1;min-width:130px}
+.hint{font-size:12px;color:#8a8275;margin-top:4px;font-weight:600}
+.check{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;cursor:pointer;margin-top:6px}
+.check input{width:18px;height:18px;accent-color:var(--red)}
+/* autocomplete */
+.ac{position:absolute;left:0;right:0;top:100%;z-index:30;background:#fff;border:3px solid var(--ink);
+  border-radius:11px;margin-top:5px;box-shadow:4px 4px 0 var(--ink);overflow:hidden;display:none}
+.ac.show{display:block}
+.ac-item{padding:9px 13px;cursor:pointer;border-bottom:1.5px solid #eee;font-weight:600;font-size:14px}
+.ac-item:last-child{border-bottom:none}
+.ac-item:hover,.ac-item.sel{background:var(--yellow)}
+.ac-item small{color:#8a8275;font-weight:600}
+.btn-go{width:100%;margin-top:6px;font-family:'Bangers',cursive;font-size:24px;letter-spacing:1px;
+  color:#fff;background:var(--red);border:3.5px solid var(--ink);border-radius:13px;
+  padding:13px;cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .05s}
+.btn-go:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.err{color:var(--red-d);font-weight:700;font-size:13px;margin-top:8px;display:none}
+.err.show{display:block}
+/* RESULT */
+#result{display:none}
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:640px){.big3{grid-template-columns:1fr}}
+.b3card{border:3.5px solid var(--ink);border-radius:15px;background:var(--paper);padding:14px;text-align:center;position:relative;overflow:hidden}
+.b3card.sole{box-shadow:5px 5px 0 var(--yellow)}
+.b3card.luna{box-shadow:5px 5px 0 var(--blue)}
+.b3card.asc{box-shadow:5px 5px 0 var(--pink)}
+.b3tag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--head);font-weight:700}
+.b3mascot{width:96px;height:126px;margin:2px auto -6px}
+.b3mascot .omino{width:100%;height:100%;display:block}
+.b3sign{font-family:'Bangers',cursive;font-size:27px;letter-spacing:1px;color:var(--ink);line-height:1;margin-top:4px}
+.b3glyph{font-size:20px}
+.b3deg{font-family:'Space Mono',monospace;font-size:12px;color:var(--red-d);font-weight:700;margin-top:2px}
+.b3txt{font-size:13px;font-weight:600;color:#4a4337;margin-top:9px;text-align:left;line-height:1.42}
+/* wheel + table */
+.wheelwrap{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:center}
+#wheel{flex:0 0 auto}
+.ptable{flex:1;min-width:240px;border-collapse:collapse;width:100%;font-size:14px}
+.ptable td{padding:7px 6px;border-bottom:1.5px dashed #ddd;font-weight:600}
+.ptable td:first-child{font-weight:700}
+.ptable .gl{font-size:18px;width:26px}
+.ptable .rx{color:var(--red);font-weight:700;font-size:12px}
+.housegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
+@media(max-width:560px){.housegrid{grid-template-columns:repeat(2,1fr)}}
+.hcell{border:2.5px solid var(--ink);border-radius:9px;padding:7px;text-align:center;background:var(--paper);font-size:13px;font-weight:700}
+.hcell b{display:block;font-family:'Space Mono',monospace;font-size:11px;color:var(--red-d)}
+.hcell .hg{font-size:17px}
+.summary{font-weight:600;color:#4a4337;line-height:1.5}
+.reading{color:#3f3930;line-height:1.62;font-size:15px}
+.reading p{margin:0 0 13px}
+.reading b{color:var(--ink)}
+.reading .closing{background:var(--paper);border:3px solid var(--ink);border-radius:12px;
+  padding:13px 15px;font-weight:600;box-shadow:4px 4px 0 var(--yellow);margin-top:4px}
+.footnote{font-size:11px;color:#9a9183;text-align:center;margin:18px 22px 0;font-weight:600;line-height:1.5}
+.elbadge{display:inline-block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;border:2px solid var(--ink);text-transform:uppercase}
+.balgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:560px){.balgrid{grid-template-columns:1fr}}
+.ballab{font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;color:var(--head);margin-bottom:7px}
+.balrow{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.baln{width:74px;font-weight:700;font-size:13px}
+.baltrack{flex:1;height:13px;background:#efe7d2;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.balfill{display:block;height:100%}
+.balc{width:18px;text-align:right;font-family:'Space Mono',monospace;font-weight:700;font-size:13px}
+.balpol{margin-top:10px;font-weight:600;font-size:13px;color:var(--head)}
+.balnote{font-weight:600;color:#4a4337;margin:14px 0 0;line-height:1.5}
+.asprow{border-left:4px solid var(--ink);padding:7px 0 7px 12px;margin-bottom:11px}
+.asphead{display:flex;align-items:center;justify-content:space-between}
+.aspg{font-size:18px;font-weight:700}
+.aspval{font-family:'Space Mono',monospace;font-weight:700;font-size:13px}
+.asptxt{font-size:13.5px;font-weight:600;color:#3f3930;line-height:1.45;margin-top:2px}
+.modetoggle{display:flex;gap:8px;margin-top:14px}
+.modebtn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:8px 16px;border-radius:10px;border:2.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .05s}
+.modebtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.modebtn.on{background:var(--blue);color:#fff}
+.dtl{color:#3f3930;line-height:1.6;font-size:14.5px}
+.dtl-intro{font-weight:600}
+.dtl-h{font-family:'Bangers',cursive;font-size:22px;letter-spacing:1px;color:var(--ink);margin:22px 0 12px;border-bottom:3px solid var(--ink);padding-bottom:4px}
+.dtl-block{border-left:4px solid var(--blue);padding:4px 0 4px 13px;margin-bottom:16px}
+.dtl-block.sm{border-left-color:#d8cdb0;margin-bottom:9px}
+.dtl-title{font-family:'Baloo 2';font-weight:800;font-size:16px;color:var(--ink);margin-bottom:3px}
+.dtl-title.sm{font-size:14px}
+.dtl-deg{font-family:'Space Mono',monospace;font-size:11px;color:var(--red-d);font-weight:700;margin-left:4px}
+.dtl-block p{margin:5px 0}
+.dtl-asp{list-style:none;padding:0;margin:9px 0 0}
+.dtl-asp li{font-size:13px;background:var(--paper);border:2px solid var(--ink);border-radius:9px;padding:7px 10px;margin-bottom:6px;line-height:1.45}
+.dtl-val{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;margin-left:4px}
+.dtl-val.pos{color:#1f9d55}.dtl-val.neg{color:#b81f27}
+.dtl-hk{font-weight:700;color:var(--ink)}
+.dtl-note{font-weight:600;color:#8a8275}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="index.html" style="text-decoration:none" title="Home"><span class="star">★</span> ZODIAC</a>
+    <div class="topright">
+      <div class="nav">
+        <a class="pill" data-k="segni" href="Zodiac%20Zine.html">Segni</a>
+        <a class="pill on" data-k="natale" href="Tema%20Natale.html">Tema Natale</a>
+        <a class="pill" data-k="oroscopo" href="Oroscopo%20del%20Giorno.html">Oroscopo</a>
+        <a class="pill" data-k="match" href="Match%20del%20Giorno.html">♥ Match</a>
+        <a class="pill" data-k="componi" href="Componi%20la%20Frase.html">Componi</a>
+      </div>
+      <span id="langPick"></span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="ksuper" id="ksuper">// la tua mappa del cielo</div>
+    <h1 class="htitle" id="htitle">TEMA NATALE</h1>
+    <p class="hsub" id="hsub">Inserisci quando e dove sei nato: calcoliamo il tuo cielo esatto — Sole, Luna, Ascendente e pianeti — in versione pop.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="panel yellow" id="formPanel">
+    <h2 id="formTitle">★ I tuoi dati di nascita</h2>
+    <div class="field">
+      <label id="lblName">Nome (facoltativo)</label>
+      <input class="inp" id="fName" placeholder="Come ti chiami?" autocomplete="off">
+    </div>
+    <div class="row">
+      <div class="field">
+        <label id="lblDate">Data di nascita</label>
+        <input class="inp" id="fDate" type="date" min="1900-01-01" max="2030-12-31">
+      </div>
+      <div class="field">
+        <label id="lblTime">Ora di nascita</label>
+        <input class="inp" id="fTime" type="time">
+        <label class="check"><input type="checkbox" id="fNoTime"> <span id="lblNoTime">Non conosco l'ora</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label id="lblPlace">Luogo di nascita</label>
+      <input class="inp" id="fPlace" placeholder="Cerca una città… es. Napoli" autocomplete="off">
+      <div class="ac" id="acBox"></div>
+      <div class="hint" id="placeHint">Scrivi e scegli dalla lista.</div>
+    </div>
+    <div class="field" id="manualBox" style="display:none">
+      <div class="row">
+        <div class="field"><label id="lblLat">Latitudine</label><input class="inp" id="fLat" type="number" step="0.0001" placeholder="41.90"></div>
+        <div class="field"><label id="lblLon">Longitudine</label><input class="inp" id="fLon" type="number" step="0.0001" placeholder="12.50"></div>
+      </div>
+      <div class="hint" id="manualHint">Est = positivo, Ovest = negativo. Useremo il tuo fuso orario locale.</div>
+    </div>
+    <button class="btn-go" id="goBtn">CALCOLA IL CIELO ✦</button>
+    <div class="err" id="errBox"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result">
+    <div class="panel" id="introPanel">
+      <h2 id="resTitle">★ Il tuo cielo</h2>
+      <p class="summary" id="resSummary"></p>
+      <div class="modetoggle">
+        <button class="modebtn on" id="modeSimple">✦ Semplice</button>
+        <button class="modebtn" id="modeDetail">📖 Dettagliato</button>
+      </div>
+    </div>
+
+    <div class="panel red">
+      <h2 id="pillarsTitle">I tre pilastri</h2>
+      <div class="big3" id="big3"></div>
+    </div>
+
+    <div class="panel" id="readingPanel">
+      <h2 id="readingTitle">Il tuo ritratto</h2>
+      <div class="reading" id="reading"></div>
+    </div>
+
+    <div class="panel yellow">
+      <h2 id="wheelTitle">La ruota &amp; i pianeti</h2>
+      <div class="wheelwrap">
+        <div id="wheel"></div>
+        <table class="ptable" id="ptable"></table>
+      </div>
+    </div>
+
+    <div class="panel" id="housePanel">
+      <h2 id="housesTitle">Le 12 case</h2>
+      <p class="hint" id="housesHint" style="margin-top:-6px;margin-bottom:10px">Sistema “segno intero” a partire dall'Ascendente.</p>
+      <div class="housegrid" id="houses"></div>
+    </div>
+
+    <div class="panel" id="balancePanel">
+      <h2 id="balanceTitle">Bilancia degli elementi</h2>
+      <div id="balance"></div>
+    </div>
+
+    <div class="panel" id="aspectsPanel">
+      <h2 id="aspectsTitle">Gli aspetti del tuo cielo</h2>
+      <p class="hint" id="aspectsHint" style="margin-top:-6px;margin-bottom:10px">Come i tuoi pianeti dialogano tra loro: i talenti naturali (armonici) e le tensioni che ti fanno crescere.</p>
+      <div id="aspects"></div>
+    </div>
+
+    <div class="panel" id="detailPanel" style="display:none">
+      <h2 id="detailTitle">📖 Lettura dettagliata</h2>
+      <p class="hint" id="detailHint" style="margin-top:-6px;margin-bottom:10px">Pianeta per pianeta, casa per casa, aspetto per aspetto — come un report professionale, in versione pop.</p>
+      <div class="dtl" id="detail"></div>
+    </div>
+  </div>
+
+  <div class="footnote" id="foot">
+    Calcolo tropicale (astrologia occidentale) · effemeridi astronomy-engine, verificate vs Swiss Ephemeris (&lt; 0,1′).<br>
+    Senza l'ora di nascita non si calcolano Ascendente e case, e la Luna è approssimata.
+  </div>
+</div>
+
+<!-- engine -->
+<script src="lang/i18n.js"></script>
+<script src="natal/astronomy.browser.min.js"></script>
+<script src="coppie/mascots.js"></script>
+<script src="natal/engine.js"></script>
+<script src="natal/cities.js"></script>
+<script src="natal/interpret.js"></script>
+<script src="natal/interpret.en.js"></script>
+<script src="natal/interpret.fr.js"></script>
+<script src="natal/interpret.es.js"></script>
+<script src="natal/interpret.pt.js"></script>
+<script src="natal/aspects.js"></script>
+<script src="natal/aspects.en.js"></script>
+<script src="natal/aspects.fr.js"></script>
+<script src="natal/aspects.es.js"></script>
+<script src="natal/aspects.pt.js"></script>
+<script src="natal/detailed.js"></script>
+<script src="natal/detailed.en.js"></script>
+<script src="natal/detailed.fr.js"></script>
+<script src="natal/detailed.es.js"></script>
+<script src="natal/detailed.pt.js"></script>
+<script src="lang/wire.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const EL_COLOR = window.NATAL.EL_COLOR;
+  let chosenPlace = null; // {name,area,lat,lon,tz}
+  const langOf = () => window.ZI18N ? window.ZI18N.get() : 'it';
+
+  // --- dizionario UI multilingua (tono ironico/pop) ---
+  const UI = {
+    it:{ ksuper:"// la tua mappa del cielo", htitle:"TEMA NATALE",
+      hsub:"Inserisci quando e dove sei nato: calcoliamo il tuo cielo esatto — Sole, Luna, Ascendente e pianeti — in versione pop.",
+      formTitle:"★ I tuoi dati di nascita", lblName:"Nome (facoltativo)", phName:"Come ti chiami?",
+      lblDate:"Data di nascita", lblTime:"Ora di nascita", lblNoTime:"Non conosco l'ora",
+      lblPlace:"Luogo di nascita", phPlace:"Cerca una città… es. Napoli", placeHint:"Scrivi e scegli dalla lista.",
+      lblLat:"Latitudine", lblLon:"Longitudine", manualHint:"Est = positivo, Ovest = negativo. Useremo il tuo fuso orario locale.",
+      go:"CALCOLA IL CIELO ✦", modeSimple:"✦ Semplice", modeDetail:"📖 Dettagliato",
+      resMine:"★ Il tuo cielo", resName:n=>`★ Il cielo di ${n}`,
+      sunIs:"Sole in", moonIs:"Luna in", ascIs:"Ascendente",
+      sumSei:"Sei", sumE:"e", sumPillars:"I tre pilastri del tuo carattere, qui sotto.",
+      sumNoAsc:"Aggiungi ora e luogo di nascita per scoprire anche il tuo Ascendente.",
+      pillarsTitle:"I tre pilastri", readingTitle:"Il tuo ritratto", wheelTitle:"La ruota & i pianeti",
+      housesTitle:"Le 12 case", housesHint:"Sistema “segno intero” a partire dall'Ascendente.",
+      balanceTitle:"Bilancia degli elementi", aspectsTitle:"Gli aspetti del tuo cielo",
+      aspectsHint:"Come i tuoi pianeti dialogano tra loro: i talenti naturali (armonici) e le tensioni che ti fanno crescere.",
+      detailTitle:"📖 Lettura dettagliata", detailHint:"Pianeta per pianeta, casa per casa, aspetto per aspetto — come un report professionale, in versione pop.",
+      tagSun:"☉ SOLE · chi sei", tagMoon:"☽ LUNA · come senti", tagAsc:"↑ ASCENDENTE · come appari",
+      ascNeed:"Serve l'ora e il luogo di nascita per calcolarlo. ⏰", ascTag:"↑ ASCENDENTE",
+      house:"casa", elTitle:"Elementi", modTitle:"Modalità", masc:"♂ Maschile", femm:"♀ Femminile",
+      el:{fuoco:"Fuoco",terra:"Terra",aria:"Aria",acqua:"Acqua"}, mod:{cardinale:"Cardinale",fisso:"Fisso",mobile:"Mobile"},
+      balPend:"Il tuo cielo pende verso", balLow:s=>`, mentre il <b>${s}</b> è quasi assente — la tua area di crescita`,
+      errDate:"Inserisci la data di nascita.", errTime:"Inserisci l'ora di nascita (o spunta «non la conosco»).",
+      errPlace:"Scegli il luogo di nascita (serve per l'Ascendente).", errCalc:"Qualcosa è andato storto nel calcolo.",
+      foot:"Calcolo tropicale (astrologia occidentale) · effemeridi astronomy-engine, verificate vs Swiss Ephemeris (&lt; 0,1′).<br>Senza l'ora di nascita non si calcolano Ascendente e case, e la Luna è approssimata.",
+      nav:{segni:"Segni",natale:"Tema Natale",oroscopo:"Oroscopo",match:"♥ Match",componi:"Componi"} },
+    en:{ ksuper:"// your map of the sky", htitle:"BIRTH CHART",
+      hsub:"Tell us when and where you were born: we compute your exact sky — Sun, Moon, Rising and planets — pop edition.",
+      formTitle:"★ Your birth data", lblName:"Name (optional)", phName:"What's your name?",
+      lblDate:"Date of birth", lblTime:"Time of birth", lblNoTime:"I don't know the time",
+      lblPlace:"Place of birth", phPlace:"Search a city… e.g. Naples", placeHint:"Type and pick from the list.",
+      lblLat:"Latitude", lblLon:"Longitude", manualHint:"East = positive, West = negative. We'll use your local timezone.",
+      go:"CALCULATE MY SKY ✦", modeSimple:"✦ Simple", modeDetail:"📖 Detailed",
+      resMine:"★ Your sky", resName:n=>`★ ${n}'s sky`,
+      sunIs:"Sun in", moonIs:"Moon in", ascIs:"Rising",
+      sumSei:"You're", sumE:"and", sumPillars:"The three pillars of your character, below.",
+      sumNoAsc:"Add your birth time and place to unlock your Rising sign too.",
+      pillarsTitle:"The three pillars", readingTitle:"Your portrait", wheelTitle:"The wheel & the planets",
+      housesTitle:"The 12 houses", housesHint:"“Whole sign” system starting from the Ascendant.",
+      balanceTitle:"Balance of elements", aspectsTitle:"The aspects of your sky",
+      aspectsHint:"How your planets talk to each other: the natural talents (harmonious) and the tensions that make you grow.",
+      detailTitle:"📖 Detailed reading", detailHint:"Planet by planet, house by house, aspect by aspect — like a pro report, pop edition.",
+      tagSun:"☉ SUN · who you are", tagMoon:"☽ MOON · how you feel", tagAsc:"↑ RISING · how you appear",
+      ascNeed:"We need your birth time and place to calculate it. ⏰", ascTag:"↑ RISING",
+      house:"house", elTitle:"Elements", modTitle:"Modalities", masc:"♂ Masculine", femm:"♀ Feminine",
+      el:{fuoco:"Fire",terra:"Earth",aria:"Air",acqua:"Water"}, mod:{cardinale:"Cardinal",fisso:"Fixed",mobile:"Mutable"},
+      balPend:"Your sky leans toward", balLow:s=>`, while <b>${s}</b> is almost missing — your growth zone`,
+      errDate:"Enter your date of birth.", errTime:"Enter your time of birth (or tick «I don't know it»).",
+      errPlace:"Pick your place of birth (needed for the Rising sign).", errCalc:"Something went wrong in the calculation.",
+      foot:"Tropical calculation (Western astrology) · astronomy-engine ephemerides, checked vs Swiss Ephemeris (&lt; 0.1′).<br>Without a birth time the Rising and houses can't be computed, and the Moon is approximate.",
+      nav:{segni:"Signs",natale:"Birth Chart",oroscopo:"Horoscope",match:"♥ Match",componi:"Compose"} },
+    fr:{ ksuper:"// ta carte du ciel", htitle:"THÈME NATAL",
+      hsub:"Dis-nous quand et où tu es né : on calcule ton ciel exact — Soleil, Lune, Ascendant et planètes — version pop.",
+      formTitle:"★ Tes données de naissance", lblName:"Prénom (facultatif)", phName:"Comment tu t'appelles ?",
+      lblDate:"Date de naissance", lblTime:"Heure de naissance", lblNoTime:"Je ne connais pas l'heure",
+      lblPlace:"Lieu de naissance", phPlace:"Cherche une ville… ex. Naples", placeHint:"Écris et choisis dans la liste.",
+      lblLat:"Latitude", lblLon:"Longitude", manualHint:"Est = positif, Ouest = négatif. On utilisera ton fuseau horaire local.",
+      go:"CALCULER MON CIEL ✦", modeSimple:"✦ Simple", modeDetail:"📖 Détaillé",
+      resMine:"★ Ton ciel", resName:n=>`★ Le ciel de ${n}`,
+      sunIs:"Soleil en", moonIs:"Lune en", ascIs:"Ascendant",
+      sumSei:"Tu es", sumE:"et", sumPillars:"Les trois piliers de ton caractère, ci-dessous.",
+      sumNoAsc:"Ajoute ton heure et ton lieu de naissance pour découvrir aussi ton Ascendant.",
+      pillarsTitle:"Les trois piliers", readingTitle:"Ton portrait", wheelTitle:"La roue & les planètes",
+      housesTitle:"Les 12 maisons", housesHint:"Système « signe entier » à partir de l'Ascendant.",
+      balanceTitle:"Balance des éléments", aspectsTitle:"Les aspects de ton ciel",
+      aspectsHint:"Comment tes planètes dialoguent : les talents naturels (harmoniques) et les tensions qui te font grandir.",
+      detailTitle:"📖 Lecture détaillée", detailHint:"Planète par planète, maison par maison, aspect par aspect — comme un rapport pro, version pop.",
+      tagSun:"☉ SOLEIL · qui tu es", tagMoon:"☽ LUNE · comment tu sens", tagAsc:"↑ ASCENDANT · comment tu apparais",
+      ascNeed:"Il faut ton heure et ton lieu de naissance pour le calculer. ⏰", ascTag:"↑ ASCENDANT",
+      house:"maison", elTitle:"Éléments", modTitle:"Modalités", masc:"♂ Masculin", femm:"♀ Féminin",
+      el:{fuoco:"Feu",terra:"Terre",aria:"Air",acqua:"Eau"}, mod:{cardinale:"Cardinal",fisso:"Fixe",mobile:"Mutable"},
+      balPend:"Ton ciel penche vers", balLow:s=>`, tandis que <b>${s}</b> est presque absent — ta zone de croissance`,
+      errDate:"Entre ta date de naissance.", errTime:"Entre ton heure de naissance (ou coche « je ne la connais pas »).",
+      errPlace:"Choisis ton lieu de naissance (nécessaire pour l'Ascendant).", errCalc:"Un souci est survenu dans le calcul.",
+      foot:"Calcul tropical (astrologie occidentale) · éphémérides astronomy-engine, vérifiées vs Swiss Ephemeris (&lt; 0,1′).<br>Sans l'heure de naissance, l'Ascendant et les maisons ne se calculent pas, et la Lune est approximative.",
+      nav:{segni:"Signes",natale:"Thème Natal",oroscopo:"Horoscope",match:"♥ Match",componi:"Composer"} },
+    es:{ ksuper:"// tu mapa del cielo", htitle:"CARTA NATAL",
+      hsub:"Dinos cuándo y dónde naciste: calculamos tu cielo exacto — Sol, Luna, Ascendente y planetas — en versión pop.",
+      formTitle:"★ Tus datos de nacimiento", lblName:"Nombre (opcional)", phName:"¿Cómo te llamas?",
+      lblDate:"Fecha de nacimiento", lblTime:"Hora de nacimiento", lblNoTime:"No sé la hora",
+      lblPlace:"Lugar de nacimiento", phPlace:"Busca una ciudad… ej. Nápoles", placeHint:"Escribe y elige de la lista.",
+      lblLat:"Latitud", lblLon:"Longitud", manualHint:"Este = positivo, Oeste = negativo. Usaremos tu zona horaria local.",
+      go:"CALCULAR MI CIELO ✦", modeSimple:"✦ Simple", modeDetail:"📖 Detallada",
+      resMine:"★ Tu cielo", resName:n=>`★ El cielo de ${n}`,
+      sunIs:"Sol en", moonIs:"Luna en", ascIs:"Ascendente",
+      sumSei:"Eres", sumE:"y", sumPillars:"Los tres pilares de tu carácter, aquí abajo.",
+      sumNoAsc:"Añade tu hora y lugar de nacimiento para descubrir también tu Ascendente.",
+      pillarsTitle:"Los tres pilares", readingTitle:"Tu retrato", wheelTitle:"La rueda & los planetas",
+      housesTitle:"Las 12 casas", housesHint:"Sistema “signo entero” a partir del Ascendente.",
+      balanceTitle:"Balance de los elementos", aspectsTitle:"Los aspectos de tu cielo",
+      aspectsHint:"Cómo dialogan tus planetas: los talentos naturales (armónicos) y las tensiones que te hacen crecer.",
+      detailTitle:"📖 Lectura detallada", detailHint:"Planeta por planeta, casa por casa, aspecto por aspecto — como un informe profesional, en versión pop.",
+      tagSun:"☉ SOL · quién eres", tagMoon:"☽ LUNA · cómo sientes", tagAsc:"↑ ASCENDENTE · cómo apareces",
+      ascNeed:"Hace falta tu hora y lugar de nacimiento para calcularlo. ⏰", ascTag:"↑ ASCENDENTE",
+      house:"casa", elTitle:"Elementos", modTitle:"Modalidades", masc:"♂ Masculino", femm:"♀ Femenino",
+      el:{fuoco:"Fuego",terra:"Tierra",aria:"Aire",acqua:"Agua"}, mod:{cardinale:"Cardinal",fisso:"Fijo",mobile:"Mutable"},
+      balPend:"Tu cielo se inclina hacia", balLow:s=>`, mientras que el <b>${s}</b> casi no aparece — tu área de crecimiento`,
+      errDate:"Introduce tu fecha de nacimiento.", errTime:"Introduce tu hora de nacimiento (o marca «no la sé»).",
+      errPlace:"Elige tu lugar de nacimiento (necesario para el Ascendente).", errCalc:"Algo salió mal en el cálculo.",
+      foot:"Cálculo tropical (astrología occidental) · efemérides astronomy-engine, verificadas vs Swiss Ephemeris (&lt; 0,1′).<br>Sin la hora de nacimiento no se calculan Ascendente ni casas, y la Luna es aproximada.",
+      nav:{segni:"Signos",natale:"Carta Natal",oroscopo:"Horóscopo",match:"♥ Match",componi:"Arma"} },
+    pt:{ ksuper:"// seu mapa do céu", htitle:"MAPA ASTRAL",
+      hsub:"Conte quando e onde você nasceu: calculamos seu céu exato — Sol, Lua, Ascendente e planetas — versão pop.",
+      formTitle:"★ Seus dados de nascimento", lblName:"Nome (opcional)", phName:"Como você se chama?",
+      lblDate:"Data de nascimento", lblTime:"Hora de nascimento", lblNoTime:"Não sei a hora",
+      lblPlace:"Local de nascimento", phPlace:"Busque uma cidade… ex. Nápoles", placeHint:"Digite e escolha na lista.",
+      lblLat:"Latitude", lblLon:"Longitude", manualHint:"Leste = positivo, Oeste = negativo. Usaremos seu fuso horário local.",
+      go:"CALCULAR MEU CÉU ✦", modeSimple:"✦ Simples", modeDetail:"📖 Detalhado",
+      resMine:"★ Seu céu", resName:n=>`★ O céu de ${n}`,
+      sunIs:"Sol em", moonIs:"Lua em", ascIs:"Ascendente",
+      sumSei:"Você é", sumE:"e", sumPillars:"Os três pilares do seu jeito, aqui embaixo.",
+      sumNoAsc:"Adicione hora e local de nascimento para descobrir também seu Ascendente.",
+      pillarsTitle:"Os três pilares", readingTitle:"Seu retrato", wheelTitle:"A roda & os planetas",
+      housesTitle:"As 12 casas", housesHint:"Sistema “signo inteiro” a partir do Ascendente.",
+      balanceTitle:"Balança dos elementos", aspectsTitle:"Os aspectos do seu céu",
+      aspectsHint:"Como seus planetas conversam entre si: os talentos naturais (harmônicos) e as tensões que te fazem crescer.",
+      detailTitle:"📖 Leitura detalhada", detailHint:"Planeta por planeta, casa por casa, aspecto por aspecto — como um relatório profissional, versão pop.",
+      tagSun:"☉ SOL · quem você é", tagMoon:"☽ LUA · como você sente", tagAsc:"↑ ASCENDENTE · como você aparece",
+      ascNeed:"Precisamos da hora e do local de nascimento para calcular. ⏰", ascTag:"↑ ASCENDENTE",
+      house:"casa", elTitle:"Elementos", modTitle:"Modalidades", masc:"♂ Masculino", femm:"♀ Feminino",
+      el:{fuoco:"Fogo",terra:"Terra",aria:"Ar",acqua:"Água"}, mod:{cardinale:"Cardinal",fisso:"Fixo",mobile:"Mutável"},
+      balPend:"Seu céu pende para", balLow:s=>`, enquanto o <b>${s}</b> quase não aparece — sua área de crescimento`,
+      errDate:"Informe sua data de nascimento.", errTime:"Informe sua hora de nascimento (ou marque «não sei»).",
+      errPlace:"Escolha seu local de nascimento (necessário para o Ascendente).", errCalc:"Algo deu errado no cálculo.",
+      foot:"Cálculo tropical (astrologia ocidental) · efemérides astronomy-engine, conferidas vs Swiss Ephemeris (&lt; 0,1′).<br>Sem a hora de nascimento, Ascendente e casas não são calculados, e a Lua é aproximada.",
+      nav:{segni:"Signos",natale:"Mapa Astral",oroscopo:"Horóscopo",match:"♥ Match",componi:"Monte"} }
+  };
+  const U = () => UI[langOf()] || UI.it;
+
+  // --- place autocomplete ---
+  const acBox = $("acBox"), fPlace = $("fPlace");
+  let acItems = [], acSel = -1;
+  function renderAc(list){
+    acItems = list; acSel = -1;
+    if(!list.length){ acBox.classList.remove("show"); return; }
+    acBox.innerHTML = list.map((c,i)=>
+      `<div class="ac-item" data-i="${i}">${c.name} <small>· ${c.area}</small></div>`).join("");
+    acBox.classList.add("show");
+    acBox.querySelectorAll(".ac-item").forEach(el=>{
+      el.onclick = ()=> pickPlace(acItems[+el.dataset.i]);
+    });
+  }
+  function pickPlace(c){
+    chosenPlace = c; fPlace.value = c.name;
+    acBox.classList.remove("show");
+    $("placeHint").innerHTML = `✓ ${c.name}, ${c.area} · ${c.lat.toFixed(2)}, ${c.lon.toFixed(2)}`;
+  }
+  fPlace.addEventListener("input", ()=>{
+    chosenPlace = null; $("placeHint").textContent = U().placeHint;
+    renderAc(window.CITY.search(fPlace.value, 8));
+  });
+  fPlace.addEventListener("keydown", e=>{
+    if(!acBox.classList.contains("show")) return;
+    if(e.key==="ArrowDown"){acSel=Math.min(acSel+1,acItems.length-1);e.preventDefault();}
+    else if(e.key==="ArrowUp"){acSel=Math.max(acSel-1,0);e.preventDefault();}
+    else if(e.key==="Enter"){ if(acSel>=0){pickPlace(acItems[acSel]);e.preventDefault();} return;}
+    else return;
+    acBox.querySelectorAll(".ac-item").forEach((el,i)=>el.classList.toggle("sel",i===acSel));
+  });
+  document.addEventListener("click", e=>{ if(!fPlace.contains(e.target)&&!acBox.contains(e.target)) acBox.classList.remove("show"); });
+
+  // no-time toggle
+  $("fNoTime").addEventListener("change", e=>{
+    $("fTime").disabled = e.target.checked;
+    if(e.target.checked) $("fTime").value="";
+  });
+
+  // --- compute & render ---
+  $("goBtn").addEventListener("click", ()=>{
+    const err = $("errBox"); err.classList.remove("show");
+    const dateStr = $("fDate").value;
+    if(!dateStr){ return showErr(U().errDate); }
+    const [y,mo,d] = dateStr.split("-").map(Number);
+
+    const noTime = $("fNoTime").checked;
+    let hour=null, minute=null;
+    if(!noTime){
+      const t = $("fTime").value;
+      if(!t){ return showErr(U().errTime); }
+      [hour,minute] = t.split(":").map(Number);
+    }
+
+    // place: chosen city OR manual coords
+    let lat=null, lon=null, tz=null;
+    if(chosenPlace){ lat=chosenPlace.lat; lon=chosenPlace.lon; tz=chosenPlace.tz; }
+    else if($("fLat").value && $("fLon").value){
+      lat=parseFloat($("fLat").value); lon=parseFloat($("fLon").value);
+      tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+    }
+    if(!noTime && (lat==null)){ return showErr(U().errPlace); }
+    if(lat==null){ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; }
+
+    const input = {year:y,month:mo,day:d,hour,minute,lat,lon,tz};
+    let R;
+    try{ R = window.NATAL.compute(input); }
+    catch(ex){ console.error(ex); return showErr(U().errCalc); }
+    curName = $("fName").value.trim();
+    render(R, curName);
+    $("result").style.display="block";
+    $("result").scrollIntoView({behavior:"smooth"});
+  });
+  function showErr(m){ const e=$("errBox"); e.textContent=m; e.classList.add("show"); }
+
+  function mascotFor(sign, mood){
+    return window.MASCOT(sign, EL_COLOR[sign.el], "stampa", 1, mood||"happy");
+  }
+  function b3card(cls, tag, planet, txt, mood){
+    const s = planet.sign;
+    return `<div class="b3card ${cls}">
+      <div class="b3tag">${tag}</div>
+      <div class="b3mascot">${mascotFor(s, mood)}</div>
+      <div class="b3sign"><span class="b3glyph">${s.g}</span> ${s.n.toUpperCase()}</div>
+      <div class="b3deg">${planet.degText} · ${s.el}</div>
+      <div class="b3txt">${txt}</div>
+    </div>`;
+  }
+
+  function render(R, name){
+    curR=R; const u=U();
+    const sun=R.sun, moon=R.moon, asc=R.ascendant;
+    $("resTitle").textContent = name ? u.resName(name) : u.resMine;
+    let sum = `${u.sumSei} <b>${u.sunIs} ${sun.sign.n}</b>`;
+    sum += `, <b>${u.moonIs} ${moon.sign.n}</b>`;
+    if(asc) sum += ` ${u.sumE} <b>${u.ascIs} ${asc.sign.n}</b>`;
+    sum += `. ` + (asc ? u.sumPillars : u.sumNoAsc);
+    $("resSummary").innerHTML = sum;
+
+    // Big 3
+    let html = b3card("sole",u.tagSun, sun, window.NATALTXT.sun(sun.sign), "happy");
+    html += b3card("luna",u.tagMoon, moon, window.NATALTXT.moon(moon.sign), "love");
+    if(asc) html += b3card("asc",u.tagAsc, asc, window.NATALTXT.asc(asc.sign), "happy");
+    else html += `<div class="b3card asc"><div class="b3tag">${u.ascTag}</div>
+      <div class="b3txt" style="text-align:center;margin-top:30px">${u.ascNeed}</div></div>`;
+    $("big3").innerHTML = html;
+
+    // ritratto narrativo
+    $("reading").innerHTML = window.NATALTXT.reading(R);
+
+    // wheel + table
+    $("wheel").innerHTML = wheelSVG(R);
+    $("ptable").innerHTML = R.planets.map(p=>
+      `<tr><td class="gl">${p.glyph}</td><td>${p.name}</td>
+       <td>${p.sign.g} ${p.sign.n}</td><td>${p.degText}</td>
+       <td>${p.retro?'<span class="rx">℞</span>':''}${p.house?('<span style="color:#8a8275;font-size:12px">'+u.house+' '+p.house+'</span>'):''}</td></tr>`
+    ).join("");
+
+    // houses
+    if(R.houses){
+      $("housePanel").style.display="block";
+      $("houses").innerHTML = R.houses.map(h=>
+        `<div class="hcell"><b>${u.house.toUpperCase()} ${h.num}</b><span class="hg">${h.sign.g}</span><br>${h.sign.n}</div>`
+      ).join("");
+    } else { $("housePanel").style.display="none"; }
+
+    // bilancia elementi + aspetti
+    renderBalance(R);
+    renderAspects(R);
+    applyMode();
+  }
+
+  // --- toggle Semplice / Dettagliato ---
+  let curR = null, viewMode = 'simple', curName = '';
+  function applyMode(){
+    if(!curR) return;
+    const det = viewMode==='detail';
+    $("modeSimple").classList.toggle("on",!det);
+    $("modeDetail").classList.toggle("on",det);
+    const hasH = !!curR.houses;
+    const hasA = window.NATALASPECTS.compute(curR).length>0;
+    $("readingPanel").style.display = det?"none":"block";
+    $("housePanel").style.display = (!det && hasH)?"block":"none";
+    $("aspectsPanel").style.display = (!det && hasA)?"block":"none";
+    $("detailPanel").style.display = det?"block":"none";
+    if(det) $("detail").innerHTML = window.NATALDETAIL.report(curR);
+  }
+  $("modeSimple").onclick = ()=>{ viewMode='simple'; applyMode(); };
+  $("modeDetail").onclick = ()=>{ viewMode='detail'; applyMode(); $("detailPanel").scrollIntoView({behavior:"smooth"}); };
+
+  const EL_HEX = {fuoco:'#ec2e36',terra:'#36b06a',aria:'#f5b700',acqua:'#2f9bdb'};
+  function renderBalance(R){
+    const u=U(), EL_NAME=u.el, MOD_NAME=u.mod;
+    const b = window.NATALASPECTS.balance(R);
+    const maxE = Math.max(1, b.el.fuoco, b.el.terra, b.el.aria, b.el.acqua);
+    const maxM = Math.max(1, b.mod.cardinale, b.mod.fisso, b.mod.mobile);
+    let h = `<div class="balgrid"><div class="balcol"><div class="ballab">${u.elTitle}</div>`;
+    ['fuoco','terra','aria','acqua'].forEach(k=>{
+      h += `<div class="balrow"><span class="baln">${EL_NAME[k]}</span><span class="baltrack"><span class="balfill" style="width:${b.el[k]/maxE*100}%;background:${EL_HEX[k]}"></span></span><span class="balc">${b.el[k]}</span></div>`;
+    });
+    h += `</div><div class="balcol"><div class="ballab">${u.modTitle}</div>`;
+    ['cardinale','fisso','mobile'].forEach(k=>{
+      h += `<div class="balrow"><span class="baln">${MOD_NAME[k]}</span><span class="baltrack"><span class="balfill" style="width:${b.mod[k]/maxM*100}%;background:var(--ink)"></span></span><span class="balc">${b.mod[k]}</span></div>`;
+    });
+    h += `<div class="balpol">${u.masc} <b>${b.pol.masc}</b> · ${u.femm} <b>${b.pol.femm}</b></div></div></div>`;
+    const domEl = ['fuoco','terra','aria','acqua'].sort((a,c)=>b.el[c]-b.el[a])[0];
+    const lowEl = ['fuoco','terra','aria','acqua'].sort((a,c)=>b.el[a]-b.el[c])[0];
+    h += `<p class="balnote">${u.balPend} <b>${EL_NAME[domEl].toLowerCase()}</b>${b.el[lowEl]<=1?u.balLow(EL_NAME[lowEl].toLowerCase()):''}.</p>`;
+    $("balance").innerHTML = h;
+  }
+  function renderAspects(R){
+    const list = window.NATALASPECTS.compute(R);
+    if(!list.length){ $("aspectsPanel").style.display="none"; return; }
+    $("aspectsPanel").style.display="block";
+    const KC = {armonico:'#36b06a',teso:'#ec2e36',intenso:'#6b4ff0'};
+    $("aspects").innerHTML = list.slice(0,10).map(a=>
+      `<div class="asprow" style="border-left-color:${KC[a.kind]}">
+        <div class="asphead"><span class="aspg">${a.a.glyph} ${a.glyph} ${a.b.glyph}</span>
+        <span class="aspval" style="color:${a.value>=0?'#1f9d55':'#b81f27'}">${a.value>=0?'+':''}${a.value}</span></div>
+        <div class="asptxt">${a.text}</div></div>`
+    ).join("");
+  }
+
+  // --- ruota zodiacale SVG, stile pop (v2: glifi a chip + pianeti a ventaglio) ---
+  function wheelSVG(R){
+    const size=300, cx=size/2, cy=size/2;
+    const rOut=142, rChip=121, rRing=100, rPlanet=80, rLead=98;
+    const SIGNS = window.NATAL.SIGNS, ELC = EL_COLOR, D2R=Math.PI/180;
+    const ascLon = R.ascendant ? R.ascendant.lon : 0;
+    const ang = lon => 180 - (lon - ascLon);                 // gradi schermo (ASC a sinistra)
+    const pt = (r,a) => [cx + r*Math.cos(a*D2R), cy - r*Math.sin(a*D2R)];
+
+    let s=`<svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:330px;height:auto;overflow:visible">`;
+    s+=`<circle cx="${cx}" cy="${cy}" r="${rOut}" fill="var(--paper)" stroke="#15110d" stroke-width="5"/>`;
+    // settori per elemento
+    for(let i=0;i<12;i++){
+      const [x0,y0]=pt(rOut,ang(i*30)), [x1,y1]=pt(rOut,ang(i*30+30));
+      s+=`<path d="M${cx} ${cy} L${x0.toFixed(1)} ${y0.toFixed(1)} A${rOut} ${rOut} 0 0 0 ${x1.toFixed(1)} ${y1.toFixed(1)} Z" fill="${ELC[SIGNS[i].el]}" opacity="0.18"/>`;
+    }
+    s+=`<circle cx="${cx}" cy="${cy}" r="${rRing}" fill="#fff" stroke="#15110d" stroke-width="3.5"/>`;
+    // divisori + chip dei segni
+    for(let i=0;i<12;i++){
+      const [ox,oy]=pt(rOut,ang(i*30)), [ix,iy]=pt(rRing,ang(i*30));
+      s+=`<line x1="${ix.toFixed(1)}" y1="${iy.toFixed(1)}" x2="${ox.toFixed(1)}" y2="${oy.toFixed(1)}" stroke="#15110d" stroke-width="1.6" opacity=".55"/>`;
+      const [gx,gy]=pt(rChip,ang(i*30+15)), col=ELC[SIGNS[i].el];
+      s+=`<g><rect x="${(gx-13).toFixed(1)}" y="${(gy-13).toFixed(1)}" width="26" height="26" rx="7" fill="${col}" stroke="#15110d" stroke-width="2.5"/>`;
+      s+=`<text x="${gx.toFixed(1)}" y="${(gy+6).toFixed(1)}" text-anchor="middle" font-size="16" fill="#fff" font-family="Baloo 2" font-weight="700">${SIGNS[i].g}</text></g>`;
+    }
+    // ASC marker
+    if(R.ascendant){
+      const [ax,ay]=pt(rOut,180);
+      s+=`<path d="M${(ax-16).toFixed(1)} ${ay} l-13 -8 v16 z" fill="#ff2d6f" stroke="#15110d" stroke-width="2"/>`;
+      s+=`<text x="${(ax-34).toFixed(1)}" y="${(ay+4).toFixed(1)}" text-anchor="end" font-size="11" font-weight="700" fill="#ff2d6f" font-family="Space Mono">AC</text>`;
+    }
+    if(R.mc){
+      const [mx,my]=pt(rOut,ang(R.mc.lon));
+      s+=`<circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="4" fill="#6b4ff0" stroke="#15110d" stroke-width="2"/>`;
+    }
+    // --- pianeti: de-cluster a ventaglio ---
+    const items = R.planets.map(p=>({p, lon:p.lon, a:ang(p.lon)}));
+    items.sort((u,v)=>u.a-v.a);
+    const minSep=15;                                          // gradi minimi tra glifi
+    for(let i=1;i<items.length;i++){ const gap=items[i].a-items[i-1].a; if(gap<minSep) items[i].a=items[i-1].a+minSep; }
+    // ricentra il blocco se ha sforato
+    const span=items[items.length-1].a-items[0].a;
+    const trueMid=(ang(items[0].lon)+ang(items[items.length-1].lon))/2;
+    const newMid=(items[0].a+items[items.length-1].a)/2;
+    const shift=trueMid-newMid; items.forEach(it=>it.a+=shift);
+    items.forEach(it=>{
+      const [lx,ly]=pt(rLead, ang(it.lon));                  // tacca alla longitudine reale
+      const [px,py]=pt(rPlanet, it.a);
+      s+=`<line x1="${lx.toFixed(1)}" y1="${ly.toFixed(1)}" x2="${px.toFixed(1)}" y2="${py.toFixed(1)}" stroke="#15110d" stroke-width="1" opacity=".4"/>`;
+      s+=`<circle cx="${(lx).toFixed(1)}" cy="${(ly).toFixed(1)}" r="2" fill="#15110d"/>`;
+      s+=`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="12" fill="#fff" stroke="#15110d" stroke-width="2.5"/>`;
+      s+=`<text x="${px.toFixed(1)}" y="${(py+4.5).toFixed(1)}" text-anchor="middle" font-size="13" fill="#15110d" font-family="Baloo 2" font-weight="700">${it.p.glyph}</text>`;
+    });
+    s+=`<circle cx="${cx}" cy="${cy}" r="4" fill="#15110d"/>`;
+    s+=`</svg>`;
+    return s;
+  }
+
+  // default date placeholder
+  $("fDate").value = "";
+
+  // --- multilingua: applica le stringhe UI statiche e ri-renderizza il risultato ---
+  function applyLang(){
+    const L = langOf();
+    if(window.ZWIRE) window.ZWIRE.activate(L);   // imposta NATALTXT/NATALASPECTS/NATALDETAIL sulla lingua
+    const u = U();
+    // hero
+    $("ksuper").textContent = u.ksuper; $("htitle").textContent = u.htitle; $("hsub").textContent = u.hsub;
+    // form
+    $("formTitle").textContent = u.formTitle;
+    $("lblName").textContent = u.lblName; $("fName").placeholder = u.phName;
+    $("lblDate").textContent = u.lblDate; $("lblTime").textContent = u.lblTime; $("lblNoTime").textContent = u.lblNoTime;
+    $("lblPlace").textContent = u.lblPlace; $("fPlace").placeholder = u.phPlace;
+    if(!chosenPlace) $("placeHint").textContent = u.placeHint;
+    $("lblLat").textContent = u.lblLat; $("lblLon").textContent = u.lblLon; $("manualHint").textContent = u.manualHint;
+    $("goBtn").textContent = u.go;
+    // toggle
+    $("modeSimple").textContent = u.modeSimple; $("modeDetail").textContent = u.modeDetail;
+    // titoli sezione + hint
+    $("pillarsTitle").textContent = u.pillarsTitle; $("readingTitle").textContent = u.readingTitle;
+    $("wheelTitle").innerHTML = u.wheelTitle; $("housesTitle").textContent = u.housesTitle; $("housesHint").textContent = u.housesHint;
+    $("balanceTitle").textContent = u.balanceTitle; $("aspectsTitle").textContent = u.aspectsTitle; $("aspectsHint").textContent = u.aspectsHint;
+    $("detailTitle").textContent = u.detailTitle; $("detailHint").textContent = u.detailHint;
+    // footnote + nav
+    $("foot").innerHTML = u.foot;
+    document.querySelectorAll(".pill[data-k]").forEach(p=>{ if(u.nav[p.dataset.k]) p.textContent = u.nav[p.dataset.k]; });
+    document.documentElement.lang = L;
+    // se c'è un risultato mostrato, ri-renderizza nella nuova lingua (i dati di nascita restano in curR)
+    if(curR){ render(curR, curName); }
+  }
+
+  if(window.ZI18N) window.ZI18N.mount($("langPick"));
+  window.addEventListener('zlangchange', applyLang);
+  applyLang();
+})();
+</script>
+</body>
+</html>

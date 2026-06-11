@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Zodiac — Oroscopo del Giorno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff6e3;--red:#ec2e36;--red-d:#b81f27;--yellow:#ffd23f;--blue:#2f9bdb;
+  --green:#36b06a;--ink:#15110d;--head:#2c2138;--purple:#6b4ff0;--pink:#ff2d6f;
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#6b4ff0,#4a2fd0);
+  background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;min-height:100vh;-webkit-text-size-adjust:100%}
+.wrap{max-width:880px;margin:clamp(10px,3vw,30px) auto;padding:0 0 40px;background:var(--paper);
+  background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.4px,transparent 1.5px);background-size:12px 12px;
+  border:5px solid var(--ink);border-radius:22px;box-shadow:0 14px 0 rgba(0,0,0,.25);overflow:hidden}
+.topbar{background:var(--head);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:5px solid var(--ink)}
+.brand{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;color:var(--yellow);display:flex;align-items:center;gap:8px}
+.brand .star{color:#fff}
+.nav{display:flex;gap:7px;flex-wrap:wrap}
+.pill{font-family:'Baloo 2';font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;border:2.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;box-shadow:2px 2px 0 var(--ink);text-decoration:none;display:inline-block}
+.pill.on{background:var(--purple);color:#fff}
+.hero{padding:22px 22px 6px;text-align:center}
+.ksuper{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--purple);text-transform:uppercase}
+.htitle{font-family:'Bangers',cursive;font-size:clamp(34px,8vw,60px);color:var(--yellow);-webkit-text-stroke:2.5px var(--ink);text-shadow:4px 4px 0 var(--ink);letter-spacing:1.5px;margin:4px 0 2px;line-height:1}
+.hsub{font-weight:600;color:#5b5347;max-width:540px;margin:6px auto 0;font-size:15px}
+.panel{margin:20px 22px;border:4px solid var(--ink);background:#fff;border-radius:16px;box-shadow:7px 7px 0 var(--purple);padding:18px}
+.panel.yellow{box-shadow:7px 7px 0 var(--yellow)}
+.panel.meteo{box-shadow:7px 7px 0 var(--blue);background:var(--paper)}
+.panel h2{font-family:'Bangers',cursive;font-size:24px;letter-spacing:1px;margin:0 0 12px;color:var(--ink)}
+.field{margin-bottom:14px;position:relative}
+.field label{display:block;font-weight:700;font-size:13px;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;color:var(--head)}
+.inp{width:100%;font-family:'Baloo 2';font-weight:600;font-size:16px;padding:11px 13px;border:3px solid var(--ink);border-radius:11px;background:var(--paper);color:var(--ink);outline:none}
+.inp:focus{box-shadow:3px 3px 0 var(--purple)}
+.row{display:flex;gap:12px;flex-wrap:wrap}.row .field{flex:1;min-width:130px}
+.hint{font-size:12px;color:#8a8275;margin-top:4px;font-weight:600}
+.check{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;cursor:pointer;margin-top:6px}
+.check input{width:18px;height:18px;accent-color:var(--purple)}
+.ac{position:absolute;left:0;right:0;top:100%;z-index:30;background:#fff;border:3px solid var(--ink);border-radius:11px;margin-top:5px;box-shadow:4px 4px 0 var(--ink);overflow:hidden;display:none}
+.ac.show{display:block}
+.ac-item{padding:9px 13px;cursor:pointer;border-bottom:1.5px solid #eee;font-weight:600;font-size:14px}
+.ac-item:last-child{border-bottom:none}.ac-item:hover,.ac-item.sel{background:var(--yellow)}
+.ac-item small{color:#8a8275;font-weight:600}
+.daynav{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.daybtn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:8px 14px;border-radius:10px;border:2.5px solid var(--ink);background:#fff;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.daybtn.on{background:var(--yellow)}
+.btn-go{width:100%;margin-top:6px;font-family:'Bangers',cursive;font-size:24px;letter-spacing:1px;color:#fff;background:var(--purple);border:3.5px solid var(--ink);border-radius:13px;padding:13px;cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .05s}
+.btn-go:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.err{color:var(--red-d);font-weight:700;font-size:13px;margin-top:8px;display:none}.err.show{display:block}
+#result{display:none}
+.meteo-head{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.moonmascot{width:84px;height:110px;flex:0 0 auto}
+.moonmascot .omino{width:100%;height:100%}
+.meteo-txt{flex:1;min-width:200px;font-size:16px;font-weight:600;line-height:1.5;color:#3f3930}
+.daterow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.moves{list-style:none;padding:0;margin:0}
+.moves li{border-left:4px solid var(--purple);padding:8px 0 8px 14px;margin-bottom:12px;font-size:14.5px;line-height:1.5;color:#3f3930}
+.moves li:nth-child(2){border-color:var(--pink)}.moves li:nth-child(3){border-color:var(--blue)}
+.moves b{color:var(--ink)}
+.alw{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.alw{grid-template-columns:1fr}}
+.acard{border:3px solid var(--ink);border-radius:13px;padding:13px;background:var(--paper);font-size:13.5px;line-height:1.45;font-weight:600;color:#403930}
+.acard.amore{box-shadow:4px 4px 0 var(--pink)}
+.acard.lavoro{box-shadow:4px 4px 0 var(--blue)}
+.acard.energia{box-shadow:4px 4px 0 var(--red)}
+.acard .ic{font-size:22px;display:block;margin-bottom:4px}
+.acard b{color:var(--ink)}
+.consiglio{background:var(--ink);color:#fff;border-radius:13px;padding:15px 17px;font-weight:600;font-size:15px;line-height:1.5;box-shadow:5px 5px 0 var(--yellow)}
+.consiglio .lab{font-family:'Bangers',cursive;color:var(--yellow);font-size:20px;letter-spacing:1px;display:block;margin-bottom:3px}
+.premiumtag{display:inline-block;background:var(--yellow);border:2.5px solid var(--ink);border-radius:999px;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink);margin-left:6px}
+.footnote{font-size:11px;color:#9a9183;text-align:center;margin:18px 22px 0;font-weight:600;line-height:1.5}
+.premiumbox{margin:20px 22px;border:3px dashed var(--purple);border-radius:14px;padding:14px 16px;background:rgba(107,79,240,.06);font-size:13px;font-weight:600;color:#5b5347;line-height:1.5}
+
+.qsigngrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media(max-width:560px){.qsigngrid{grid-template-columns:repeat(4,1fr)}}
+.qsignbtn{border:3px solid var(--ink);border-radius:12px;background:var(--paper);cursor:pointer;padding:8px 4px;text-align:center;box-shadow:3px 3px 0 var(--ink);transition:transform .05s}
+.qsignbtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.qsignbtn.on{background:var(--purple);color:#fff}
+.qsignbtn .qg{font-size:22px;display:block;line-height:1}
+.qsignbtn .qn{font-size:11px;font-weight:700;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="index.html" style="text-decoration:none" title="Home"><span class="star">★</span> ZODIAC</a>
+    <div class="topright" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <div class="nav">
+        <a class="pill" data-k="segni" href="Zodiac%20Zine.html">Segni</a>
+        <a class="pill" data-k="natale" href="Tema%20Natale.html">Tema Natale</a>
+        <a class="pill on" data-k="oroscopo" href="Oroscopo%20del%20Giorno.html">Oroscopo</a>
+        <a class="pill" data-k="match" href="Match%20del%20Giorno.html">♥ Match</a>
+        <a class="pill" data-k="componi" href="Componi%20la%20Frase.html">Componi</a>
+      </div>
+      <span id="langPick"></span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="ksuper" id="ksuper">// il tuo cielo, giorno per giorno</div>
+    <h1 class="htitle" id="htitle">OROSCOPO DEL GIORNO</h1>
+    <p class="hsub" id="hsub">Non l'oroscopo uguale per tutti: calcoliamo i transiti reali sul <b>tuo</b> tema natale e te li raccontiamo in stile pop.</p>
+  </div>
+
+  <div class="panel" id="quickPanel" style="box-shadow:7px 7px 0 var(--yellow)">
+    <h2 id="quickTitle">★ Oroscopo veloce</h2>
+    <p id="quickSub" style="font-weight:600;color:#5b5347;margin:-4px 0 12px;font-size:14px">Scegli il tuo segno e leggi subito — nessun dato richiesto.</p>
+    <div class="qsigngrid" id="signGrid"></div>
+    <div class="daynav" style="margin-top:12px">
+      <button class="daybtn on" id="dToday">Oggi</button>
+      <button class="daybtn" id="dTomorrow">Domani</button>
+      <input class="inp" id="fDay" type="date" style="flex:1;min-width:150px;width:auto">
+    </div>
+  </div>
+
+  <div class="panel yellow" id="formPanel">
+    <h2 id="formTitle">✦ Oroscopo personalizzato</h2>
+    <p id="formSub" style="font-weight:600;color:#5b5347;margin:-4px 0 12px;font-size:14px">Vuoi più precisione? Aggiungi data, ora e luogo: calcoliamo i transiti anche sulla tua <b>Luna</b> e sul tuo <b>Ascendente</b> reali.</p>
+    <div class="field">
+      <label id="lblName">Nome (facoltativo)</label>
+      <input class="inp" id="fName" placeholder="Come ti chiami?" autocomplete="off">
+    </div>
+    <div class="row">
+      <div class="field"><label id="lblDate">Data di nascita</label><input class="inp" id="fDate" type="date" min="1900-01-01" max="2030-12-31"></div>
+      <div class="field"><label id="lblTime">Ora di nascita</label><input class="inp" id="fTime" type="time">
+        <label class="check"><input type="checkbox" id="fNoTime"> <span id="lblNoTime">Non conosco l'ora</span></label></div>
+    </div>
+    <div class="field">
+      <label id="lblPlace">Luogo di nascita</label>
+      <input class="inp" id="fPlace" placeholder="Cerca una città… es. Napoli" autocomplete="off">
+      <div class="ac" id="acBox"></div>
+      <div class="hint" id="placeHint">Serve per l'Ascendente (più precisione). Senza, calcoliamo comunque su Sole, Luna e pianeti.</div>
+    </div>
+
+    <button class="btn-go" id="goBtn">LEGGI L'OROSCOPO ✦</button>
+    <div class="err" id="errBox"></div>
+  </div>
+
+  <div id="result">
+    <div class="panel meteo">
+      <div class="daterow" id="dateRow"></div>
+      <h2 id="resTitle">Il tuo giorno</h2>
+      <div class="meteo-head">
+        <div class="moonmascot" id="moonMascot"></div>
+        <div class="meteo-txt" id="meteoTxt"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 id="secMoves">Cosa si muove oggi</h2>
+      <ul class="moves" id="moves"></ul>
+    </div>
+
+    <div class="panel yellow">
+      <h2 id="secAlw">Amore · Lavoro · Energia</h2>
+      <div class="alw">
+        <div class="acard amore"><span class="ic">♥</span><span id="aAmore"></span></div>
+        <div class="acard lavoro"><span class="ic">⚙</span><span id="aLavoro"></span></div>
+        <div class="acard energia"><span class="ic">⚡</span><span id="aEnergia"></span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="consiglio"><span class="lab" id="secAdvice">Il consiglio del giorno</span><span id="consiglio"></span></div>
+    </div>
+  </div>
+
+  <div class="premiumbox" id="premiumBox">
+    💎 <b>Nota prodotto:</b> questa è la feature premium. Il calcolo dei transiti è reale e gira in locale (zero costi API).
+    La narrazione qui è generata da modelli di testo; il prossimo step è farla riscrivere dall'AI nella voce esatta del tuo libro.
+  </div>
+
+  <div class="footnote" id="foot">
+    Transiti calcolati alle 12:00 del giorno scelto · effemeridi astronomy-engine (verificate vs Swiss Ephemeris).<br>
+    L'oroscopo è basato sugli aspetti dei pianeti di oggi verso il tuo tema natale.
+  </div>
+</div>
+
+<script src="lang/i18n.js"></script>
+<script src="natal/astronomy.browser.min.js"></script>
+<script src="coppie/mascots.js"></script>
+<script src="natal/engine.js"></script>
+<script src="natal/cities.js"></script>
+<script src="natal/transit.js"></script>
+<script src="natal/horoscope.js"></script>
+<script src="natal/horoscope.en.js"></script>
+<script src="natal/horoscope.fr.js"></script>
+<script src="natal/horoscope.es.js"></script>
+<script src="natal/horoscope.pt.js"></script>
+<script src="lang/wire.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const EL_COLOR=window.NATAL.EL_COLOR;
+  const SIGNS=window.NATAL.SIGNS;
+  const langOf=()=>window.ZI18N?window.ZI18N.get():'it';
+  let curSign=null;
+  let chosenPlace=null;
+  // stato ultimo render personalizzato, per ri-renderizzare cambiando lingua
+  let lastNatal=null, lastName="", lastMode=null; // lastMode: 'quick' | 'custom'
+
+  const UI={
+    it:{ksuper:"// il tuo cielo, giorno per giorno",htitle:"OROSCOPO DEL GIORNO",hsub:"Non l'oroscopo uguale per tutti: calcoliamo i transiti reali sul <b>tuo</b> tema natale e te li raccontiamo in stile pop.",quickTitle:"★ Oroscopo veloce",quickSub:"Scegli il tuo segno e leggi subito — nessun dato richiesto.",today:"Oggi",tomorrow:"Domani",formTitle:"✦ Oroscopo personalizzato",formSub:"Vuoi più precisione? Aggiungi data, ora e luogo: calcoliamo i transiti anche sulla tua <b>Luna</b> e sul tuo <b>Ascendente</b> reali.",lblName:"Nome (facoltativo)",phName:"Come ti chiami?",lblDate:"Data di nascita",lblTime:"Ora di nascita",lblNoTime:"Non conosco l'ora",lblPlace:"Luogo di nascita",phPlace:"Cerca una città… es. Napoli",hint:"Serve per l'Ascendente (più precisione). Senza, calcoliamo comunque su Sole, Luna e pianeti.",go:"LEGGI L'OROSCOPO ✦",secMoves:"Cosa si muove oggi",secAlw:"Amore · Lavoro · Energia",secAdvice:"Il consiglio del giorno",resYourDay:"Il tuo giorno",resYourHoro:"Il tuo oroscopo",resOf:n=>`L'oroscopo di ${n}`,resBySign:(g,n)=>`Oroscopo · ${g} ${n}`,errDate:"Inserisci la tua data di nascita.",errTime:"Inserisci l'ora di nascita (o spunta «non la conosco»).",errPlace:"Scegli il luogo di nascita (serve per l'Ascendente).",errCalc:"Errore nel calcolo del tema natale.",premium:'💎 <b>Nota prodotto:</b> questa è la feature premium. Il calcolo dei transiti è reale e gira in locale (zero costi API). La narrazione qui è generata da modelli di testo; il prossimo step è farla riscrivere dall\'AI nella voce esatta del tuo libro.',foot:"Transiti calcolati alle 12:00 del giorno scelto · effemeridi astronomy-engine (verificate vs Swiss Ephemeris).<br>L'oroscopo è basato sugli aspetti dei pianeti di oggi verso il tuo tema natale.",nav:{segni:"Segni",natale:"Tema Natale",oroscopo:"Oroscopo",match:"♥ Match",componi:"Componi"},months:["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"],days:["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"]},
+    en:{ksuper:"// your sky, day by day",htitle:"HOROSCOPE OF THE DAY",hsub:"Not the one-size-fits-all horoscope: we compute the real transits on <b>your</b> birth chart and tell them pop-style.",quickTitle:"★ Quick horoscope",quickSub:"Pick your sign and read right away — no data needed.",today:"Today",tomorrow:"Tomorrow",formTitle:"✦ Personalized horoscope",formSub:"Want more precision? Add date, time and place: we compute the transits on your real <b>Moon</b> and <b>Ascendant</b> too.",lblName:"Name (optional)",phName:"What's your name?",lblDate:"Date of birth",lblTime:"Time of birth",lblNoTime:"I don't know the time",lblPlace:"Place of birth",phPlace:"Search a city… e.g. London",hint:"Needed for the Ascendant (more precision). Without it, we still compute Sun, Moon and planets.",go:"READ THE HOROSCOPE ✦",secMoves:"What's moving today",secAlw:"Love · Work · Energy",secAdvice:"Advice of the day",resYourDay:"Your day",resYourHoro:"Your horoscope",resOf:n=>`${n}'s horoscope`,resBySign:(g,n)=>`Horoscope · ${g} ${n}`,errDate:"Enter your date of birth.",errTime:"Enter your time of birth (or tick «I don't know it»).",errPlace:"Pick your place of birth (needed for the Ascendant).",errCalc:"Error computing the birth chart.",premium:'💎 <b>Product note:</b> this is the premium feature. The transit calculation is real and runs locally (zero API cost). The copy here is generated by text models; the next step is to have AI rewrite it in your book\'s exact voice.',foot:"Transits computed at 12:00 of the chosen day · astronomy-engine ephemeris (verified vs Swiss Ephemeris).<br>The horoscope is based on today's planetary aspects to your birth chart.",nav:{segni:"Signs",natale:"Birth Chart",oroscopo:"Horoscope",match:"♥ Match",componi:"Compose"},months:["January","February","March","April","May","June","July","August","September","October","November","December"],days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},
+    fr:{ksuper:"// ton ciel, jour après jour",htitle:"HOROSCOPE DU JOUR",hsub:"Pas l'horoscope identique pour tous : on calcule les transits réels sur <b>ton</b> thème natal et on te les raconte façon pop.",quickTitle:"★ Horoscope express",quickSub:"Choisis ton signe et lis tout de suite — aucune donnée requise.",today:"Aujourd'hui",tomorrow:"Demain",formTitle:"✦ Horoscope personnalisé",formSub:"Tu veux plus de précision ? Ajoute date, heure et lieu : on calcule les transits aussi sur ta <b>Lune</b> et ton <b>Ascendant</b> réels.",lblName:"Prénom (facultatif)",phName:"Comment t'appelles-tu ?",lblDate:"Date de naissance",lblTime:"Heure de naissance",lblNoTime:"Je ne connais pas l'heure",lblPlace:"Lieu de naissance",phPlace:"Cherche une ville… ex. Paris",hint:"Nécessaire pour l'Ascendant (plus de précision). Sans, on calcule quand même Soleil, Lune et planètes.",go:"LIRE L'HOROSCOPE ✦",secMoves:"Ce qui bouge aujourd'hui",secAlw:"Amour · Travail · Énergie",secAdvice:"Le conseil du jour",resYourDay:"Ta journée",resYourHoro:"Ton horoscope",resOf:n=>`L'horoscope de ${n}`,resBySign:(g,n)=>`Horoscope · ${g} ${n}`,errDate:"Saisis ta date de naissance.",errTime:"Saisis ton heure de naissance (ou coche « je ne la connais pas »).",errPlace:"Choisis ton lieu de naissance (nécessaire pour l'Ascendant).",errCalc:"Erreur dans le calcul du thème natal.",premium:'💎 <b>Note produit :</b> c\'est la fonction premium. Le calcul des transits est réel et tourne en local (zéro coût API). Le texte ici est généré par des modèles ; l\'étape suivante est de le faire réécrire par l\'IA dans la voix exacte de ton livre.',foot:"Transits calculés à 12:00 du jour choisi · éphémérides astronomy-engine (vérifiées vs Swiss Ephemeris).<br>L'horoscope se base sur les aspects des planètes du jour à ton thème natal.",nav:{segni:"Signes",natale:"Thème Natal",oroscopo:"Horoscope",match:"♥ Match",componi:"Composer"},months:["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],days:["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"]},
+    es:{ksuper:"// tu cielo, día a día",htitle:"HORÓSCOPO DEL DÍA",hsub:"No el horóscopo igual para todos: calculamos los tránsitos reales sobre <b>tu</b> carta natal y te los contamos en plan pop.",quickTitle:"★ Horóscopo rápido",quickSub:"Elige tu signo y lee al instante — no hace falta ningún dato.",today:"Hoy",tomorrow:"Mañana",formTitle:"✦ Horóscopo personalizado",formSub:"¿Quieres más precisión? Añade fecha, hora y lugar: calculamos los tránsitos también sobre tu <b>Luna</b> y tu <b>Ascendente</b> reales.",lblName:"Nombre (opcional)",phName:"¿Cómo te llamas?",lblDate:"Fecha de nacimiento",lblTime:"Hora de nacimiento",lblNoTime:"No sé la hora",lblPlace:"Lugar de nacimiento",phPlace:"Busca una ciudad… ej. Madrid",hint:"Sirve para el Ascendente (más precisión). Sin él, calculamos igual Sol, Luna y planetas.",go:"LEER EL HORÓSCOPO ✦",secMoves:"Qué se mueve hoy",secAlw:"Amor · Trabajo · Energía",secAdvice:"El consejo del día",resYourDay:"Tu día",resYourHoro:"Tu horóscopo",resOf:n=>`El horóscopo de ${n}`,resBySign:(g,n)=>`Horóscopo · ${g} ${n}`,errDate:"Introduce tu fecha de nacimiento.",errTime:"Introduce tu hora de nacimiento (o marca «no la sé»).",errPlace:"Elige tu lugar de nacimiento (sirve para el Ascendente).",errCalc:"Error al calcular la carta natal.",premium:'💎 <b>Nota de producto:</b> esta es la función premium. El cálculo de los tránsitos es real y corre en local (cero costes de API). El texto aquí lo generan modelos; el siguiente paso es que la IA lo reescriba con la voz exacta de tu libro.',foot:"Tránsitos calculados a las 12:00 del día elegido · efemérides astronomy-engine (verificadas vs Swiss Ephemeris).<br>El horóscopo se basa en los aspectos de los planetas de hoy hacia tu carta natal.",nav:{segni:"Signos",natale:"Carta Natal",oroscopo:"Horóscopo",match:"♥ Match",componi:"Arma"},months:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],days:["domingo","lunes","martes","miércoles","jueves","viernes","sábado"]},
+    pt:{ksuper:"// seu céu, dia a dia",htitle:"HORÓSCOPO DO DIA",hsub:"Não o horóscopo igual para todos: calculamos os trânsitos reais sobre o <b>seu</b> mapa astral e contamos em estilo pop.",quickTitle:"★ Horóscopo rápido",quickSub:"Escolha o seu signo e leia na hora — nenhum dado necessário.",today:"Hoje",tomorrow:"Amanhã",formTitle:"✦ Horóscopo personalizado",formSub:"Quer mais precisão? Adicione data, hora e lugar: calculamos os trânsitos também sobre a sua <b>Lua</b> e o seu <b>Ascendente</b> reais.",lblName:"Nome (opcional)",phName:"Como você se chama?",lblDate:"Data de nascimento",lblTime:"Hora de nascimento",lblNoTime:"Não sei a hora",lblPlace:"Lugar de nascimento",phPlace:"Busque uma cidade… ex. São Paulo",hint:"Serve para o Ascendente (mais precisão). Sem ele, calculamos mesmo assim Sol, Lua e planetas.",go:"LER O HORÓSCOPO ✦",secMoves:"O que se mexe hoje",secAlw:"Amor · Trabalho · Energia",secAdvice:"O conselho do dia",resYourDay:"O seu dia",resYourHoro:"O seu horóscopo",resOf:n=>`O horóscopo de ${n}`,resBySign:(g,n)=>`Horóscopo · ${g} ${n}`,errDate:"Insira a sua data de nascimento.",errTime:"Insira a sua hora de nascimento (ou marque «não sei»).",errPlace:"Escolha o seu lugar de nascimento (serve para o Ascendente).",errCalc:"Erro no cálculo do mapa astral.",premium:'💎 <b>Nota de produto:</b> esta é a função premium. O cálculo dos trânsitos é real e roda local (custo zero de API). O texto aqui é gerado por modelos; o próximo passo é a IA reescrevê-lo na voz exata do seu livro.',foot:"Trânsitos calculados às 12:00 do dia escolhido · efemérides astronomy-engine (verificadas vs Swiss Ephemeris).<br>O horóscopo se baseia nos aspectos dos planetas de hoje em relação ao seu mapa astral.",nav:{segni:"Signos",natale:"Mapa Astral",oroscopo:"Horóscopo",match:"♥ Match",componi:"Monte"},months:["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"],days:["domingo","segunda","terça","quarta","quinta","sexta","sábado"]}
+  };
+  const u=()=>UI[langOf()]||UI.it;
+
+  // place autocomplete
+  const acBox=$("acBox"),fPlace=$("fPlace");let acItems=[],acSel=-1;
+  function renderAc(list){acItems=list;acSel=-1;if(!list.length){acBox.classList.remove("show");return;}
+    acBox.innerHTML=list.map((c,i)=>`<div class="ac-item" data-i="${i}">${c.name} <small>· ${c.area}</small></div>`).join("");
+    acBox.classList.add("show");
+    acBox.querySelectorAll(".ac-item").forEach(el=>el.onclick=()=>pickPlace(acItems[+el.dataset.i]));}
+  function pickPlace(c){chosenPlace=c;fPlace.value=c.name;acBox.classList.remove("show");
+    $("placeHint").innerHTML=`✓ ${c.name}, ${c.area}`;}
+  fPlace.addEventListener("input",()=>{chosenPlace=null;renderAc(window.CITY.search(fPlace.value,8));});
+  fPlace.addEventListener("keydown",e=>{if(!acBox.classList.contains("show"))return;
+    if(e.key==="ArrowDown"){acSel=Math.min(acSel+1,acItems.length-1);e.preventDefault();}
+    else if(e.key==="ArrowUp"){acSel=Math.max(acSel-1,0);e.preventDefault();}
+    else if(e.key==="Enter"){if(acSel>=0){pickPlace(acItems[acSel]);e.preventDefault();}return;}else return;
+    acBox.querySelectorAll(".ac-item").forEach((el,i)=>el.classList.toggle("sel",i===acSel));});
+  document.addEventListener("click",e=>{if(!fPlace.contains(e.target)&&!acBox.contains(e.target))acBox.classList.remove("show");});
+
+  $("fNoTime").addEventListener("change",e=>{$("fTime").disabled=e.target.checked;if(e.target.checked)$("fTime").value="";});
+
+  // day selector
+  function ymd(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+  const today=new Date(); const tomorrow=new Date(today.getTime()+86400000);
+  $("fDay").value=ymd(today);
+  function setDayBtn(which){
+    $("dToday").classList.toggle("on",which==="today");
+    $("dTomorrow").classList.toggle("on",which==="tomorrow");
+  }
+  $("dToday").onclick=()=>{$("fDay").value=ymd(today);setDayBtn("today");if(curSign)renderQuick(curSign);};
+  $("dTomorrow").onclick=()=>{$("fDay").value=ymd(tomorrow);setDayBtn("tomorrow");if(curSign)renderQuick(curSign);};
+  $("fDay").addEventListener("input",()=>setDayBtn(null));
+
+  function renderCustom(){
+    if(!lastNatal)return;
+    const dayStr=$("fDay").value; const [dy,dmo,dd]=dayStr.split("-").map(Number);
+    const dayDate=new Date(dy,dmo-1,dd);
+    const T=window.TRANSIT.forDate(lastNatal,dayDate,12);
+    const H=window.HOROSCOPE.daily(lastNatal,T); // HOROSCOPE è già nella lingua attiva
+    render(H,T,lastName,dayDate);
+    $("result").style.display="block";
+  }
+
+  $("goBtn").addEventListener("click",()=>{
+    const U=u();
+    const err=$("errBox");err.classList.remove("show");
+    const ds=$("fDate").value;
+    if(!ds)return showErr(U.errDate);
+    const [by,bmo,bd]=ds.split("-").map(Number);
+    const noTime=$("fNoTime").checked;
+    let hour=null,minute=null;
+    if(!noTime){const t=$("fTime").value;if(!t)return showErr(U.errTime);[hour,minute]=t.split(":").map(Number);}
+    let lat=null,lon=null,tz=null;
+    if(chosenPlace){lat=chosenPlace.lat;lon=chosenPlace.lon;tz=chosenPlace.tz;}
+    if(!noTime&&lat==null)return showErr(U.errPlace);
+    if(lat==null)tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"UTC";
+
+    let natal;
+    try{ natal=window.NATAL.compute({year:by,month:bmo,day:bd,hour,minute,lat,lon,tz}); }
+    catch(ex){console.error(ex);return showErr(U.errCalc);}
+
+    lastNatal=natal; lastName=$("fName").value.trim(); lastMode='custom'; curSign=null;
+    $("signGrid").querySelectorAll(".qsignbtn").forEach(x=>x.classList.remove("on"));
+    renderCustom();
+    $("result").scrollIntoView({behavior:"smooth"});
+  });
+  function showErr(m){const e=$("errBox");e.textContent=m;e.classList.add("show");}
+
+  // ---- oroscopo veloce (solo segno) ----
+  function buildGrid(){
+    $("signGrid").innerHTML=SIGNS.map(s=>`<button class="qsignbtn${s.k===curSign?' on':''}" data-k="${s.k}"><span class="qg">${s.g}</span><span class="qn">${s.n}</span></button>`).join("");
+    $("signGrid").querySelectorAll(".qsignbtn").forEach(b=>b.onclick=()=>renderQuick(b.dataset.k));
+  }
+  buildGrid();
+  function renderQuick(signKey){
+    curSign=signKey; lastMode='quick'; lastNatal=null;
+    $("signGrid").querySelectorAll(".qsignbtn").forEach(x=>x.classList.toggle("on",x.dataset.k===signKey));
+    const dayStr=$("fDay").value||ymd(today); const [dy,dmo,dd]=dayStr.split("-").map(Number);
+    const dayDate=new Date(dy,dmo-1,dd);
+    const H=window.HOROSCOPE.dailyBySign(signKey,dayDate); // HOROSCOPE già nella lingua attiva
+    const s=SIGNS.find(x=>x.k===signKey);
+    render(H,null,null,dayDate);
+    $("resTitle").textContent=u().resBySign(s.g,s.n);
+    $("result").style.display="block"; $("result").scrollIntoView({behavior:"smooth"});
+  }
+  (function(){const sp=new URLSearchParams(location.search).get("sign");if(sp&&SIGNS.some(s=>s.k===sp))renderQuick(sp);})();
+
+  function render(H,T,name,dayDate){
+    const U=u();
+    $("dateRow").textContent=`${U.days[dayDate.getDay()]} ${dayDate.getDate()} ${U.months[dayDate.getMonth()]} ${dayDate.getFullYear()}`;
+    $("resTitle").textContent=name?U.resOf(name):U.resYourHoro;
+    const ms=H.moonSign;
+    $("moonMascot").innerHTML=window.MASCOT(ms,EL_COLOR[ms.el],"stampa",1,"happy");
+    $("meteoTxt").innerHTML=H.meteo;
+    $("moves").innerHTML=H.moves.map(m=>`<li>${m}</li>`).join("");
+    $("aAmore").innerHTML=H.areas.amore;
+    $("aLavoro").innerHTML=H.areas.lavoro;
+    $("aEnergia").innerHTML=H.areas.energia;
+    $("consiglio").innerHTML=" "+H.consiglio;
+  }
+
+  function applyLang(){
+    const L=langOf();
+    if(window.ZWIRE) window.ZWIRE.activate(L); // rimappa window.HOROSCOPE sulla variante lingua
+    buildGrid(); // ricostruisce i 12 bottoni coi nomi nella lingua scelta
+    const U=u();
+    // hero
+    $("ksuper").textContent=U.ksuper;
+    $("htitle").textContent=U.htitle;
+    $("hsub").innerHTML=U.hsub;
+    // pannello veloce
+    $("quickTitle").textContent=U.quickTitle;
+    $("quickSub").textContent=U.quickSub;
+    $("dToday").textContent=U.today;
+    $("dTomorrow").textContent=U.tomorrow;
+    // pannello personalizzato
+    $("formTitle").textContent=U.formTitle;
+    $("formSub").innerHTML=U.formSub;
+    $("lblName").textContent=U.lblName;
+    $("fName").placeholder=U.phName;
+    $("lblDate").textContent=U.lblDate;
+    $("lblTime").textContent=U.lblTime;
+    $("lblNoTime").textContent=U.lblNoTime;
+    $("lblPlace").textContent=U.lblPlace;
+    $("fPlace").placeholder=U.phPlace;
+    if(!chosenPlace) $("placeHint").innerHTML=U.hint;
+    $("goBtn").textContent=U.go;
+    // sezioni risultato
+    $("secMoves").textContent=U.secMoves;
+    $("secAlw").textContent=U.secAlw;
+    $("secAdvice").textContent=U.secAdvice;
+    $("premiumBox").innerHTML=U.premium;
+    $("foot").innerHTML=U.foot;
+    // nav
+    document.querySelectorAll(".pill[data-k]").forEach(p=>{ if(U.nav[p.dataset.k]) p.textContent=U.nav[p.dataset.k]; });
+    document.documentElement.lang=L;
+    // ri-renderizza il risultato mostrato nella nuova lingua
+    if(lastMode==='quick'&&curSign) renderQuick(curSign);
+    else if(lastMode==='custom'&&lastNatal) renderCustom();
+  }
+
+  if(wi

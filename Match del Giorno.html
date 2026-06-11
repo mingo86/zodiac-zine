@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Zodiac — Match del Giorno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff6e3;--red:#ec2e36;--red-d:#b81f27;--yellow:#ffd23f;--blue:#2f9bdb;
+  --green:#36b06a;--ink:#15110d;--head:#2c2138;--purple:#6b4ff0;--pink:#ff2d6f;
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#ff5d8a,#e62f6b);
+  background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;min-height:100vh;-webkit-text-size-adjust:100%}
+.wrap{max-width:880px;margin:clamp(10px,3vw,30px) auto;padding:0 0 40px;background:var(--paper);
+  background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.4px,transparent 1.5px);background-size:12px 12px;
+  border:5px solid var(--ink);border-radius:22px;box-shadow:0 14px 0 rgba(0,0,0,.25);overflow:hidden}
+.topbar{background:var(--head);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:5px solid var(--ink)}
+.brand{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;color:var(--yellow);display:flex;align-items:center;gap:8px}
+.brand .star{color:#fff}
+.topright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nav{display:flex;gap:7px;flex-wrap:wrap}
+.pill{font-family:'Baloo 2';font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;border:2.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;box-shadow:2px 2px 0 var(--ink);text-decoration:none;display:inline-block}
+.pill.on{background:var(--pink);color:#fff}
+.hero{padding:22px 22px 6px;text-align:center}
+.ksuper{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--pink);text-transform:uppercase}
+.htitle{font-family:'Bangers',cursive;font-size:clamp(34px,8vw,62px);color:var(--yellow);-webkit-text-stroke:2.5px var(--ink);text-shadow:4px 4px 0 var(--ink);letter-spacing:1.5px;margin:4px 0 2px;line-height:1}
+.hsub{font-weight:600;color:#5b5347;max-width:540px;margin:6px auto 0;font-size:15px}
+.panel{margin:20px 22px;border:4px solid var(--ink);background:#fff;border-radius:16px;box-shadow:7px 7px 0 var(--pink);padding:18px}
+.panel h2{font-family:'Bangers',cursive;font-size:24px;letter-spacing:1px;margin:0 0 12px;color:var(--ink)}
+.picklabel{font-weight:700;font-size:13px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--head)}
+.signgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media(max-width:560px){.signgrid{grid-template-columns:repeat(4,1fr)}}
+.signbtn{border:3px solid var(--ink);border-radius:12px;background:var(--paper);cursor:pointer;padding:8px 4px;text-align:center;box-shadow:3px 3px 0 var(--ink);transition:transform .05s}
+.signbtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.signbtn.on{background:var(--yellow)}
+.signbtn .g{font-size:22px;display:block;line-height:1}
+.signbtn .n{font-size:11px;font-weight:700;margin-top:2px}
+.daynav{display:flex;gap:8px;margin:14px 0 4px;flex-wrap:wrap}
+.daybtn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:8px 16px;border-radius:10px;border:2.5px solid var(--ink);background:#fff;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.daybtn.on{background:var(--yellow)}
+.err{color:var(--red-d);font-weight:700;font-size:13px;margin-top:10px;display:none}.err.show{display:block}
+#result{display:none}
+.skytag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--pink);text-transform:uppercase;font-weight:700;text-align:center;margin-bottom:4px}
+.matchhero{text-align:center}
+.pair{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin:6px 0}
+.pmascot{width:108px;height:140px}.pmascot .omino{width:100%;height:100%}
+.heart{font-size:34px;color:var(--pink);align-self:center;margin:0 2px;filter:drop-shadow(2px 2px 0 var(--ink))}
+.pairnames{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;color:var(--ink)}
+.scorebadge{display:inline-block;font-family:'Bangers',cursive;font-size:34px;color:#fff;background:var(--pink);
+  border:3.5px solid var(--ink);border-radius:14px;padding:4px 18px;box-shadow:4px 4px 0 var(--ink);margin:8px 0;-webkit-text-stroke:1px var(--ink)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.duo{grid-template-columns:1fr}}
+.duocol{border:3px solid var(--ink);border-radius:13px;padding:13px;background:var(--paper)}
+.duocol.you{box-shadow:5px 5px 0 var(--blue)}
+.duocol.them{box-shadow:5px 5px 0 var(--pink)}
+.duohead{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-bottom:8px;border-bottom:2px dashed #e3dcc8}
+.duohead .dg{font-size:26px;line-height:1}
+.duohead .dn{font-family:'Bangers',cursive;font-size:20px;letter-spacing:.5px}
+.duohead .dw{margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;
+  padding:3px 8px;border-radius:999px;border:2px solid var(--ink);background:#fff;text-align:right}
+.duotxt{font-size:13.5px;font-weight:600;line-height:1.5;color:#3f3930}
+.duotxt b{color:var(--ink)}
+.story{font-size:15px;line-height:1.6;color:#3f3930;font-weight:600}
+.story p{margin:0 0 12px}.story b{color:var(--ink)}.story i{color:var(--pink);font-style:normal;font-weight:700}
+.rankrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1.5px dashed #e3dcc8}
+.rankrow:last-child{border-bottom:none}
+.rankpos{font-family:'Bangers',cursive;font-size:18px;color:var(--pink);width:26px;text-align:center}
+.rankg{font-size:20px;width:26px;text-align:center}
+.rankname{font-weight:700;width:96px;font-size:14px}
+.bar{flex:1;height:14px;background:#eee;border:2px solid var(--ink);border-radius:999px;overflow:hidden;min-width:60px}
+.barfill{height:100%;background:var(--pink)}
+.rankscore{font-family:'Space Mono',monospace;font-weight:700;font-size:13px;width:34px;text-align:right}
+.rankmeta{font-size:11px;color:#8a8275;font-weight:600;width:74px;text-align:right}
+@media(max-width:560px){.rankmeta{display:none}}
+.footnote{font-size:11px;color:#9a9183;text-align:center;margin:18px 22px 0;font-weight:600;line-height:1.5}
+.premiumbox{margin:20px 22px;border:3px dashed var(--pink);border-radius:14px;padding:14px 16px;background:rgba(255,45,111,.06);font-size:13px;font-weight:600;color:#5b5347;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="index.html" style="text-decoration:none" title="Home"><span class="star">★</span> ZODIAC</a>
+    <div class="topright">
+      <div class="nav">
+        <a class="pill" data-k="segni" href="Zodiac%20Zine.html">Segni</a>
+        <a class="pill" data-k="natale" href="Tema%20Natale.html">Tema Natale</a>
+        <a class="pill" data-k="oroscopo" href="Oroscopo%20del%20Giorno.html">Oroscopo</a>
+        <a class="pill on" data-k="match" href="Match%20del%20Giorno.html">♥ Match</a>
+        <a class="pill" data-k="componi" href="Componi%20la%20Frase.html">Componi</a>
+      </div>
+      <span id="langPick"></span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="ksuper" id="ksuper">// chi fa per te, oggi</div>
+    <h1 class="htitle" id="htitle">MATCH DEL GIORNO</h1>
+    <p class="hsub" id="hsub">Non solo "che segni vanno d'accordo": chi è compatibile con te <b>e</b> sta vivendo una buona giornata d'amore proprio oggi.</p>
+  </div>
+
+  <div class="panel" id="formPanel">
+    <div class="picklabel" id="pickLabel">★ Qual è il tuo segno?</div>
+    <div class="signgrid" id="signGrid"></div>
+    <div class="daynav">
+      <button class="daybtn on" id="dToday">Oggi</button>
+      <button class="daybtn" id="dTomorrow">Domani</button>
+    </div>
+    <div class="err" id="errBox">Scegli il tuo segno per vedere il match.</div>
+  </div>
+
+  <div id="result">
+    <div class="panel">
+      <div class="skytag" id="skyTag"></div>
+      <div class="matchhero">
+        <div id="matchLabel" style="font-weight:700;color:var(--pink);text-transform:uppercase;font-size:12px;letter-spacing:1px">Il tuo match di oggi</div>
+        <div class="pair" id="pair"></div>
+        <div class="pairnames" id="pairNames"></div>
+        <div class="scorebadge" id="scoreBadge"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 id="secCompare">Gli oroscopi di oggi, a confronto</h2>
+      <div class="duo">
+        <div class="duocol you">
+          <div class="duohead" id="duoHeadYou"></div>
+          <div class="duotxt" id="duoTxtYou"></div>
+        </div>
+        <div class="duocol them">
+          <div class="duohead" id="duoHeadThem"></div>
+          <div class="duotxt" id="duoTxtThem"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 id="secWhy">Perché siete il match di oggi</h2>
+      <div class="story" id="story"></div>
+    </div>
+
+    <div class="panel">
+      <h2 id="secRank">La classifica di oggi</h2>
+      <div id="ranking"></div>
+    </div>
+  </div>
+
+  <div class="premiumbox" id="premiumBox">
+    💎 <b>Come funziona:</b> incrociamo la compatibilità di base (motore Coppie) con il "meteo amoroso" del giorno di ogni segno,
+    calcolato dai transiti reali di Venere, Luna e Marte. Tutto in locale, zero costi. La narrazione è pronta per essere riscritta dall'AI nella voce del libro.
+  </div>
+
+  <div class="footnote" id="foot">
+    Compatibilità a livello di segno solare · meteo del giorno dai transiti (effemeridi verificate vs Swiss Ephemeris).<br>
+    Per un match ancora più preciso, in futuro useremo il tema natale completo di entrambi.
+  </div>
+</div>
+
+<script src="lang/i18n.js"></script>
+<script src="natal/astronomy.browser.min.js"></script>
+<script src="coppie/mascots.js"></script>
+<script src="coppie/anim.js"></script>
+<script src="coppie/engine.js"></script>
+<script src="coppie/engine.en.js"></script>
+<script src="coppie/engine.fr.js"></script>
+<script src="coppie/engine.es.js"></script>
+<script src="coppie/engine.pt.js"></script>
+<script src="natal/engine.js"></script>
+<script src="natal/transit.js"></script>
+<script src="natal/match.js"></script>
+<script src="natal/match.en.js"></script>
+<script src="natal/match.fr.js"></script>
+<script src="natal/match.es.js"></script>
+<script src="natal/match.pt.js"></script>
+<script src="lang/wire.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const EL_COLOR=window.NATAL.EL_COLOR;
+  const SIGNS=window.NATAL.SIGNS;
+  const langOf=()=>window.ZI18N?window.ZI18N.get():'it';
+  let chosen=null;
+  let when="today";
+
+  const UI={
+    it:{ksuper:"// chi fa per te, oggi",hsub:'Non solo "che segni vanno d\'accordo": chi è compatibile con te <b>e</b> sta vivendo una buona giornata d\'amore proprio oggi.',pick:"★ Qual è il tuo segno?",today:"Oggi",tomorrow:"Domani",err:"Scegli il tuo segno per vedere il match.",matchLabel:"Il tuo match di oggi",secCompare:"Gli oroscopi di oggi, a confronto",secWhy:"Perché siete il match di oggi",secRank:"La classifica di oggi",sky:"Cielo del giorno",venus:"Venere in",moon:"Luna in",premium:'💎 <b>Come funziona:</b> incrociamo la compatibilità di base (motore Coppie) con il "meteo amoroso" del giorno di ogni segno, calcolato dai transiti reali di Venere, Luna e Marte. Tutto in locale, zero costi. La narrazione è pronta per essere riscritta dall\'AI nella voce del libro.',foot:"Compatibilità a livello di segno solare · meteo del giorno dai transiti (effemeridi verificate vs Swiss Ephemeris).<br>Per un match ancora più preciso, in futuro useremo il tema natale completo di entrambi.",nav:{segni:"Segni",natale:"Tema Natale",oroscopo:"Oroscopo",match:"♥ Match",componi:"Componi"}},
+    en:{ksuper:"// who's right for you, today",hsub:'Not just "which signs get along": who\'s compatible with you <b>and</b> is having a great love day right today.',pick:"★ What's your sign?",today:"Today",tomorrow:"Tomorrow",err:"Pick your sign to see your match.",matchLabel:"Your match of the day",secCompare:"Today's horoscopes, side by side",secWhy:"Why you're today's match",secRank:"Today's ranking",sky:"Sky of the day",venus:"Venus in",moon:"Moon in",premium:'💎 <b>How it works:</b> we cross your base compatibility (Couples engine) with each sign\'s daily "love weather", calculated from the real transits of Venus, Moon and Mars. All local, zero cost. The copy is ready to be rewritten by AI in the book\'s voice.',foot:"Compatibility at sun-sign level · daily weather from transits (ephemeris verified vs Swiss Ephemeris).<br>For an even sharper match, we\'ll use both full birth charts in the future.",nav:{segni:"Signs",natale:"Birth Chart",oroscopo:"Horoscope",match:"♥ Match",componi:"Compose"}},
+    fr:{ksuper:"// qui te correspond, aujourd'hui",hsub:'Pas seulement "quels signes s\'entendent" : qui est compatible avec toi <b>et</b> vit une belle journée d\'amour aujourd\'hui même.',pick:"★ Quel est ton signe ?",today:"Aujourd'hui",tomorrow:"Demain",err:"Choisis ton signe pour voir ton match.",matchLabel:"Ton match du jour",secCompare:"Les horoscopes du jour, face à face",secWhy:"Pourquoi vous êtes le match du jour",secRank:"Le classement du jour",sky:"Ciel du jour",venus:"Vénus en",moon:"Lune en",premium:'💎 <b>Comment ça marche :</b> on croise ta compatibilité de base (moteur Couples) avec la "météo amoureuse" du jour de chaque signe, calculée à partir des transits réels de Vénus, la Lune et Mars. Tout en local, zéro coût. Le texte est prêt à être réécrit par l\'IA dans la voix du livre.',foot:"Compatibilité au niveau du signe solaire · météo du jour d\'après les transits (éphémérides vérifiées vs Swiss Ephemeris).<br>Pour un match encore plus précis, on utilisera à l\'avenir les deux thèmes natals complets.",nav:{segni:"Signes",natale:"Thème Natal",oroscopo:"Horoscope",match:"♥ Match",componi:"Composer"}},
+    es:{ksuper:"// quién te pega, hoy",hsub:'No solo "qué signos se llevan bien": quién es compatible contigo <b>y</b> está viviendo un buen día de amor justo hoy.',pick:"★ ¿Cuál es tu signo?",today:"Hoy",tomorrow:"Mañana",err:"Elige tu signo para ver tu match.",matchLabel:"Tu match de hoy",secCompare:"Los horóscopos de hoy, cara a cara",secWhy:"Por qué sois el match de hoy",secRank:"La clasificación de hoy",sky:"Cielo del día",venus:"Venus en",moon:"Luna en",premium:'💎 <b>Cómo funciona:</b> cruzamos tu compatibilidad de base (motor Parejas) con el "clima amoroso" del día de cada signo, calculado a partir de los tránsitos reales de Venus, la Luna y Marte. Todo en local, cero costes. El texto está listo para ser reescrito por la IA en la voz del libro.',foot:"Compatibilidad a nivel de signo solar · clima del día según los tránsitos (efemérides verificadas vs Swiss Ephemeris).<br>Para un match aún más preciso, en el futuro usaremos las dos cartas natales completas.",nav:{segni:"Signos",natale:"Carta Natal",oroscopo:"Horóscopo",match:"♥ Match",componi:"Arma"}},
+    pt:{ksuper:"// quem combina com você, hoje",hsub:'Não só "quais signos se dão bem": quem é compatível com você <b>e</b> está vivendo um ótimo dia de amor bem hoje.',pick:"★ Qual é o seu signo?",today:"Hoje",tomorrow:"Amanhã",err:"Escolha o seu signo para ver o match.",matchLabel:"Seu match de hoje",secCompare:"Os horóscopos de hoje, lado a lado",secWhy:"Por que vocês são o match de hoje",secRank:"O ranking de hoje",sky:"Céu do dia",venus:"Vênus em",moon:"Lua em",premium:'💎 <b>Como funciona:</b> cruzamos a sua compatibilidade base (motor Casais) com o "clima amoroso" do dia de cada signo, calculado pelos trânsitos reais de Vênus, Lua e Marte. Tudo local, custo zero. O texto está pronto para ser reescrito pela IA na voz do livro.',foot:"Compatibilidade no nível do signo solar · clima do dia pelos trânsitos (efemérides verificadas vs Swiss Ephemeris).<br>Para um match ainda mais preciso, no futuro usaremos os dois mapas astrais completos.",nav:{segni:"Signos",natale:"Mapa Astral",oroscopo:"Horóscopo",match:"♥ Match",componi:"Monte"}}
+  };
+
+  // sign grid (ricostruibile per lingua: i nomi vengono da NATAL.SIGNS localizzati da ZWIRE)
+  function buildGrid(){
+    $("signGrid").innerHTML=SIGNS.map(s=>
+      `<button class="signbtn${s.k===chosen?' on':''}" data-k="${s.k}"><span class="g">${s.g}</span><span class="n">${s.n}</span></button>`).join("");
+    $("signGrid").querySelectorAll(".signbtn").forEach(b=>{
+      b.onclick=()=>{
+        chosen=b.dataset.k;
+        $("signGrid").querySelectorAll(".signbtn").forEach(x=>x.classList.remove("on"));
+        b.classList.add("on");
+        $("errBox").classList.remove("show");
+        run();
+      };
+    });
+  }
+  buildGrid();
+  $("dToday").onclick=()=>{when="today";$("dToday").classList.add("on");$("dTomorrow").classList.remove("on");if(chosen)run();};
+  $("dTomorrow").onclick=()=>{when="tomorrow";$("dTomorrow").classList.add("on");$("dToday").classList.remove("on");if(chosen)run();};
+
+  function dayDate(){const d=new Date();if(when==="tomorrow")d.setDate(d.getDate()+1);return d;}
+  function mascot(sign,look,mood){return window.MASCOT(sign,EL_COLOR[sign.el],"stampa",look,mood||"love");}
+
+  function run(){
+    if(!chosen){$("errBox").classList.add("show");return;}
+    const u=UI[langOf()]||UI.it;
+    const res=window.MATCH.ofDay(chosen,dayDate());
+    const best=res.best;
+    $("skyTag").textContent=`${u.sky} · ${u.venus} ${res.venusSign.n} · ${u.moon} ${res.moonSign.n}`;
+    // pair mascots: tuo segno (guarda a destra) + ♥ + best (guarda a sinistra)
+    $("pair").innerHTML=
+      `<div class="pmascot">${mascot(res.userSign,1,"love")}</div>`+
+      `<div class="heart">♥</div>`+
+      `<div class="pmascot">${mascot(best.sign,-1,"love")}</div>`;
+    if(window.ZANIM){ window.ZANIM.idle($("pair")); window.ZANIM.pair($("pair"), best.compat); }
+    $("pairNames").innerHTML=`${res.userSign.n.toUpperCase()} <span style="color:var(--pink)">♥</span> ${best.sign.n.toUpperCase()}`;
+    $("scoreBadge").textContent=best.matchScore+"%";
+    // due oroscopi a confronto
+    const wlab=w=>w>=62?"#36b06a":w>=45?"#f5b700":"#ec2e36";
+    $("duoHeadYou").innerHTML=`<span class="dg" style="color:${EL_COLOR[res.userSign.el]}">${res.userSign.g}</span><span class="dn">${res.userSign.n}</span><span class="dw" style="color:${wlab(res.userHoroscope.weather)}">☀ ${res.userHoroscope.weather} · ${res.userHoroscope.label}</span>`;
+    $("duoTxtYou").innerHTML=res.userHoroscope.text;
+    $("duoHeadThem").innerHTML=`<span class="dg" style="color:${EL_COLOR[best.sign.el]}">${best.sign.g}</span><span class="dn">${best.sign.n}</span><span class="dw" style="color:${wlab(res.bestHoroscope.weather)}">☀ ${res.bestHoroscope.weather} · ${res.bestHoroscope.label}</span>`;
+    $("duoTxtThem").innerHTML=res.bestHoroscope.text;
+    // perché siete il match
+    $("story").innerHTML=window.MATCH.coupleStory(res.userSign,best,res);
+    // ranking (gli altri, escluso il best già mostrato)
+    $("ranking").innerHTML=res.ranking.map((m,i)=>{
+      const pos=i+1;
+      return `<div class="rankrow">
+        <div class="rankpos">${pos===1?"♛":pos}</div>
+        <div class="rankg" style="color:${EL_COLOR[m.sign.el]}">${m.sign.g}</div>
+        <div class="rankname">${m.sign.n}</div>
+        <div class="bar"><div class="barfill" style="width:${m.matchScore}%"></div></div>
+        <div class="rankscore">${m.matchScore}</div>
+        <div class="rankmeta">${m.compat}/5 · ☀${m.weather}</div>
+      </div>`;
+    }).join("");
+    $("result").style.display="block";
+  }
+
+  function applyLang(){
+    const L=langOf();
+    if(window.ZWIRE) window.ZWIRE.activate(L);
+    buildGrid(); // ricostruisce i 12 bottoni coi nomi nella lingua scelta
+    const u=UI[L]||UI.it;
+    $("ksuper").textContent=u.ksuper;
+    $("hsub").innerHTML=u.hsub;
+    $("pickLabel").textContent=u.pick;
+    $("dToday").textContent=u.today;
+    $("dTomorrow").textContent=u.tomorrow;
+    $("errBox").textContent=u.err;
+    $("matchLabel").textContent=u.matchLabel;
+    $("secCompare").textContent=u.secCompare;
+    $("secWhy").textContent=u.secWhy;
+    $("secRank").textContent=u.secRank;
+    $("premiumBox").innerHTML=u.premium;
+    $("foot").innerHTML=u.foot;
+    document.querySelectorAll(".pill[data-k]").forEach(p=>{ if(u.nav[p.dataset.k]) p.textContent=u.nav[p.dataset.k]; });
+    document.documentElement.lang=L;
+    if(

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Zodiac — Componi la Frase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff6e3;--red:#ec2e36;--red-d:#b81f27;--yellow:#ffd23f;--blue:#2f9bdb;--green:#36b06a;--ink:#15110d;--head:#2c2138;--purple:#6b4ff0;--pink:#ff2d6f;}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#36b06a,#1f9d6f);
+  background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;min-height:100vh;-webkit-text-size-adjust:100%}
+.wrap{max-width:880px;margin:clamp(10px,3vw,30px) auto;padding:0 0 40px;background:var(--paper);
+  background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.4px,transparent 1.5px);background-size:12px 12px;
+  border:5px solid var(--ink);border-radius:22px;box-shadow:0 14px 0 rgba(0,0,0,.25);overflow:hidden}
+.topbar{background:var(--head);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:5px solid var(--ink)}
+.brand{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;color:var(--yellow);display:flex;align-items:center;gap:8px}
+.brand .star{color:#fff}
+.topright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-family:'Baloo 2';font-weight:700;font-size:13px;padding:5px 11px;border-radius:999px;border:2.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;box-shadow:2px 2px 0 var(--ink);text-decoration:none;display:inline-block}
+.pill.on{background:var(--green);color:#fff}
+.hero{padding:22px 22px 6px;text-align:center}
+.ksuper{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--green);text-transform:uppercase}
+.htitle{font-family:'Bangers',cursive;font-size:clamp(34px,8vw,60px);color:var(--yellow);-webkit-text-stroke:2.5px var(--ink);text-shadow:4px 4px 0 var(--ink);letter-spacing:1.5px;margin:4px 0 2px;line-height:1}
+.hsub{font-weight:600;color:#5b5347;max-width:560px;margin:6px auto 0;font-size:15px}
+.panel{margin:20px 22px;border:4px solid var(--ink);background:#fff;border-radius:16px;box-shadow:7px 7px 0 var(--green);padding:18px}
+.panel h2{font-family:'Bangers',cursive;font-size:24px;letter-spacing:1px;margin:0 0 12px;color:var(--ink)}
+.composeline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:'Baloo 2';font-weight:800;font-size:18px;line-height:2}
+.composeline select{font-family:'Baloo 2';font-weight:700;font-size:15px;padding:8px 10px;border:3px solid var(--ink);border-radius:11px;background:var(--paper);color:var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer}
+#result{display:none}
+.pair{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin:4px 0 8px}
+.pmascot{width:104px;height:136px}.pmascot .omino{width:100%;height:100%}
+.bond{font-size:30px;align-self:center;filter:drop-shadow(2px 2px 0 var(--ink))}
+.sentence{font-family:'Bangers',cursive;font-size:24px;letter-spacing:.5px;color:var(--ink);text-align:center;margin:4px 0 10px;line-height:1.2}
+.scorewrap{display:flex;align-items:center;gap:10px;margin:10px 0}
+.scorebadge{font-family:'Bangers',cursive;font-size:30px;color:#fff;background:var(--green);border:3px solid var(--ink);border-radius:12px;padding:2px 14px;box-shadow:3px 3px 0 var(--ink);-webkit-text-stroke:1px var(--ink)}
+.afftrack{flex:1;height:16px;background:#efe7d2;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.afffill{display:block;height:100%;background:var(--green)}
+.verdict{font-family:'Baloo 2';font-weight:800;font-size:17px;color:var(--ink);margin:8px 0}
+.dynrow{font-weight:600;color:#3f3930;line-height:1.5;margin:6px 0}
+.dynrow b{color:var(--ink)}
+.adv{background:var(--ink);color:#fff;border-radius:13px;padding:14px 16px;font-weight:600;font-size:15px;line-height:1.5;box-shadow:5px 5px 0 var(--yellow);margin-top:10px}
+.adv .lab{font-family:'Bangers',cursive;color:var(--yellow);font-size:18px;letter-spacing:1px;display:block;margin-bottom:3px}
+.examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.exbtn{font-family:'Baloo 2';font-weight:700;font-size:12px;padding:6px 12px;border-radius:999px;border:2.5px solid var(--ink);background:var(--yellow);cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.footnote{font-size:11px;color:#9a9183;text-align:center;margin:18px 22px 0;font-weight:600;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="index.html" style="text-decoration:none" title="Home"><span class="star">★</span> ZODIAC</a>
+    <div class="topright">
+      <div class="nav">
+        <a class="pill" data-k="segni" href="Zodiac%20Zine.html">Segni</a>
+        <a class="pill" data-k="natale" href="Tema%20Natale.html">Tema Natale</a>
+        <a class="pill" data-k="oroscopo" href="Oroscopo%20del%20Giorno.html">Oroscopo</a>
+        <a class="pill" data-k="match" href="Match%20del%20Giorno.html">♥ Match</a>
+        <a class="pill on" data-k="componi" href="Componi%20la%20Frase.html">Componi</a>
+      </div>
+      <span id="langPick"></span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="ksuper" id="ksuper">// la situazione, il consiglio</div>
+    <h1 class="htitle">COMPONI</h1>
+    <p class="hsub" id="hsub"></p>
+  </div>
+
+  <div class="panel">
+    <h2 id="panelTitle">★ La tua frase</h2>
+    <div class="composeline">
+      <span id="soWord">Sono</span>
+      <select id="selfSign"></select>
+      <select id="action"></select>
+      <select id="otherSign"></select>
+    </div>
+    <div class="examples">
+      <button class="exbtn" data-self="toro" data-act="1" data-other="capricorno"></button>
+      <button class="exbtn" data-self="capricorno" data-act="3" data-other="scorpione"></button>
+      <button class="exbtn" data-self="ariete" data-act="0" data-other="bilancia"></button>
+    </div>
+  </div>
+
+  <div id="result">
+    <div class="panel">
+      <div class="pair" id="pair"></div>
+      <div class="sentence" id="sentence"></div>
+      <div class="scorewrap"><span class="scorebadge" id="scoreBadge"></span><span class="afftrack"><span class="afffill" id="scoreFill"></span></span></div>
+      <div class="verdict" id="verdict"></div>
+      <div class="dynrow" id="dyn"></div>
+      <div class="adv"><span class="lab" id="advLab">Il consiglio</span><span id="advice"></span></div>
+    </div>
+  </div>
+
+  <div class="footnote" id="foot"></div>
+</div>
+
+<script src="lang/i18n.js"></script>
+<script src="coppie/mascots.js"></script>
+<script src="coppie/anim.js"></script>
+<script src="coppie/engine.js"></script>
+<script src="coppie/engine.en.js"></script>
+<script src="coppie/engine.fr.js"></script>
+<script src="coppie/engine.es.js"></script>
+<script src="coppie/engine.pt.js"></script>
+<script src="lang/wire.js"></script>
+<script src="natal/engine.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const EL_COLOR=(window.NATAL&&window.NATAL.EL_COLOR)||{fuoco:"#ec2e36",terra:"#36b06a",aria:"#f5b700",acqua:"#2f9bdb"};
+  const langOf=()=>window.ZI18N?window.ZI18N.get():'it';
+
+  const ART={
+    it:{ariete:'un',toro:'un',gemelli:'un',cancro:'un',leone:'un',vergine:'una',bilancia:'una',scorpione:'uno',sagittario:'un',capricorno:'un',acquario:'un',pesci:'un'},
+    en:{ariete:'an',toro:'a',gemelli:'a',cancro:'a',leone:'a',vergine:'a',bilancia:'a',scorpione:'a',sagittario:'a',capricorno:'a',acquario:'an',pesci:'a'},
+    fr:{ariete:'un',toro:'un',gemelli:'des',cancro:'un',leone:'un',vergine:'une',bilancia:'une',scorpione:'un',sagittario:'un',capricorno:'un',acquario:'un',pesci:'des'},
+    es:{ariete:'un',toro:'un',gemelli:'un',cancro:'un',leone:'un',vergine:'una',bilancia:'una',scorpione:'un',sagittario:'un',capricorno:'un',acquario:'un',pesci:'un'},
+    pt:{ariete:'um',toro:'um',gemelli:'uns',cancro:'um',leone:'um',vergine:'uma',bilancia:'uma',scorpione:'um',sagittario:'um',capricorno:'um',acquario:'um',pesci:'uns'}
+  };
+  const ACTIONS={
+    it:[
+      {l:'amore',opt:'voglio sedurre…',t:(aA,aN,bA,bN)=>`Sono ${aA} ${aN} e voglio sedurre ${bA} ${bN}`},
+      {l:'amore',opt:'voglio conquistare…',t:(aA,aN,bA,bN)=>`Sono ${aA} ${aN} e voglio conquistare ${bA} ${bN}`},
+      {l:'lavoro',opt:'devo lavorare con…',t:(aA,aN,bA,bN)=>`Sono ${aA} ${aN} e lavoro con ${bA} ${bN}`},
+      {l:'capo',opt:'ho come capo…',t:(aA,aN,bA,bN)=>`Sono ${aA} ${aN} e il mio capo è ${bA} ${bN}`},
+      {l:'convivenza',opt:'convivo con…',t:(aA,aN,bA,bN)=>`Sono ${aA} ${aN} e convivo con ${bA} ${bN}`},
+      {l:'amicizia',opt:'sono amico di…',t:(aA,aN,bA,bN)=>`Sono ${aA} ${aN} e il mio migliore amico è ${bA} ${bN}`},
+      {l:'ex',opt:'ho un ex…',t:(aA,aN,bA,bN)=>`Sono ${aA} ${aN} e il mio ex è ${bA} ${bN}`},
+      {l:'famiglia',opt:'in famiglia ho…',t:(aA,aN,bA,bN)=>`Sono ${aA} ${aN} e in famiglia ho ${bA} ${bN}`}
+    ],
+    en:[
+      {l:'amore',opt:'I want to seduce…',t:(aA,aN,bA,bN)=>`I'm ${aA} ${aN} and I want to seduce ${bA} ${bN}`},
+      {l:'amore',opt:'I want to win over…',t:(aA,aN,bA,bN)=>`I'm ${aA} ${aN} and I want to win over ${bA} ${bN}`},
+      {l:'lavoro',opt:'I work with…',t:(aA,aN,bA,bN)=>`I'm ${aA} ${aN} and I work with ${bA} ${bN}`},
+      {l:'capo',opt:'my boss is…',t:(aA,aN,bA,bN)=>`I'm ${aA} ${aN} and my boss is ${bA} ${bN}`},
+      {l:'convivenza',opt:'I live with…',t:(aA,aN,bA,bN)=>`I'm ${aA} ${aN} and I live with ${bA} ${bN}`},
+      {l:'amicizia',opt:'my best friend is…',t:(aA,aN,bA,bN)=>`I'm ${aA} ${aN} and my best friend is ${bA} ${bN}`},
+      {l:'ex',opt:'my ex is…',t:(aA,aN,bA,bN)=>`I'm ${aA} ${aN} and my ex is ${bA} ${bN}`},
+      {l:'famiglia',opt:"in my family there's…",t:(aA,aN,bA,bN)=>`I'm ${aA} ${aN} and in my family there's ${bA} ${bN}`}
+    ],
+    fr:[
+      {l:'amore',opt:'je veux séduire…',t:(aA,aN,bA,bN)=>`Je suis ${aN} et je veux séduire ${bA} ${bN}`},
+      {l:'amore',opt:'je veux conquérir…',t:(aA,aN,bA,bN)=>`Je suis ${aN} et je veux conquérir ${bA} ${bN}`},
+      {l:'lavoro',opt:'je bosse avec…',t:(aA,aN,bA,bN)=>`Je suis ${aN} et je bosse avec ${bA} ${bN}`},
+      {l:'capo',opt:'mon boss est…',t:(aA,aN,bA,bN)=>`Je suis ${aN} et mon boss est ${bA} ${bN}`},
+      {l:'convivenza',opt:'je vis avec…',t:(aA,aN,bA,bN)=>`Je suis ${aN} et je vis avec ${bA} ${bN}`},
+      {l:'amicizia',opt:'mon meilleur pote est…',t:(aA,aN,bA,bN)=>`Je suis ${aN} et mon meilleur pote est ${bA} ${bN}`},
+      {l:'ex',opt:"j'ai un ex…",t:(aA,aN,bA,bN)=>`Je suis ${aN} et mon ex est ${bA} ${bN}`},
+      {l:'famiglia',opt:'dans ma famille il y a…',t:(aA,aN,bA,bN)=>`Je suis ${aN} et dans ma famille il y a ${bA} ${bN}`}
+    ],
+    es:[
+      {l:'amore',opt:'quiero seducir…',t:(aA,aN,bA,bN)=>`Soy ${aN} y quiero seducir a ${bA} ${bN}`},
+      {l:'amore',opt:'quiero conquistar…',t:(aA,aN,bA,bN)=>`Soy ${aN} y quiero conquistar a ${bA} ${bN}`},
+      {l:'lavoro',opt:'trabajo con…',t:(aA,aN,bA,bN)=>`Soy ${aN} y trabajo con ${bA} ${bN}`},
+      {l:'capo',opt:'mi jefe es…',t:(aA,aN,bA,bN)=>`Soy ${aN} y mi jefe es ${bA} ${bN}`},
+      {l:'convivenza',opt:'convivo con…',t:(aA,aN,bA,bN)=>`Soy ${aN} y convivo con ${bA} ${bN}`},
+      {l:'amicizia',opt:'soy amigo de…',t:(aA,aN,bA,bN)=>`Soy ${aN} y mi mejor amigo es ${bA} ${bN}`},
+      {l:'ex',opt:'tengo un ex…',t:(aA,aN,bA,bN)=>`Soy ${aN} y mi ex es ${bA} ${bN}`},
+      {l:'famiglia',opt:'en mi familia hay…',t:(aA,aN,bA,bN)=>`Soy ${aN} y en mi familia hay ${bA} ${bN}`}
+    ],
+    pt:[
+      {l:'amore',opt:'quero seduzir…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e quero seduzir ${bA} ${bN}`},
+      {l:'amore',opt:'quero conquistar…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e quero conquistar ${bA} ${bN}`},
+      {l:'lavoro',opt:'trabalho com…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e trabalho com ${bA} ${bN}`},
+      {l:'capo',opt:'meu chefe é…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e meu chefe é ${bA} ${bN}`},
+      {l:'convivenza',opt:'moro com…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e moro com ${bA} ${bN}`},
+      {l:'amicizia',opt:'sou amigo de…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e meu melhor amigo é ${bA} ${bN}`},
+      {l:'ex',opt:'tenho um ex…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e meu ex é ${bA} ${bN}`},
+      {l:'famiglia',opt:'na minha família tem…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e na minha família tem ${bA} ${bN}`}
+    ]
+  };
+  const UI={
+    it:{ksuper:"// la situazione, il consiglio",hsub:"Costruisci la tua situazione — chi sei, cosa vuoi, con chi — e ricevi il consiglio su misura, calcolato sull'affinità tra i due segni.",panel:"★ La tua frase",so:"Sono",advLab:"Il consiglio",uni:"Vi unisce:",sco:"Può scottare:",foot:"Consigli basati sull'affinità tra i segni solari (motore Coppie, 7 lenti del rapporto).<br>La narrazione è pronta per essere riscritta dall'AI nella voce del libro.",nav:{segni:"Segni",natale:"Tema Natale",oroscopo:"Oroscopo",match:"♥ Match",componi:"Componi"},ex:["Toro vuole conquistare un Capricorno","Capricorno ha come capo uno Scorpione","Ariete vuole sedurre una Bilancia"]},
+    en:{ksuper:"// the situation, the advice",hsub:"Build your situation — who you are, what you want, with whom — and get tailored advice based on the affinity between the two signs.",panel:"★ Your sentence",so:"I'm",advLab:"The advice",uni:"What brings you together:",sco:"What can burn:",foot:"Advice based on sun-sign affinity (Couples engine, 7 relationship lenses).<br>The copy is ready to be rewritten by AI in the book's voice.",nav:{segni:"Signs",natale:"Birth Chart",oroscopo:"Horoscope",match:"♥ Match",componi:"Compose"},ex:["Taurus wants to win over a Capricorn","Capricorn's boss is a Scorpio","Aries wants to seduce a Libra"]},
+    fr:{ksuper:"// la situation, le conseil",hsub:"Construis ta situation — qui tu es, ce que tu veux, avec qui — et reçois un conseil sur mesure, basé sur l'affinité entre les deux signes.",panel:"★ Ta phrase",so:"Je suis",advLab:"Le conseil",uni:"Ce qui vous unit :",sco:"Ce qui peut brûler :",foot:"Conseils basés sur l'affinité des signes solaires (moteur Couples, 7 lentilles de la relation).<br>Le texte est prêt à être réécrit par l'IA dans la voix du livre.",nav:{segni:"Signes",natale:"Thème Natal",oroscopo:"Horoscope",match:"♥ Match",componi:"Composer"},ex:["Taureau veut conquérir un Capricorne","Le boss du Capricorne est un Scorpion","Bélier veut séduire une Balance"]},
+    es:{ksuper:"// la situación, el consejo",hsub:"Construye tu situación — quién eres, qué quieres, con quién — y recibe el consejo a medida, calculado sobre la afinidad entre los dos signos.",panel:"★ Tu frase",so:"Soy",advLab:"El consejo",uni:"Lo que os une:",sco:"Lo que puede quemar:",foot:"Consejos basados en la afinidad de los signos solares (motor Parejas, 7 lentes de la relación).<br>El texto está listo para ser reescrito por la IA en la voz del libro.",nav:{segni:"Signos",natale:"Carta Natal",oroscopo:"Horóscopo",match:"♥ Match",componi:"Arma"},ex:["Tauro quiere conquistar a un Capricornio","El jefe de Capricornio es un Escorpio","Aries quiere seducir a una Libra"]},
+    pt:{ksuper:"// a situação, o conselho",hsub:"Monte a sua situação — quem você é, o que quer, com quem — e receba o conselho sob medida, calculado pela afinidade entre os dois signos.",panel:"★ Sua frase",so:"Sou de",advLab:"O conselho",uni:"O que une vocês:",sco:"O que pode pegar fogo:",foot:"Conselhos baseados na afinidade dos signos solares (motor Casais, 7 lentes da relação).<br>O texto está pronto para ser reescrito pela IA na voz do livro.",nav:{segni:"Signos",natale:"Mapa Astral",oroscopo:"Horóscopo",match:"♥ Match",componi:"Monte"},ex:["Touro quer conquistar um Capricórnio","O chefe de Capricórnio é um Escorpião","Áries quer seduzir uma Libra"]}
+  };
+
+  function mascot(sign,look,mood){return window.MASCOT(sign,EL_COLOR[sign.el],"stampa",look,mood||"love");}
+  function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+
+  function run(){
+    const L=langOf(), Z=window.ZODIAC, art=ART[L]||ART.it, acts=ACTIONS[L]||ACTIONS.it, u=UI[L]||UI.it;
+    const a=Z.BY[$("selfSign").value]||Z.BY.toro, b=Z.BY[$("otherSign").value]||Z.BY.capricorno;
+    const A=acts[+$("action").value]||acts[0];
+    const r=Z.computeCouple(a.k,b.k,A.l);
+    const aA=art[a.k]||'', bA=art[b.k]||'';
+    $("pair").innerHTML=`<div class="pmascot">${mascot(a,1,"love")}</div><div class="bond" style="color:var(--green)">${r.sym||'♥'}</div><div class="pmascot">${mascot(b,-1,"love")}</div>`;
+    if(window.ZANIM){ window.ZANIM.idle($("pair")); window.ZANIM.pair($("pair"), r.score); }
+    $("sentence").innerHTML=A.t(aA,a.n.toUpperCase(),bA,b.n.toUpperCase());
+    $("scoreBadge").textContent=r.score+"/5";
+    $("scoreFill").style.width=(r.score*20)+"%";
+    $("verdict").textContent=r.verdict||r.sint||"";
+    $("dyn").innerHTML=`<b>${u.uni}</b> ${cap(r.unisce)}. <b>${u.sco}</b> ${cap(r.scotta)}.`;
+    $("advice").innerHTML=" "+(r.advice||"");
+    $("result").style.display="block";
+  }
+
+  function applyLang(){
+    const L=langOf(); if(window.ZWIRE) window.ZWIRE.activate(L);
+    const Z=window.ZODIAC, u=UI[L]||UI.it, acts=ACTIONS[L]||ACTIONS.it;
+    $("ksuper").textContent=u.ksuper; $("hsub").textContent=u.hsub; $("panelTitle").textContent=u.panel;
+    $("soWord").textContent=u.so; $("advLab").textContent=u.advLab; $("foot").innerHTML=u.foot;
+    document.querySelectorAll(".pill[data-k]").forEach(p=>{ if(u.nav[p.dataset.k]) p.textContent=u.nav[p.dataset.k]; });
+    // dropdowns con nomi segni tradotti (conserva selezione)
+    const opts=Z.SIGNS.map(s=>`<option value="${s.k}">${s.g} ${s.n}</option>`).join("");
+    const sv=$("selfSign").value||'toro', ov=$("otherSign").value||'capricorno', av=$("action").value||'1';
+    $("selfSign").innerHTML=opts; $("otherSign").innerHTML=opts;
+    $("selfSign").value=sv; $("otherSign").value=ov;
+    $("action").innerHTML=acts.map((a,i)=>`<option value="${i}">${a.opt}</option>`).join("");
+    $("action").value=av;
+    document.querySelectorAll(".exbtn").forEach((b,i)=>{ if(u.ex[i]) b.textContent=u.ex[i]; });
+    document.documentElement.lang=L;
+    run();
+  }
+
+  if(window.ZI18N) window.ZI18N.mount($("langPick"));
+  $("selfSign").onchange=$("otherSign").onchange=$("action").onchange=run;
+  document.querySelectorAll(".exbtn").forEach(b=>b.onclick=()=>{
+    $("selfSign").value=b.dataset.self; $("action").value=b.dataset.act; $("otherSign").value=b.dataset.other; run();
+    $("result").scrollIntoView({behavior:"smooth"});
+  });
+  window.addEventListener('zlangchange', applyLang);
+  applyLang();
+})();
+</script>
+</body>
+</html>
