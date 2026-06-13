@@ -8,36 +8,36 @@
 (function () {
   const GLOBALS = ["ZODIAC", "NATALTXT", "HOROSCOPE", "NATALDETAIL", "MATCH", "NATALASPECTS"];
   const SIGN_NAMES = {
-    ariete:{it:"Ariete",en:"Aries",fr:"Bélier",es:"Aries",pt:"Áries"},
-    toro:{it:"Toro",en:"Taurus",fr:"Taureau",es:"Tauro",pt:"Touro"},
-    gemelli:{it:"Gemelli",en:"Gemini",fr:"Gémeaux",es:"Géminis",pt:"Gêmeos"},
-    cancro:{it:"Cancro",en:"Cancer",fr:"Cancer",es:"Cáncer",pt:"Câncer"},
-    leone:{it:"Leone",en:"Leo",fr:"Lion",es:"Leo",pt:"Leão"},
-    vergine:{it:"Vergine",en:"Virgo",fr:"Vierge",es:"Virgo",pt:"Virgem"},
-    bilancia:{it:"Bilancia",en:"Libra",fr:"Balance",es:"Libra",pt:"Libra"},
-    scorpione:{it:"Scorpione",en:"Scorpio",fr:"Scorpion",es:"Escorpio",pt:"Escorpião"},
-    sagittario:{it:"Sagittario",en:"Sagittarius",fr:"Sagittaire",es:"Sagitario",pt:"Sagitário"},
-    capricorno:{it:"Capricorno",en:"Capricorn",fr:"Capricorne",es:"Capricornio",pt:"Capricórnio"},
-    acquario:{it:"Acquario",en:"Aquarius",fr:"Verseau",es:"Acuario",pt:"Aquário"},
-    pesci:{it:"Pesci",en:"Pisces",fr:"Poissons",es:"Piscis",pt:"Peixes"}
+    ariete:{it:"Ariete",en:"Aries",fr:"Bélier",es:"Aries",pt:"Áries",de:"Widder"},
+    toro:{it:"Toro",en:"Taurus",fr:"Taureau",es:"Tauro",pt:"Touro",de:"Stier"},
+    gemelli:{it:"Gemelli",en:"Gemini",fr:"Gémeaux",es:"Géminis",pt:"Gêmeos",de:"Zwillinge"},
+    cancro:{it:"Cancro",en:"Cancer",fr:"Cancer",es:"Cáncer",pt:"Câncer",de:"Krebs"},
+    leone:{it:"Leone",en:"Leo",fr:"Lion",es:"Leo",pt:"Leão",de:"Löwe"},
+    vergine:{it:"Vergine",en:"Virgo",fr:"Vierge",es:"Virgo",pt:"Virgem",de:"Jungfrau"},
+    bilancia:{it:"Bilancia",en:"Libra",fr:"Balance",es:"Libra",pt:"Libra",de:"Waage"},
+    scorpione:{it:"Scorpione",en:"Scorpio",fr:"Scorpion",es:"Escorpio",pt:"Escorpião",de:"Skorpion"},
+    sagittario:{it:"Sagittario",en:"Sagittarius",fr:"Sagittaire",es:"Sagitario",pt:"Sagitário",de:"Schütze"},
+    capricorno:{it:"Capricorno",en:"Capricorn",fr:"Capricorne",es:"Capricornio",pt:"Capricórnio",de:"Steinbock"},
+    acquario:{it:"Acquario",en:"Aquarius",fr:"Verseau",es:"Acuario",pt:"Aquário",de:"Wassermann"},
+    pesci:{it:"Pesci",en:"Pisces",fr:"Poissons",es:"Piscis",pt:"Peixes",de:"Fische"}
   };
   const PLANET_NAMES = {
-    Sun:{it:"Sole",en:"Sun",fr:"Soleil",es:"Sol",pt:"Sol"},
-    Moon:{it:"Luna",en:"Moon",fr:"Lune",es:"Luna",pt:"Lua"},
-    Mercury:{it:"Mercurio",en:"Mercury",fr:"Mercure",es:"Mercurio",pt:"Mercúrio"},
-    Venus:{it:"Venere",en:"Venus",fr:"Vénus",es:"Venus",pt:"Vênus"},
-    Mars:{it:"Marte",en:"Mars",fr:"Mars",es:"Marte",pt:"Marte"},
-    Jupiter:{it:"Giove",en:"Jupiter",fr:"Jupiter",es:"Júpiter",pt:"Júpiter"},
-    Saturn:{it:"Saturno",en:"Saturn",fr:"Saturne",es:"Saturno",pt:"Saturno"},
-    Uranus:{it:"Urano",en:"Uranus",fr:"Uranus",es:"Urano",pt:"Urano"},
-    Neptune:{it:"Nettuno",en:"Neptune",fr:"Neptune",es:"Neptuno",pt:"Netuno"},
-    Pluto:{it:"Plutone",en:"Pluto",fr:"Pluton",es:"Plutón",pt:"Plutão"}
+    Sun:{it:"Sole",en:"Sun",fr:"Soleil",es:"Sol",pt:"Sol",de:"Sonne"},
+    Moon:{it:"Luna",en:"Moon",fr:"Lune",es:"Luna",pt:"Lua",de:"Mond"},
+    Mercury:{it:"Mercurio",en:"Mercury",fr:"Mercure",es:"Mercurio",pt:"Mercúrio",de:"Merkur"},
+    Venus:{it:"Venere",en:"Venus",fr:"Vénus",es:"Venus",pt:"Vênus",de:"Venus"},
+    Mars:{it:"Marte",en:"Mars",fr:"Mars",es:"Marte",pt:"Marte",de:"Mars"},
+    Jupiter:{it:"Giove",en:"Jupiter",fr:"Jupiter",es:"Júpiter",pt:"Júpiter",de:"Jupiter"},
+    Saturn:{it:"Saturno",en:"Saturn",fr:"Saturne",es:"Saturno",pt:"Saturno",de:"Saturn"},
+    Uranus:{it:"Urano",en:"Uranus",fr:"Uranus",es:"Urano",pt:"Urano",de:"Uranus"},
+    Neptune:{it:"Nettuno",en:"Neptune",fr:"Neptune",es:"Neptuno",pt:"Netuno",de:"Neptun"},
+    Pluto:{it:"Plutone",en:"Pluto",fr:"Pluton",es:"Plutón",pt:"Plutão",de:"Pluto"}
   };
   const EL_NAMES = {
-    fuoco:{it:"fuoco",en:"fire",fr:"feu",es:"fuego",pt:"fogo"},
-    terra:{it:"terra",en:"earth",fr:"terre",es:"tierra",pt:"terra"},
-    aria:{it:"aria",en:"air",fr:"air",es:"aire",pt:"ar"},
-    acqua:{it:"acqua",en:"water",fr:"eau",es:"agua",pt:"água"}
+    fuoco:{it:"fuoco",en:"fire",fr:"feu",es:"fuego",pt:"fogo",de:"Feuer"},
+    terra:{it:"terra",en:"earth",fr:"terre",es:"tierra",pt:"terra",de:"Erde"},
+    aria:{it:"aria",en:"air",fr:"air",es:"aire",pt:"ar",de:"Luft"},
+    acqua:{it:"acqua",en:"water",fr:"eau",es:"agua",pt:"água",de:"Wasser"}
   };
   let snapped = false;
   function snapshotIT() {

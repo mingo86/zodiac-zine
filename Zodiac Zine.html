@@ -494,6 +494,7 @@ body.theme-adesivi .comicbg::after{background-image:radial-gradient(rgba(150,110
 <script src="lang/signs.fr.js"></script>
 <script src="lang/signs.es.js"></script>
 <script src="lang/signs.pt.js"></script>
+<script src="lang/signs.de.js"></script>
 <script src="lang/zine-extra.js"></script>
 <script src="lang/zine-couples.js"></script>
 <script src="lang/wire.js"></script>
@@ -996,6 +997,49 @@ const UI_DICT={
    (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e meu melhor amigo é <b>'+bN+'</b>.',
    (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e meu ex é <b>'+bN+'</b>.',
    (aA,aN,bA,bN)=>'Sou de <b>'+aN+'</b> e na minha família tem <b>'+bN+'</b>.'
+  ]
+ },
+ de:{
+  navBasi:"Basics",navSegni:"Sternzeichen",navCoppie:"♥ Paare",theStampa:"Print",theAdesivi:"Sticker",
+  idxEy:"ASTROLOGIE & KOMPATIBILITÄT",idxTag:"// die Basics · 12 Zeichen · Paare",idxBasi:"Basics",idxBasiD:"Geburtshoroskop · Elemente · Häuser",idxCoppie:"Paare",idxCoppieD:"vergleiche 2 Zeichen",
+  footIndex:"Leseprobe · ganzes Buch · Riso-Zine-Stil",
+  backIndex:"← Index",backBasi:"← Basics",
+  basiTitle:"DIE BASICS",basiName:"Die Basics",
+  bNatale:"Geburtshoroskop",bNataleD:"was es verraten kann",bBig3:"Sonne·Mond·Asz",bBig3D:"deine drei Säulen",bElem:"Die 4 Elemente",bElemD:"Feuer · Erde · Luft · Wasser",bCase:"Häuser & Modalitäten",bCaseD:"+ herrschende Planeten",
+  ctaNatal:"✦ berechne dein Geburtshoroskop",ctaOro:"☀ schau dir das heutige Horoskop an",footBasi:"Leseprobe · die Basics",
+  natTitle:"GEBURTSHOROSKOP",natName:"Geburtshoroskop",natTag1:">> was es ist",natBody1:"Das Geburtshoroskop ist der <b>Schnappschuss des Himmels</b> im exakten Moment deiner Geburt. Es ist nicht bloß «dein Sternzeichen» (die Sonne): es ist die komplette Karte, wo alle Planeten standen, aufgeteilt in <b>12 Häuser</b>. Zusammen gelesen erzählt sie weit mehr als ein Horoskop.",natTag2:">> was es verraten kann",
+  natReveal:["Deine tiefsten Ängste","Probleme mit Eltern und Familie","Welche Beziehungen dich glücklich machen","Die Traumata, die du mit dir trägst","Die wichtigsten Lektionen dieses Lebens","Deine Abwehrmechanismen","Dein Karma (Liebe, Familie, Freundschaft)","Wie du Emotionen mitteilst","Die Bereiche mit Knoten zum Lösen","Die Gewohnheiten, die du wiederholst","Wann du herausfordernde Phasen erwarten kannst","Was du wirklich in einem Partner suchst"],
+  natCta:"✦ berechne dein Geburtshoroskop →",footNat:"Leseprobe · Geburtshoroskop",
+  big3Title:"DIE DREI SÄULEN",big3Name:"Die drei Säulen",big3T1:">> ☉ die Sonne — Identität",big3B1:"Das ist <b>wer du bist</b>: das Ego, der Wille, wie du strahlst. Es ist der erkennbarste Teil von dir, das, was die Leute meinen, wenn sie fragen «was bist du für ein Sternzeichen?».",big3T2:">> ☽ der Mond — die Seele",big3B2:"Das ist <b>wie du fühlst</b>: die Gefühlswelt, die Instinkte, was du brauchst, um dich sicher zu fühlen. Es ist der private Teil, den du nur deinen Nächsten zeigst.",big3T3:">> ↗ der Aszendent — die Maske",big3B3:"Das ist <b>wie du der Welt begegnest</b> und wie andere dich beim ersten Treffen sehen. Er wechselt alle paar Stunden, deshalb braucht man deine <b>Geburtszeit</b>, um ihn zu berechnen.",big3T4:">> den Satz bauen",big3Hint:"// wähle deine drei Zeichen",
+  big3Sentence:(a,b,c)=>`Ich bin <b>${a}</b>, mit der Seele eines <b class="p">${b}</b>, der die Maske eines <b>${c}</b> trägt.`,big3Sun:"☉ Sonne",big3Moon:"☽ Mond",big3Asc:"↗ Aszendent",footBig3:"Leseprobe · Sonne · Mond · Aszendent",
+  elTitle:"DIE 4 ELEMENTE",elName:"Die 4 Elemente",elSignsLab:"ZEICHEN",elHousesLab:"HÄUSER",elTag:">> wie sie zusammenspielen",elBody:"<b>Wasser und Erde</b> verstehen sich gut (Wasser nährt die Erde), genauso wie <b>Feuer und Luft</b> (Luft facht das Feuer an). Die Kreuzungen zwischen verschiedenen Familien erzeugen mehr Reibung — aber auch mehr Funken.",footEl:"Leseprobe · die 4 Elemente",
+  caseTitle:"HÄUSER & CO.",caseName:"Häuser & co.",caseTag1:">> die 12 Häuser",caseBody1:"Die Häuser sind die <b>Lebensbereiche</b>: wo ein Planet «hineinfällt», sagt, in welchem Sektor er wirkt.",caseTag2:">> die 3 Modalitäten",caseTag3:">> die herrschenden Planeten",footCase:"Leseprobe · Häuser, Modalitäten & Planeten",
+  modCard:"Kardinal",modCardD:"Die Anstifter: sie eröffnen die Jahreszeiten, fangen an, ergreifen die Initiative.",modFix:"Fix",modFixD:"Die Bauherren: sie festigen, halten durch, ziehen es durch. Sturköpfe.",modMob:"Veränderlich",modMobD:"Die Anpasser: sie schließen die Jahreszeiten ab, wandeln sich, bleiben flexibel.",
+  sEss:">> die Essenz",sMind:">> wie sein Verstand tickt",sLove:">> in der Liebe",sBed:">> zwischen den Laken",sWork:">> bei der Arbeit",sSpot:">> du erkennst es, wenn…",sCon:">> wie man mich erobert",sDeal:">> was die Tür zuschlägt",sSlr:">> Sonne · Mond · Aszendent",sSlrIntro:"Dasselbe Zeichen ändert sich stark, je nachdem, wo es im Horoskop fällt:",sSun:"☉ als Sonne",sMoon:"☽ als Mond",sAsc:"↗ als Asz.",
+  sDecani:">> die drei Gesichter des Zeichens · die Dekane",sDecaniIntro:"Wer am Anfang, in der Mitte oder am Ende des Zeichens geboren wird, lebt eine andere Nuance davon — das ist das System der <b>Dekane</b>, drei Abschnitte von je rund 10 Tagen:",
+  sGen:">> er & sie · gleiches Zeichen",sGenIntro:"Gleiches Zeichen, zwei Archetypen: wie sich dieselbe Energie männlich und weiblich ausdrückt — verspielte Archetypen, keine Regeln.",sLui:"♂ er",sLei:"♀ sie",sAdv:">> der Rat",
+  gf:"green flag",rf:"red flag",lcAmi:"In der Freundschaft",lcAng:"Wenn er/sie wütend ist",lcLove:"Liebessprache",lcGrow:"Die Wachstumsaufgabe",
+  affLove:"Affinität // in der Liebe",affWork:"Affinität // bei der Arbeit",chartHint:"// tippe auf eine Zeile für den vollen Vergleich",
+  ctaOroSign:"☀ schau dir dein heutiges Horoskop an →",
+  natalBoxTag:">> dein komplettes Geburtshoroskop",natalBoxBody:(n)=>`Das ist die Karte des Zeichens ${n} — deine <b>Sonne</b>. Aber du bist viel mehr: Mond, Aszendent und alle Planeten deines exakten Himmels sagen, wer du wirklich bist.`,natalBoxCta:"✦ berechne dein Geburtshoroskop →",
+  affBoxTag:">> teste deine Affinität mit den anderen Zeichen",affBoxBody:(n)=>`${n} mit wem? Wähle ein Zeichen und die Linse der Beziehung.`,
+  composeBoxTag:">> bau den Satz",composeBoxBody:"Bau deine Situation und erhalte den maßgeschneiderten Rat.",composeSo:"Ich bin",
+  affUnisce:"Was euch verbindet:",affScotta:"Wo es brennen kann:",affFullCmp:"den vollen Vergleich sehen →",advLabel:"Der Rat:",
+  footSign:(n)=>`Leseprobe · ${n}`,
+  compatTitle:"PAARE",compatName:"Paare",compatHint:"// wähle zwei Zeichen und die Linse der Beziehung",footCompat:"Leseprobe · Kompatibilitäts-Explorer",
+  cmpDirect:">> direkter Vergleich",cmpPortrait:">> das Porträt der Beziehung",cmpUnisce:">> was euch verbindet",cmpScotta:">> wo es brennt",
+  thElem:"Element",thMod:"Modalität",thPlan:"Planet",thLL:"Liebessprache",thRF:"red flag",
+  composeActs:["ich will verführen…","ich will erobern…","ich arbeite mit…","mein Chef ist…","ich wohne mit…","ich bin befreundet mit…","ich habe einen Ex…","in meiner Familie gibt es…"],
+  art:{ariete:'',toro:'',gemelli:'',cancro:'',leone:'',vergine:'',bilancia:'',scorpione:'',sagittario:'',capricorno:'',acquario:'',pesci:''},
+  composeTmpl:[
+   (aA,aN,bA,bN)=>'Ich bin <b>'+aN+'</b> und ich will <b>'+bN+'</b> verführen.',
+   (aA,aN,bA,bN)=>'Ich bin <b>'+aN+'</b> und ich will <b>'+bN+'</b> erobern.',
+   (aA,aN,bA,bN)=>'Ich bin <b>'+aN+'</b> und ich arbeite mit <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Ich bin <b>'+aN+'</b> und mein Chef ist <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Ich bin <b>'+aN+'</b> und ich wohne mit <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Ich bin <b>'+aN+'</b> und mein bester Freund ist <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Ich bin <b>'+aN+'</b> und mein Ex ist <b>'+bN+'</b>.',
+   (aA,aN,bA,bN)=>'Ich bin <b>'+aN+'</b> und in meiner Familie gibt es <b>'+bN+'</b>.'
   ]
  }
 };

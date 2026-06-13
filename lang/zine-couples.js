@@ -219,4 +219,57 @@ window.ZCPL_PT = {
   {k:"capo",label:"Chefe & Equipe",dimN:["Liderança clara","Confiança & delegação","Comunicação","Crescimento"]}
  ]
 };
+
+window.ZCPL_DE = {
+ ELTX:{"acqua|acqua":["tiefe Gefühle und das Bedürfnis nach echter Nähe","zwei Meere im Sturm: die Stimmungen schaukeln sich auf"],"terra|terra":["Stabilität, Loyalität und gemeinsame Projekte","der Funke kann in der Routine verglühen"],"fuoco|fuoco":["Leidenschaft, Energie und die Lust, mit Vollgas zu leben","zwei Egos, die über dasselbe Feuer herrschen wollen"],"aria|aria":["geistige Verbundenheit, Leichtigkeit und tausend Gespräche","viel Kopf, wenig Bauch: das Gefühl bleibt auf der Strecke"],"aria|fuoco":["Luft nährt das Feuer: ständige Anregung und Bewegung","Gefahr, schnell zu verbrennen, ohne Wurzeln"],"acqua|terra":["Wasser nährt die Erde: Sicherheit, die wachsen lässt","Erde kann ersticken, Wasser kann überfluten"],"fuoco|terra":["gemeinsamer Ehrgeiz und die Lust zu bauen","gegensätzliche Rhythmen: einer rast, der andere plant"],"acqua|fuoco":["eine magnetische Anziehung zwischen Gegensätzen","Feuer bringt das Wasser zum Kochen, Wasser löscht das Feuer"],"aria|terra":["Ideen plus Bodenhaftung, wenn ihr euch auf halbem Weg trefft","der eine zu abstrakt, der andere zu praktisch"],"acqua|aria":["Sensibilität und Fantasie, die sich streifen","Logik gegen Gefühl: leicht missversteht man einander"]},
+ MODTX:{"cardinale|cardinale":"zwei Anführer: ein Tauziehen, wer das Steuer hält","fisso|fisso":"solide und treu, aber stur wie Esel","mobile|mobile":"flexibel und neugierig, aber etwas zerstreut","cardinale|fisso":"der eine fängt an, der andere festigt: gute Balance","cardinale|mobile":"Initiative plus Anpassungsfähigkeit: sie folgen einander gut","fisso|mobile":"Wurzeln plus Bewegung: Stabilität, die lebendig bleibt"},
+ verdict:s=>s>=5?"Lehrbuch-Paar: es funkt und es hält.":s>=4?"Großes Potenzial: mit etwas Arbeit hebt es ab.":s>=3?"Es funktioniert, aber ihr müsst euch auf halbem Weg treffen.":"Eine echte Herausforderung: Gegensätze, die sich schwer verstehen.",
+ LTX:{
+  amore:{u:{same:"ihr versteht euch instinktiv, dieselbe Gefühlssprache",ally:"eine Anziehung, die ganz natürlich fließt, ihr beflügelt euch",challenge:"der magnetische Funke derer, die verschieden sind und sich suchen"},s:{same:"zu ähnlich, ihr verstärkt dieselben Schwächen",ally:"ihr lauft schnell, braucht aber Wurzeln",challenge:"ihr fühlt und reagiert gegensätzlich, leicht missversteht man sich"}},
+  amicizia:{u:{same:"gleiche Wellenlänge, Freunde auf den ersten Blick",ally:"ihr reißt euch gegenseitig in Abenteuer und Gelächter",challenge:"ihr ergänzt euch, jeder öffnet dem anderen eine neue Welt"},s:{same:"zu ähnlich, niemand tritt je auf die Bremse",ally:"viel Bewegung, aber wenig Tiefe in den ernsten Momenten",challenge:"unterschiedliche Rhythmen und Bedürfnisse, manchmal versteht ihr euch nicht"}},
+  lavoro:{u:{same:"gleiche Vision und gleiches Arbeitstempo",ally:"Energien, die sich gegenseitig nähren, und Ideen in Hülle und Fülle",challenge:"ihr ergänzt euch: einer hat die Vision, einer setzt sie um"},s:{same:"überlappende Rollen und Zweifel, wer das Sagen hat",ally:"großartige Starts, aber schwacher Atem beim Detail",challenge:"unterschiedliche Prioritäten und Timing, ihr braucht klare Rollen"}},
+  famiglia:{u:{same:"ihr erkennt euch wieder, dieselbe Natur unter einem Dach",ally:"ein lebendiges Zuhause voller Energie",challenge:"verschieden, aber verbunden, ihr lehrt einander"},s:{same:"zwei identische Charaktere ecken an denselben Kanten an",ally:"zu viel Unruhe, das Zuhause kommt nie zur Ruhe",challenge:"gegensätzliche Arten, Räume und Gefühle zu leben"}},
+  convivenza:{u:{same:"gleiche Gewohnheiten, der Haushalt läuft wie geschmiert",ally:"eine fröhliche, gesellige Stimmung in den eigenen vier Wänden",challenge:"ihr gleicht euch aus, einer bringt Ordnung, einer bringt Leben"},s:{same:"dieselben Macken verdoppelt, Ordnung oder Sturheit",ally:"viel Leben, aber wenig praktische Organisation",challenge:"gegensätzliche Vorstellungen über Putzen, Räume und Gäste"}},
+  ex:{u:{same:"ihr kennt euch in- und auswendig: keine Überraschungen, auch als Ex nicht",ally:"ihr bleibt auf derselben Wellenlänge, das Reden fällt leicht",challenge:"ihr lebt inzwischen auf verschiedenen Planeten, leichter, das Kapitel zu schließen"},s:{same:"genau die Gründe, die euch verbanden, gehen euch wieder auf die Nerven",ally:"die alte Chemie droht das Feuer neu zu entfachen",challenge:"die Gegensätze, die euch anzogen, stoßen euch jetzt ab"}},
+  capo:{u:{same:"gleiche Sprache und gleiches Tempo, ihr versteht euch sofort",ally:"Energien, die sich gegenseitig nähren, Chef und Team im Gleichklang",challenge:"ihr ergänzt euch: einer führt, einer liefert, natürliche Rollen"},s:{same:"zwei identische Köpfe: wer führt und wer setzt eigentlich um?",ally:"jede Menge Antrieb, aber ihr braucht jemanden, der die Details im Griff hat",challenge:"unterschiedliche Prioritäten und Timing, ohne klare Rollen hakt es"}}
+ },
+ LVERD:{
+  amicizia:["Schwierige Freunde: besser in kleinen Dosen.","Eine Freundschaft, die mit etwas Mühe funktioniert.","Großartige Freundschaft, sie kommt ganz von selbst.","Freunde fürs Leben."],
+  lavoro:["Schwierige Partner: hohes Risiko für Reibereien.","Funktioniert, wenn ihr die Aufgaben gut aufteilt.","Großartiges Team, mit klaren Rollen.","Partner für ein erfolgreiches Vorhaben."],
+  famiglia:["Spannungen zu Hause: Geduld ist gefragt.","Ihr versteht euch mit ein paar Kompromissen.","Schöne Bindung, ein harmonisches Zuhause.","Eine sehr eng verbundene Familie."],
+  convivenza:["Schwierige Mitbewohner: am besten mit klar getrennten Räumen.","Zusammenleben okay, mit ein paar Regeln.","Großartiges Zusammenleben.","Perfekte Mitbewohner."],
+  ex:["Ein schwer zu schließendes Kapitel: Abstand ist am besten.","Als Ex funktioniert ihr nur mit Grenzen.","Ihr schafft es, im Guten auseinanderzugehen.","Vorzeige-Ex: echte Freunde nach der Liebe."],
+  capo:["Schwierige Hierarchie: Reibereien darum, wer das Sagen hat.","Funktioniert mit klaren Rollen und Regeln.","Gute Chef-Team-Dynamik.","Anführer und rechte Hand, perfekt."]
+ },
+ LADV:{
+  amicizia:"Pflegt, was euch Spaß macht, und respektiert den Freiraum des anderen: Freundschaft lebt von Leichtigkeit und davon, in den echten Momenten da zu sein.",
+  lavoro:"Legt von Anfang an klare Rollen fest — wer entscheidet was — und haltet Abmachungen schriftlich fest: Partner streiten über Uneindeutigkeit, nicht über Zahlen.",
+  famiglia:"In einer Familie gewinnt man keinen Streit, man hält eine Bindung zusammen: respektiert den Charakter und das Tempo jedes Einzelnen.",
+  convivenza:"Ein paar klare Regeln zu Putzen, Räumen und Gästen, gleich zu Beginn vereinbart: Zusammenleben scheitert am Unausgesprochenen, nicht an Unterschieden.",
+  ex:"Als Ex gilt eine Regel: klare Grenzen und keine Grauzonen. Entscheidet, was ihr jetzt seid — Freunde oder distanziert — und hört auf, neu zu erleben, wer ihr wart.",
+  capo:"Hierarchie hält, wenn die Rollen klar sind: wer entscheidet, entscheidet, wer ausführt, hat Autonomie und Vertrauen. Sie zerbricht, wenn der Chef die Kontrolle nicht abgibt oder das Team die Führung nicht respektiert."
+ },
+ sint:["Viel Spannung","Eine Balance, die es zu bauen gilt","Schöne Chemie","Chemie auf Höchststand"],
+ portrait:{
+  word:{amore:"Paar",amicizia:"Freunde",lavoro:"Partner",famiglia:"Familie",convivenza:"Mitbewohner",ex:"Ex",capo:"Chef-Team-Dynamik"},
+  el:{fuoco:"bringt Energie und Antrieb",terra:"bringt Bodenhaftung und Wurzeln",aria:"bringt Ideen und Worte",acqua:"bringt Gefühl und Intuition"},
+  mo:{cardinale:"übernimmt gern die Führung",fisso:"hält die Stellung",mobile:"passt sich mühelos an"},
+  lead:(word,a,b,s)=>s>=4?`Als ${word} starten ${a} und ${b} mit einem Vorsprung.`:s>=3?`Als ${word} können ${a} und ${b} funktionieren, wenn sie sich auf halbem Weg treffen.`:`Als ${word} sind ${a} und ${b} eine knifflige Kombination.`,
+  body:(a,ela,moa,b,elb,mob,uni,mod,sco)=>`${a} ${ela} und ${moa}; ${b} hingegen ${elb} und ${mob}. Was euch verbindet, ist ${uni}; ${mod}. Spannung entsteht, wenn ${sco}.`
+ },
+ farla:{
+  pre:ov=>ov>=4?"Ihr habt eine solide Basis — nehmt sie nicht als selbstverständlich.":ov>=3?"Es kann klappen, aber mit echter Arbeit auf beiden Seiten.":"Es braucht Geduld und viel Kommunikation.",
+  body:(a,lla,b,llb)=>`Der Schlüssel ist, die Sprache des anderen zu sprechen: ${a} lebt die Liebe über «${lla}», ${b} über «${llb}». Wer lernt zu geben, was dem anderen wirklich wichtig ist, gewinnt.`
+ },
+ advice:{pre:s=>s>=4?"Ihr habt eine ausgezeichnete Basis.":s>=3?"Es kann klappen, mit etwas Achtsamkeit.":"Es braucht Einsatz von beiden Seiten."},
+ lenses:[
+  {k:"amore",label:"Liebe",dimN:["Leidenschaft","Gefühl","Verbundenheit","Stabilität"]},
+  {k:"amicizia",label:"Freundschaft",dimN:["Spaß","Loyalität","Gleichklang","Abenteuer"]},
+  {k:"lavoro",label:"Arbeit & Partner",dimN:["Komplementarität","Verlässlichkeit","Vision","Konfliktmanagement"]},
+  {k:"famiglia",label:"Familie",dimN:["Alltagsharmonie","Emotionale Unterstützung","Freiraum respektieren","Loyalität"]},
+  {k:"convivenza",label:"Zusammenleben",dimN:["Ordnung & Organisation","Gemeinsame Räume","Stimmung zu Hause","Praktische Konflikte"]},
+  {k:"ex",label:"Ex",dimN:["Freunde bleiben","Sauberer Abschluss","Gegenseitiger Respekt","Neu entfachen"]},
+  {k:"capo",label:"Chef & Team",dimN:["Klare Führung","Vertrauen & Delegation","Kommunikation","Wachstum"]}
+ ]
+};
 })();

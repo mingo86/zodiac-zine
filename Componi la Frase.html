@@ -108,6 +108,7 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
 <script src="coppie/engine.fr.js"></script>
 <script src="coppie/engine.es.js"></script>
 <script src="coppie/engine.pt.js"></script>
+<script src="coppie/engine.de.js"></script>
 <script src="lang/wire.js"></script>
 <script src="natal/engine.js"></script>
 <script>
@@ -121,7 +122,8 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
     en:{ariete:'an',toro:'a',gemelli:'a',cancro:'a',leone:'a',vergine:'a',bilancia:'a',scorpione:'a',sagittario:'a',capricorno:'a',acquario:'an',pesci:'a'},
     fr:{ariete:'un',toro:'un',gemelli:'des',cancro:'un',leone:'un',vergine:'une',bilancia:'une',scorpione:'un',sagittario:'un',capricorno:'un',acquario:'un',pesci:'des'},
     es:{ariete:'un',toro:'un',gemelli:'un',cancro:'un',leone:'un',vergine:'una',bilancia:'una',scorpione:'un',sagittario:'un',capricorno:'un',acquario:'un',pesci:'un'},
-    pt:{ariete:'um',toro:'um',gemelli:'uns',cancro:'um',leone:'um',vergine:'uma',bilancia:'uma',scorpione:'um',sagittario:'um',capricorno:'um',acquario:'um',pesci:'uns'}
+    pt:{ariete:'um',toro:'um',gemelli:'uns',cancro:'um',leone:'um',vergine:'uma',bilancia:'uma',scorpione:'um',sagittario:'um',capricorno:'um',acquario:'um',pesci:'uns'},
+    de:{ariete:'ein',toro:'ein',gemelli:'ein',cancro:'ein',leone:'ein',vergine:'eine',bilancia:'eine',scorpione:'ein',sagittario:'ein',capricorno:'ein',acquario:'ein',pesci:'ein'}
   };
   const ACTIONS={
     it:[
@@ -173,6 +175,16 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
       {l:'amicizia',opt:'sou amigo de…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e meu melhor amigo é ${bA} ${bN}`},
       {l:'ex',opt:'tenho um ex…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e meu ex é ${bA} ${bN}`},
       {l:'famiglia',opt:'na minha família tem…',t:(aA,aN,bA,bN)=>`Sou de ${aN} e na minha família tem ${bA} ${bN}`}
+    ],
+    de:[
+      {l:'amore',opt:'ich will verführen…',t:(aA,aN,bA,bN)=>`Ich bin ${aN} und will ${bN} verführen`},
+      {l:'amore',opt:'ich will erobern…',t:(aA,aN,bA,bN)=>`Ich bin ${aN} und will ${bN} erobern`},
+      {l:'lavoro',opt:'ich arbeite mit…',t:(aA,aN,bA,bN)=>`Ich bin ${aN} und arbeite mit ${bN}`},
+      {l:'capo',opt:'mein Chef ist…',t:(aA,aN,bA,bN)=>`Ich bin ${aN} und mein Chef ist ${bN}`},
+      {l:'convivenza',opt:'ich wohne mit…',t:(aA,aN,bA,bN)=>`Ich bin ${aN} und wohne mit ${bN} zusammen`},
+      {l:'amicizia',opt:'mein bester Freund ist…',t:(aA,aN,bA,bN)=>`Ich bin ${aN} und mein bester Freund ist ${bN}`},
+      {l:'ex',opt:'mein Ex ist…',t:(aA,aN,bA,bN)=>`Ich bin ${aN} und mein Ex ist ${bN}`},
+      {l:'famiglia',opt:'in meiner Familie gibt es…',t:(aA,aN,bA,bN)=>`Ich bin ${aN} und in meiner Familie gibt es ${bN}`}
     ]
   };
   const UI={
@@ -180,7 +192,8 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
     en:{ksuper:"// the situation, the advice",hsub:"Build your situation — who you are, what you want, with whom — and get tailored advice based on the affinity between the two signs.",panel:"★ Your sentence",so:"I'm",advLab:"The advice",uni:"What brings you together:",sco:"What can burn:",foot:"Advice based on sun-sign affinity (Couples engine, 7 relationship lenses).<br>The copy is ready to be rewritten by AI in the book's voice.",nav:{segni:"Signs",natale:"Birth Chart",oroscopo:"Horoscope",match:"♥ Match",componi:"Compose"},ex:["Taurus wants to win over a Capricorn","Capricorn's boss is a Scorpio","Aries wants to seduce a Libra"]},
     fr:{ksuper:"// la situation, le conseil",hsub:"Construis ta situation — qui tu es, ce que tu veux, avec qui — et reçois un conseil sur mesure, basé sur l'affinité entre les deux signes.",panel:"★ Ta phrase",so:"Je suis",advLab:"Le conseil",uni:"Ce qui vous unit :",sco:"Ce qui peut brûler :",foot:"Conseils basés sur l'affinité des signes solaires (moteur Couples, 7 lentilles de la relation).<br>Le texte est prêt à être réécrit par l'IA dans la voix du livre.",nav:{segni:"Signes",natale:"Thème Natal",oroscopo:"Horoscope",match:"♥ Match",componi:"Composer"},ex:["Taureau veut conquérir un Capricorne","Le boss du Capricorne est un Scorpion","Bélier veut séduire une Balance"]},
     es:{ksuper:"// la situación, el consejo",hsub:"Construye tu situación — quién eres, qué quieres, con quién — y recibe el consejo a medida, calculado sobre la afinidad entre los dos signos.",panel:"★ Tu frase",so:"Soy",advLab:"El consejo",uni:"Lo que os une:",sco:"Lo que puede quemar:",foot:"Consejos basados en la afinidad de los signos solares (motor Parejas, 7 lentes de la relación).<br>El texto está listo para ser reescrito por la IA en la voz del libro.",nav:{segni:"Signos",natale:"Carta Natal",oroscopo:"Horóscopo",match:"♥ Match",componi:"Arma"},ex:["Tauro quiere conquistar a un Capricornio","El jefe de Capricornio es un Escorpio","Aries quiere seducir a una Libra"]},
-    pt:{ksuper:"// a situação, o conselho",hsub:"Monte a sua situação — quem você é, o que quer, com quem — e receba o conselho sob medida, calculado pela afinidade entre os dois signos.",panel:"★ Sua frase",so:"Sou de",advLab:"O conselho",uni:"O que une vocês:",sco:"O que pode pegar fogo:",foot:"Conselhos baseados na afinidade dos signos solares (motor Casais, 7 lentes da relação).<br>O texto está pronto para ser reescrito pela IA na voz do livro.",nav:{segni:"Signos",natale:"Mapa Astral",oroscopo:"Horóscopo",match:"♥ Match",componi:"Monte"},ex:["Touro quer conquistar um Capricórnio","O chefe de Capricórnio é um Escorpião","Áries quer seduzir uma Libra"]}
+    pt:{ksuper:"// a situação, o conselho",hsub:"Monte a sua situação — quem você é, o que quer, com quem — e receba o conselho sob medida, calculado pela afinidade entre os dois signos.",panel:"★ Sua frase",so:"Sou de",advLab:"O conselho",uni:"O que une vocês:",sco:"O que pode pegar fogo:",foot:"Conselhos baseados na afinidade dos signos solares (motor Casais, 7 lentes da relação).<br>O texto está pronto para ser reescrito pela IA na voz do livro.",nav:{segni:"Signos",natale:"Mapa Astral",oroscopo:"Horóscopo",match:"♥ Match",componi:"Monte"},ex:["Touro quer conquistar um Capricórnio","O chefe de Capricórnio é um Escorpião","Áries quer seduzir uma Libra"]},
+    de:{ksuper:"// die Lage, der Rat",hsub:"Bau dir deine Situation zusammen — wer du bist, was du willst, mit wem — und kassier den maßgeschneiderten Rat, berechnet aus der Affinität zwischen den beiden Zeichen.",panel:"★ Dein Satz",so:"Ich bin",advLab:"Der Rat",uni:"Was euch verbindet:",sco:"Wo's brennen kann:",foot:"Ratschläge basierend auf der Affinität der Sonnenzeichen (Paare-Engine, 7 Beziehungs-Linsen).<br>Der Text ist bereit, von der KI in der Stimme des Buchs neu geschrieben zu werden.",nav:{segni:"Sternzeichen",natale:"Geburtshoroskop",oroscopo:"Horoskop",match:"♥ Match",componi:"Bauen"},ex:["Stier will einen Steinbock erobern","Der Chef vom Steinbock ist ein Skorpion","Widder will eine Waage verführen"]}
   };
 
   function mascot(sign,look,mood){return window.MASCOT(sign,EL_COLOR[sign.el],"stampa",look,mood||"love");}

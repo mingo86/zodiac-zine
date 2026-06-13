@@ -281,16 +281,19 @@ body{
 <script src="natal/interpret.fr.js"></script>
 <script src="natal/interpret.es.js"></script>
 <script src="natal/interpret.pt.js"></script>
+<script src="natal/interpret.de.js"></script>
 <script src="natal/aspects.js"></script>
 <script src="natal/aspects.en.js"></script>
 <script src="natal/aspects.fr.js"></script>
 <script src="natal/aspects.es.js"></script>
 <script src="natal/aspects.pt.js"></script>
+<script src="natal/aspects.de.js"></script>
 <script src="natal/detailed.js"></script>
 <script src="natal/detailed.en.js"></script>
 <script src="natal/detailed.fr.js"></script>
 <script src="natal/detailed.es.js"></script>
 <script src="natal/detailed.pt.js"></script>
+<script src="natal/detailed.de.js"></script>
 <script src="lang/wire.js"></script>
 <script>
 (function(){
@@ -425,7 +428,32 @@ body{
       errDate:"Informe sua data de nascimento.", errTime:"Informe sua hora de nascimento (ou marque «não sei»).",
       errPlace:"Escolha seu local de nascimento (necessário para o Ascendente).", errCalc:"Algo deu errado no cálculo.",
       foot:"Cálculo tropical (astrologia ocidental) · efemérides astronomy-engine, conferidas vs Swiss Ephemeris (&lt; 0,1′).<br>Sem a hora de nascimento, Ascendente e casas não são calculados, e a Lua é aproximada.",
-      nav:{segni:"Signos",natale:"Mapa Astral",oroscopo:"Horóscopo",match:"♥ Match",componi:"Monte"} }
+      nav:{segni:"Signos",natale:"Mapa Astral",oroscopo:"Horóscopo",match:"♥ Match",componi:"Monte"} },
+    de:{ ksuper:"// deine Karte des Himmels", htitle:"GEBURTSHOROSKOP",
+      hsub:"Verrate uns wann und wo du geboren bist: wir berechnen deinen exakten Himmel — Sonne, Mond, Aszendent und Planeten — in der Pop-Version.",
+      formTitle:"★ Deine Geburtsdaten", lblName:"Name (optional)", phName:"Wie heißt du?",
+      lblDate:"Geburtsdatum", lblTime:"Geburtszeit", lblNoTime:"Ich kenne die Uhrzeit nicht",
+      lblPlace:"Geburtsort", phPlace:"Suche eine Stadt… z. B. Neapel", placeHint:"Tippe und wähle aus der Liste.",
+      lblLat:"Breitengrad", lblLon:"Längengrad", manualHint:"Ost = positiv, West = negativ. Wir verwenden deine lokale Zeitzone.",
+      go:"HIMMEL BERECHNEN ✦", modeSimple:"✦ Einfach", modeDetail:"📖 Ausführlich",
+      resMine:"★ Dein Himmel", resName:n=>`★ Der Himmel von ${n}`,
+      sunIs:"Sonne in", moonIs:"Mond in", ascIs:"Aszendent",
+      sumSei:"Du bist", sumE:"und", sumPillars:"Die drei Säulen deines Charakters, hier unten.",
+      sumNoAsc:"Füge Geburtszeit und -ort hinzu, um auch deinen Aszendenten zu entdecken.",
+      pillarsTitle:"Die drei Säulen", readingTitle:"Dein Porträt", wheelTitle:"Das Rad & die Planeten",
+      housesTitle:"Die 12 Häuser", housesHint:"„Ganzes Zeichen“-System ausgehend vom Aszendenten.",
+      balanceTitle:"Balance der Elemente", aspectsTitle:"Die Aspekte deines Himmels",
+      aspectsHint:"Wie deine Planeten miteinander reden: die natürlichen Talente (harmonisch) und die Spannungen, die dich wachsen lassen.",
+      detailTitle:"📖 Ausführliche Deutung", detailHint:"Planet für Planet, Haus für Haus, Aspekt für Aspekt — wie ein professioneller Report, in der Pop-Version.",
+      tagSun:"☉ SONNE · wer du bist", tagMoon:"☽ MOND · wie du fühlst", tagAsc:"↑ ASZENDENT · wie du wirkst",
+      ascNeed:"Wir brauchen deine Geburtszeit und deinen Geburtsort, um ihn zu berechnen. ⏰", ascTag:"↑ ASZENDENT",
+      house:"Haus", elTitle:"Elemente", modTitle:"Modalitäten", masc:"♂ Männlich", femm:"♀ Weiblich",
+      el:{fuoco:"Feuer",terra:"Erde",aria:"Luft",acqua:"Wasser"}, mod:{cardinale:"Kardinal",fisso:"Fix",mobile:"Veränderlich"},
+      balPend:"Dein Himmel neigt zu", balLow:s=>`, während <b>${s}</b> fast fehlt — deine Wachstumszone`,
+      errDate:"Gib dein Geburtsdatum ein.", errTime:"Gib deine Geburtszeit ein (oder hake «kenne ich nicht» an).",
+      errPlace:"Wähle deinen Geburtsort (nötig für den Aszendenten).", errCalc:"Bei der Berechnung ist etwas schiefgelaufen.",
+      foot:"Tropische Berechnung (westliche Astrologie) · Ephemeriden astronomy-engine, geprüft gegen Swiss Ephemeris (&lt; 0,1′).<br>Ohne Geburtszeit lassen sich Aszendent und Häuser nicht berechnen, und der Mond ist nur angenähert.",
+      nav:{segni:"Sternzeichen",natale:"Geburtshoroskop",oroscopo:"Horoskop",match:"♥ Match",componi:"Bauen"} }
   };
   const U = () => UI[langOf()] || UI.it;
 

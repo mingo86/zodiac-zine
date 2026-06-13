@@ -14,7 +14,8 @@
     { code: "en", label: "EN", name: "English" },
     { code: "fr", label: "FR", name: "Français" },
     { code: "es", label: "ES", name: "Español" },
-    { code: "pt", label: "PT", name: "Português (BR)" }
+    { code: "pt", label: "PT", name: "Português (BR)" },
+    { code: "de", label: "DE", name: "Deutsch" }
   ];
   const KEY = "zlang";
   const isLang = c => LANGS.some(l => l.code === c);
