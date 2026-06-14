@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zodiac Cards — Anteprima</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#241a3e;color:#fff6e3;font-family:'Baloo 2',sans-serif;padding:44px 24px 100px;min-height:100vh}
+h1{font-family:'Bangers',cursive;font-size:clamp(48px,9vw,88px);text-align:center;letter-spacing:3px;
+  color:#ffd23f;text-shadow:5px 5px 0 #15110d;margin-bottom:6px}
+.tagline{text-align:center;font-family:'Space Mono',monospace;font-size:12px;color:#9c8fc8;
+  letter-spacing:1px;margin-bottom:60px}
+.series{margin-bottom:72px}
+.series-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.series-dot{width:14px;height:14px;border-radius:50%;border:2px solid #15110d;flex-shrink:0}
+.series-name{font-family:'Bangers',cursive;font-size:clamp(22px,3.8vw,34px);letter-spacing:1px;
+  text-shadow:2px 2px 0 #15110d}
+.cards-row{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+.card-thumb{display:flex;flex-direction:column;align-items:center;gap:8px}
+.fmt-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:#9c8fc8;
+  text-transform:uppercase}
+.card-thumb a{display:block;border-radius:16px;overflow:hidden;
+  border:3px solid #15110d;box-shadow:5px 5px 0 rgba(255,210,63,.5);
+  transition:transform .18s,box-shadow .18s;position:relative;text-decoration:none}
+.card-thumb a:hover{transform:translateY(-5px) scale(1.025);box-shadow:8px 10px 0 #ffd23f}
+.open-badge{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  font-family:'Space Mono',monospace;font-size:10px;color:#fff;
+  background:#ec2e36;border:2px solid #15110d;border-radius:7px;padding:3px 10px;
+  white-space:nowrap;opacity:0;transition:opacity .18s;pointer-events:none}
+.card-thumb a:hover .open-badge{opacity:1}
+
+/* iframe clip container */
+.clip{overflow:hidden;border-radius:13px;display:block}
+.clip .offset{position:relative}
+.clip iframe{transform-origin:top left;border:none;pointer-events:none;display:block}
+
+.divider{border:none;border-top:2px dashed rgba(156,143,200,.25);margin-bottom:72px}
+</style>
+</head>
+<body>
+
+<h1>ZODIAC CARDS</h1>
+<p class="tagline">7 serie · 21 card · post 1:1 &nbsp;·&nbsp; story 9:16 &nbsp;·&nbsp; cover 1:1</p>
+
+<div id="gallery"></div>
+
+<script>
+var SERIES=[
+  {slug:'Capricorno',id:'understanding',label:'Understanding',color:'#a9e0bf'},
+  {slug:'Capricorno',id:'rising',      label:'Rising',       color:'#b3d4f5'},
+  {slug:'Capricorno',id:'mercury',     label:'Mercury',      color:'#f5d9a0'},
+  {slug:'Capricorno',id:'howtospot',   label:'How to Spot',  color:'#c8b8f0'},
+  {slug:'Capricorno',id:'moon',        label:'Moon',         color:'#a0c4e0'},
+  {slug:'Capricorno',id:'whensad',     label:'When Sad',     color:'#aab8e8'},
+  {slug:'Bilancia & Capricorno',id:'relationships',label:'Relationships',color:'#ffcce0'}
+];
+
+// iframe params per format
+var FMT={
+  post: {iw:600, ih:700, sc:0.38, offTop:38, cw:228, ch:213},
+  story:{iw:400, ih:760, sc:0.30, offTop:26, cw:120, ch:192},
+  cover:{iw:580, ih:700, sc:0.38, offTop:40, cw:220, ch:205}
+};
+
+function enc(s){return encodeURIComponent(s);}
+
+function makeThumb(href,fmt){
+  var p=FMT[fmt];
+  // iframe clip + offset wrapper
+  var clip=document.createElement('div');
+  clip.className='clip';
+  clip.style.width=p.cw+'px';
+  clip.style.height=p.ch+'px';
+
+  var off=document.createElement('div');
+  off.className='offset';
+  off.style.top='-'+p.offTop+'px';
+
+  var iframe=document.createElement('iframe');
+  iframe.src=href;
+  iframe.width=p.iw;
+  iframe.height=p.ih;
+  iframe.loading='lazy';
+  iframe.style.transform='scale('+p.sc+')';
+
+  off.appendChild(iframe);
+  clip.appendChild(off);
+  return clip;
+}
+
+function makeCard(href,fmt){
+  var wrap=document.createElement('div');
+  wrap.className='card-thumb';
+
+  var lbl=document.createElement('div');
+  lbl.className='fmt-label';
+  lbl.textContent=fmt.toUpperCase().replace('POST','POST 1:1').replace('STORY','STORY 9:16').replace('COVER','COVER 1:1');
+  wrap.appendChild(lbl);
+
+  var a=document.createElement('a');
+  a.href=href;
+  a.target='_blank';
+  a.rel='noopener';
+  a.appendChild(makeThumb(href,fmt));
+
+  var badge=document.createElement('div');
+  badge.className='open-badge';
+  badge.textContent='apri ↗';
+  a.appendChild(badge);
+  wrap.appendChild(a);
+  return wrap;
+}
+
+var gallery=document.getElementById('gallery');
+
+SERIES.forEach(function(s,idx){
+  if(idx>0){var hr=document.createElement('hr');hr.className='divider';gallery.appendChild(hr);}
+
+  var sec=document.createElement('section');
+  sec.className='series';
+
+  // header
+  var head=document.createElement('div');
+  head.className='series-head';
+  var dot=document.createElement('div');
+  dot.className='series-dot';
+  dot.style.background=s.color;
+  var name=document.createElement('div');
+  name.className='series-name';
+  name.style.color=s.color;
+  name.textContent=s.slug+' — '+s.label;
+  head.appendChild(dot);head.appendChild(name);
+  sec.appendChild(head);
+
+  // cards row
+  var row=document.createElement('div');
+  row.className='cards-row';
+
+  ['post','story','cover'].forEach(function(fmt){
+    var filename=s.slug+' — '+s.id+' — '+fmt+'.html';
+    var href=enc(s.slug)+'%20%E2%80%94%20'+enc(s.id)+'%20%E2%80%94%20'+fmt+'.html';
+    row.appendChild(makeCard(href,fmt));
+  });
+
+  sec.appendChild(row);
+  gallery.appendChild(sec);
+});
+</script>
+</body>
+</html>
