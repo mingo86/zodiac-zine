@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Zodiac -- Bilancia & Capricorno -- cover</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><style>
+:root{--ink:#15110d;--paper:#fff6e3;--red:#ec2e36}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 10px 50px;font-family:'Baloo 2',system-ui,sans-serif}
+.hint{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1px;color:#9c8fc8;text-align:center;max-width:560px}
+.controls button{font-family:'Space Mono',monospace;font-size:12px;color:#241a3e;background:#ffd23f;border:2px solid #15110d;border-radius:8px;padding:5px 12px;cursor:pointer;box-shadow:2px 2px 0 #15110d}
+.card{position:relative;width:min(540px,95vw);aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:#fff0b3;border:6px solid var(--ink);box-shadow:0 14px 0 rgba(0,0,0,.45)}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.5px,transparent 1.7px);background-size:22px 22px}
+.head{position:absolute;top:4%;left:0;right:0;text-align:center;z-index:6}
+.signname{font-family:'Bangers',cursive;font-size:30px;white-space:nowrap;line-height:.9;letter-spacing:1px;-webkit-text-stroke:2px var(--ink);text-shadow:3px 3px 0 var(--ink)}
+.sub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.8vw,15px);color:#6b6356;margin-top:1px}
+.mw{position:absolute;z-index:3;animation:bob 3.4s ease-in-out infinite}
+.mw svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 8px rgba(0,0,0,.28))}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.4%)}}
+.box{position:absolute;z-index:4;font-family:'Baloo 2';font-weight:700;font-size:clamp(11px,2.5vw,16px);line-height:1.12;color:var(--ink);border:3.5px solid var(--ink);border-radius:13px;padding:7px 11px;box-shadow:4px 4px 0 var(--ink);filter:saturate(.9)}
+.box.L{text-align:right}.box.R{text-align:left}
+.ins{position:absolute;left:5%;right:5%;bottom:4%;z-index:6;display:flex;align-items:center;gap:12px;background:var(--paper);border:4px solid var(--ink);border-radius:14px;padding:9px 13px;box-shadow:5px 5px 0 var(--ink)}
+.ins .tag{font-family:'Bangers',cursive;letter-spacing:.03em;text-transform:uppercase;font-size:clamp(15px,3.2vw,19px);color:#fff;background:var(--red);border:2px solid var(--ink);border-radius:9px;padding:4px 14px;box-shadow:2px 2px 0 var(--ink);transform:rotate(-1.5deg);white-space:nowrap}
+.ins .mt{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.95vw,17px);color:var(--ink)}
+.crop{position:absolute;inset:0;z-index:9;pointer-events:none;display:none}.crop.on{display:block}
+.mask{position:absolute;top:0;bottom:0;width:10%;background:rgba(36,26,62,.55)}.mask.l{left:0;border-right:2px dashed #fff}.mask.r{right:0;border-left:2px dashed #fff}
+.lab{position:absolute;top:8px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:11px;color:#fff;background:#241a3e;border:1px solid #fff;border-radius:6px;padding:2px 8px}
+</style></head><body>
+<div class="hint">Bilancia & Capricorno -- COVER FEED 1:1 -- i lati sbordano nel feed 4:5</div>
+<div class="controls"><button id="toggle">mostra/nascondi taglio 4:5</button></div>
+<div class="card" id="card">
+ <div class="head"><div class="signname"><span style="color:#caa200">BILANCIA</span> <span style="color:#15110d">&amp;</span> <span style="color:#36b06a">CAPRICORNO</span></div><div class="sub">in relationships...</div></div>
+ <div class="mw" id="mw1" style="left:34%;top:38%;width:17%"></div>
+ <div class="mw" id="mw2" style="left:51%;top:38%;width:17%"></div>
+ <div class="ins"><span class="tag">INSIEME</span><span class="mt">Sogno + concretezza: si completano.</span></div>
+ <div class="crop" id="crop"><div class="mask l"></div><div class="mask r"></div><div class="lab">feed (4:5)</div></div>
+</div>
+<script src="coppie/mascots.js"></script>
+<script>
+(function(){
+ var card=document.getElementById('card');
+ document.getElementById('mw1').innerHTML=window.MASCOT({k:'bilancia',el:'aria'},'#f5b700','stampa',1,'happy','f');
+ document.getElementById('mw2').innerHTML=window.MASCOT({k:'capricorno',el:'terra'},'#36b06a','stampa',1,'happy','m');
+ function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.88,f=30;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>18){f--;sn.style.fontSize=f+'px';var sh=Math.max(1,Math.round(f*0.09));sn.style.textShadow=sh+'px '+sh+'px 0 #15110d';}}
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,400);
+ var B=[{"cls":"L","edge":-1,"top":27,"w":34,"bg":"#ffe08a","t":"Cerca armonia"},{"cls":"L","edge":1,"top":46,"w":33,"bg":"#ffe08a","t":"Ama socializzare"},{"cls":"L","edge":-1,"top":65,"w":34,"bg":"#ffe08a","t":"Diplomatica ma indecisa"},{"cls":"R","edge":-1,"top":27,"w":34,"bg":"#a9e0bf","t":"Cerca stabilita"},{"cls":"R","edge":1,"top":46,"w":33,"bg":"#a9e0bf","t":"Poche persone vere"},{"cls":"R","edge":-1,"top":65,"w":34,"bg":"#a9e0bf","t":"Pratico e deciso"}];
+ B.forEach(function(p){var d=document.createElement('div');d.className='box '+p.cls;d.style.top=p.top+'%';d.style.width=p.w+'%';if(p.cls==='L')d.style.left=p.edge+'%';else d.style.right=p.edge+'%';d.style.background=p.bg;d.textContent=p.t;card.appendChild(d);});
+ var crop=document.getElementById('crop');crop.classList.add('on');
+ document.getElementById('toggle').addEventListener('click',function(){crop.classList.toggle('on');});
+})();
+</script></body></html>

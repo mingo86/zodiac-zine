@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Zodiac — understanding Capricorno — cover</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><style>
+:root{--ink:#15110d;--paper:#fff6e3;--red:#ec2e36}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 10px 50px;font-family:'Baloo 2',system-ui,sans-serif}
+.hint{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1px;color:#9c8fc8;text-align:center;max-width:560px}
+.controls button{font-family:'Space Mono',monospace;font-size:12px;color:#241a3e;background:#ffd23f;border:2px solid #15110d;border-radius:8px;padding:5px 12px;cursor:pointer;box-shadow:2px 2px 0 #15110d}
+.card{position:relative;width:min(540px,95vw);aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:#fff6e3;border:6px solid var(--ink);box-shadow:0 14px 0 rgba(0,0,0,.45)}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.5px,transparent 1.7px);background-size:22px 22px}
+.head{position:absolute;top:4.5%;left:0;right:0;text-align:center;z-index:6}
+.series{font-family:'Baloo 2';font-weight:700;font-style:italic;line-height:1;margin-bottom:-2px;font-size:clamp(15px,3.6vw,22px);color:#6b6356}
+.signname{font-family:'Bangers',cursive;font-size:70px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#6a4fc0;-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink)}
+.sub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.8vw,16px);color:#6b6356;margin-top:1px}
+#mascotWrap{position:absolute;left:50%;top:37%;width:34%;transform:translateX(-50%);z-index:3;animation:bob 3.4s ease-in-out infinite}
+#mascotWrap svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 8px rgba(0,0,0,.28))}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-2.4%)}}
+.box{position:absolute;z-index:4;font-family:'Baloo 2';font-weight:700;font-size:clamp(11px,2.5vw,16px);line-height:1.12;color:var(--ink);border:3.5px solid var(--ink);border-radius:13px;padding:7px 11px;box-shadow:4px 4px 0 var(--ink);filter:saturate(.9)}
+.box.L{text-align:right}.box.R{text-align:left}.box.a{background:#8fd0ef}.box.b{background:#8ad97e}
+.mantra{position:absolute;left:5%;right:5%;bottom:4%;z-index:6;display:flex;align-items:center;gap:12px;background:var(--paper);border:4px solid var(--ink);border-radius:14px;padding:9px 13px;box-shadow:5px 5px 0 var(--ink)}
+.mantra .tag{font-family:'Bangers',cursive;letter-spacing:.03em;text-transform:uppercase;font-size:clamp(15px,3.2vw,19px);color:#fff;background:#6a4fc0;border:2px solid var(--ink);border-radius:9px;padding:4px 14px;box-shadow:2px 2px 0 var(--ink);transform:rotate(-1.5deg);white-space:nowrap}
+.mantra .mt{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.95vw,17px);color:var(--ink)}
+.crop{position:absolute;inset:0;z-index:9;pointer-events:none;display:none}.crop.on{display:block}
+.crop .mask{position:absolute;top:0;bottom:0;width:10%;background:rgba(36,26,62,.55)}
+.crop .mask.l{left:0;border-right:2px dashed #fff}.crop .mask.r{right:0;border-left:2px dashed #fff}
+.crop .lab{position:absolute;top:8px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:11px;color:#fff;background:#241a3e;border:1px solid #fff;border-radius:6px;padding:2px 8px}
+</style></head><body>
+<div class="hint">understanding Capricorno · COVER FEED 1:1 · la griglia 4:5 taglia i lati → invoglia ad aprire</div>
+<div class="controls"><button id="toggle">mostra/nascondi taglio 4:5</button></div>
+<div class="card" id="card"><div class="head"><div class="series">understanding…</div><div class="signname">CAPRICORNO</div></div>
+<div id="mascotWrap"></div>
+<div class="mantra"><span class="tag">MANTRA</span><span class="mt">«Costruisco in silenzio, vinco nel tempo.»</span></div>
+<div class="crop" id="crop"><div class="mask l"></div><div class="mask r"></div><div class="lab">↑ ciò che si vede nel feed (4:5) ↑</div></div></div>
+<script src="coppie/mascots.js"></script>
+<script>
+(function(){
+ var card=document.getElementById('card');
+ document.getElementById('mascotWrap').innerHTML=window.MASCOT({k:'capricorno',el:'terra'},'#36b06a','stampa',1,'happy','m');
+ function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.9,f=70;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>26){f--;sn.style.fontSize=f+'px';}}
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,400);
+ var B=[{"t":"Sembro serio, ma so ridere","cls":"L","top":27,"w":34,"c":"a","left":-1},{"t":"Odio perdere tempo","cls":"L","top":46,"w":33,"c":"b","left":1},{"t":"Il lavoro mi dà sicurezza","cls":"L","top":65,"w":34,"c":"a","left":-1},{"t":"Mi serve tempo per fidarmi","cls":"R","top":27,"w":34,"c":"b","right":-1},{"t":"Pianifico ogni dettaglio","cls":"R","top":46,"w":33,"c":"a","right":1},{"t":"Rispetto chi è leale","cls":"R","top":65,"w":34,"c":"b","right":-1}];
+ B.forEach(function(p){var d=document.createElement('div');d.className='box '+p.cls+' '+p.c;d.style.top=p.top+'%';d.style.width=p.w+'%';if(p.left!=null)d.style.left=p.left+'%';if(p.right!=null)d.style.right=p.right+'%';d.textContent=p.t;card.appendChild(d);});
+ var crop=document.getElementById('crop');crop.classList.add('on');
+ document.getElementById('toggle').addEventListener('click',function(){crop.classList.toggle('on');});
+})();
+</script></body></html>

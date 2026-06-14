@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Zodiac — how to spot a true Capricorno — post</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><style>
+:root{--ink:#15110d;--paper:#fff6e3;--red:#ec2e36}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:14px;padding:22px 10px 50px;font-family:'Baloo 2',system-ui,sans-serif}
+.hint{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1px;color:#9c8fc8;text-align:center;max-width:560px}
+.controls button{font-family:'Space Mono',monospace;font-size:12px;color:#241a3e;background:#ffd23f;border:2px solid #15110d;border-radius:8px;padding:5px 12px;cursor:pointer;box-shadow:2px 2px 0 #15110d}
+.card{position:relative;width:min(560px,95vw);aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:#fff3e6;border:6px solid var(--ink);box-shadow:0 14px 0 rgba(0,0,0,.45)}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.5px,transparent 1.7px);background-size:22px 22px}
+.head{position:absolute;top:1.4%;left:0;right:0;text-align:center;z-index:6;opacity:0;transform:translateY(-14px) scale(.92);transition:opacity .45s,transform .5s cubic-bezier(.34,1.56,.64,1)}
+.head.in{opacity:1;transform:translateY(0) scale(1)}
+.series{font-family:'Baloo 2';font-weight:700;font-style:italic;line-height:1;margin-bottom:-2px;font-size:clamp(15px,3.6vw,22px);color:#6b6356}
+.signname{font-family:'Bangers',cursive;font-size:64px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#e8602b;-webkit-text-stroke:2.5px var(--ink);text-shadow:5px 5px 0 var(--ink)}
+.sub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.8vw,16px);color:#6b6356;margin-top:1px}
+#mascotWrap{position:absolute;left:50%;top:29%;width:29%;z-index:3;transform:translateX(-50%) scale(.55);opacity:0;transition:opacity .55s,transform .6s cubic-bezier(.34,1.7,.5,1)}
+#mascotWrap.in{opacity:1;transform:translateX(-50%) scale(1)}
+#mascot{animation:none}#mascot.bob{animation:bob 3.2s ease-in-out infinite}
+#mascot svg{display:block;width:100%;height:auto;filter:drop-shadow(0 7px 7px rgba(0,0,0,.28))}
+#mascot .zpup{transition:transform .55s cubic-bezier(.4,1.3,.5,1)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4%)}}
+.box{position:absolute;z-index:4;font-family:'Baloo 2';font-weight:700;font-size:clamp(11px,2.45vw,15.5px);line-height:1.12;color:var(--ink);border:3.5px solid var(--ink);border-radius:13px;padding:7px 11px;box-shadow:4px 4px 0 var(--ink);opacity:0;transform:scale(.4);transition:opacity .4s,transform .5s cubic-bezier(.34,1.7,.5,1),box-shadow .42s,filter .42s;filter:saturate(.9)}
+.box.L{text-align:right}.box.R{text-align:left}.box.C{left:50%;text-align:center;transform:translateX(-50%) scale(.4)}
+.box.a{background:#ffb877}.box.b{background:#ffd23f}
+.box.in{opacity:1;transform:scale(1)}.box.C.in{opacity:1;transform:translateX(-50%) scale(1)}
+.box.hot{transform:scale(1.12);box-shadow:7px 7px 0 var(--ink);filter:none;z-index:5}.box.C.hot{transform:translateX(-50%) scale(1.12)}
+.mantra{position:absolute;left:5%;right:5%;bottom:3.4%;z-index:6;display:flex;align-items:center;gap:12px;background:var(--paper);border:4px solid var(--ink);border-radius:14px;padding:10px 14px;box-shadow:5px 5px 0 var(--ink);opacity:0;transform:scale(.85);transition:opacity .4s,transform .45s cubic-bezier(.34,1.56,.64,1)}
+.mantra.in{opacity:1;transform:scale(1)}
+.mantra .tag{font-family:'Bangers',cursive;letter-spacing:.03em;text-transform:uppercase;font-size:clamp(15px,3.2vw,19px);color:#fff;background:#e8602b;border:2px solid var(--ink);border-radius:9px;padding:4px 14px;box-shadow:2px 2px 0 var(--ink);transform:rotate(-1.5deg);white-space:nowrap}
+.mantra .mt{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.95vw,17px);color:var(--ink);min-height:1.1em}
+.mantra .mt.typing{border-right:2px solid var(--ink);animation:caret .75s step-end infinite}
+@keyframes caret{50%{border-color:transparent}}
+</style></head><body>
+<div class="hint">▶ how to spot a true Capricorno · POST 1:1 · animata · registra lo schermo per il Reel</div>
+<div class="controls"><button id="replay">↻ replay</button></div>
+<div class="card" id="card"><div class="head" id="head"><div class="series">how to spot a true…</div><div class="signname">CAPRICORNO</div></div>
+<div id="mascotWrap"><div id="mascot"></div></div>
+<div class="mantra" id="mantra"><span class="tag">MANTRA</span><span class="mt" id="mt">«Mi riconosci da quanto punto in alto.»</span></div></div>
+<script src="coppie/mascots.js"></script>
+<script>
+(function(){
+ var card=document.getElementById('card'),head=document.getElementById('head'),wrap=document.getElementById('mascotWrap'),mascot=document.getElementById('mascot'),mantra=document.getElementById('mantra'),mt=document.getElementById('mt');
+ var MT=mt.textContent;
+ mascot.innerHTML=window.MASCOT({k:'capricorno',el:'terra'},'#36b06a','stampa',1,'happy','m');
+ function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.9,f=64;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>22){f--;sn.style.fontSize=f+'px';}}
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,400);
+ var BOXES=[{"t":"Sempre impegnato in qualcosa","cls":"C","top":19,"w":48,"c":"a","gx":0,"gy":-4},{"t":"Umorismo secco e tagliente","cls":"R","top":31.5,"w":31,"c":"b","right":4,"gx":4,"gy":-3},{"t":"Punta sempre in alto","cls":"R","top":50,"w":30,"c":"a","right":2,"gx":5,"gy":0},{"t":"Affidabile come una roccia","cls":"R","top":63,"w":30,"c":"b","right":5,"gx":4,"gy":3},{"t":"Calmo anche nel caos","cls":"C","top":79,"w":48,"c":"a","gx":0,"gy":4},{"t":"Pochi amici, ma veri","cls":"L","top":63,"w":30,"c":"b","left":5,"gx":-4,"gy":3},{"t":"Ambizioso fino al midollo","cls":"L","top":50,"w":30,"c":"a","left":2,"gx":-5,"gy":0},{"t":"Detesta perdere tempo","cls":"L","top":31.5,"w":31,"c":"b","left":4,"gx":-4,"gy":-3}];
+ var all=[];BOXES.forEach(function(p){var d=document.createElement('div');d.className='box '+p.cls+' '+p.c;d.style.top=p.top+'%';d.style.width=p.w+'%';if(p.left!=null)d.style.left=p.left+'%';if(p.right!=null)d.style.right=p.right+'%';d.textContent=p.t;d.dataset.gx=p.gx;d.dataset.gy=p.gy;card.appendChild(d);all.push(d);});
+ var AP=[7,6,5,4,3,2,1,0].map(function(i){return all[i];});
+ var pup=mascot.querySelector('.zpup'),ew=mascot.querySelectorAll('circle[fill="#fff"]'),pp=mascot.querySelectorAll('.zpup circle');
+ var DX=(pp[0]&&ew[0])?(parseFloat(pp[0].getAttribute('cx'))-parseFloat(ew[0].getAttribute('cx'))):0;
+ function look(gx,gy){if(pup)pup.style.transform='translate('+(gx-DX)+'px,'+gy+'px)';}
+ function wink(){var e=ew[1],p=pp[1];[e,p].forEach(function(x){if(!x)return;x.style.transformBox='fill-box';x.style.transformOrigin='center';x.style.transition='transform .14s ease';x.style.transform='scaleY(.06)';});setTimeout(function(){[e,p].forEach(function(x){if(x)x.style.transform='scaleY(1)';});},380);}
+ var gz=null,idx=-1;function step(){all.forEach(function(d){d.classList.remove('hot');});idx=(idx+1)%all.length;var d=all[idx];d.classList.add('hot');look(d.dataset.gx,d.dataset.gy);}
+ function typeM(done){var i=0;mt.textContent='';mt.classList.add('typing');(function t(){mt.textContent=MT.slice(0,++i);if(i<MT.length)setTimeout(t,42);else{mt.classList.remove('typing');mt.textContent=MT;setTimeout(done,250);}})();}
+ function reset(){if(gz){clearInterval(gz);gz=null;}head.classList.remove('in');wrap.classList.remove('in');mascot.classList.remove('bob');mantra.classList.remove('in');mt.textContent=MT;look(0,0);all.forEach(function(d){d.classList.remove('in','hot');});}
+ function intro(){reset();setTimeout(function(){wrap.classList.add('in');},250);setTimeout(function(){mascot.classList.add('bob');},900);setTimeout(function(){head.classList.add('in');},950);setTimeout(function(){mantra.classList.add('in');},1600);setTimeout(function(){typeM(after);},2050);}
+ function after(){wink();setTimeout(function(){AP.forEach(function(b,k){setTimeout(function(){b.classList.add('in');},k*190);});setTimeout(function(){idx=-1;step();gz=setInterval(step,1600);},AP.length*190+450);},520);}
+ document.getElementById('replay').addEventListener('click',intro);intro();
+})();
+</script></body></html>
