@@ -9,7 +9,7 @@ body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;alig
 .head{position:absolute;top:1.4%;left:0;right:0;text-align:center;z-index:6;opacity:0;transform:translateY(-14px) scale(.92);transition:opacity .45s,transform .5s cubic-bezier(.34,1.56,.64,1)}
 .head.in{opacity:1;transform:translateY(0) scale(1)}
 .series{font-family:'Baloo 2';font-weight:700;font-style:italic;line-height:1;margin-bottom:-2px;font-size:clamp(15px,3.6vw,22px);color:#6b6356}
-.signname{font-family:'Bangers',cursive;font-size:96px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#2b5fa8;-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink)}
+.signname{font-family:'Bangers',cursive;font-size:130px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#2b5fa8;-webkit-text-stroke:4px var(--ink);text-shadow:8px 8px 0 var(--ink)}
 .sub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.8vw,16px);color:#6b6356;margin-top:1px}
 #mascotWrap{position:absolute;left:50%;top:29%;width:29%;z-index:3;transform:translateX(-50%) scale(.55);opacity:0;transition:opacity .55s,transform .6s cubic-bezier(.34,1.7,.5,1)}
 #mascotWrap.in{opacity:1;transform:translateX(-50%) scale(1)}
@@ -40,11 +40,13 @@ body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;alig
  var card=document.getElementById('card'),head=document.getElementById('head'),wrap=document.getElementById('mascotWrap'),mascot=document.getElementById('mascot'),mantra=document.getElementById('mantra'),mt=document.getElementById('mt');
  var MT=mt.textContent;
  mascot.innerHTML=window.MASCOT({k:'capricorno',el:'terra'},'#36b06a','stampa',1,'sad','m');
- function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.9,f=96;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>22){f--;sn.style.fontSize=f+'px';}var sc=f/96;sn.style.webkitTextStroke=(sc*3).toFixed(1)+'px #15110d';sn.style.textShadow=Math.round(sc*6)+'px '+Math.round(sc*6)+'px 0 #15110d';}
- if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,400);
  var BOXES=[{"t":"Mi isolo da tutti","cls":"C","top":19,"w":48,"c":"a","gx":0,"gy":-4},{"t":"Mi sommergo di lavoro","cls":"R","top":31.5,"w":31,"c":"b","right":4,"gx":4,"gy":-3},{"t":"Divento freddo e distante","cls":"R","top":50,"w":30,"c":"a","right":2,"gx":5,"gy":0},{"t":"Pessimismo alle stelle","cls":"R","top":63,"w":30,"c":"b","right":5,"gx":4,"gy":3},{"t":"Mi chiudo nel silenzio","cls":"C","top":79,"w":48,"c":"a","gx":0,"gy":4},{"t":"Rimugino sui fallimenti","cls":"L","top":63,"w":30,"c":"b","left":5,"gx":-4,"gy":3},{"t":"Non chiedo mai aiuto","cls":"L","top":50,"w":30,"c":"a","left":2,"gx":-5,"gy":0},{"t":"Perdo interesse per tutto","cls":"L","top":31.5,"w":31,"c":"b","left":4,"gx":-4,"gy":-3}];
  var all=[];BOXES.forEach(function(p){var d=document.createElement('div');d.className='box '+p.cls+' '+p.c;d.style.top=p.top+'%';d.style.width=p.w+'%';if(p.left!=null)d.style.left=p.left+'%';if(p.right!=null)d.style.right=p.right+'%';d.textContent=p.t;d.dataset.gx=p.gx;d.dataset.gy=p.gy;card.appendChild(d);all.push(d);});
  var AP=[7,6,5,4,3,2,1,0].map(function(i){return all[i];});
+ var _ot=[];all.forEach(function(d){_ot.push(parseFloat(d.style.top));});
+ function centerRing(){if(!card.clientHeight||!head.offsetHeight)return;var H=card.clientHeight,GAP=6,hB=head.offsetTop+head.offsetHeight,mT=H-mantra.offsetHeight-H*0.034,rT=_ot[0]/100*H,rBtop=_ot[4]/100*H,bcH=all[4].offsetHeight,span=rBtop-rT,sc=Math.min(1,(mT-hB-2*GAP-bcH)/span),aC=(hB+mT-bcH)/2,rC=(rT+rBtop)/2;all.forEach(function(d,i){d.style.top=((aC+(_ot[i]/100*H-rC)*sc)/H*100)+'%';});wrap.style.top=((aC+(29/100*H-rC)*sc)/H*100)+'%';}
+ function fitName(){var sn=document.querySelector('.signname');if(!sn)return;sn.style.fontSize='200px';var f=Math.min(130,Math.max(32,Math.floor(200*card.clientWidth*0.93/sn.scrollWidth)));sn.style.fontSize=f+'px';var sc=f/130;sn.style.webkitTextStroke=Math.max(1.5,sc*4).toFixed(1)+'px #15110d';sn.style.textShadow=Math.round(Math.max(2,sc*8))+'px '+Math.round(Math.max(2,sc*8))+'px 0 #15110d';setTimeout(centerRing,60);}
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,600);
  var pup=mascot.querySelector('.zpup'),ew=mascot.querySelectorAll('circle[fill="#fff"]'),pp=mascot.querySelectorAll('.zpup circle');
  var DX=(pp[0]&&ew[0])?(parseFloat(pp[0].getAttribute('cx'))-parseFloat(ew[0].getAttribute('cx'))):0;
  function look(gx,gy){if(pup)pup.style.transform='translate('+(gx-DX)+'px,'+gy+'px)';}

@@ -8,7 +8,7 @@ body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;alig
 .card::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.5px,transparent 1.7px);background-size:22px 22px}
 .head{position:absolute;top:4.5%;left:0;right:0;text-align:center;z-index:6}
 .series{font-family:'Baloo 2';font-weight:700;font-style:italic;line-height:1;margin-bottom:-2px;font-size:clamp(15px,3.6vw,22px);color:#6b6356}
-.signname{font-family:'Bangers',cursive;font-size:96px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#2f9bdb;-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink)}
+.signname{font-family:'Bangers',cursive;font-size:130px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#2f9bdb;-webkit-text-stroke:4px var(--ink);text-shadow:8px 8px 0 var(--ink)}
 .sub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.8vw,16px);color:#6b6356;margin-top:1px}
 #mascotWrap{position:absolute;left:50%;top:37%;width:34%;transform:translateX(-50%);z-index:3;animation:bob 3.4s ease-in-out infinite}
 #mascotWrap svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 8px rgba(0,0,0,.28))}
@@ -34,8 +34,8 @@ body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;alig
 (function(){
  var card=document.getElementById('card');
  document.getElementById('mascotWrap').innerHTML=window.MASCOT({k:'capricorno',el:'terra'},'#36b06a','stampa',1,'happy','m');
- function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.9,f=96;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>26){f--;sn.style.fontSize=f+'px';}var sc=f/96;sn.style.webkitTextStroke=(sc*3).toFixed(1)+'px #15110d';sn.style.textShadow=Math.round(sc*6)+'px '+Math.round(sc*6)+'px 0 #15110d';}
- if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,400);
+ function fitName(){var sn=document.querySelector('.signname');if(!sn)return;sn.style.fontSize='200px';var f=Math.min(130,Math.max(32,Math.floor(200*card.clientWidth*0.93/sn.scrollWidth)));sn.style.fontSize=f+'px';var sc=f/130;sn.style.webkitTextStroke=Math.max(1.5,sc*4).toFixed(1)+'px #15110d';sn.style.textShadow=Math.round(Math.max(2,sc*8))+'px '+Math.round(Math.max(2,sc*8))+'px 0 #15110d';}
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,600);
  var B=[{"t":"Il sarcasmo è la mia arma","cls":"L","top":27,"w":34,"c":"a","left":-1},{"t":"Tono pratico e diretto","cls":"L","top":46,"w":33,"c":"b","left":1},{"t":"Preferisco i fatti alle chiacchiere","cls":"L","top":65,"w":34,"c":"a","left":-1},{"t":"Vado dritto al punto","cls":"R","top":27,"w":34,"c":"b","right":-1},{"t":"Penso prima di parlare","cls":"R","top":46,"w":33,"c":"a","right":1},{"t":"Niente giri di parole","cls":"R","top":65,"w":34,"c":"b","right":-1}];
  B.forEach(function(p){var d=document.createElement('div');d.className='box '+p.cls+' '+p.c;d.style.top=p.top+'%';d.style.width=p.w+'%';if(p.left!=null)d.style.left=p.left+'%';if(p.right!=null)d.style.right=p.right+'%';d.textContent=p.t;card.appendChild(d);});
  var crop=document.getElementById('crop');crop.classList.add('on');
