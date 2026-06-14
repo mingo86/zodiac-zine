@@ -1,127 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zodiac — pop astrology</title>
-<meta name="description" content="Zodiac: signs, birth chart, daily horoscope and couple compatibility. Pop comic-style astrology.">
-<meta property="og:title" content="Zodiac — pop astrology">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zodiac · Social Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#fff6e3;--red:#ec2e36;--yellow:#ffd23f;--blue:#2f9bdb;--green:#36b06a;--ink:#15110d;--head:#2c2138;--purple:#6b4ff0;--pink:#ff2d6f;}
-*{box-sizing:border-box}html,body{margin:0;padding:0}
-body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#2c2138,#181226);background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;min-height:100vh}
-.wrap{max-width:880px;margin:clamp(10px,3vw,40px) auto;padding:0 0 44px;background:var(--paper);background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.4px,transparent 1.5px);background-size:12px 12px;border:5px solid var(--ink);border-radius:24px;box-shadow:0 16px 0 rgba(0,0,0,.3);overflow:hidden}
-.topbar{display:flex;justify-content:flex-end;padding:12px 16px 0}
-.hero{text-align:center;padding:14px 22px 8px}
-.ksuper{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:3px;color:var(--purple);text-transform:uppercase}
-.htitle{font-family:'Bangers',cursive;font-size:clamp(54px,13vw,104px);color:var(--yellow);-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink);letter-spacing:3px;margin:6px 0 2px;line-height:.95}
-.hsub{font-weight:600;color:#5b5347;max-width:520px;margin:10px auto 0;font-size:16px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:26px 22px 0}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
-.card{display:block;text-decoration:none;color:var(--ink);border:4px solid var(--ink);border-radius:16px;background:#fff;padding:20px;transition:transform .08s;position:relative}
-.card:active{transform:translate(3px,3px)}
-.card.c1{box-shadow:8px 8px 0 var(--blue)}.card.c2{box-shadow:8px 8px 0 var(--purple)}.card.c3{box-shadow:8px 8px 0 var(--pink)}.card.c4{box-shadow:8px 8px 0 var(--green)}.card.c5{box-shadow:8px 8px 0 var(--yellow)}
-.card .ic{font-size:34px;line-height:1}
-.card .n{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;margin:8px 0 2px}
-.card .d{font-weight:600;color:#6b6356;font-size:14px}
-.full{grid-column:1 / -1}
-.foot{text-align:center;font-family:'Space Mono',monospace;font-size:12px;color:#9a9183;margin-top:26px;font-weight:600}
+:root{--paper:#fff6e3;--ink:#15110d;--red:#ec2e36;--yellow:#ffd23f;--blue:#2f9bdb;--green:#36b06a;--pink:#ff2d6f;--purple:#6b4fb0;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Baloo 2',system-ui,sans-serif;color:var(--ink);min-height:100vh;
+  background:#e9dec3;
+  background-image:radial-gradient(circle at 18% 20%,rgba(0,0,0,.05) 0 2px,transparent 3px),radial-gradient(circle at 68% 72%,rgba(0,0,0,.05) 0 2px,transparent 3px);
+  background-size:22px 22px,22px 22px;padding:46px 22px 90px}
+.wrap{max-width:1100px;margin:0 auto}
+.head{text-align:center;margin-bottom:40px}
+.kick{display:inline-block;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.22em;
+  text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 14px;border-radius:6px}
+h1{font-family:'Bangers',cursive;font-size:clamp(44px,9vw,86px);letter-spacing:.02em;line-height:.9;margin:16px 0 8px;
+  color:var(--blue);-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink)}
+.lead{font-weight:600;color:#5c5344;max-width:600px;margin:0 auto;font-size:16px}
+.sect{font-family:'Bangers',cursive;font-size:26px;letter-spacing:.04em;margin:14px 0 16px;display:flex;align-items:center;gap:12px}
+.sect::after{content:"";flex:1;height:3px;background:var(--ink);border-radius:2px;opacity:.25}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:14px}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink);
+  background:var(--paper);border:4px solid var(--ink);border-radius:18px;padding:18px;
+  box-shadow:7px 7px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
+.card:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 var(--ink)}
+.card:active{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.ic{width:60px;height:60px;border-radius:14px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;
+  box-shadow:3px 3px 0 var(--ink)}
+.ic svg{width:34px;height:34px}
+.card h3{font-family:'Bangers',cursive;font-size:23px;letter-spacing:.03em;line-height:1}
+.card p{font-size:13.5px;font-weight:600;color:#5c5344;line-height:1.35}
+.tag{margin-top:auto;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#8a7d62;display:flex;align-items:center;gap:6px}
+.tag::before{content:"▶";font-size:9px}
+.c-red .ic{background:var(--red)}.c-blue .ic{background:var(--blue)}.c-green .ic{background:var(--green)}
+.c-yellow .ic{background:var(--yellow)}.c-pink .ic{background:var(--pink)}.c-purple .ic{background:var(--purple)}
+.foot{margin-top:34px;text-align:center;font-size:12.5px;color:#8a7d62;font-weight:600;line-height:1.6;
+  border-top:2px dashed #c9bd9e;padding-top:18px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar"><span id="langPick"></span></div>
-  <div class="hero">
-    <div class="ksuper" id="ksuper"></div>
-    <h1 class="htitle">ZODIAC</h1>
-    <p class="hsub" id="hsub"></p>
+  <div class="head">
+    <span class="kick">★ Zodiac · Social Studio</span>
+    <h1>Zodiac</h1>
+    <p class="lead">Lo studio dei contenuti Instagram: generatori di card animate (post · story · cover) per ogni segno, coppia e pianeta — in 3 stili. Scegli un modulo.</p>
   </div>
-  <div class="grid" id="grid"></div>
-  <div class="foot" id="foot"></div>
+
+  <div class="sect">Generatori</div>
+  <div class="grid" id="gen"></div>
+
+  <div class="sect">Esplorazioni & Asset</div>
+  <div class="grid" id="extra"></div>
+
+  <div class="foot">★ Tutte le card sono animate (registra lo schermo per il Reel) e hanno una versione statica (aggiungi <b>#still</b> all'URL). Stili: Pop · Cosmo · Adesivi · skin per lente.</div>
 </div>
 
-<script src="lang/i18n.js"></script>
 <script>
-(function(){
-  const HOME = {
-    it:{ksuper:"★ astrologia pop · edizione fumetto",
-      hsub:"Il tuo cielo in versione fumetto: i 12 segni, il tuo tema natale, l'oroscopo del giorno e le affinità di coppia.",
-      foot:"// zodiac · campione",
-      cards:[
-        {ic:"★",n:"Il Libro & i Segni",d:"Le basi, le 12 schede dei segni, le coppie — sfoglia lo zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
-        {ic:"◉",n:"Tema Natale",d:"La mappa del tuo cielo: Sole, Luna, Ascendente, pianeti e case",href:"Tema%20Natale.html",c:"c2"},
-        {ic:"☀",n:"Oroscopo del Giorno",d:"La lettura di oggi, sul tuo segno o sul tuo tema",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match del Giorno",d:"Chi è il tuo abbinamento migliore, oggi",href:"Match%20del%20Giorno.html",c:"c4"},
-        {ic:"✎",n:"Componi la Frase",d:"«Sono un Toro, voglio conquistare un Capricorno» → il consiglio",href:"Componi%20la%20Frase.html",c:"c5"}
-      ]},
-    en:{ksuper:"★ pop astrology · comic edition",
-      hsub:"Your sky in comic-book form: the 12 signs, your birth chart, today's horoscope and couple compatibility.",
-      foot:"// zodiac · sample",
-      cards:[
-        {ic:"★",n:"The Book & the Signs",d:"The basics, the 12 sign cards, the couples — flip through the zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
-        {ic:"◉",n:"Birth Chart",d:"The map of your sky: Sun, Moon, Rising, planets and houses",href:"Tema%20Natale.html",c:"c2"},
-        {ic:"☀",n:"Daily Horoscope",d:"Today's reading — for your sign or your full chart",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match of the Day",d:"Who's your best match, today",href:"Match%20del%20Giorno.html",c:"c4"},
-        {ic:"✎",n:"Build the Sentence",d:"“I'm a Taurus, I want to win over a Capricorn” → the advice",href:"Componi%20la%20Frase.html",c:"c5"}
-      ]},
-    fr:{ksuper:"★ astrologie pop · édition BD",
-      hsub:"Ton ciel version BD : les 12 signes, ton thème natal, l'horoscope du jour et les affinités de couple.",
-      foot:"// zodiac · échantillon",
-      cards:[
-        {ic:"★",n:"Le Livre & les Signes",d:"Les bases, les 12 fiches des signes, les couples — feuillette le zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
-        {ic:"◉",n:"Thème Natal",d:"La carte de ton ciel : Soleil, Lune, Ascendant, planètes et maisons",href:"Tema%20Natale.html",c:"c2"},
-        {ic:"☀",n:"Horoscope du Jour",d:"La lecture du jour — pour ton signe ou ton thème complet",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match du Jour",d:"Qui est ton match parfait, aujourd'hui",href:"Match%20del%20Giorno.html",c:"c4"},
-        {ic:"✎",n:"Compose la Phrase",d:"« Je suis Taureau, je veux séduire un Capricorne » → le conseil",href:"Componi%20la%20Frase.html",c:"c5"}
-      ]},
-    es:{ksuper:"★ astrología pop · edición cómic",
-      hsub:"Tu cielo en versión cómic: los 12 signos, tu carta natal, el horóscopo del día y las afinidades de pareja.",
-      foot:"// zodiac · muestra",
-      cards:[
-        {ic:"★",n:"El Libro y los Signos",d:"Lo básico, las 12 fichas de los signos, las parejas — hojea el zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
-        {ic:"◉",n:"Carta Natal",d:"El mapa de tu cielo: Sol, Luna, Ascendente, planetas y casas",href:"Tema%20Natale.html",c:"c2"},
-        {ic:"☀",n:"Horóscopo del Día",d:"La lectura de hoy — para tu signo o tu carta completa",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match del Día",d:"Quién es tu mejor pareja, hoy",href:"Match%20del%20Giorno.html",c:"c4"},
-        {ic:"✎",n:"Arma la Frase",d:"«Soy Tauro, quiero conquistar a un Capricornio» → el consejo",href:"Componi%20la%20Frase.html",c:"c5"}
-      ]},
-    pt:{ksuper:"★ astrologia pop · edição quadrinhos",
-      hsub:"O seu céu em versão quadrinhos: os 12 signos, o seu mapa astral, o horóscopo do dia e as afinidades de casal.",
-      foot:"// zodiac · amostra",
-      cards:[
-        {ic:"★",n:"O Livro e os Signos",d:"O básico, as 12 fichas dos signos, os casais — folheie a zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
-        {ic:"◉",n:"Mapa Astral",d:"O mapa do seu céu: Sol, Lua, Ascendente, planetas e casas",href:"Tema%20Natale.html",c:"c2"},
-        {ic:"☀",n:"Horóscopo do Dia",d:"A leitura de hoje — para o seu signo ou o seu mapa completo",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match do Dia",d:"Quem é o seu par perfeito, hoje",href:"Match%20del%20Giorno.html",c:"c4"},
-        {ic:"✎",n:"Monte a Frase",d:"«Sou de Touro, quero conquistar um Capricórnio» → o conselho",href:"Componi%20la%20Frase.html",c:"c5"}
-      ]},
-    de:{ksuper:"★ pop-astrologie · comic-edition",
-      hsub:"Dein Himmel als Comic: die 12 Sternzeichen, dein Geburtshoroskop, das Tageshoroskop und die Beziehungs-Kompatibilität.",
-      foot:"// zodiac · probe",
-      cards:[
-        {ic:"★",n:"Das Buch & die Sternzeichen",d:"Die Grundlagen, die 12 Steckbriefe der Zeichen, die Paare — blättere durch das Zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
-        {ic:"◉",n:"Geburtshoroskop",d:"Die Karte deines Himmels: Sonne, Mond, Aszendent, Planeten und Häuser",href:"Tema%20Natale.html",c:"c2"},
-        {ic:"☀",n:"Horoskop des Tages",d:"Die Lesung von heute — für dein Zeichen oder dein komplettes Horoskop",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match des Tages",d:"Wer heute am besten zu dir passt",href:"Match%20del%20Giorno.html",c:"c4"},
-        {ic:"✎",n:"Bau den Satz",d:"«Ich bin Stier, ich will einen Steinbock erobern» → der Rat",href:"Componi%20la%20Frase.html",c:"c5"}
-      ]}
-  };
-  function render(){
-    const L = (window.ZI18N && HOME[window.ZI18N.get()]) ? HOME[window.ZI18N.get()] : HOME.it;
-    document.getElementById('ksuper').textContent = L.ksuper;
-    document.getElementById('hsub').textContent = L.hsub;
-    document.getElementById('foot').textContent = L.foot;
-    document.getElementById('grid').innerHTML = L.cards.map(c=>
-      `<a class="card ${c.c}${c.full?' full':''}" href="${c.href}"><div class="ic">${c.ic}</div><div class="n">${c.n}</div><div class="d">${c.d}</div></a>`
-    ).join("");
-  }
-  if(window.ZI18N){ window.ZI18N.mount(document.getElementById('langPick')); }
-  render();
-  window.addEventListener('zlangchange', render);
-})();
+const I = {
+  cards:'<rect x="14" y="20" width="50" height="40" rx="5" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><rect x="24" y="12" width="50" height="40" rx="5" fill="#ffd23f" stroke="#15110d" stroke-width="4"/>',
+  sizes:'<rect x="10" y="22" width="26" height="26" rx="4" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><rect x="42" y="14" width="20" height="40" rx="4" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><rect x="66" y="20" width="16" height="28" rx="3" fill="#fff6e3" stroke="#15110d" stroke-width="3.5"/>',
+  couple:'<circle cx="28" cy="36" r="15" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><circle cx="58" cy="36" r="15" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><path d="M43 30 c-4 -6 -12 -2 -8 4 l8 8 8-8 c4-6 -4-10 -8-4Z" fill="#ec2e36" stroke="#15110d" stroke-width="2.5"/>',
+  compat:'<circle cx="42" cy="38" r="16" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><path d="M42 16 l3 7 7 0 -5 5 2 8 -7-4 -7 4 2-8 -5-5 7 0Z" fill="#36b06a" stroke="#15110d" stroke-width="2"/>',
+  planet:'<circle cx="42" cy="38" r="15" fill="#6b4fb0" stroke="#15110d" stroke-width="4"/><ellipse cx="42" cy="38" rx="30" ry="9" fill="none" stroke="#ffd23f" stroke-width="4" transform="rotate(-20 42 38)"/>',
+  skin:'<rect x="14" y="16" width="56" height="44" rx="8" fill="none" stroke="#15110d" stroke-width="4"/><circle cx="30" cy="34" r="7" fill="#ff2d6f"/><circle cx="48" cy="30" r="7" fill="#2f9bdb"/><circle cx="40" cy="46" r="7" fill="#36b06a"/>',
+  icon:'<rect x="18" y="14" width="48" height="48" rx="13" fill="#2f9bdb" stroke="#15110d" stroke-width="4"/><circle cx="42" cy="38" r="13" fill="#ffd23f" stroke="#15110d" stroke-width="3"/>',
+  zine:'<rect x="16" y="14" width="52" height="48" rx="5" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><line x1="42" y1="16" x2="42" y2="60" stroke="#15110d" stroke-width="3"/><line x1="24" y1="28" x2="36" y2="28" stroke="#15110d" stroke-width="3"/><line x1="48" y1="28" x2="60" y2="28" stroke="#15110d" stroke-width="3"/>',
+  lab:'<path d="M34 14 h16 v14 l12 26 a6 6 0 0 1 -5 9 H27 a6 6 0 0 1 -5-9 l12-26Z" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><path d="M30 46 h24 l4 8 a4 4 0 0 1-4 6 H30 a4 4 0 0 1-4-6Z" fill="#ec2e36" stroke="#15110d" stroke-width="3"/>',
+};
+const GEN = [
+  {t:"Direzioni", d:"I 3 stili (Pop · Cosmo · Adesivi) sul singolo segno.", f:"Zodiac Social - Direzioni.html", c:"c-blue", ic:"skin", tag:"3 stili"},
+  {t:"Tagli", d:"Post 1:1 · Story 9:16 · Cover 4:5 del singolo segno.", f:"Zodiac Social - Tagli.html", c:"c-yellow", ic:"sizes", tag:"3 formati"},
+  {t:"Coppie", d:"Affinità %, green flag, 7 lenti + modalità A letto 🔥.", f:"Zodiac Social - Coppie.html", c:"c-pink", ic:"couple", tag:"144 coppie"},
+  {t:"Compatibilità", d:"I migliori e i peggiori match di ogni segno.", f:"Zodiac Social - Compatibilità.html", c:"c-green", ic:"compat", tag:"best / worst"},
+  {t:"Pianeti", d:"Sole · Luna · Mercurio · Venere · Marte · Ascendente.", f:"Zodiac Social - Pianeti.html", c:"c-purple", ic:"planet", tag:"6 pianeti"},
+  {t:"Sfondi", d:"Skin per lente + intensità per affinità, nei 3 stili.", f:"Zodiac Social - Sfondi.html", c:"c-red", ic:"cards", tag:"skin"},
+];
+const EXTRA = [
+  {t:"App Icon", d:"10 proposte di icona app in stile fumetto.", f:"Zodiac App Icon.html", c:"c-blue", ic:"icon", tag:"asset"},
+];
+function render(list, id){
+  document.getElementById(id).innerHTML = list.map(c=>`
+    <a class="card ${c.c}" href="${encodeURI(c.f)}">
+      <div class="ic"><svg viewBox="0 0 84 76">${I[c.ic]}</svg></div>
+      <h3>${c.t}</h3><p>${c.d}</p><div class="tag">${c.tag}</div>
+    </a>`).join("");
+}
+render(GEN,'gen'); render(EXTRA,'extra');
 </script>
 </body>
 </html>

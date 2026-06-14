@@ -1,0 +1,320 @@
+/* ============================================================
+   ZODIAC · SOCIAL — stili condivisi delle card
+   Strutture comuni + 3 direzioni (pop/cosmo/adesivi)
+   + 3 tagli (post 1:1 · story 9:16 · cover 4:5).
+   ============================================================ */
+:root{--paper:#fff6e3;--ink:#15110d;--red:#ec2e36;--yellow:#ffd23f;--blue:#2f9bdb;--green:#36b06a;}
+
+/* ---- struttura comune ---- */
+.card{position:relative;width:100%;aspect-ratio:1/1;border-radius:20px;overflow:hidden;container-type:inline-size;
+  border:6px solid var(--ink);box-shadow:0 13px 0 rgba(0,0,0,.45)}
+.card.size-story{aspect-ratio:9/16}
+.card.size-cover{aspect-ratio:4/5}
+.fx{position:absolute;inset:0;pointer-events:none}
+.stars .dot{position:absolute;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
+.stars .sparkle{position:absolute;transform:translate(-50%,-50%);line-height:0}
+.stars .sparkle svg{display:block}
+
+/* testata */
+.head{position:absolute;top:3.2%;left:0;right:0;text-align:center;z-index:6;
+  opacity:0;transform:translateY(-12px);transition:opacity .45s ease,transform .5s cubic-bezier(.34,1.56,.64,1)}
+.head.in{opacity:1;transform:none}
+.series{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:5.2cqw;line-height:1;margin-bottom:1px}
+.signname{display:inline-block;font-family:'Bangers',cursive;font-size:11cqw;line-height:.86;letter-spacing:1.3px;white-space:nowrap;
+  -webkit-text-stroke:2.4px var(--ink);text-shadow:5px 5px 0 var(--ink)}
+
+/* mascotte */
+.mascotWrap{position:absolute;left:50%;top:27%;width:33%;z-index:3;
+  transform:translateX(-50%) scale(.5);opacity:0;
+  transition:opacity .55s ease,transform .6s cubic-bezier(.34,1.7,.5,1)}
+.mascotWrap.in{opacity:1;transform:translateX(-50%) scale(1)}
+.mascot{animation:none}
+.mascot.bob{animation:bob 3.4s ease-in-out infinite}
+.mascot svg{display:block;width:100%;height:auto}
+.mascot .zpup{transition:transform .55s cubic-bezier(.4,1.3,.5,1)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4%)}}
+
+/* box frasi */
+.box{position:absolute;z-index:4;font-family:'Baloo 2';font-weight:700;
+  font-size:2.85cqw;line-height:1.14;padding:1.5% 2.3%;border-radius:13px;
+  opacity:0;transform:scale(.4) rotate(var(--rot,0deg));
+  transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.7,.5,1),box-shadow .42s ease,filter .42s ease}
+.box.L{text-align:right}.box.R{text-align:left}
+.box.C{left:50%;text-align:center;transform:translateX(-50%) scale(.4) rotate(var(--rot,0deg))}
+.box.in{opacity:1;transform:scale(1) rotate(var(--rot,0deg))}
+.box.C.in{opacity:1;transform:translateX(-50%) scale(1) rotate(var(--rot,0deg))}
+.box.hot{z-index:5}
+
+/* mantra (compatto) */
+.mantra{position:absolute;left:5%;right:5%;bottom:4%;z-index:6;display:flex;align-items:center;gap:2.6%;
+  border-radius:13px;padding:1.7% 2.8%;opacity:0;transform:scale(.85);
+  transition:opacity .4s ease,transform .45s cubic-bezier(.34,1.56,.64,1)}
+.mantra.in{opacity:1;transform:scale(1)}
+.mantra .tag{font-family:'Bangers',cursive;letter-spacing:.03em;text-transform:uppercase;font-size:3.3cqw;flex:0 0 auto;
+  color:#fff;border:2px solid var(--ink);border-radius:8px;padding:1% 2.8%;transform:rotate(-2deg);white-space:nowrap}
+.mantra .mt{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:3cqw;line-height:1.15;min-height:1.1em}
+.mantra .mt.typing::after{content:"";display:inline-block;width:2px;height:1em;background:currentColor;
+  margin-left:1px;vertical-align:-1px;animation:caret .75s step-end infinite}
+@keyframes caret{50%{opacity:0}}
+
+/* indizio "scorri" (cover) */
+.swipe{position:absolute;left:50%;bottom:4.5%;transform:translateX(-50%) translateY(8px);z-index:6;
+  font-family:'Space Mono',monospace;font-weight:700;font-size:3cqw;letter-spacing:.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:.5em;padding:1.1% 4%;border-radius:999px;opacity:0;
+  transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1)}
+.swipe.in{opacity:1;transform:translateX(-50%) translateY(0)}
+.swipe span{font-size:.84em}
+
+/* ============================================================
+   TAGLI — adattamenti per dimensione
+   ============================================================ */
+/* STORY 9:16 */
+.size-story .head{top:6.5%}
+.size-story .series{font-size:5cqw}
+.size-story .signname{font-size:15cqw;-webkit-text-stroke:2.8px var(--ink)}
+.size-story .box{font-size:3.2cqw;line-height:1.16}
+.size-story .mantra{bottom:5.5%;padding:2% 3%}
+.size-story .mantra .tag{font-size:3.6cqw}
+.size-story .mantra .mt{font-size:3.3cqw}
+
+/* COVER 4:5 — hook: nome grande, mascotte grande, mantra + scorri */
+.size-cover .head{top:6%}
+.size-cover .series{font-size:6cqw}
+.size-cover .signname{font-size:15.5cqw;-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink)}
+.size-cover .mantra{bottom:14%;padding:2% 3.4%}
+.size-cover .mantra .tag{font-size:4cqw}
+.size-cover .mantra .mt{font-size:3.6cqw}
+
+/* ============================================================
+   DIR · POP  (fumetto pop, sunburst + halftone)
+   ============================================================ */
+.dir-pop .bgbase{background:color-mix(in srgb,var(--el) 20%,var(--paper))}
+.dir-pop .sun{
+  background:repeating-conic-gradient(from 6deg at 50% 41%,
+    color-mix(in srgb,var(--el) 60%,#fff) 0 10deg, color-mix(in srgb,var(--el) 30%,#fff) 10deg 20deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 41%,#000 18%,rgba(0,0,0,.5) 44%,transparent 72%);
+  mask-image:radial-gradient(circle at 50% 41%,#000 18%,rgba(0,0,0,.5) 44%,transparent 72%)}
+.dir-pop .halftone{background-image:radial-gradient(rgba(255,255,255,.55) 1.5px,transparent 1.7px);background-size:13px 13px}
+.dir-pop .glow{display:none}
+.dir-pop .series{color:#6b6356}
+.dir-pop .signname{color:var(--paper)}
+.dir-pop .mascot svg{filter:drop-shadow(0 7px 6px rgba(0,0,0,.28))}
+.dir-pop .box{color:var(--ink);background:var(--paper);border:3.4px solid var(--ink);box-shadow:4px 4px 0 var(--ink);filter:saturate(.96)}
+.dir-pop .box.alt{background:var(--yellow)}
+.dir-pop .box.hot{filter:none;box-shadow:6px 6px 0 var(--ink);transform:scale(1.13) rotate(0deg)}
+.dir-pop .box.C.hot{transform:translateX(-50%) scale(1.13) rotate(0deg)}
+.dir-pop .mantra{background:var(--paper);border:4px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.dir-pop .mantra .tag{background:var(--red)}
+.dir-pop .mantra .mt{color:var(--ink)}
+.dir-pop .swipe{background:var(--ink);color:var(--yellow);border:2.5px solid var(--ink)}
+
+/* ============================================================
+   DIR · COSMO  (notte cosmica, glow + starfield)
+   ============================================================ */
+.dir-cosmo{--ink:#0c0a16}
+.dir-cosmo .bgbase{background:radial-gradient(120% 90% at 50% 30%,#2c2350,#161029 70%,#0e0a1c)}
+.dir-cosmo .sun{display:none}
+.dir-cosmo .halftone{background-image:radial-gradient(rgba(255,255,255,.05) 1.2px,transparent 1.4px);background-size:16px 16px}
+.dir-cosmo .glow{background:radial-gradient(circle at 50% 43%,color-mix(in srgb,var(--el) 55%,transparent) 0,transparent 38%)}
+.dir-cosmo .signname{color:var(--el);-webkit-text-stroke:2px #0c0a16;
+  text-shadow:0 0 14px color-mix(in srgb,var(--el) 70%,transparent),4px 4px 0 #0c0a16}
+.dir-cosmo .series{color:#cdbfff}
+.dir-cosmo .mascot svg{filter:drop-shadow(0 0 14px color-mix(in srgb,var(--el) 55%,transparent)) drop-shadow(0 7px 7px rgba(0,0,0,.5))}
+.dir-cosmo .box{color:#fff6e3;background:rgba(18,12,30,.62);border:2.5px solid var(--el);
+  box-shadow:0 0 13px color-mix(in srgb,var(--el) 38%,transparent),4px 4px 0 rgba(0,0,0,.4);backdrop-filter:blur(2px)}
+.dir-cosmo .box.alt{background:color-mix(in srgb,var(--el) 26%,rgba(18,12,30,.62))}
+.dir-cosmo .box.hot{transform:scale(1.13) rotate(0deg);box-shadow:0 0 22px color-mix(in srgb,var(--el) 70%,transparent),4px 4px 0 rgba(0,0,0,.4)}
+.dir-cosmo .box.C.hot{transform:translateX(-50%) scale(1.13) rotate(0deg)}
+.dir-cosmo .mantra{background:rgba(16,11,28,.8);border:2.5px solid var(--el);
+  box-shadow:0 0 16px color-mix(in srgb,var(--el) 35%,transparent)}
+.dir-cosmo .mantra .tag{background:var(--el);color:#0c0a16}
+.dir-cosmo .mantra .mt{color:#efe7ff}
+.dir-cosmo .swipe{background:var(--el);color:#0c0a16;box-shadow:0 0 14px color-mix(in srgb,var(--el) 55%,transparent)}
+
+/* ============================================================
+   DIR · ADESIVI  (riso sticker, die-cut + pastello)
+   ============================================================ */
+.dir-adesivi{--ink:#2c2138}
+.dir-adesivi .bgbase{background:#fdeede}
+.dir-adesivi .sun{display:none}
+.dir-adesivi .halftone{background-image:radial-gradient(color-mix(in srgb,var(--el) 30%,transparent) 3px,transparent 3.4px);background-size:24px 24px;opacity:.5}
+.dir-adesivi .glow{background:radial-gradient(circle at 50% 44%,color-mix(in srgb,var(--el) 22%,transparent) 0,transparent 46%)}
+.dir-adesivi .signname{color:var(--el);-webkit-text-stroke:2.4px #fff;
+  text-shadow:3px 3px 0 var(--ink),0 6px 9px rgba(0,0,0,.18)}
+.dir-adesivi .series{color:#8a7d72}
+.dir-adesivi .mascot svg{filter:drop-shadow(0 5px 8px rgba(0,0,0,.22))}
+.dir-adesivi .box{color:var(--ink);background:color-mix(in srgb,var(--el) 17%,#fff);
+  border:5px solid #fff;box-shadow:0 5px 11px rgba(0,0,0,.2)}
+.dir-adesivi .box.alt{background:color-mix(in srgb,var(--el) 32%,#fff)}
+.dir-adesivi .box.hot{transform:scale(1.14) rotate(0deg);box-shadow:0 9px 18px rgba(0,0,0,.28)}
+.dir-adesivi .box.C.hot{transform:translateX(-50%) scale(1.14) rotate(0deg)}
+.dir-adesivi .mantra{background:#fff;border:5px solid #fff;box-shadow:0 6px 13px rgba(0,0,0,.22)}
+.dir-adesivi .mantra .tag{background:var(--el);color:#fff}
+.dir-adesivi .mantra .mt{color:var(--ink)}
+.dir-adesivi .swipe{background:#fff;color:var(--ink);border:4px solid #fff;box-shadow:0 5px 10px rgba(0,0,0,.2)}
+
+/* still: nessuna transizione (per catture pulite) */
+.card.still .head,.card.still .mascotWrap,.card.still .box,.card.still .mantra,.card.still .swipe,.card.still .mw,.card.still .badge{transition:none}
+.card.still .mascot.bob,.card.still .mw.bob,.card.still .badge.in{animation:none}
+.card.still .hearts span{animation:none;opacity:.9;transform:none}
+
+/* ============================================================
+   COUPLE — due mascotte + badge % + 2 colonne
+   ============================================================ */
+.couple .sun{display:none}
+.couple .glow{display:none}
+.dir-pop.couple .bgbase{background:#fff3df}
+.couple .signname{font-size:8.6cqw}
+.size-story.couple .signname{font-size:9.4cqw}
+.size-cover.couple .signname{font-size:10.5cqw}
+.couplename .amp{opacity:.55;color:var(--ink)}
+.dir-cosmo .couplename .amp{color:#cdbfff}
+
+.mw{position:absolute;z-index:3;transform:translateY(14px) scale(.5);opacity:0;
+  transition:opacity .55s ease,transform .6s cubic-bezier(.34,1.7,.5,1)}
+.mw.in{opacity:1;transform:none}
+.mw svg{display:block;width:100%;height:auto}
+.mw.bob{animation:bob 3.4s ease-in-out infinite}
+.mw .zpup{transition:transform .55s cubic-bezier(.4,1.3,.5,1)}
+.dir-pop .mw svg{filter:drop-shadow(0 7px 6px rgba(0,0,0,.28))}
+.dir-cosmo .mwA svg{filter:drop-shadow(0 0 13px color-mix(in srgb,var(--elA) 55%,transparent)) drop-shadow(0 6px 6px rgba(0,0,0,.5))}
+.dir-cosmo .mwB svg{filter:drop-shadow(0 0 13px color-mix(in srgb,var(--elB) 55%,transparent)) drop-shadow(0 6px 6px rgba(0,0,0,.5))}
+.dir-adesivi .mw svg{filter:drop-shadow(0 5px 8px rgba(0,0,0,.22))}
+
+.badge{position:absolute;left:50%;transform:translate(-50%,6px) scale(.6);z-index:5;opacity:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:17%;aspect-ratio:1/1;border-radius:50%;border:3.5px solid var(--ink);
+  background:var(--paper);box-shadow:3px 3px 0 var(--ink);
+  transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.6,.5,1)}
+.badge.in{opacity:1;transform:translate(-50%,0) scale(1);animation:beat 1.7s ease-in-out .7s infinite}
+@keyframes beat{0%,100%{transform:translate(-50%,0) scale(1)}50%{transform:translate(-50%,0) scale(1.07)}}
+.badge-sym{font-size:6.4cqw;line-height:.8;color:var(--red)}
+.badge-pct{font-family:'Bangers',cursive;font-size:5cqw;letter-spacing:.02em;color:var(--ink)}
+.badge.state-bad .badge-sym{color:#e8602b}
+.badge.state-mid .badge-sym{color:#6b6356}
+.dir-cosmo .badge{background:rgba(16,11,28,.85);border-color:#cdbfff;box-shadow:0 0 16px rgba(180,160,255,.35)}
+.dir-cosmo .badge-pct{color:#efe7ff}
+.dir-adesivi .badge{border:5px solid #fff;box-shadow:0 5px 11px rgba(0,0,0,.2)}
+
+.couple .box.sideA{--el:var(--elA)}
+.couple .box.sideB{--el:var(--elB)}
+.dir-pop.couple .box.sideA,.dir-pop.couple .box.sideB{background:color-mix(in srgb,var(--el) 40%,#fff6e3);border:3.2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--ink);filter:saturate(.97)}
+.dir-pop.couple .box.shared{background:var(--paper);border:3.4px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--ink)}
+.dir-pop.couple .box.hot{filter:none;box-shadow:6px 6px 0 var(--ink)}
+.dir-cosmo.couple .box.sideA,.dir-cosmo.couple .box.sideB{background:color-mix(in srgb,var(--el) 22%,rgba(18,12,30,.66));border:2.5px solid var(--el);color:#fff6e3;box-shadow:0 0 12px color-mix(in srgb,var(--el) 35%,transparent),4px 4px 0 rgba(0,0,0,.4)}
+.dir-cosmo.couple .box.shared{background:rgba(18,12,30,.62);border:2.5px solid #cdbfff;color:#fff6e3}
+.dir-adesivi.couple .box.sideA,.dir-adesivi.couple .box.sideB{background:color-mix(in srgb,var(--el) 22%,#fff);border:5px solid #fff;color:var(--ink);box-shadow:0 5px 11px rgba(0,0,0,.2)}
+.dir-adesivi.couple .box.shared{background:#fff;border:5px solid #fff;color:var(--ink);box-shadow:0 5px 11px rgba(0,0,0,.2)}
+
+/* cuoricini per le coppie affini */
+.hearts{position:absolute;left:50%;transform:translateX(-50%);z-index:4;pointer-events:none;
+  display:flex;gap:7%;width:34%;justify-content:center;align-items:flex-end}
+.hearts span{color:#ec2e36;font-size:5cqw;line-height:1;opacity:.92;
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,.18));animation:floatup 2.5s ease-in-out infinite}
+.hearts span:nth-child(2){font-size:3.6cqw;animation-delay:.6s}
+.hearts span:nth-child(3){font-size:4.4cqw;animation-delay:1.2s}
+@keyframes floatup{0%{transform:translateY(20%) scale(.85);opacity:0}25%{opacity:.95}100%{transform:translateY(-55%) scale(1.05);opacity:0}}
+
+/* ============================================================
+   COMPAT — chip match (migliori/peggiori)
+   ============================================================ */
+.compat .box{display:flex;align-items:center;justify-content:center;gap:.35em;font-weight:800}
+.compat .mg{font-size:1.35em;line-height:1}
+.compat .mn{white-space:nowrap}
+.compat .mk{font-size:1.05em;line-height:1}
+.compat .box.good .mk{color:#1f8a4c}
+.compat .box.bad .mk{color:#d62b2b}
+.dir-pop.compat .box.good{background:#d7efdb;border:3.2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--ink)}
+.dir-pop.compat .box.bad{background:#f7d9d6;border:3.2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--ink)}
+.dir-pop.compat .box.hot{box-shadow:6px 6px 0 var(--ink)}
+.dir-cosmo.compat .box{background:rgba(18,12,30,.64);color:#fff6e3}
+.dir-cosmo.compat .box.good{border:2.5px solid #54d38a;box-shadow:0 0 12px rgba(84,211,138,.38),4px 4px 0 rgba(0,0,0,.4)}
+.dir-cosmo.compat .box.bad{border:2.5px solid #ff6a6a;box-shadow:0 0 12px rgba(255,106,106,.38),4px 4px 0 rgba(0,0,0,.4)}
+.dir-cosmo.compat .box.good .mk{color:#7ce6a6}
+.dir-cosmo.compat .box.bad .mk{color:#ff8a8a}
+.dir-adesivi.compat .box.good{background:#d7efdb;border:5px solid #fff;box-shadow:0 5px 11px rgba(0,0,0,.2);color:var(--ink)}
+.dir-adesivi.compat .box.bad{background:#f7d9d6;border:5px solid #fff;box-shadow:0 5px 11px rgba(0,0,0,.2);color:var(--ink)}
+
+/* ============================================================
+   PLANET — pianeta nel segno (titolo tinto + sub-line)
+   ============================================================ */
+.card.planet .signname{color:var(--pl)}
+.psub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:3.6cqw;color:var(--pl);margin-top:2px;opacity:.92}
+.size-story .psub{font-size:3.4cqw}
+.size-cover .psub{font-size:4.4cqw}
+.planet .mantra .tag{background:var(--pl);color:#fff}
+.dir-cosmo.planet .signname{-webkit-text-stroke:2px #0c0a16;text-shadow:0 0 14px color-mix(in srgb,var(--pl) 75%,transparent),4px 4px 0 #0c0a16}
+
+/* ============================================================
+   SKIN per lente + intensità per affinità (couple, tutte le direzioni)
+   ============================================================ */
+.couple.skin-amore{--hue:#ff2d6f}
+.couple.skin-amicizia{--hue:#ffb300}
+.couple.skin-lavoro{--hue:#2f9bdb}
+.couple.skin-famiglia{--hue:#36b06a}
+.couple.skin-convivenza{--hue:#13a89a}
+.couple.skin-ex{--hue:#8a93a8}
+.couple.skin-capo{--hue:#c79a2e}
+.couple.skin-sexual{--hue:#ff3b6b}
+
+/* motivi (Pop & Adesivi) */
+.couple .motif{background-repeat:repeat;background-position:center;opacity:.45}
+.couple.skin-amore .motif,.couple.skin-sexual .motif,.couple.skin-famiglia .motif{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46'%3E%3Cpath d='M23 33 C9 22 11 12 17 12 C21 12 23 16 23 16 C23 16 25 12 29 12 C35 12 37 22 23 33Z' fill='none' stroke='%2315110d' stroke-width='2' opacity='.16'/%3E%3C/svg%3E");background-size:46px 46px}
+.couple.skin-amicizia .motif,.couple.skin-capo .motif{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M20 8 L23 17 L32 20 L23 23 L20 32 L17 23 L8 20 L17 17Z' fill='%2315110d' opacity='.12'/%3E%3C/svg%3E");background-size:40px 40px}
+.couple.skin-lavoro .motif{background-image:repeating-linear-gradient(0deg,rgba(21,17,13,.07) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,rgba(21,17,13,.07) 0 1px,transparent 1px 26px)}
+.couple.skin-convivenza .motif{background-image:repeating-linear-gradient(0deg,rgba(21,17,13,.06) 0 13px,transparent 13px 26px),repeating-linear-gradient(90deg,rgba(21,17,13,.06) 0 13px,transparent 13px 26px)}
+.couple.skin-ex .motif{background-image:repeating-linear-gradient(45deg,rgba(21,17,13,.08) 0 2px,transparent 2px 15px)}
+
+/* --- POP --- */
+.dir-pop.couple[class*="skin-"] .bgbase{background:radial-gradient(125% 95% at 50% 34%,color-mix(in srgb,var(--hue) 17%,#fff6e3),color-mix(in srgb,var(--hue) 8%,#fff1da))}
+.dir-pop.couple[class*="skin-"] .glow{display:block;background:radial-gradient(circle at 50% 46%,color-mix(in srgb,var(--hue) 26%,transparent),transparent 56%)}
+.dir-pop.couple[class*="skin-"] .halftone{background-image:radial-gradient(color-mix(in srgb,var(--hue) 38%,rgba(0,0,0,.10)) 1.4px,transparent 1.6px)}
+
+/* --- ADESIVI --- */
+.dir-adesivi.couple[class*="skin-"] .bgbase{background:color-mix(in srgb,var(--hue) 13%,#fdeede)}
+.dir-adesivi.couple[class*="skin-"] .glow{display:block;background:radial-gradient(circle at 50% 46%,color-mix(in srgb,var(--hue) 20%,transparent),transparent 55%)}
+.dir-adesivi.couple[class*="skin-"] .halftone{background-image:radial-gradient(color-mix(in srgb,var(--hue) 42%,transparent) 3px,transparent 3.4px)}
+.dir-adesivi.couple .motif{opacity:.4}
+
+/* --- COSMO --- (motivo nascosto, alone + fondo tinti) */
+.dir-cosmo.couple .motif{opacity:0}
+.dir-cosmo.couple[class*="skin-"] .bgbase{background:radial-gradient(120% 90% at 50% 30%,color-mix(in srgb,var(--hue) 24%,#241a3e),#161029 72%,#0e0a1c)}
+.dir-cosmo.couple[class*="skin-"] .glow{display:block;background:radial-gradient(circle at 50% 44%,color-mix(in srgb,var(--hue) 50%,transparent),transparent 46%)}
+
+/* intensità per affinità (score 2..5) */
+.couple.vibe-2 .glow{opacity:.4;filter:saturate(.55)}
+.couple.vibe-2 .motif{opacity:.28;filter:saturate(.5)}
+.dir-pop.couple.vibe-2 .bgbase,.dir-adesivi.couple.vibe-2 .bgbase{filter:saturate(.5)}
+.couple.vibe-3 .glow{opacity:.72}
+.dir-pop.couple.vibe-3 .bgbase,.dir-adesivi.couple.vibe-3 .bgbase{filter:saturate(.82)}
+.couple.vibe-4 .glow{opacity:1}
+.couple.vibe-5 .glow{filter:saturate(1.3);opacity:1}
+.couple.vibe-5 .motif{opacity:.56}
+.dir-pop.couple.vibe-5 .bgbase,.dir-adesivi.couple.vibe-5 .bgbase{filter:saturate(1.25) brightness(1.03)}
+.dir-cosmo.couple.vibe-5 .bgbase{filter:saturate(1.2) brightness(1.06)}
+
+/* ============================================================
+   SFONDI PIENI — singolo segno (Pop): raggi · pieno · onde · stelle
+   ============================================================ */
+/* PIENO — fondo saturo + raggi marcati (stile app icon) */
+.dir-pop.bgskin-pieno .bgbase{background:color-mix(in srgb,var(--el) 42%,#fff6e3)}
+.dir-pop.bgskin-pieno .sun{display:block;
+  background:repeating-conic-gradient(from 6deg at 50% 41%,color-mix(in srgb,var(--el) 90%,#fff) 0 10deg,color-mix(in srgb,var(--el) 48%,#fff) 10deg 20deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 41%,#000 30%,rgba(0,0,0,.65) 60%,transparent 84%);
+  mask-image:radial-gradient(circle at 50% 41%,#000 30%,rgba(0,0,0,.65) 60%,transparent 84%)}
+.dir-pop.bgskin-pieno .halftone{background-image:radial-gradient(rgba(255,255,255,.7) 1.7px,transparent 1.9px);background-size:13px 13px}
+
+/* ONDE — cerchi concentrici */
+.dir-pop.bgskin-onde .bgbase{background:color-mix(in srgb,var(--el) 26%,#fff6e3)}
+.dir-pop.bgskin-onde .sun{display:block;
+  background:repeating-radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--el) 58%,#fff) 0 10px,color-mix(in srgb,var(--el) 22%,#fff) 10px 20px);
+  -webkit-mask-image:radial-gradient(circle at 50% 42%,#000 14%,rgba(0,0,0,.5) 50%,transparent 80%);
+  mask-image:radial-gradient(circle at 50% 42%,#000 14%,rgba(0,0,0,.5) 50%,transparent 80%)}
+.dir-pop.bgskin-onde .halftone{background-image:radial-gradient(rgba(255,255,255,.5) 1.5px,transparent 1.7px);background-size:14px 14px}
+
+/* STELLE — campo di stelline + fondo pieno */
+.dir-pop.bgskin-stelle .bgbase{background:color-mix(in srgb,var(--el) 34%,#fff6e3)}
+.dir-pop.bgskin-stelle .sun{display:none}
+.dir-pop.bgskin-stelle .halftone{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42'%3E%3Cpath d='M21 9 L23 18 L32 21 L23 24 L21 33 L19 24 L10 21 L19 18Z' fill='%23ffffff' opacity='.55'/%3E%3C/svg%3E");
+  background-size:42px 42px}

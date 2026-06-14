@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zodiac — App Icon · 10 proposte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#fff6e3; --red:#ec2e36; --yellow:#ffd23f; --blue:#2f9bdb; --green:#36b06a; --ink:#15110d; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#e9dec3;
+    background-image:
+      radial-gradient(circle at 18% 20%, rgba(0,0,0,.05) 0 2px, transparent 3px),
+      radial-gradient(circle at 68% 72%, rgba(0,0,0,.05) 0 2px, transparent 3px);
+    background-size:22px 22px, 22px 22px;
+    font-family:'Baloo 2',sans-serif; color:var(--ink); min-height:100vh; padding:46px 26px 80px;
+  }
+  .head{max-width:1180px; margin:0 auto 38px; text-align:center}
+  .kicker{display:inline-block; font-family:'Space Mono',monospace; font-weight:700; font-size:12px;
+    letter-spacing:.22em; text-transform:uppercase; background:var(--ink); color:var(--paper); padding:6px 14px; border-radius:6px}
+  .head h1{font-family:'Bangers',cursive; font-size:clamp(40px,7vw,68px); letter-spacing:.02em; margin:14px 0 6px; line-height:.9}
+  .head p{font-size:15px; color:#5c5344; max-width:560px; margin:0 auto}
+
+  .grid{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:34px 26px}
+  @media(max-width:1080px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:680px){.grid{grid-template-columns:repeat(2,1fr)}}
+
+  .opt{display:flex; flex-direction:column; align-items:center; gap:13px}
+  .icon{width:190px; height:190px; border-radius:43px; overflow:hidden; position:relative; display:block;
+    border:3px solid var(--ink); box-shadow:8px 9px 0 rgba(21,17,13,.85)}
+  @media(max-width:680px){.icon{width:150px;height:150px;border-radius:34px}}
+  .icon svg{display:block; width:100%; height:100%}
+  .tag{display:flex; flex-direction:column; align-items:center; gap:1px; text-align:center}
+  .tag .n{font-family:'Bangers',cursive; font-size:20px; letter-spacing:.04em}
+  .tag .d{font-size:12px; color:#6a6051; font-family:'Space Mono',monospace}
+  .num{position:absolute; top:8px; left:11px; font-family:'Bangers',cursive; font-size:17px; color:rgba(255,255,255,.9);
+    text-shadow:0 1px 2px rgba(0,0,0,.4)}
+
+  .homestage{max-width:1180px; margin:64px auto 0; display:flex; flex-direction:column; align-items:center; gap:16px}
+  .homestage h2{font-family:'Bangers',cursive; font-size:26px; letter-spacing:.03em}
+  .homerow{display:flex; gap:26px; flex-wrap:wrap; justify-content:center}
+  .phone{width:280px; border-radius:44px; border:5px solid var(--ink); padding:15px 13px 20px;
+    background:linear-gradient(180deg,#3a6ea5,#7db0d6 55%,#f3c969); box-shadow:11px 13px 0 rgba(21,17,13,.85); position:relative}
+  .notch{width:110px; height:20px; background:var(--ink); border-radius:0 0 15px 15px; margin:0 auto 16px}
+  .appsrow{display:grid; grid-template-columns:repeat(4,1fr); gap:15px 13px; padding:4px 5px}
+  .appicon{display:flex; flex-direction:column; align-items:center; gap:5px}
+  .appicon .mini{width:52px; height:52px; border-radius:12px; overflow:hidden; border:2px solid rgba(21,17,13,.5); box-shadow:2px 3px 0 rgba(21,17,13,.4)}
+  .appicon .mini svg{width:100%; height:100%; display:block}
+  .appicon .ph{width:52px; height:52px; border-radius:12px; background:rgba(255,255,255,.32); border:2px dashed rgba(255,255,255,.6)}
+  .appicon span{font-size:10px; color:#fff; font-weight:700; text-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .appicon span.real{font-family:'Bangers',cursive; font-weight:400; font-size:12px; letter-spacing:.03em}
+</style>
+</head>
+<body>
+  <div class="head">
+    <span class="kicker">Zodiac · App Icon</span>
+    <h1>Dieci proposte</h1>
+    <p>Stessa famiglia fumetto: contorni neri spessi, sunburst, halftone e i colori della rivista. Tutte su fondi vivaci. Dimmi i numeri che preferisci e li rifinisco + esporto a 1024px e in tutte le taglie iOS.</p>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="homestage">
+    <h2>Anteprima sulla home</h2>
+    <div class="homerow" id="homerow"></div>
+  </div>
+
+<script>
+const INK="#15110d", PAPER="#fff6e3", RED="#ec2e36", REDD="#b81f27", YEL="#ffd23f", YELD="#ffc21f", BLUE="#2f9bdb", BLUED="#2580bb", GREEN="#36b06a", GREEND="#2c9159";
+function sb(cx,cy,col,n,rIn,rOut,rot){let p="";for(let i=0;i<n;i++){const a0=(Math.PI*2/n)*i+(rot||0);const a1=(Math.PI*2/n)*(i+0.5)+(rot||0);const a2=(Math.PI*2/n)*(i+1)+(rot||0);p+=`<path d="M${cx+rIn*Math.cos(a0)},${cy+rIn*Math.sin(a0)} L${cx+rOut*Math.cos(a1)},${cy+rOut*Math.sin(a1)} L${cx+rIn*Math.cos(a2)},${cy+rIn*Math.sin(a2)} Z" fill="${col}"/>`;}return p;}
+function ht(col,op){let d="";for(let y=0;y<100;y+=9){for(let x=0;x<100;x+=9){const r=0.8+(Math.sin(x*0.7)+Math.cos(y*0.6))*0.35;d+=`<circle cx="${x}" cy="${y}" r="${Math.max(0.4,r).toFixed(2)}" fill="${col}"/>`;}}return `<g opacity="${op||0.14}" clip-path="url(#sq)">${d}</g>`;}
+function stp(cx,cy,R,r,n,rot,fill,stroke,sw){let pts=[];for(let i=0;i<n*2;i++){const rad=(i%2===0)?R:r;const a=(Math.PI/n)*i-Math.PI/2+(rot||0);pts.push((cx+rad*Math.cos(a)).toFixed(2)+","+(cy+rad*Math.sin(a)).toFixed(2));}return `<polygon points="${pts.join(" ")}" fill="${fill}" stroke="${stroke||'none'}" stroke-width="${sw||0}" stroke-linejoin="round"/>`;}
+function spk(col,pts){return pts.map(s=>stp(s[0],s[1],s[2],s[2]*0.42,4,0,col,INK,1)).join("");}
+function W(inner){return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="sq"><rect width="100" height="100"/></clipPath></defs>${inner}</svg>`;}
+const SK=`fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"`;
+
+function i1(){return W(`<rect width="100" height="100" fill="${BLUE}"/><g clip-path="url(#sq)">${sb(50,50,BLUED,16,10,92,0)}</g>${ht('#fff',.14)}<circle cx="52" cy="50" r="32" fill="${YEL}" stroke="${INK}" stroke-width="3.5"/><defs><mask id="m1"><rect width="100" height="100" fill="#fff"/><circle cx="64" cy="42" r="26" fill="#000"/></mask></defs><circle cx="50" cy="52" r="25" fill="${PAPER}" stroke="${INK}" stroke-width="3.2" mask="url(#m1)"/><path d="M39 47 q3 -4 6 0" ${SK}/><circle cx="44" cy="55" r="3.3" fill="${INK}"/><path d="M39 63 q5 5 10 0" ${SK}/><circle cx="34.5" cy="60" r="3" fill="${RED}" opacity=".5"/>${spk(YEL,[[22,24,3.6],[80,30,2.6],[30,82,2.6],[78,76,2.2]])}`);}
+function i2(){return W(`<rect width="100" height="100" fill="${RED}"/><g clip-path="url(#sq)">${sb(50,50,REDD,18,8,94,.1)}</g>${ht('#fff',.12)}${stp(50,50,40,17,5,0,YEL,INK,3.6)}<defs><mask id="m2"><rect width="100" height="100" fill="#fff"/><circle cx="58" cy="43" r="14" fill="#000"/></mask></defs><circle cx="49" cy="50" r="14" fill="${PAPER}" stroke="${INK}" stroke-width="3" mask="url(#m2)"/><circle cx="44.5" cy="48" r="2.4" fill="${INK}"/><path d="M41 54 q4.5 4 8.5 -0.5" fill="none" stroke="${INK}" stroke-width="2.4" stroke-linecap="round"/>${spk(PAPER,[[20,22,3.4],[82,28,2.4],[24,80,2.4],[80,78,2.2]])}`);}
+function i3(){return W(`<rect width="100" height="100" fill="${YEL}"/><g clip-path="url(#sq)">${sb(50,50,YELD,16,10,92,0)}</g>${ht(INK,.09)}<circle cx="50" cy="57" r="29" fill="${PAPER}" stroke="${INK}" stroke-width="3.5"/><path d="M50 57 V38 M50 38 q-2 -16 -15 -16 q-13 0 -13 13 q0 11 11 11" fill="none" stroke="${RED}" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 38 q2 -16 15 -16 q13 0 13 13 q0 11 -11 11" fill="none" stroke="${RED}" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="42" cy="58" r="3.4" fill="${INK}"/><circle cx="58" cy="58" r="3.4" fill="${INK}"/><path d="M41 67 q9 8 18 0" ${SK}/><circle cx="36" cy="65" r="3" fill="${RED}" opacity=".5"/><circle cx="64" cy="65" r="3" fill="${RED}" opacity=".5"/>`);}
+function i4(){return W(`<rect width="100" height="100" fill="${BLUE}"/><g clip-path="url(#sq)">${sb(38,46,BLUED,16,10,92,0)}</g>${ht('#fff',.12)}<g><circle cx="40" cy="48" r="20" fill="${YEL}" stroke="${INK}" stroke-width="3.4"/>${[0,45,90,135,180,225,270,315].map(d=>{const a=d*Math.PI/180;return `<line x1="${40+22*Math.cos(a)}" y1="${48+22*Math.sin(a)}" x2="${40+29*Math.cos(a)}" y2="${48+29*Math.sin(a)}" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`;}).join("")}<circle cx="35" cy="46" r="2.6" fill="${INK}"/><circle cx="45" cy="46" r="2.6" fill="${INK}"/><path d="M34 53 q6 5 12 0" fill="none" stroke="${INK}" stroke-width="2.6" stroke-linecap="round"/></g><defs><mask id="m4"><rect width="100" height="100" fill="#fff"/><circle cx="74" cy="56" r="17" fill="#000"/></mask></defs><circle cx="66" cy="62" r="18" fill="${PAPER}" stroke="${INK}" stroke-width="3.3" mask="url(#m4)"/><circle cx="61" cy="60" r="2.6" fill="${INK}"/><path d="M57 66 q5 4 9 -1" fill="none" stroke="${INK}" stroke-width="2.4" stroke-linecap="round"/>${spk(PAPER,[[84,26,2.6],[20,78,2.4]])}`);}
+function i5(){return W(`<rect width="100" height="100" fill="${RED}"/><g clip-path="url(#sq)">${sb(50,50,REDD,18,9,94,0)}</g>${ht('#fff',.12)}<circle cx="50" cy="51" r="31" fill="${PAPER}" stroke="${INK}" stroke-width="3.6"/><circle cx="33" cy="40" r="4" fill="${INK}" opacity=".12"/><circle cx="64" cy="35" r="2.8" fill="${INK}" opacity=".12"/><circle cx="68" cy="62" r="3.4" fill="${INK}" opacity=".12"/><path d="M38 44 q4 -5 8 0" ${SK}/><path d="M54 44 q4 -5 8 0" ${SK}/><circle cx="42" cy="52" r="3.4" fill="${INK}"/><circle cx="58" cy="52" r="3.4" fill="${INK}"/><path d="M40 60 q10 9 20 0" fill="none" stroke="${INK}" stroke-width="3.2" stroke-linecap="round"/><circle cx="34" cy="58" r="3.4" fill="${RED}" opacity=".45"/><circle cx="66" cy="58" r="3.4" fill="${RED}" opacity=".45"/>${spk(YEL,[[20,24,3.4],[82,26,2.6],[24,82,2.4],[80,80,2.4]])}`);}
+function i6(){return W(`<rect width="100" height="100" fill="${BLUE}"/><g clip-path="url(#sq)">${sb(58,44,BLUED,16,10,92,0)}</g>${ht('#fff',.12)}<path d="M30 70 Q44 56 56 44" stroke="${YEL}" stroke-width="9" fill="none" stroke-linecap="round" opacity=".55"/><path d="M26 74 Q42 58 54 46" stroke="${PAPER}" stroke-width="4" fill="none" stroke-linecap="round" opacity=".5"/>${stp(62,40,24,10,5,0.2,YEL,INK,3.4)}<circle cx="58" cy="38" r="2.6" fill="${INK}"/><circle cx="67" cy="38" r="2.6" fill="${INK}"/><path d="M57 44 q5 5 11 0" fill="none" stroke="${INK}" stroke-width="2.6" stroke-linecap="round"/>${spk(PAPER,[[24,30,2.6],[82,66,2.6],[40,84,2.2]])}`);}
+function i7(){return W(`<rect width="100" height="100" fill="${GREEN}"/><g clip-path="url(#sq)">${sb(50,52,GREEND,16,10,92,0)}</g>${ht('#fff',.12)}<path d="M18 52 Q50 26 82 52 Q50 78 18 52 Z" fill="${PAPER}" stroke="${INK}" stroke-width="3.6" stroke-linejoin="round"/><circle cx="50" cy="52" r="15" fill="${BLUE}" stroke="${INK}" stroke-width="3"/>${stp(50,52,9,4,5,0,YEL,INK,1.6)}<circle cx="50" cy="52" r="4.4" fill="${INK}"/><circle cx="47" cy="49" r="1.6" fill="#fff"/>${[[24,40],[32,33],[42,29]].map(p=>`<path d="M${p[0]} ${p[1]} l-4 -6" ${SK}/>`).join("")}${[[76,40],[68,33],[58,29]].map(p=>`<path d="M${p[0]} ${p[1]} l4 -6" ${SK}/>`).join("")}${spk(YEL,[[16,76,2.6],[84,76,2.6]])}`);}
+function i8(){return W(`<rect width="100" height="100" fill="${RED}"/><g clip-path="url(#sq)">${sb(50,48,REDD,18,9,94,0)}</g>${ht('#fff',.12)}<ellipse cx="50" cy="54" rx="40" ry="13" fill="none" stroke="${INK}" stroke-width="7" transform="rotate(-18 50 54)"/><ellipse cx="50" cy="54" rx="40" ry="13" fill="none" stroke="${YEL}" stroke-width="3.4" transform="rotate(-18 50 54)"/><circle cx="50" cy="50" r="22" fill="${BLUE}" stroke="${INK}" stroke-width="3.5"/><circle cx="44" cy="49" r="3" fill="${INK}"/><circle cx="56" cy="49" r="3" fill="${INK}"/><path d="M43 56 q7 6 14 0" fill="none" stroke="${INK}" stroke-width="2.8" stroke-linecap="round"/><circle cx="39" cy="54" r="3" fill="${PAPER}" opacity=".5"/><circle cx="61" cy="54" r="3" fill="${PAPER}" opacity=".5"/>${spk(YEL,[[20,22,3],[82,24,2.6]])}`);}
+function i9(){return W(`<rect width="100" height="100" fill="${YEL}"/><g clip-path="url(#sq)">${sb(50,50,YELD,20,12,94,0)}</g>${ht(INK,.08)}${[...Array(12)].map((_,k)=>{const a=k*30*Math.PI/180;return `<polygon points="${50+24*Math.cos(a)},${50+24*Math.sin(a)} ${50+34*Math.cos(a-0.13)},${50+34*Math.sin(a-0.13)} ${50+34*Math.cos(a+0.13)},${50+34*Math.sin(a+0.13)}" fill="${RED}" stroke="${INK}" stroke-width="1.6" stroke-linejoin="round"/>`;}).join("")}<circle cx="50" cy="50" r="22" fill="#ffb800" stroke="${INK}" stroke-width="3.5"/><circle cx="43" cy="48" r="3.2" fill="${INK}"/><circle cx="57" cy="48" r="3.2" fill="${INK}"/><path d="M42 56 q8 7 16 0" fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"/><circle cx="37" cy="54" r="3" fill="${RED}" opacity=".5"/><circle cx="63" cy="54" r="3" fill="${RED}" opacity=".5"/>`);}
+function i10(){return W(`<rect width="100" height="100" fill="${GREEN}"/><g clip-path="url(#sq)">${sb(50,46,GREEND,16,10,92,0)}</g>${ht('#fff',.12)}<path d="M30 74 h40 l-5 8 h-30 Z" fill="${INK}"/><rect x="33" y="70" width="34" height="6" rx="3" fill="${YELD}" stroke="${INK}" stroke-width="2.4"/><circle cx="50" cy="46" r="27" fill="${BLUE}" stroke="${INK}" stroke-width="3.6" opacity=".92"/><circle cx="50" cy="46" r="27" fill="none" stroke="#bfe6ff" stroke-width="1.6" opacity=".6"/>${stp(50,46,12,5,5,0,YEL,INK,2)}<path d="M38 36 q4 -5 10 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/>${spk(PAPER,[[22,30,2.8],[80,34,2.6],[78,60,2.2]])}`);}
+
+const OPTS=[
+  {n:"Luna ammicca", d:"01 · mascotte", fn:i1},
+  {n:"Stella + luna", d:"02 · distintivo", fn:i2},
+  {n:"Ariete pop", d:"03 · glifo segno", fn:i3},
+  {n:"Sole & Luna", d:"04 · giorno/notte", fn:i4},
+  {n:"Luna piena", d:"05 · faccia tonda", fn:i5},
+  {n:"Cometa", d:"06 · stella filante", fn:i6},
+  {n:"Occhio oracolo", d:"07 · mistico", fn:i7},
+  {n:"Saturno", d:"08 · pianeta", fn:i8},
+  {n:"Sole raggiante", d:"09 · leone", fn:i9},
+  {n:"Sfera di cristallo", d:"10 · divinazione", fn:i10},
+];
+
+document.getElementById('grid').innerHTML=OPTS.map((o,idx)=>`
+  <div class="opt">
+    <div class="icon"><span class="num">${String(idx+1).padStart(2,'0')}</span>${o.fn()}</div>
+    <div class="tag"><span class="n">${o.n}</span><span class="d">${o.d}</span></div>
+  </div>`).join("");
+
+// home screen mocks for the 3 base directions
+function phone(appFn, appName){
+  const ph=["Meteo","Note","Foto","Musica","Mappe","Orologio","Camera"];
+  let cells=`<div class="appicon"><div class="mini">${appFn()}</div><span class="real">Zodiac</span></div>`;
+  ph.forEach(p=>{cells+=`<div class="appicon"><div class="ph"></div><span>${p}</span></div>`;});
+  return `<div class="phone"><div class="notch"></div><div class="appsrow">${cells}</div></div>`;
+}
+document.getElementById('homerow').innerHTML = phone(i1) + phone(i2) + phone(i3);
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zodiac · Social — Coppie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="social/cards.css?v=18">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Baloo 2',system-ui,sans-serif;color:var(--paper);min-height:100vh;
+  background-image:radial-gradient(circle,rgba(0,0,0,.18) 1.6px,transparent 1.8px),linear-gradient(135deg,#2c2138,#171022);
+  background-size:15px 15px,100% 100%;padding:26px 18px 90px}
+.top{max-width:1180px;margin:0 auto 14px;text-align:center}
+.kick{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#b9a7ff}
+h1{font-family:'Bangers',cursive;font-size:clamp(30px,5.4vw,50px);letter-spacing:1.5px;color:var(--yellow);
+  -webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink);margin:5px 0 4px}
+.sub{font-weight:600;color:#cdbfff;font-size:14px;max-width:640px;margin:0 auto}
+.bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:flex-end;margin:20px auto 0;max-width:1180px}
+.ctrl{display:flex;flex-direction:column;gap:3px;text-align:left}
+.ctrl label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:#9c8fc8;padding-left:4px}
+select,.btn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 13px;border:3px solid var(--ink);
+  border-radius:11px;background:var(--paper);color:var(--ink);box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+.btn{background:var(--yellow)}
+.btn:active,select:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.row{max-width:1180px;margin:32px auto 0;display:flex;gap:30px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+.col{display:flex;flex-direction:column;align-items:center;gap:13px}
+.lab{display:flex;flex-direction:column;align-items:center;gap:1px}
+.lab .n{font-family:'Bangers',cursive;font-size:21px;letter-spacing:.05em;color:var(--paper)}
+.lab .d{font-family:'Space Mono',monospace;font-size:11px;color:#9c8fc8}
+.f-post{width:340px}.f-story{width:288px}.f-cover{width:328px}
+.note{max-width:760px;margin:36px auto 0;text-align:center;font-size:13px;color:#b6a9d6;line-height:1.6;font-weight:600}
+.note b{color:#efe7ff}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="kick">★ Zodiac · social studio</div>
+    <h1>Coppie</h1>
+    <p class="sub">Due segni, due mascotte, il punteggio di affinità e i punti forti di ciascuno. 144 coppie × 7 lenti, generate dal motore. Tutto animato.</p>
+    <div class="bar">
+      <div class="ctrl"><label>Segno A</label><select id="sa"></select></div>
+      <div class="ctrl"><label>Segno B</label><select id="sb"></select></div>
+      <div class="ctrl"><label>Tipo</label><select id="mode"><option value="">Relazione</option><option value="sexual">A letto 🔥</option></select></div>
+      <div class="ctrl" id="lensCtrl"><label>Lente</label><select id="lens"></select></div>
+      <div class="ctrl"><label>Stile</label><select id="dir">
+        <option value="pop">Pop</option><option value="cosmo">Cosmo</option><option value="adesivi">Adesivi</option>
+      </select></div>
+      <button class="btn" id="rnd">🎲 caso</button>
+      <button class="btn" id="replay">↻ rigioca</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col"><div class="lab"><span class="n">Post</span><span class="d">feed · 1:1</span></div><div class="f-post"><div class="card" id="c-post"></div></div></div>
+    <div class="col"><div class="lab"><span class="n">Story / Reel</span><span class="d">verticale · 9:16</span></div><div class="f-story"><div class="card" id="c-story"></div></div></div>
+    <div class="col"><div class="lab"><span class="n">Cover</span><span class="d">carosello · 4:5</span></div><div class="f-cover"><div class="card" id="c-cover"></div></div></div>
+  </div>
+
+  <p class="note">Il badge centrale mostra l'<b>affinità %</b> del motore; le due colonne sono i <b>green flag</b> di ciascun segno, colorati per elemento; il mantra è il <b>verdetto</b>. Cambia <b>lente</b> per amore, amicizia, lavoro, famiglia, convivenza, ex, capo&team.</p>
+
+<script src="coppie/engine.js"></script>
+<script src="coppie/mascots.js"></script>
+<script src="data/signs.it.js"></script>
+<script src="data/extra.it.js"></script>
+<script src="social/cardkit.js?v=18"></script>
+<script>
+(function(){
+  var SIZES=['post','story','cover'];
+  var cards={};
+  var saSel=document.getElementById('sa'),sbSel=document.getElementById('sb'),lensSel=document.getElementById('lens'),dirSel=document.getElementById('dir'),modeSel=document.getElementById('mode');
+  var SIGNS=window.ZSIGNS_IT||[];
+  var opts=SIGNS.map(function(s){return '<option value="'+s.k+'">'+s.g+'  '+s.n+'</option>';}).join('');
+  saSel.innerHTML=opts; sbSel.innerHTML=opts;
+  saSel.value='bilancia'; sbSel.value='capricorno';
+  lensSel.innerHTML=(window.ZODIAC.LENSES||[]).map(function(l){return '<option value="'+l.k+'">'+l.g+'  '+l.label+'</option>';}).join('');
+
+  function buildAll(){
+    var a=saSel.value,b=sbSel.value,lens=lensSel.value,dir=dirSel.value,mode=modeSel.value;
+    document.getElementById('lensCtrl').style.display = mode==='sexual' ? 'none' : '';
+    var still=location.hash.indexOf('still')>=0;
+    SIZES.forEach(function(sz){
+      cards[sz]=window.CARDKIT.buildCouple(document.getElementById('c-'+sz),{a:a,b:b,lens:lens,dir:dir,size:sz,still:still,mode:mode});
+    });
+  }
+  function replay(){ SIZES.forEach(function(sz){ cards[sz]&&cards[sz].replay(); }); }
+  function refit(){ SIZES.forEach(function(sz){ cards[sz]&&cards[sz].fit(); }); }
+  function rnd(){ var k=SIGNS.map(function(s){return s.k;}); saSel.value=k[Math.floor(Math.random()*k.length)]; sbSel.value=k[Math.floor(Math.random()*k.length)]; buildAll(); }
+
+  [saSel,sbSel,lensSel,dirSel,modeSel].forEach(function(s){s.addEventListener('change',buildAll);});
+  document.getElementById('rnd').addEventListener('click',rnd);
+  document.getElementById('replay').addEventListener('click',replay);
+  window.addEventListener('resize',function(){clearTimeout(window.__rt);window.__rt=setTimeout(refit,150);});
+
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(buildAll);}
+  buildAll();
+})();
+</script>
+</body>
+</html>
