@@ -9,7 +9,7 @@ body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;alig
 .head{position:absolute;top:1.4%;left:0;right:0;text-align:center;z-index:6;opacity:0;transform:translateY(-14px) scale(.92);transition:opacity .45s,transform .5s cubic-bezier(.34,1.56,.64,1)}
 .head.in{opacity:1;transform:translateY(0) scale(1)}
 .series{font-family:'Baloo 2';font-weight:700;font-style:italic;line-height:1;margin-bottom:-2px;font-size:clamp(15px,3.6vw,22px);color:#6b6356}
-.signname{font-family:'Bangers',cursive;font-size:64px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#2f9bdb;-webkit-text-stroke:2.5px var(--ink);text-shadow:5px 5px 0 var(--ink)}
+.signname{font-family:'Bangers',cursive;font-size:96px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#2f9bdb;-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink)}
 .sub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:clamp(12px,2.8vw,16px);color:#6b6356;margin-top:1px}
 #mascotWrap{position:absolute;left:50%;top:29%;width:29%;z-index:3;transform:translateX(-50%) scale(.55);opacity:0;transition:opacity .55s,transform .6s cubic-bezier(.34,1.7,.5,1)}
 #mascotWrap.in{opacity:1;transform:translateX(-50%) scale(1)}
@@ -40,7 +40,7 @@ body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;alig
  var card=document.getElementById('card'),head=document.getElementById('head'),wrap=document.getElementById('mascotWrap'),mascot=document.getElementById('mascot'),mantra=document.getElementById('mantra'),mt=document.getElementById('mt');
  var MT=mt.textContent;
  mascot.innerHTML=window.MASCOT({k:'capricorno',el:'terra'},'#36b06a','stampa',1,'happy','m');
- function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.9,f=64;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>22){f--;sn.style.fontSize=f+'px';}}
+ function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.9,f=96;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>22){f--;sn.style.fontSize=f+'px';}var sc=f/96;sn.style.webkitTextStroke=(sc*3).toFixed(1)+'px #15110d';sn.style.textShadow=Math.round(sc*6)+'px '+Math.round(sc*6)+'px 0 #15110d';}
  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,400);
  var BOXES=[{"t":"Parlo solo se serve","cls":"C","top":19,"w":48,"c":"a","gx":0,"gy":-4},{"t":"Vado dritto al punto","cls":"R","top":31.5,"w":31,"c":"b","right":4,"gx":4,"gy":-3},{"t":"Penso prima di parlare","cls":"R","top":50,"w":30,"c":"a","right":2,"gx":5,"gy":0},{"t":"Niente giri di parole","cls":"R","top":63,"w":30,"c":"b","right":5,"gx":4,"gy":3},{"t":"Mantengo la parola data","cls":"C","top":79,"w":48,"c":"a","gx":0,"gy":4},{"t":"Preferisco i fatti alle chiacchiere","cls":"L","top":63,"w":30,"c":"b","left":5,"gx":-4,"gy":3},{"t":"Tono pratico e diretto","cls":"L","top":50,"w":30,"c":"a","left":2,"gx":-5,"gy":0},{"t":"Il sarcasmo è la mia arma","cls":"L","top":31.5,"w":31,"c":"b","left":4,"gx":-4,"gy":-3}];
  var all=[];BOXES.forEach(function(p){var d=document.createElement('div');d.className='box '+p.cls+' '+p.c;d.style.top=p.top+'%';d.style.width=p.w+'%';if(p.left!=null)d.style.left=p.left+'%';if(p.right!=null)d.style.right=p.right+'%';d.textContent=p.t;d.dataset.gx=p.gx;d.dataset.gy=p.gy;card.appendChild(d);all.push(d);});

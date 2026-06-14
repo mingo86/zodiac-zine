@@ -9,7 +9,7 @@ body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;alig
 .head{position:absolute;top:6%;left:0;right:0;text-align:center;z-index:6;opacity:0;transform:translateY(-12px) scale(.92);transition:opacity .45s,transform .5s cubic-bezier(.34,1.56,.64,1)}
 .head.in{opacity:1;transform:translateY(0) scale(1)}
 .series{font-family:'Baloo 2';font-weight:700;font-style:italic;line-height:1;margin-bottom:-2px;font-size:15px;color:#6b6356}
-.signname{font-family:'Bangers',cursive;font-size:46px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#e0529a;-webkit-text-stroke:2.5px var(--ink);text-shadow:4px 4px 0 var(--ink)}
+.signname{font-family:'Bangers',cursive;font-size:72px;white-space:nowrap;line-height:.9;letter-spacing:1.5px;color:#e0529a;-webkit-text-stroke:2.5px var(--ink);text-shadow:5px 5px 0 var(--ink)}
 .sub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:12px;color:#6b6356;margin-top:1px}
 #mascotWrap{position:absolute;left:50%;top:37%;width:28%;z-index:3;transform:translateX(-50%) scale(.55);opacity:0;transition:opacity .55s,transform .6s cubic-bezier(.34,1.7,.5,1)}
 #mascotWrap.in{opacity:1;transform:translateX(-50%) scale(1)}
@@ -40,7 +40,7 @@ body{background:#241a3e;min-height:100vh;display:flex;flex-direction:column;alig
  var card=document.getElementById('card'),head=document.getElementById('head'),wrap=document.getElementById('mascotWrap'),mascot=document.getElementById('mascot'),mantra=document.getElementById('mantra'),mt=document.getElementById('mt');
  var MT=mt.textContent;
  mascot.innerHTML=window.MASCOT({k:'capricorno',el:'terra'},'#36b06a','stampa',1,'happy','m');
- function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.88,f=46;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>18){f--;sn.style.fontSize=f+'px';}}
+ function fitName(){var sn=document.querySelector('.signname');if(!sn)return;var cw=card.clientWidth*0.88,f=72;sn.style.fontSize=f+'px';while(sn.scrollWidth>cw&&f>18){f--;sn.style.fontSize=f+'px';}var sc=f/72;sn.style.webkitTextStroke=(sc*2.5).toFixed(1)+'px #15110d';sn.style.textShadow=Math.round(sc*5)+'px '+Math.round(sc*5)+'px 0 #15110d';}
  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitName);setTimeout(fitName,400);
  var BOXES=[{"t":"Sembro maturo e sicuro","cls":"C","top":20,"w":46,"c":"a","gx":0,"gy":-4},{"t":"Look classico, mai eccessivo","cls":"L","top":29,"w":46,"c":"b","left":3,"gx":-4,"gy":-3},{"t":"Do un'aria di autorità","cls":"R","top":29,"w":46,"c":"a","right":3,"gx":4,"gy":-3},{"t":"Riservato al primo incontro","cls":"L","top":45,"w":30,"c":"b","left":3,"gx":-5,"gy":0},{"t":"Trasmetto affidabilità","cls":"R","top":45,"w":30,"c":"a","right":3,"gx":5,"gy":0},{"t":"Sembro più grande dei miei anni","cls":"L","top":60,"w":46,"c":"b","left":3,"gx":-4,"gy":3},{"t":"Eleganza sobria e curata","cls":"R","top":60,"w":46,"c":"a","right":3,"gx":4,"gy":3},{"t":"Metto soggezione, mio malgrado","cls":"C","top":74,"w":46,"c":"b","gx":0,"gy":4}];
  var all=[];BOXES.forEach(function(p){var d=document.createElement('div');d.className='box '+p.cls+' '+p.c;d.style.top=p.top+'%';d.style.width=p.w+'%';if(p.left!=null)d.style.left=p.left+'%';if(p.right!=null)d.style.right=p.right+'%';d.textContent=p.t;d.dataset.gx=p.gx;d.dataset.gy=p.gy;card.appendChild(d);all.push(d);});
