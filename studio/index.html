@@ -1,0 +1,96 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zodiac · Social Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff6e3;--ink:#15110d;--red:#ec2e36;--yellow:#ffd23f;--blue:#2f9bdb;--green:#36b06a;--pink:#ff2d6f;--purple:#6b4fb0;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Baloo 2',system-ui,sans-serif;color:var(--ink);min-height:100vh;
+  background:#e9dec3;
+  background-image:radial-gradient(circle at 18% 20%,rgba(0,0,0,.05) 0 2px,transparent 3px),radial-gradient(circle at 68% 72%,rgba(0,0,0,.05) 0 2px,transparent 3px);
+  background-size:22px 22px,22px 22px;padding:46px 22px 90px}
+.wrap{max-width:1100px;margin:0 auto}
+.head{text-align:center;margin-bottom:40px}
+.kick{display:inline-block;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.22em;
+  text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 14px;border-radius:6px}
+h1{font-family:'Bangers',cursive;font-size:clamp(44px,9vw,86px);letter-spacing:.02em;line-height:.9;margin:16px 0 8px;
+  color:var(--blue);-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink)}
+.lead{font-weight:600;color:#5c5344;max-width:600px;margin:0 auto;font-size:16px}
+.sect{font-family:'Bangers',cursive;font-size:26px;letter-spacing:.04em;margin:14px 0 16px;display:flex;align-items:center;gap:12px}
+.sect::after{content:"";flex:1;height:3px;background:var(--ink);border-radius:2px;opacity:.25}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:14px}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink);
+  background:var(--paper);border:4px solid var(--ink);border-radius:18px;padding:18px;
+  box-shadow:7px 7px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
+.card:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 var(--ink)}
+.card:active{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.ic{width:60px;height:60px;border-radius:14px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;
+  box-shadow:3px 3px 0 var(--ink)}
+.ic svg{width:34px;height:34px}
+.card h3{font-family:'Bangers',cursive;font-size:23px;letter-spacing:.03em;line-height:1}
+.card p{font-size:13.5px;font-weight:600;color:#5c5344;line-height:1.35}
+.tag{margin-top:auto;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#8a7d62;display:flex;align-items:center;gap:6px}
+.tag::before{content:"▶";font-size:9px}
+.c-red .ic{background:var(--red)}.c-blue .ic{background:var(--blue)}.c-green .ic{background:var(--green)}
+.c-yellow .ic{background:var(--yellow)}.c-pink .ic{background:var(--pink)}.c-purple .ic{background:var(--purple)}
+.foot{margin-top:34px;text-align:center;font-size:12.5px;color:#8a7d62;font-weight:600;line-height:1.6;
+  border-top:2px dashed #c9bd9e;padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <span class="kick">★ Zodiac · Social Studio</span>
+    <h1>Zodiac</h1>
+    <p class="lead">Lo studio dei contenuti Instagram: generatori di card animate (post · story · cover) per ogni segno, coppia e pianeta — in 3 stili. Scegli un modulo.</p>
+  </div>
+
+  <div class="sect">Generatori</div>
+  <div class="grid" id="gen"></div>
+
+  <div class="sect">Esplorazioni & Asset</div>
+  <div class="grid" id="extra"></div>
+
+  <div class="foot">★ Tutte le card sono animate (registra lo schermo per il Reel) e hanno una versione statica (aggiungi <b>#still</b> all'URL). Stili: Pop · Cosmo · Adesivi · skin per lente.</div>
+</div>
+
+<script>
+const I = {
+  cards:'<rect x="14" y="20" width="50" height="40" rx="5" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><rect x="24" y="12" width="50" height="40" rx="5" fill="#ffd23f" stroke="#15110d" stroke-width="4"/>',
+  sizes:'<rect x="10" y="22" width="26" height="26" rx="4" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><rect x="42" y="14" width="20" height="40" rx="4" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><rect x="66" y="20" width="16" height="28" rx="3" fill="#fff6e3" stroke="#15110d" stroke-width="3.5"/>',
+  couple:'<circle cx="28" cy="36" r="15" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><circle cx="58" cy="36" r="15" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><path d="M43 30 c-4 -6 -12 -2 -8 4 l8 8 8-8 c4-6 -4-10 -8-4Z" fill="#ec2e36" stroke="#15110d" stroke-width="2.5"/>',
+  compat:'<circle cx="42" cy="38" r="16" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><path d="M42 16 l3 7 7 0 -5 5 2 8 -7-4 -7 4 2-8 -5-5 7 0Z" fill="#36b06a" stroke="#15110d" stroke-width="2"/>',
+  planet:'<circle cx="42" cy="38" r="15" fill="#6b4fb0" stroke="#15110d" stroke-width="4"/><ellipse cx="42" cy="38" rx="30" ry="9" fill="none" stroke="#ffd23f" stroke-width="4" transform="rotate(-20 42 38)"/>',
+  skin:'<rect x="14" y="16" width="56" height="44" rx="8" fill="none" stroke="#15110d" stroke-width="4"/><circle cx="30" cy="34" r="7" fill="#ff2d6f"/><circle cx="48" cy="30" r="7" fill="#2f9bdb"/><circle cx="40" cy="46" r="7" fill="#36b06a"/>',
+  icon:'<rect x="18" y="14" width="48" height="48" rx="13" fill="#2f9bdb" stroke="#15110d" stroke-width="4"/><circle cx="42" cy="38" r="13" fill="#ffd23f" stroke="#15110d" stroke-width="3"/>',
+  zine:'<rect x="16" y="14" width="52" height="48" rx="5" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><line x1="42" y1="16" x2="42" y2="60" stroke="#15110d" stroke-width="3"/><line x1="24" y1="28" x2="36" y2="28" stroke="#15110d" stroke-width="3"/><line x1="48" y1="28" x2="60" y2="28" stroke="#15110d" stroke-width="3"/>',
+  lab:'<path d="M34 14 h16 v14 l12 26 a6 6 0 0 1 -5 9 H27 a6 6 0 0 1 -5-9 l12-26Z" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><path d="M30 46 h24 l4 8 a4 4 0 0 1-4 6 H30 a4 4 0 0 1-4-6Z" fill="#ec2e36" stroke="#15110d" stroke-width="3"/>',
+};
+const GEN = [
+  {t:"Direzioni", d:"I 3 stili (Pop · Cosmo · Adesivi) sul singolo segno.", f:"Zodiac Social - Direzioni.html", c:"c-blue", ic:"skin", tag:"3 stili"},
+  {t:"Tagli", d:"Post 1:1 · Story 9:16 · Cover 4:5 del singolo segno.", f:"Zodiac Social - Tagli.html", c:"c-yellow", ic:"sizes", tag:"3 formati"},
+  {t:"Coppie", d:"Affinità %, green flag, 7 lenti + modalità A letto 🔥.", f:"Zodiac Social - Coppie.html", c:"c-pink", ic:"couple", tag:"144 coppie"},
+  {t:"Compatibilità", d:"I migliori e i peggiori match di ogni segno.", f:"Zodiac Social - Compatibilità.html", c:"c-green", ic:"compat", tag:"best / worst"},
+  {t:"Pianeti", d:"Sole · Luna · Mercurio · Venere · Marte · Ascendente.", f:"Zodiac Social - Pianeti.html", c:"c-purple", ic:"planet", tag:"6 pianeti"},
+  {t:"Sfondi", d:"Skin per lente + intensità per affinità, nei 3 stili.", f:"Zodiac Social - Sfondi.html", c:"c-red", ic:"cards", tag:"skin"},
+];
+const EXTRA = [
+  {t:"App Icon", d:"10 proposte di icona app in stile fumetto.", f:"Zodiac App Icon.html", c:"c-blue", ic:"icon", tag:"asset"},
+];
+function render(list, id){
+  document.getElementById(id).innerHTML = list.map(c=>`
+    <a class="card ${c.c}" href="${encodeURI(c.f)}">
+      <div class="ic"><svg viewBox="0 0 84 76">${I[c.ic]}</svg></div>
+      <h3>${c.t}</h3><p>${c.d}</p><div class="tag">${c.tag}</div>
+    </a>`).join("");
+}
+render(GEN,'gen'); render(EXTRA,'extra');
+</script>
+</body>
+</html>
