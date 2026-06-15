@@ -9,26 +9,68 @@
   const EL = { fuoco: "#ec2e36", terra: "#36b06a", aria: "#f5b700", acqua: "#2f9bdb" };
   const EL_ADES = { fuoco: "#ff5d73", terra: "#4cb285", aria: "#ffc24b", acqua: "#4a86d8" };
 
-  const SIGNS = () => window.ZSIGNS_IT || [];
-  const byKey = (k) => SIGNS().find((s) => s.k === k);
+  const SIGNS = (lang) => window["ZSIGNS_" + (lang || "it").toUpperCase()] || window.ZSIGNS_IT || [];
+  const byKey = (k, lang) => SIGNS(lang).find((s) => s.k === k);
+  const LG = (o) => (o && o.lang ? o.lang : "it").toLowerCase();
+
+  /* ---- UI strings per lingua ---- */
+  const UI = {
+    it: {
+      facts: "cosa mi rende un\u2026", date: "come conquistare un\u2026", flags: "le mie bandiere\u2026",
+      sexSeries: "chimica a letto\u2026", compatSeries: "compatibility with\u2026",
+      mantra: "MANTRA", match: "MATCH", chimica: "CHIMICA",
+      soulmate: (a, b) => `Anima gemella: ${a}. Tieni d'occhio: ${b}.`,
+      sexline: ["Chimica da costruire.", "Si scalda piano.", "Bella scintilla.", "Fuoco vero."],
+      lens: { amore: "in coppia\u2026", amicizia: "come amici\u2026", lavoro: "come soci\u2026", famiglia: "in famiglia\u2026", convivenza: "da conviventi\u2026", ex: "da ex\u2026", capo: "capo & team\u2026" },
+    },
+    en: {
+      facts: "what makes me a\u2026", date: "how to date a\u2026", flags: "my flags\u2026",
+      sexSeries: "between the sheets\u2026", compatSeries: "compatibility with\u2026",
+      mantra: "MANTRA", match: "MATCH", chimica: "CHEMISTRY",
+      soulmate: (a, b) => `Soulmate: ${a}. Watch out for: ${b}.`,
+      sexline: ["Chemistry to build.", "Warms up slowly.", "Real spark.", "Pure fire."],
+      lens: { amore: "in relationships\u2026", amicizia: "as friends\u2026", lavoro: "as partners\u2026", famiglia: "as family\u2026", convivenza: "as roommates\u2026", ex: "as exes\u2026", capo: "boss & team\u2026" },
+    },
+    de: {
+      facts: "das macht mich zum\u2026", date: "so erobert man einen\u2026", flags: "meine Flaggen\u2026",
+      sexSeries: "Chemie im Bett\u2026", compatSeries: "Kompatibilit\u00e4t mit\u2026",
+      mantra: "MANTRA", match: "MATCH", chimica: "CHEMIE",
+      soulmate: (a, b) => `Seelenverwandt: ${a}. Aufpassen bei: ${b}.`,
+      sexline: ["Chemie muss wachsen.", "Wird langsam hei\u00df.", "Sch\u00f6ner Funke.", "Echtes Feuer."],
+      lens: { amore: "als Paar\u2026", amicizia: "als Freunde\u2026", lavoro: "als Partner\u2026", famiglia: "als Familie\u2026", convivenza: "als Mitbewohner\u2026", ex: "als Ex\u2026", capo: "Chef & Team\u2026" },
+    },
+    fr: {
+      facts: "ce qui fait de moi un\u2026", date: "comment s\u00e9duire un\u2026", flags: "mes drapeaux\u2026",
+      sexSeries: "alchimie au lit\u2026", compatSeries: "compatibilit\u00e9 avec\u2026",
+      mantra: "MANTRA", match: "MATCH", chimica: "ALCHIMIE",
+      soulmate: (a, b) => `\u00c2me s\u0153ur : ${a}. M\u00e9fie-toi de : ${b}.`,
+      sexline: ["Alchimie \u00e0 construire.", "\u00c7a chauffe doucement.", "Belle \u00e9tincelle.", "Vrai feu."],
+      lens: { amore: "en couple\u2026", amicizia: "entre amis\u2026", lavoro: "comme associ\u00e9s\u2026", famiglia: "en famille\u2026", convivenza: "en coloc\u2026", ex: "entre ex\u2026", capo: "chef & \u00e9quipe\u2026" },
+    },
+    es: {
+      facts: "lo que me hace un\u2026", date: "c\u00f3mo conquistar a un\u2026", flags: "mis banderas\u2026",
+      sexSeries: "qu\u00edmica en la cama\u2026", compatSeries: "compatibilidad con\u2026",
+      mantra: "MANTRA", match: "MATCH", chimica: "QU\u00cdMICA",
+      soulmate: (a, b) => `Alma gemela: ${a}. Ojo con: ${b}.`,
+      sexline: ["Qu\u00edmica por construir.", "Se calienta despacio.", "Buena chispa.", "Fuego de verdad."],
+      lens: { amore: "en pareja\u2026", amicizia: "como amigos\u2026", lavoro: "como socios\u2026", famiglia: "en familia\u2026", convivenza: "como convivientes\u2026", ex: "como ex\u2026", capo: "jefe y equipo\u2026" },
+    },
+    pt: {
+      facts: "o que me torna um\u2026", date: "como conquistar um\u2026", flags: "minhas bandeiras\u2026",
+      sexSeries: "qu\u00edmica na cama\u2026", compatSeries: "compatibilidade com\u2026",
+      mantra: "MANTRA", match: "MATCH", chimica: "QU\u00cdMICA",
+      soulmate: (a, b) => `Alma g\u00eamea: ${a}. Fica de olho em: ${b}.`,
+      sexline: ["Qu\u00edmica pra construir.", "Esquenta devagar.", "Fa\u00edsca boa.", "Fogo de verdade."],
+      lens: { amore: "a dois\u2026", amicizia: "como amigos\u2026", lavoro: "como s\u00f3cios\u2026", famiglia: "em fam\u00edlia\u2026", convivenza: "morando juntos\u2026", ex: "como ex\u2026", capo: "chefe & equipe\u2026" },
+    },
+  };
+  const TX = (o) => UI[LG(o)] || UI.it;
 
   /* ---- FORMAT: quali campi diventano i box + il mantra ---- */
   const FORMATS = {
-    facts: {
-      series: "cosa mi rende un…",
-      boxes: (s) => s.sap.concat(s.gf),
-      mantra: (s) => s.q,
-    },
-    date: {
-      series: "come conquistare un…",
-      boxes: (s) => s.con.concat(s.deal.slice(0, 3)),
-      mantra: (s) => s.q,
-    },
-    flags: {
-      series: "le mie bandiere…",
-      boxes: (s) => s.gf.concat(s.rf, s.sap.slice(0, 2)),
-      mantra: (s) => s.q,
-    },
+    facts: { key: "facts", boxes: (s) => s.sap.concat(s.gf), mantra: (s) => s.q },
+    date: { key: "date", boxes: (s) => s.con.concat(s.deal.slice(0, 3)), mantra: (s) => s.q },
+    flags: { key: "flags", boxes: (s) => s.gf.concat(s.rf, s.sap.slice(0, 2)), mantra: (s) => s.q },
   };
 
   /* ---- GEOMETRIA per TAGLIO: post 1:1 · story 9:16 · cover 4:5 ---- */
@@ -112,7 +154,7 @@
      ritorna { replay() }
      ============================================================ */
   function buildCard(host, opts) {
-    const s = byKey(opts.key);
+    const s = byKey(opts.key, opts.lang);
     if (!s) return null;
     const dir = opts.dir || "pop";
     const fmt = FORMATS[opts.format || "facts"];
@@ -137,7 +179,7 @@
 
     /* --- testata: serie + nome segno --- */
     const head = document.createElement("div"); head.className = "head";
-    head.innerHTML = `<div class="series">${fmt.series}</div><div class="signname">${s.n.toUpperCase()}</div>`;
+    head.innerHTML = `<div class="series">${TX(opts)[fmt.key]}</div><div class="signname">${s.n.toUpperCase()}</div>`;
     host.appendChild(head);
 
     /* --- mascotte --- */
@@ -160,7 +202,7 @@
       b.style.width = slot.w + "%";
       if (slot.left != null) b.style.left = slot.left + "%";
       if (slot.right != null) b.style.right = slot.right + "%";
-      const rot = size === "story" ? 0 : (i % 2 ? 1 : -1) * (1 + (i % 2));
+      const rot = (i % 2 ? 1 : -1) * (1 + (i % 2));
       b.style.setProperty("--rot", rot + "deg");
       b.textContent = phrases[i];
       b.dataset.gx = slot.gx; b.dataset.gy = slot.gy;
@@ -171,7 +213,7 @@
     /* --- mantra --- */
     const mantra = document.createElement("div"); mantra.className = "mantra";
     const quote = fmt.mantra(s);
-    mantra.innerHTML = `<span class="tag">MANTRA</span><span class="mt"></span>`;
+    mantra.innerHTML = `<span class="tag">${TX(opts).mantra}</span><span class="mt"></span>`;
     host.appendChild(mantra);
     const mt = mantra.querySelector(".mt");
 
@@ -269,7 +311,7 @@
      dipende anche da window.ZODIAC (coppie/engine.js)
      ============================================================ */
   const LENS_SERIES = {
-    amore: "in relationships…", amicizia: "come amici…", lavoro: "come soci…",
+    amore: "in coppia…", amicizia: "come amici…", lavoro: "come soci…",
     famiglia: "in famiglia…", convivenza: "da conviventi…", ex: "da ex…", capo: "capo & team…",
   };
   const COUPLE_GEO = {
@@ -292,13 +334,13 @@
   };
 
   function buildCouple(host, opts) {
-    const Z = window.ZODIAC; if (!Z) return null;
-    const sA = byKey(opts.a), sB = byKey(opts.b);
+    const Z = window["ZODIAC_" + LG(opts).toUpperCase()] || window.ZODIAC; if (!Z) return null;
+    const sA = byKey(opts.a, opts.lang), sB = byKey(opts.b, opts.lang);
     if (!sA || !sB) return null;
     const lens = opts.lens || "amore";
     const R = Z.computeCouple(opts.a, opts.b, lens);
     const sexual = opts.mode === "sexual";
-    const ZSEX = window.ZSEX_IT || {};
+    const ZSEX = window["ZSEX_" + LG(opts).toUpperCase()] || window.ZSEX_IT || {};
     const pass = (R.dims && R.dims[0]) ? R.dims[0].v : R.score;
     const st = sexual ? (pass >= 4 ? "good" : pass <= 2 ? "bad" : "mid") : R.state;
     const dir = opts.dir || "pop", size = opts.size || "post";
@@ -316,7 +358,7 @@
     host.append(div("fx bgbase"), div("fx sun"), div("fx motif"), div("fx halftone"), div("fx glow"), decoStars(dir, elA));
 
     const head = div("head");
-    head.innerHTML = `<div class="series">${sexual ? "chimica a letto…" : (LENS_SERIES[lens] || "in coppia…")}</div>
+    head.innerHTML = `<div class="series">${sexual ? TX(opts).sexSeries : (TX(opts).lens[lens] || "")}</div>
       <div class="signname couplename"><span style="color:${elA}">${sA.n.toUpperCase()}</span> <span class="amp">&amp;</span> <span style="color:${elB}">${sB.n.toUpperCase()}</span></div>`;
     host.appendChild(head);
 
@@ -359,9 +401,9 @@
     mkCol(geo.colsB, sB, "B", "R");
 
     const mantra = div("mantra");
-    const SEXLINE = ["Chimica da costruire.", "Si scalda piano.", "Bella scintilla.", "Fuoco vero."];
+    const SEXLINE = TX(opts).sexline;
     const quote = sexual ? SEXLINE[Math.min(3, Math.max(0, pass - 2))] : R.verdict;
-    mantra.innerHTML = `<span class="tag">${sexual ? "CHIMICA" : R.sint.toUpperCase()}</span><span class="mt"></span>`;
+    mantra.innerHTML = `<span class="tag">${sexual ? TX(opts).chimica : R.sint.toUpperCase()}</span><span class="mt"></span>`;
     host.appendChild(mantra);
     const mt = mantra.querySelector(".mt");
 
@@ -469,15 +511,15 @@
   };
 
   function buildCompat(host, opts) {
-    const Z = window.ZODIAC; if (!Z) return null;
-    const s = byKey(opts.key); if (!s) return null;
+    const Z = window["ZODIAC_" + LG(opts).toUpperCase()] || window.ZODIAC; if (!Z) return null;
+    const s = byKey(opts.key, opts.lang); if (!s) return null;
     const dir = opts.dir || "pop", size = opts.size || "post";
     const adesivi = dir === "adesivi", theme = adesivi ? "adesivi" : "stampa";
     const elColor = (adesivi ? EL_ADES : EL)[s.el];
     const geo = COMPAT_GEO[size] || COMPAT_GEO.post;
     const div = (c) => { const d = document.createElement("div"); d.className = c; return d; };
 
-    const ranked = SIGNS().filter((o) => o.k !== s.k)
+    const ranked = SIGNS(opts.lang).filter((o) => o.k !== s.k)
       .map((o) => ({ o, sc: Z.computeCouple(s.k, o.k, "amore").score }))
       .sort((a, b) => b.sc - a.sc);
     const best = ranked.slice(0, 3);
@@ -489,7 +531,7 @@
     host.append(div("fx bgbase"), div("fx sun"), div("fx halftone"), div("fx glow"), decoStars(dir, elColor));
 
     const head = div("head");
-    head.innerHTML = `<div class="series">compatibility with…</div><div class="signname">${s.n.toUpperCase()}</div>`;
+    head.innerHTML = `<div class="series">${TX(opts).compatSeries}</div><div class="signname">${s.n.toUpperCase()}</div>`;
     host.appendChild(head);
 
     const wrap = div("mascotWrap"); wrap.style.top = geo.mascot.top + "%"; wrap.style.width = geo.mascot.w + "%";
@@ -510,8 +552,8 @@
     geo.worst.forEach((slot, i) => worst[i] && mk(slot, worst[i], "bad"));
 
     const mantra = div("mantra");
-    const quote = best[0] ? `Anima gemella: ${best[0].o.n}. Tieni d'occhio: ${worst[0].o.n}.` : "";
-    mantra.innerHTML = `<span class="tag">MATCH</span><span class="mt"></span>`;
+    const quote = best[0] ? TX(opts).soulmate(best[0].o.n, worst[0].o.n) : "";
+    mantra.innerHTML = `<span class="tag">${TX(opts).match}</span><span class="mt"></span>`;
     host.appendChild(mantra);
     const mt = mantra.querySelector(".mt");
 
@@ -587,8 +629,8 @@
   };
 
   function buildPlanet(host, opts) {
-    const s = byKey(opts.key); if (!s) return null;
-    const P = (window.ZPLANETS_IT || {})[opts.planet]; if (!P) return null;
+    const s = byKey(opts.key, opts.lang); if (!s) return null;
+    const P = (window["ZPLANETS_" + LG(opts).toUpperCase()] || window.ZPLANETS_IT || {})[opts.planet]; if (!P) return null;
     const data = P.signs[s.k] || { box: [], q: s.q };
     const dir = opts.dir || "pop", size = opts.size || "post";
     const adesivi = dir === "adesivi", theme = adesivi ? "adesivi" : "stampa";
@@ -625,7 +667,7 @@
 
     const mantra = div("mantra");
     const quote = data.q || s.q;
-    mantra.innerHTML = `<span class="tag">MANTRA</span><span class="mt"></span>`;
+    mantra.innerHTML = `<span class="tag">${TX(opts).mantra}</span><span class="mt"></span>`;
     host.appendChild(mantra);
     const mt = mantra.querySelector(".mt");
 

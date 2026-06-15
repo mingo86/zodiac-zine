@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zodiac · Social — Sfondi per lente</title>
+<title>Zodiac Â· Social â€” Sfondi per lente</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="social/cards.css?v=18">
@@ -39,29 +39,29 @@ select,.btn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 13p
 </head>
 <body>
   <div class="top">
-    <div class="kick">★ Zodiac · social studio</div>
+    <div class="kick">â˜… Zodiac Â· social studio</div>
     <h1>Sfondi per lente</h1>
-    <p class="sub">Ogni relazione ha il suo mood: colore + dettaglio dello sfondo cambiano con la <b>lente</b>. E l'<b>intensità</b> segue l'affinità: più alta la %, più lo sfondo è caldo e vivo.</p>
+    <p class="sub">Ogni relazione ha il suo mood: colore + dettaglio dello sfondo cambiano con la <b>lente</b>. E l'<b>intensitÃ </b> segue l'affinitÃ : piÃ¹ alta la %, piÃ¹ lo sfondo Ã¨ caldo e vivo.</p>
     <div class="bar">
       <div class="ctrl"><label>Coppia (per le skin)</label><select id="pair"></select></div>
       <div class="ctrl"><label>Stile</label><select id="dir"><option value="pop">Pop</option><option value="cosmo">Cosmo</option><option value="adesivi">Adesivi</option></select></div>
-      <button class="btn" id="replay">↻ rigioca</button>
+      <button class="btn" id="replay">â†» rigioca</button>
     </div>
   </div>
 
-  <div class="h2">Le skin — una per lente</div>
+  <div class="h2">Le skin â€” una per lente</div>
   <div class="grid" id="grid"></div>
 
-  <div class="h2">Intensità per affinità — stessa lente, % diverse</div>
+  <div class="h2">IntensitÃ  per affinitÃ  â€” stessa lente, % diverse</div>
   <div class="intens" id="intens"></div>
 
-  <p class="note">Le skin sono declinazioni dello stile <b>Pop</b> (lo stile principale). Cosmo e Adesivi restano come sono. Tutto è automatico: scegli la lente nella pagina <b>Coppie</b> e lo sfondo si adatta da solo. Dimmi quali tenere/affinare.</p>
+  <p class="note">Le skin sono declinazioni dello stile <b>Pop</b> (lo stile principale). Cosmo e Adesivi restano come sono. Tutto Ã¨ automatico: scegli la lente nella pagina <b>Coppie</b> e lo sfondo si adatta da solo. Dimmi quali tenere/affinare.</p>
 
 <script src="coppie/engine.js"></script>
 <script src="coppie/mascots.js"></script>
 <script src="data/signs.it.js"></script>
 <script src="data/extra.it.js"></script>
-<script src="social/cardkit.js?v=18"></script>
+<script src="social/cardkit.js?v=22"></script>
 <script>
 (function(){
   var LENSES=(window.ZODIAC.LENSES||[]).map(function(l){return l.k;}); // amore..capo
@@ -81,14 +81,14 @@ select,.btn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 13p
       var card=document.createElement('div'); card.className='card';
       var cap=document.createElement('div'); cap.className='cap';
       var meta=lensMeta.filter(function(l){return l.k===lk;})[0];
-      cap.innerHTML=(meta?meta.g+' '+meta.label:'🔥 A letto')+'<small>skin · '+lk+'</small>';
+      cap.innerHTML=(meta?meta.g+' '+meta.label:'ðŸ”¥ A letto')+'<small>skin Â· '+lk+'</small>';
       cell.appendChild(card); cell.appendChild(cap); grid.appendChild(cell);
       var opts={a:p[0],b:p[1],dir:dirSel.value,size:'post',still:true};
       if(lk==='sexual') opts.mode='sexual'; else opts.lens=lk;
       skinCards.push(window.CARDKIT.buildCouple(card,opts));
     });
 
-    // intensità: stessa lente (amore), 4 coppie con score crescente
+    // intensitÃ : stessa lente (amore), 4 coppie con score crescente
     var iwrap=document.getElementById('intens'); iwrap.innerHTML=''; intensCards=[];
     var TIERS=[['ariete','capricorno'],['leone','toro'],['cancro','pesci'],['toro','vergine']];
     TIERS.forEach(function(pr){
@@ -97,7 +97,7 @@ select,.btn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 13p
       var cap=document.createElement('div'); cap.className='cap';
       var R=window.ZODIAC.computeCouple(pr[0],pr[1],'amore');
       var pct=Math.round(56+(R.score-2)*13);
-      cap.innerHTML=pr[0]+' & '+pr[1]+'<small>amore · '+pct+'%</small>';
+      cap.innerHTML=pr[0]+' & '+pr[1]+'<small>amore Â· '+pct+'%</small>';
       cell.appendChild(card); cell.appendChild(cap); iwrap.appendChild(cell);
       intensCards.push(window.CARDKIT.buildCouple(card,{a:pr[0],b:pr[1],lens:'amore',dir:dirSel.value,size:'post',still:true}));
     });
