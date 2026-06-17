@@ -1,0 +1,43 @@
+/* EN — SERIE custom strings (translated from IT). pleasedont + LUI/LEI. */
+window.ZPLEASEDONT_EN = {
+  ariete:    ["Don't tell me to wait", "Don't shoot down my every idea", "Don't lecture me about risks", "Don't be predictable", "Don't put me in a cage", "Don't show up late (I'll blow up)"],
+  toro:      ["Don't rush me", "Don't mess with my routines", "Don't waste money", "Don't force me to decide on the spot", "Don't betray my trust", "Don't skip breakfast together"],
+  gemelli:   ["Don't ask me for a routine", "Don't ever bore me", "Don't cage my ideas", "Don't take it all so seriously", "Don't control me", "Don't hold it against me that I changed my mind"],
+  cancro:    ["Don't be cold with me", "Don't dismiss my feelings", "Don't trash-talk my family", "Don't vanish without a word", "Don't truly mock me", "Don't make me feel unimportant"],
+  leone:     ["Don't ignore me", "Don't steal my spotlight", "Don't be stingy with compliments", "Don't talk down to me", "Don't forget my birthday", "Don't make me feel like just anyone"],
+  vergine:   ["Don't leave a mess around", "Don't lie to me", "Don't be unreliable", "Don't criticize my method", "Don't show up unprepared", "Don't say 'relax' while I'm organizing"],
+  bilancia:  ["Don't force me to fight", "Don't be rude", "Don't rush my choices", "Don't break the balance", "Don't make a scene in public", "Don't neglect the beautiful details"],
+  scorpione: ["Never lie to me", "Don't play with my feelings", "Don't betray my trust", "Don't fake it with me", "Don't ask me to forget", "Don't underestimate my memory"],
+  sagittario:["Don't put me on a leash", "Don't smother me with jealousy", "Don't ask me for the same old routine", "Don't take offense when I tell the truth", "Don't clip my wings", "Don't make everything heavy"],
+  capricorno:["Don't waste my time", "Don't be unreliable", "Don't ask me to choose between you and my goals", "Don't make scenes", "Don't underestimate my plan", "Don't mistake my silence for indifference"],
+  acquario:  ["Don't try to own me", "Don't smother me", "Don't demand emotional drama", "Don't tell me to be 'normal'", "Don't just follow the herd", "Don't touch my freedom"],
+  pesci:     ["Don't be harsh with me", "Don't be a cynic", "Don't take advantage of my kindness", "Don't break the magic", "Don't yell, I shut down", "Don't ask me to stop dreaming"],
+};
+window.ZLUI_EN = {
+  ariete:    "The Aries man is the hunter par excellence: direct and confident, he targets you and goes straight for the bullseye. He loves the chase and the competition, and gets bored if it all comes too easy. Protective and passionate, but the ego needs handling: he wants to be your hero.",
+  toro:      "The Taurus man is as solid as an oak: slow to start, immovable once he's decided. Concrete and sensual, he wins you over with gestures, presence and good taste. Reliable and loyal, but stubborn: don't push him and don't touch his habits.",
+  gemelli:   "The Gemini man is pure verbal magnetism: brilliant, witty, he seduces you with his mind. Curious and never still, he needs stimulation and lightness. Charming but elusive: hold him with your mind, never with chains.",
+  cancro:    "The Cancer man loves deeply and protects his own like no one else. Under the shell he's tender, caring, an old-school romantic. He needs to feel safe to open up: give him trust and he'll build you a nest.",
+  leone:     "The Leo man is born to shine: generous, proud, he courts in a big way. Loyal and protective as long as he feels appreciated. Indifference puts him out: love him hard and walk proudly at his side.",
+  vergine:   "The Virgo man loves in the details, not in promises: he solves your problems and is there when needed. Reserved and selective, he takes time to trust. Behind the critical air hides a concrete, silent devotion.",
+  bilancia:  "The Libra man is charm and diplomacy: gallant, elegant, made for partnership. He seeks harmony and an equal to share everything with. Indecisive and eager to please, he's at his best with someone who brings him balance.",
+  scorpione: "The Scorpio man is pure intensity: magnetic, deep, all or nothing. When he loves, he loves headlong: jealous, but capable of a rare devotion. Earn his trust with the truth — betrayal he won't forgive.",
+  sagittario:"The Sagittarius man is a free soul with his arrow aimed at the horizon: adventurous, honest to the point of bluntness. He wants a travel companion, not a leash. Give him space and laughter and he'll follow you more than any chain.",
+  capricorno:"The Capricorn man plays the long game: ambitious, disciplined, he builds while others dream. Slow and selective, he opens up only when safe and proves it with facts. Under the armor, total loyalty and a dry wit.",
+  acquario:  "The Aquarius man marches to his own beat: original, independent, cerebral. He loves as an equal and above all as a friend, never as an owner. Respect his freedom and stimulate his mind: possessiveness freezes him instantly.",
+  pesci:     "The Pisces man is an incurable romantic: empathic, a dreamer, he understands you without words. He loves totally and idealizes, and slips away when reality stings. Protect his sensitivity and he'll repay you with endless tenderness.",
+};
+window.ZLEI_EN = {
+  ariete:    "The Aries woman is fire and independence: she makes the first move and waits for no one's permission. Direct and loyal, she hates mind games and passivity. To love her is to keep her pace — never try to tame her.",
+  toro:      "The Taurus woman is sensuality and roots: calm, loyal, she loves the beautiful and the concrete. Slow to trust, then a rock that won't let go. Make her feel safe and cherished: no rush, no chaos, and she's forever.",
+  gemelli:   "The Gemini woman is brilliant and unpredictable: a thousand interests and a comeback always ready. She wins you over with her mind and bores easily. Keep her alive with ideas and lightness: boredom, for her, is the real betrayal.",
+  cancro:    "The Cancer woman feels everything and protects those she loves like a tigress. Romantic and caring, she builds a warm nest around herself. She needs tenderness and security: reassure her and she'll give you the world.",
+  leone:     "The Leo woman walks in and lights up the room: proud, generous, magnetic. She wants to be adored and gives back spectacular loyalty. Don't steal her scene or skimp on attention: love her like a queen and she'll reign with you.",
+  vergine:   "The Virgo woman loves through facts: she handles the details, simplifies your life, truly shows up. Reserved and selective, behind the critical air hides a devoted heart. Appreciate her care instead of mistaking it for control.",
+  bilancia:  "The Libra woman is grace and balance: charming, diplomatic, born for partnership. She seeks beauty, harmony and an equal partner. Help her choose without forcing her and make room: in a pair she gives her best.",
+  scorpione: "The Scorpio woman is magnetic and deep: intense, loyal to the point of obsession. When she loves, she gives all of herself; when you betray her, she doesn't forget. Earn her trust with sincerity and you'll have absolute devotion.",
+  sagittario:"The Sagittarius woman is freedom and adventure: optimistic, blunt, allergic to chains. She wants an accomplice to explore and laugh with. Give her space and truth, never jealousy: to be by her side is to follow her, not hold her back.",
+  capricorno:"The Capricorn woman is elegant ambition: determined, patient, she builds big. Selective and serious, she opens up only when she trusts and then she's fiercely loyal. Respect her goals: keeping her pace is a climb worth taking.",
+  acquario:  "The Aquarius woman is unique and independent: original, idealistic, free. First a friend, then a lover; she loves as an equal and detests chains. Stimulate her mind and respect her strangeness: trying to own her makes her vanish.",
+  pesci:     "The Pisces woman is sweetness and imagination: empathic, romantic, she lives between dream and reality. She loves totally and feels everything about you. Protect her sensitivity and make her magic: she'll repay you with a devotion you lose yourself in.",
+};

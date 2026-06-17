@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zodiac · Studio — Test qualità (Capricorno · Pop)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="social/cards.css?v=26">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Baloo 2',system-ui,sans-serif;color:var(--paper);min-height:100vh;
+  background-image:radial-gradient(circle,rgba(0,0,0,.18) 1.6px,transparent 1.8px),linear-gradient(135deg,#2c2138,#171022);
+  background-size:15px 15px,100% 100%;padding:26px 18px 90px}
+.top{max-width:1180px;margin:0 auto 14px;text-align:center}
+.kick{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#b9a7ff}
+h1{font-family:'Bangers',cursive;font-size:clamp(30px,5.4vw,50px);letter-spacing:1.5px;color:var(--yellow);
+  -webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink);margin:5px 0 4px}
+.sub{font-weight:600;color:#cdbfff;font-size:14px;max-width:680px;margin:0 auto;line-height:1.5}
+.bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;margin:18px auto 0;max-width:1180px}
+.btn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 15px;border:3px solid var(--ink);
+  border-radius:11px;background:var(--yellow);color:var(--ink);box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.ghost{background:var(--paper)}
+
+.row{max-width:1180px;margin:34px auto 0;display:flex;gap:40px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+.col{display:flex;flex-direction:column;align-items:center;gap:14px}
+.lab{display:flex;flex-direction:column;align-items:center;gap:2px}
+.lab .n{font-family:'Bangers',cursive;font-size:22px;letter-spacing:.05em;color:var(--paper)}
+.lab .d{font-family:'Space Mono',monospace;font-size:11px;color:#9c8fc8}
+.lab .px{font-family:'Space Mono',monospace;font-size:10px;color:#6f6498;letter-spacing:.05em}
+.tagpill{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;border:1.5px solid currentColor}
+.tagpill.vid{color:#7be0a8}
+.tagpill.png{color:#ffd98a}
+
+/* lo "scaler" mostra la card alla sua RISOLUZIONE VERA (1080px interni),
+   ridotta solo via transform per stare a schermo: la qualità è quella reale */
+.scaler{position:relative;overflow:hidden;border-radius:20px;
+  box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.native{position:absolute;top:0;left:0;transform-origin:top left}
+.native .card{display:block}
+
+.foot{max-width:780px;margin:40px auto 0;text-align:center;font-size:13px;color:#b6a9d6;line-height:1.65;font-weight:600}
+.foot b{color:#efe7ff}
+.foot code{font-family:'Space Mono',monospace;background:rgba(255,255,255,.08);padding:1px 6px;border-radius:5px;font-size:12px}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="kick">★ Zodiac · social studio · test qualità</div>
+    <h1>Capricorno · Pop</h1>
+    <p class="sub">I tre output renderizzati alla <b>risoluzione Instagram reale</b> (host a 1080px interni — le <code>cqw</code> risolvono giuste). Post e Story sono i <b>video</b> (animati, registra lo schermo); la Cover è la <b>PNG</b> ferma.</p>
+    <div class="bar">
+      <button class="btn" id="replay">↻ rigioca i due video</button>
+      <button class="btn ghost" id="loop">⏯ loop auto: ON</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="lab"><span class="tagpill vid">video</span><span class="n">Post</span><span class="d">feed · 1:1</span><span class="px">1080 × 1080</span></div>
+      <div class="scaler" id="s-post"><div class="native" id="n-post"><div class="card" id="c-post" style="width:1080px"></div></div></div>
+    </div>
+    <div class="col">
+      <div class="lab"><span class="tagpill vid">video</span><span class="n">Story / Reel</span><span class="d">verticale · 9:16</span><span class="px">1080 × 1920</span></div>
+      <div class="scaler" id="s-story"><div class="native" id="n-story"><div class="card" id="c-story" style="width:1080px"></div></div></div>
+    </div>
+    <div class="col">
+      <div class="lab"><span class="tagpill png">png</span><span class="n">Cover</span><span class="d">carosello · 4:5</span><span class="px">1080 × 1350</span></div>
+      <div class="scaler" id="s-cover"><div class="native" id="n-cover"><div class="card" id="c-cover" style="width:1080px"></div></div></div>
+    </div>
+  </div>
+
+  <p class="foot">Stesso contenuto (<b>cosa mi rende un… Capricorno</b>, sfondo <b>raggi</b>), un solo trattamento. Per la PNG vera renderizzo la Cover in <code>#still</code> a 1080×1350 e la catturo a piena risoluzione. <b>Dimmi cosa cambieresti</b> (scala testo, densità box, mascotte, mantra) e lo sistemo prima di scalare al batch.</p>
+
+<script src="coppie/mascots.js?v=27"></script>
+<script src="data/signs.it.js?v=27"></script>
+<script src="social/i18n.js?v=27"></script>
+<script>ZI18N.loadData({v:27});</script>
+<script src="social/cardkit.js?v=27"></script>
+<script>
+(function(){
+  var KEY='capricorno', FMT='facts', DIR='pop', BG='raggi';
+  // dimensioni native reali (px) per taglio
+  var NATIVE={ post:[1080,1080], story:[1080,1920], cover:[1080,1350] };
+  // box target a schermo (larghezza, altezza max) per ogni colonna
+  var TARGET={ post:[400,400], story:[280,498], cover:[372,465] };
+  var cards={};
+
+  function layout(sz){
+    var nat=NATIVE[sz], tw=TARGET[sz][0], th=TARGET[sz][1];
+    var s=Math.min(tw/nat[0], th/nat[1]);
+    var scaler=document.getElementById('s-'+sz), native=document.getElementById('n-'+sz);
+    scaler.style.width=Math.round(nat[0]*s)+'px';
+    scaler.style.height=Math.round(nat[1]*s)+'px';
+    native.style.transform='scale('+s+')';
+  }
+
+  function build(sz, still){
+    cards[sz]=window.CARDKIT.build(document.getElementById('c-'+sz),
+      {key:KEY,dir:DIR,format:FMT,size:sz,still:still,bg:BG,lang:'it'});
+    layout(sz);
+  }
+
+  function buildAll(){
+    build('post', false);
+    build('story', false);
+    build('cover', true);   // la PNG: frame fermo
+  }
+  function replayVideos(){ ['post','story'].forEach(function(sz){ cards[sz]&&cards[sz].replay(); }); }
+
+  // loop automatico dei due video (≈9s a giro come in registrazione)
+  var loopOn=true, timer=null;
+  function tick(){ if(loopOn){ replayVideos(); } }
+  function startLoop(){ clearInterval(timer); timer=setInterval(tick, 9000); }
+
+  document.getElementById('replay').addEventListener('click',replayVideos);
+  document.getElementById('loop').addEventListener('click',function(){
+    loopOn=!loopOn; this.textContent='⏯ loop auto: '+(loopOn?'ON':'OFF');
+  });
+
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){ buildAll(); startLoop(); });}
+  buildAll(); startLoop();
+})();
+</script>
+</body>
+</html>

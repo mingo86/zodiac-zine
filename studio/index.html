@@ -48,7 +48,8 @@ h1{font-family:'Bangers',cursive;font-size:clamp(44px,9vw,86px);letter-spacing:.
   <div class="head">
     <span class="kick">★ Zodiac · Social Studio</span>
     <h1>Zodiac</h1>
-    <p class="lead">Lo studio dei contenuti Instagram: generatori di card animate (post · story · cover) per ogni segno, coppia e pianeta — in 3 stili. Scegli un modulo.</p>
+    <p class="lead">Lo studio dei contenuti Instagram: genera card animate (post · story · cover) per ogni segno, coppia e pianeta — in 8 stili. Parti da <b>Social Studio</b>: tutto in un'unica pagina.</p>
+    <div style="margin-top:16px"><select id="lang" style="font-family:'Baloo 2';font-weight:700;font-size:14px;padding:8px 14px;border:3px solid var(--ink);border-radius:10px;background:var(--yellow);color:var(--ink);box-shadow:3px 3px 0 var(--ink);cursor:pointer"></select></div>
   </div>
 
   <div class="sect">Generatori</div>
@@ -57,7 +58,7 @@ h1{font-family:'Bangers',cursive;font-size:clamp(44px,9vw,86px);letter-spacing:.
   <div class="sect">Esplorazioni & Asset</div>
   <div class="grid" id="extra"></div>
 
-  <div class="foot">★ Tutte le card sono animate (registra lo schermo per il Reel) e hanno una versione statica (aggiungi <b>#still</b> all'URL). Stili: Pop · Cosmo · Adesivi · skin per lente.</div>
+  <div class="foot">★ Tutte le card sono animate (registra lo schermo per il Reel) e hanno una versione statica (aggiungi <b>#still</b> all'URL). 8 stili: Pop · Cosmo · Adesivi · Notte · Vintage · Neon · Crema · Candy.</div>
 </div>
 
 <script>
@@ -73,6 +74,7 @@ const I = {
   lab:'<path d="M34 14 h16 v14 l12 26 a6 6 0 0 1 -5 9 H27 a6 6 0 0 1 -5-9 l12-26Z" fill="#fff6e3" stroke="#15110d" stroke-width="4"/><path d="M30 46 h24 l4 8 a4 4 0 0 1-4 6 H30 a4 4 0 0 1-4-6Z" fill="#ec2e36" stroke="#15110d" stroke-width="3"/>',
 };
 const GEN = [
+  {t:"Social Studio", d:"Tutto in uno: singoli (taglio · serie · pianeti · compatibilità) e coppie, in 8 stili.", f:"Zodiac Social Studio.html", c:"c-blue", ic:"cards", tag:"hub · tutto"},
   {t:"Direzioni", d:"I 3 stili (Pop · Cosmo · Adesivi) sul singolo segno.", f:"Zodiac Social - Direzioni.html", c:"c-blue", ic:"skin", tag:"3 stili"},
   {t:"Tagli", d:"Post 1:1 · Story 9:16 · Cover 4:5 del singolo segno.", f:"Zodiac Social - Tagli.html", c:"c-yellow", ic:"sizes", tag:"3 formati"},
   {t:"Coppie", d:"Affinità %, green flag, 7 lenti + modalità A letto 🔥.", f:"Zodiac Social - Coppie.html", c:"c-pink", ic:"couple", tag:"144 coppie"},
@@ -81,15 +83,21 @@ const GEN = [
   {t:"Sfondi", d:"Skin per lente + intensità per affinità, nei 3 stili.", f:"Zodiac Social - Sfondi.html", c:"c-red", ic:"cards", tag:"skin"},
 ];
 const EXTRA = [
+  {t:"Pianeti · Proposte", d:"Le 5 varianti del simbolo-pianeta a confronto: scegline una.", f:"Zodiac Pianeti - Proposte.html", c:"c-purple", ic:"planet", tag:"scegli"},
   {t:"App Icon", d:"10 proposte di icona app in stile fumetto.", f:"Zodiac App Icon.html", c:"c-blue", ic:"icon", tag:"asset"},
 ];
 function render(list, id){
   document.getElementById(id).innerHTML = list.map(c=>`
-    <a class="card ${c.c}" href="${encodeURI(c.f)}">
+    <a class="card ${c.c}" href="${encodeURI(c.f)}${Q}">
       <div class="ic"><svg viewBox="0 0 84 76">${I[c.ic]}</svg></div>
       <h3>${c.t}</h3><p>${c.d}</p><div class="tag">${c.tag}</div>
     </a>`).join("");
 }
+var ZLANG=(new URLSearchParams(location.search).get('lang')||'it').toLowerCase(); if(ZLANG!=='en')ZLANG='it';
+var Q = ZLANG==='it' ? '' : ('?lang='+ZLANG);
+var ls=document.getElementById('lang');
+ls.innerHTML='<option value="it"'+(ZLANG==='it'?' selected':'')+'>IT</option><option value="en"'+(ZLANG==='en'?' selected':'')+'>EN</option>';
+ls.onchange=function(){var u=new URL(location.href);if(ls.value==='it')u.searchParams.delete('lang');else u.searchParams.set('lang',ls.value);location.href=u.toString();};
 render(GEN,'gen'); render(EXTRA,'extra');
 </script>
 </body>

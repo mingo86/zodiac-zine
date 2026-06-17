@@ -1,0 +1,43 @@
+/* PT-BR — strings SERIE personalizadas (traduzido do IT). pleasedont + LUI/LEI. */
+window.ZPLEASEDONT_PT = {
+  ariete:    ["Não me diga pra esperar", "Não derrube cada ideia minha", "Não me dê sermão sobre riscos", "Não seja previsível", "Não me prenda numa gaiola", "Não chegue atrasado (eu exploro)"],
+  toro:      ["Não me apresse", "Não mexa nos meus hábitos", "Não desperdice dinheiro", "Não me force a decidir na hora", "Não traia a minha confiança", "Não pule o café da manhã juntos"],
+  gemelli:   ["Não me peça uma rotina", "Não me entedie nunca", "Não engaiole minhas ideias", "Não leve tudo tão a sério", "Não me controle", "Não me cobre por ter mudado de ideia"],
+  cancro:    ["Não seja frio comigo", "Não minimize meus sentimentos", "Não fale mal da minha família", "Não suma sem dizer nada", "Não tire sarro de mim de verdade", "Não me faça sentir sem importância"],
+  leone:     ["Não me ignore", "Não roube a minha cena", "Não economize elogios", "Não fale comigo com superioridade", "Não esqueça meu aniversário", "Não me faça sentir mais um qualquer"],
+  vergine:   ["Não deixe bagunça por aí", "Não minta pra mim", "Não seja não confiável", "Não critique o meu método", "Não chegue despreparado", "Não diga 'relaxa' enquanto eu organizo"],
+  bilancia:  ["Não me force a brigar", "Não seja malcriado", "Não apresse as minhas escolhas", "Não quebre o equilíbrio", "Não faça cena em público", "Não despreze os detalhes bonitos"],
+  scorpione: ["Não minta pra mim, jamais", "Não brinque com meus sentimentos", "Não traia a minha confiança", "Não finja comigo", "Não me peça pra esquecer", "Não subestime a minha memória"],
+  sagittario:["Não me ponha na coleira", "Não me sufoque com ciúme", "Não me peça a rotina de sempre", "Não se ofenda quando eu falo a verdade", "Não corte as minhas asas", "Não deixe tudo pesado"],
+  capricorno:["Não me faça perder tempo", "Não seja não confiável", "Não me peça pra escolher entre você e minhas metas", "Não faça cenas", "Não subestime o meu plano", "Não confunda meu silêncio com desinteresse"],
+  acquario:  ["Não tente me possuir", "Não me sufoque", "Não exija drama emocional", "Não me diga pra ser 'normal'", "Não siga o rebanho e pronto", "Não toque na minha liberdade"],
+  pesci:     ["Não seja duro comigo", "Não seja cínico", "Não se aproveite da minha bondade", "Não quebre a magia", "Não grite, eu desligo", "Não me peça pra parar de sonhar"],
+};
+window.ZLUI_PT = {
+  ariete:    "O homem de Áries é o caçador por excelência: direto e confiante, ele te mira e vai reto no alvo. Adora a caçada e a competição, e enjoa se tudo vem fácil demais. Protetor e apaixonado, mas o ego precisa de manejo: ele quer ser o seu herói.",
+  toro:      "O homem de Touro é sólido como um carvalho: lento pra começar, inabalável depois que decide. Concreto e sensual, te conquista com gestos, presença e bom gosto. Confiável e leal, mas teimoso: não o force e não mexa nos hábitos dele.",
+  gemelli:   "O homem de Gêmeos é puro magnetismo verbal: brilhante, espirituoso, te seduz pela cabeça. Curioso e nunca parado, precisa de estímulo e leveza. Charmoso mas escorregadio: segure-o pela mente, nunca por correntes.",
+  cancro:    "O homem de Câncer ama em profundidade e protege os seus como ninguém. Sob a carapaça é terno, cuidadoso, um romântico à moda antiga. Precisa se sentir seguro pra se abrir: dê confiança e ele te constrói um ninho.",
+  leone:     "O homem de Leão nasceu pra brilhar: generoso, orgulhoso, corteja em grande estilo. Fiel e protetor enquanto se sente valorizado. A indiferença o apaga: ame-o forte e caminhe orgulhoso ao lado dele.",
+  vergine:   "O homem de Virgem ama nos detalhes, não nas promessas: resolve seus problemas e está lá quando precisa. Reservado e seletivo, demora pra confiar. Por trás do ar crítico esconde uma devoção concreta e silenciosa.",
+  bilancia:  "O homem de Libra é charme e diplomacia: galante, elegante, feito pra dois. Busca harmonia e um igual com quem dividir tudo. Indeciso e querendo agradar, dá o melhor com quem lhe traz equilíbrio.",
+  scorpione: "O homem de Escorpião é pura intensidade: magnético, profundo, tudo ou nada. Quando ama, ama de cabeça: ciumento, mas capaz de uma devoção rara. Conquiste a confiança dele com a verdade — traição ele não perdoa.",
+  sagittario:"O homem de Sagitário é uma alma livre com a flecha apontada pro horizonte: aventureiro, honesto até a brutalidade. Quer um companheiro de viagem, não uma coleira. Dê espaço e risadas, e ele te segue mais do que qualquer corrente.",
+  capricorno:"O homem de Capricórnio joga a longo prazo: ambicioso, disciplinado, constrói enquanto os outros sonham. Lento e seletivo, só se abre quando está seguro e prova com fatos. Sob a armadura: lealdade total e humor seco.",
+  acquario:  "O homem de Aquário marcha no próprio ritmo: original, independente, cerebral. Ama de igual pra igual e antes de tudo como amigo, nunca como dono. Respeite a liberdade dele e estimule a mente: possessividade o congela na hora.",
+  pesci:     "O homem de Peixes é um romântico incurável: empático, sonhador, te entende sem palavras. Ama de forma total e idealiza, e foge quando a realidade fere. Proteja a sensibilidade dele e ele te retribui com ternura infinita.",
+};
+window.ZLEI_PT = {
+  ariete:    "A mulher de Áries é fogo e independência: dá o primeiro passo e não espera a permissão de ninguém. Direta e leal, odeia jogos mentais e passividade. Amá-la é acompanhar o ritmo dela — nunca tente domá-la.",
+  toro:      "A mulher de Touro é sensualidade e raízes: calma, leal, ama o belo e o concreto. Lenta pra confiar, depois uma rocha que não te solta. Faça-a se sentir segura e mimada: sem pressa, sem caos, e é pra sempre.",
+  gemelli:   "A mulher de Gêmeos é brilhante e imprevisível: mil interesses e uma resposta sempre na ponta da língua. Te conquista pela mente e enjoa rápido. Mantenha-a viva com ideias e leveza: o tédio, pra ela, é a verdadeira traição.",
+  cancro:    "A mulher de Câncer sente tudo e protege quem ama como uma tigresa. Romântica e cuidadosa, constrói um ninho quente ao redor de si. Precisa de ternura e segurança: tranquilize-a e ela te dá o mundo.",
+  leone:     "A mulher de Leão entra e ilumina o ambiente: orgulhosa, generosa, magnética. Quer ser adorada e devolve uma lealdade espetacular. Não roube a cena dela nem economize atenção: ame-a como rainha e ela reina com você.",
+  vergine:   "A mulher de Virgem ama com fatos: cuida dos detalhes, te simplifica a vida, está de verdade. Reservada e seletiva, esconde sob o ar crítico um coração devoto. Valorize o cuidado dela em vez de confundir com controle.",
+  bilancia:  "A mulher de Libra é graça e equilíbrio: charmosa, diplomática, nascida pra dois. Busca beleza, harmonia e um parceiro de igual pra igual. Ajude-a a escolher sem forçar e abra espaço: a dois ela dá o melhor de si.",
+  scorpione: "A mulher de Escorpião é magnética e profunda: intensa, leal até a obsessão. Quando ama, se entrega inteira; quando você a trai, não esquece. Conquiste a confiança dela com sinceridade e terá uma devoção absoluta.",
+  sagittario:"A mulher de Sagitário é liberdade e aventura: otimista, franca, alérgica a correntes. Quer uma cúmplice pra explorar e rir. Dê espaço e verdade, nunca ciúme: estar ao lado dela é segui-la, não prendê-la.",
+  capricorno:"A mulher de Capricórnio é ambição elegante: determinada, paciente, constrói em grande. Seletiva e séria, só se abre quando confia e então é ferozmente leal. Respeite as metas dela: acompanhar o ritmo é uma escalada que vale a pena.",
+  acquario:  "A mulher de Aquário é única e independente: original, idealista, livre. Primeiro amiga, depois amante; ama de igual pra igual e detesta correntes. Estimule a mente dela e respeite a esquisitice: tentar possuí-la a faz desaparecer.",
+  pesci:     "A mulher de Peixes é doçura e imaginação: empática, romântica, vive entre o sonho e a realidade. Ama de forma total e sente tudo de você. Proteja a sensibilidade dela e crie magia: ela te retribui com uma devoção em que você se perde.",
+};

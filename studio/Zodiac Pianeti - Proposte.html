@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zodiac · Pianeti — Proposte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="social/cards.css?v=56">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Baloo 2',system-ui,sans-serif;color:var(--paper);min-height:100vh;
+  background-image:radial-gradient(circle,rgba(0,0,0,.18) 1.6px,transparent 1.8px),linear-gradient(135deg,#2c2138,#171022);
+  background-size:15px 15px,100% 100%;padding:26px 18px 90px}
+.top{max-width:1180px;margin:0 auto 8px;text-align:center}
+.kick{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#b9a7ff}
+h1{font-family:'Bangers',cursive;font-size:clamp(30px,5.4vw,50px);letter-spacing:1.5px;color:var(--yellow);
+  -webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink);margin:5px 0 4px}
+.sub{font-weight:600;color:#cdbfff;font-size:14px;max-width:680px;margin:0 auto;line-height:1.5}
+.grid{max-width:1180px;margin:34px auto 0;display:flex;gap:12px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+.col{display:flex;flex-direction:column;align-items:center;gap:10px;width:165px}
+.vlabel{font-family:'Bangers',cursive;font-size:18px;letter-spacing:.04em;color:var(--paper);text-align:center}
+.vdesc{font-family:'Space Mono',monospace;font-size:10px;color:#9c8fc8;text-align:center;line-height:1.4;margin-top:-6px;min-height:28px}
+.frame{width:165px}
+.note{max-width:760px;margin:34px auto 0;text-align:center;font-size:13px;color:#b6a9d6;line-height:1.6;font-weight:600}
+.note b{color:#efe7ff}
+
+/* ---- override emblema per variante ---- */
+.planet-emblem.v-badge{top:4%!important;width:20%!important;background:#fff6e3!important;border:3.4px solid var(--ink)!important;border-radius:24%!important;box-shadow:3px 3px 0 var(--ink)!important;padding:2.6%!important;z-index:7!important;opacity:1!important}
+.planet-emblem.v-badge.pe-left{left:4%!important;right:auto!important}
+.planet-emblem.v-badge.pe-right{right:4%!important;left:auto!important}
+
+.planet-emblem.v-glifo{top:-4%!important;width:46%!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;z-index:2!important;opacity:.9!important}
+.planet-emblem.v-glifo.pe-left{left:-5%!important;right:auto!important}
+.planet-emblem.v-glifo.pe-right{right:-5%!important;left:auto!important}
+
+.planet-emblem.v-disco{top:5%!important;width:30%!important;background:var(--pl)!important;border:3.6px solid var(--ink)!important;border-radius:50%!important;box-shadow:4px 4px 0 var(--ink)!important;padding:16%!important;z-index:7!important;opacity:1!important}
+.planet-emblem.v-disco.pe-left{left:5%!important;right:auto!important}
+.planet-emblem.v-disco.pe-right{right:5%!important;left:auto!important}
+
+.planet-emblem.v-faccia{top:-4%!important;width:34%!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;z-index:2!important;opacity:1!important}
+.planet-emblem.v-faccia.pe-left{left:-5%!important;right:auto!important}
+.planet-emblem.v-faccia.pe-right{right:-5%!important;left:auto!important}
+
+.planet-emblem.v-grande{top:-5%!important;width:46%!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;z-index:2!important;opacity:1!important}
+.planet-emblem.v-grande.pe-left{left:-6%!important;right:auto!important}
+.planet-emblem.v-grande.pe-right{right:-6%!important;left:auto!important}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="kick">★ Zodiac · social studio · proposte</div>
+    <h1>Pianeti · 5 proposte</h1>
+    <p class="sub">Tutte le varianti del simbolo-pianeta provate finora, sullo stesso segno (Capricorno), Sole e Luna a confronto. Dimmi quale numero scegli.</p>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <p class="note">Ogni colonna è una proposta diversa di <b>come mostrare il pianeta</b> sulla card. Sole (raggi) e Luna (piena) per vedere la differenza.</p>
+
+<script src="coppie/mascots.js?v=28"></script>
+<script src="data/signs.it.js"></script>
+<script src="data/extra.it.js"></script>
+<script src="social/i18n.js?v=27"></script>
+<script>ZI18N.loadData({extra:true,v:27});</script>
+<script src="social/cardkit.js?v=56"></script>
+<script>
+(function(){
+  var CK=window.CARDKIT;
+  var PLAN=window.ZPLANETS_IT||{};
+  var PCOL={ sole:(PLAN.sole&&PLAN.sole.color)||'#f2b134', luna:(PLAN.luna&&PLAN.luna.color)||'#8a7ad6' };
+  var VARIANTS=[
+    {cls:'v-badge',  name:'1 · Adesivo',      desc:'Badge piccolo nell\u2019angolo, simbolo colorato', svg:function(p,c){return CK.planetIcon(p,c);}},
+    {cls:'v-glifo',  name:'2 · Glifo gigante', desc:'Simbolo grande dietro al testo',                  svg:function(p,c){return CK.planetIcon(p,'#15110d');}},
+    {cls:'v-disco',  name:'3 · Medaglione',    desc:'Disco colorato col simbolo',                      svg:function(p,c){return CK.planetIcon(p,'#15110d');}},
+    {cls:'v-faccia', name:'4 · Faccina',       desc:'Personaggio medio nell\u2019angolo',              svg:function(p,c){return CK.planetFace(p,c);}},
+    {cls:'v-grande', name:'5 · App icon',      desc:'Faccia grande, angolo tagliato (attuale)',        svg:function(p,c){return CK.planetFace(p,c);}}
+  ];
+  var PLANETS=['sole','luna'];
+  var SIDE={sole:'pe-left', luna:'pe-right'};
+  var grid=document.getElementById('grid');
+
+  function build(){
+    grid.innerHTML='';
+    VARIANTS.forEach(function(v){
+      var col=document.createElement('div'); col.className='col';
+      var lab=document.createElement('div'); lab.className='vlabel'; lab.textContent=v.name; col.appendChild(lab);
+      var d=document.createElement('div'); d.className='vdesc'; d.textContent=v.desc; col.appendChild(d);
+      PLANETS.forEach(function(p){
+        var frame=document.createElement('div'); frame.className='frame';
+        var card=document.createElement('div'); card.className='card'; frame.appendChild(card);
+        col.appendChild(frame);
+        CK.buildPlanet(card,{planet:p,key:'capricorno',dir:'pop',size:'post',still:true,lang:'it'});
+        var emb=card.querySelector('.planet-emblem');
+        if(emb){ emb.className='planet-emblem '+SIDE[p]+' '+v.cls; emb.innerHTML=v.svg(p,PCOL[p]); }
+      });
+      grid.appendChild(col);
+    });
+  }
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(build);}
+  build();
+})();
+</script>
+</body>
+</html>

@@ -153,8 +153,109 @@
 .dir-adesivi .mantra .mt{color:var(--ink)}
 .dir-adesivi .swipe{background:#fff;color:var(--ink);border:4px solid #fff;box-shadow:0 5px 10px rgba(0,0,0,.2)}
 
+/* ============================================================
+   DIR · NOTTE  (cielo di mezzanotte, blu + oro)
+   ============================================================ */
+.dir-notte{--ink:#0a1230}
+.dir-notte .bgbase{background:radial-gradient(120% 90% at 50% 28%,#243a72,#152350 65%,#0a1230)}
+.dir-notte .sun{display:none}
+.dir-notte .halftone{background-image:radial-gradient(rgba(255,255,255,.07) 1.2px,transparent 1.4px);background-size:15px 15px}
+.dir-notte .glow{background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--el) 50%,transparent) 0,transparent 40%)}
+.dir-notte .series{color:#ffd98a}
+.dir-notte .signname{color:#ffd98a;-webkit-text-stroke:2px #0a1230;text-shadow:0 0 14px rgba(255,210,120,.5),4px 4px 0 #0a1230}
+.dir-notte .mascot svg{filter:drop-shadow(0 0 12px color-mix(in srgb,var(--el) 50%,transparent)) drop-shadow(0 7px 7px rgba(0,0,0,.5))}
+.dir-notte .box{color:#fdf3df;background:rgba(12,20,52,.66);border:2.5px solid #ffd98a;box-shadow:0 0 12px rgba(255,210,120,.25),4px 4px 0 rgba(0,0,0,.4);backdrop-filter:blur(2px)}
+.dir-notte .box.alt{background:rgba(40,60,120,.7)}
+.dir-notte .box.hot{transform:scale(1.13);box-shadow:0 0 20px rgba(255,210,120,.5),4px 4px 0 rgba(0,0,0,.4)}
+.dir-notte .box.C.hot{transform:translateX(-50%) scale(1.13)}
+.dir-notte .mantra{background:rgba(10,16,44,.82);border:2.5px solid #ffd98a;box-shadow:0 0 16px rgba(255,210,120,.25)}
+.dir-notte .mantra .tag{background:#ffd98a;color:#0a1230}
+.dir-notte .mantra .mt{color:#fdf3df}
+.dir-notte .swipe{background:#ffd98a;color:#0a1230;box-shadow:0 0 14px rgba(255,210,120,.4)}
+
+/* ============================================================
+   DIR · VINTAGE  (stampa retro, seppia + ruggine)
+   ============================================================ */
+.dir-vintage{--ink:#4a2f1c}
+.dir-vintage .bgbase{background:#e8d8b0}
+.dir-vintage .sun{background:repeating-conic-gradient(from 6deg at 50% 41%,rgba(74,47,28,.10) 0 10deg,transparent 10deg 20deg);-webkit-mask-image:radial-gradient(circle at 50% 41%,#000 18%,transparent 70%);mask-image:radial-gradient(circle at 50% 41%,#000 18%,transparent 70%)}
+.dir-vintage .halftone{background-image:radial-gradient(rgba(74,47,28,.18) 1.4px,transparent 1.6px);background-size:11px 11px}
+.dir-vintage .glow{display:none}
+.dir-vintage .series{color:#8a6a3a}
+.dir-vintage .signname{color:#b6432e;-webkit-text-stroke:2px #4a2f1c;text-shadow:3px 3px 0 #4a2f1c}
+.dir-vintage .mascot svg{filter:sepia(.35) drop-shadow(0 6px 5px rgba(74,47,28,.3))}
+.dir-vintage .box{color:#4a2f1c;background:#f3e7c8;border:3px solid #4a2f1c;box-shadow:3px 3px 0 #4a2f1c}
+.dir-vintage .box.alt{background:#e0b75a}
+.dir-vintage .box.hot{transform:scale(1.12);box-shadow:5px 5px 0 #4a2f1c}
+.dir-vintage .box.C.hot{transform:translateX(-50%) scale(1.12)}
+.dir-vintage .mantra{background:#f3e7c8;border:3px solid #4a2f1c;box-shadow:4px 4px 0 #4a2f1c}
+.dir-vintage .mantra .tag{background:#b6432e;color:#f3e7c8}
+.dir-vintage .mantra .mt{color:#4a2f1c}
+.dir-vintage .swipe{background:#4a2f1c;color:#e8d8b0}
+
+/* ============================================================
+   DIR · NEON  (vaporwave, nero + glow elettrico)
+   ============================================================ */
+.dir-neon{--ink:#04060c}
+.dir-neon .bgbase{background:#0a0b14}
+.dir-neon .sun{display:none}
+.dir-neon .halftone{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:22px 22px}
+.dir-neon .glow{background:radial-gradient(circle at 50% 43%,color-mix(in srgb,var(--el) 70%,transparent) 0,transparent 42%)}
+.dir-neon .series{color:#7df9ff}
+.dir-neon .signname{color:#fff;-webkit-text-stroke:1.5px var(--el);text-shadow:0 0 8px var(--el),0 0 18px var(--el),0 0 30px color-mix(in srgb,var(--el) 60%,transparent)}
+.dir-neon .mascot svg{filter:drop-shadow(0 0 16px color-mix(in srgb,var(--el) 75%,transparent)) drop-shadow(0 6px 6px rgba(0,0,0,.6))}
+.dir-neon .box{color:#eafcff;background:rgba(8,10,22,.66);border:2px solid var(--el);box-shadow:0 0 14px color-mix(in srgb,var(--el) 55%,transparent),inset 0 0 8px color-mix(in srgb,var(--el) 22%,transparent)}
+.dir-neon .box.alt{background:rgba(20,12,34,.7)}
+.dir-neon .box.hot{transform:scale(1.13);box-shadow:0 0 26px var(--el)}
+.dir-neon .box.C.hot{transform:translateX(-50%) scale(1.13)}
+.dir-neon .mantra{background:rgba(6,8,18,.85);border:2px solid var(--el);box-shadow:0 0 18px color-mix(in srgb,var(--el) 55%,transparent)}
+.dir-neon .mantra .tag{background:var(--el);color:#04060c}
+.dir-neon .mantra .mt{color:#eafcff}
+.dir-neon .swipe{background:var(--el);color:#04060c;box-shadow:0 0 14px var(--el)}
+
+/* ============================================================
+   DIR · CREMA  (editoriale minimale, piatto)
+   ============================================================ */
+.dir-crema{--ink:#33291c}
+.dir-crema .bgbase{background:#f5edda}
+.dir-crema .sun{display:none}
+.dir-crema .halftone{background-image:radial-gradient(rgba(51,41,28,.10) 1.3px,transparent 1.5px);background-size:18px 18px;opacity:.6}
+.dir-crema .glow{display:none}
+.dir-crema .series{color:#a08a5e}
+.dir-crema .signname{color:var(--el);-webkit-text-stroke:1.5px #33291c;text-shadow:2px 2px 0 rgba(51,41,28,.18)}
+.dir-crema .mascot svg{filter:drop-shadow(0 6px 6px rgba(51,41,28,.18))}
+.dir-crema .box{color:#33291c;background:#fbf5e7;border:2px solid #33291c;box-shadow:none}
+.dir-crema .box.alt{background:color-mix(in srgb,var(--el) 16%,#fbf5e7)}
+.dir-crema .box.hot{transform:scale(1.1);box-shadow:3px 3px 0 #33291c}
+.dir-crema .box.C.hot{transform:translateX(-50%) scale(1.1)}
+.dir-crema .mantra{background:#fbf5e7;border:2px solid #33291c}
+.dir-crema .mantra .tag{background:var(--el);color:#fbf5e7}
+.dir-crema .mantra .mt{color:#33291c}
+.dir-crema .swipe{background:#33291c;color:#f5edda}
+
+/* ============================================================
+   DIR · CANDY  (gradiente glossy, pop dolce)
+   ============================================================ */
+.dir-candy{--ink:#3a1a4a}
+.dir-candy .bgbase{background:linear-gradient(150deg,color-mix(in srgb,var(--el) 40%,#ffd9ec),color-mix(in srgb,var(--el) 22%,#cfe9ff))}
+.dir-candy .sun{display:none}
+.dir-candy .halftone{background-image:radial-gradient(rgba(255,255,255,.5) 1.6px,transparent 1.8px);background-size:14px 14px}
+.dir-candy .glow{background:radial-gradient(circle at 50% 40%,rgba(255,255,255,.6) 0,transparent 36%)}
+.dir-candy .series{color:#7a3d8f}
+.dir-candy .signname{color:#fff;-webkit-text-stroke:2.4px var(--ink);text-shadow:3px 3px 0 var(--ink)}
+.dir-candy .mascot svg{filter:drop-shadow(0 7px 7px rgba(58,26,74,.3))}
+.dir-candy .box{color:var(--ink);background:rgba(255,255,255,.85);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.dir-candy .box.alt{background:color-mix(in srgb,var(--el) 30%,#fff)}
+.dir-candy .box.hot{transform:scale(1.13);box-shadow:6px 6px 0 var(--ink)}
+.dir-candy .box.C.hot{transform:translateX(-50%) scale(1.13)}
+.dir-candy .mantra{background:rgba(255,255,255,.9);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.dir-candy .mantra .tag{background:var(--el);color:#fff}
+.dir-candy .mantra .mt{color:var(--ink)}
+.dir-candy .swipe{background:var(--ink);color:#fff}
+
 /* still: nessuna transizione (per catture pulite) */
-.card.still .head,.card.still .mascotWrap,.card.still .box,.card.still .mantra,.card.still .swipe,.card.still .mw,.card.still .badge{transition:none}
+.card.still .head,.card.still .mascotWrap,.card.still .box,.card.still .mantra,.card.still .swipe,.card.still .mw,.card.still .badge,.card.still .serie-mascot,.card.still .serie-row,.card.still .serie-quote,.card.still .serie-badge,.card.still .serie-prose-txt,.card.still .scat{transition:none}
+.card.still .serie-mascot.in,.card.still .serie-row.in,.card.still .scat.in,.card.still .serie-quote.in,.card.still .serie-badge.in,.card.still .serie-prose-txt.in{animation:none}
 .card.still .mascot.bob,.card.still .mw.bob,.card.still .badge.in{animation:none}
 .card.still .hearts span{animation:none;opacity:.9;transform:none}
 
@@ -328,3 +429,165 @@
 .dir-pop.bgskin-bold .glow{display:block;background:radial-gradient(circle at 50% 41%,color-mix(in srgb,#fff6e3 82%,transparent) 0,rgba(255,246,227,.25) 20%,transparent 33%)}
 .dir-pop.bgskin-bold .halftone{background-image:radial-gradient(rgba(255,255,255,.5) 1.7px,transparent 1.9px);background-size:13px 13px}
 .dir-pop.bgskin-bold .series{color:#fff6e3;text-shadow:0 1px 3px rgba(0,0,0,.35)}
+
+/* ============================================================
+   SERIE — sfondo "dark editoriale" (checklist · fumetto · scatter)
+   Famiglia di card a fondo scuro con watermark tiled, per le serie
+   testuali (please don't, things I say, advice, ecc.). Indipendente
+   da dir-*: look fisso scuro, accento = colore elemento del segno.
+   ============================================================ */
+.card.serie{--ink:#0c0a16;background:#0a0712;border-color:#0c0a16}
+.serie .bgbase{background:radial-gradient(125% 92% at 50% 24%,color-mix(in srgb,var(--el) 32%,#1d1531),#130f20 58%,#0a0712)}
+.serie .watermark{position:absolute;inset:-14%;opacity:1;transform:rotate(-9deg);pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='168' height='46'%3E%3Ctext x='2' y='32' font-family='monospace' font-size='21' font-weight='700' fill='%23ffffff' fill-opacity='0.045'%3EZODIAC%20%E2%9C%A6%3C/text%3E%3C/svg%3E");
+  background-size:168px 46px}
+.serie .glow{background:radial-gradient(circle at 50% 26%,color-mix(in srgb,var(--el) 42%,transparent),transparent 42%)}
+.serie .series{color:var(--el)}
+.serie .signname{color:var(--paper);-webkit-text-stroke:2px #0c0a16;
+  text-shadow:0 0 16px color-mix(in srgb,var(--el) 55%,transparent),4px 4px 0 #0c0a16}
+.serie .mascot svg{filter:drop-shadow(0 0 14px color-mix(in srgb,var(--el) 50%,transparent)) drop-shadow(0 8px 8px rgba(0,0,0,.5))}
+
+.serie-mascot{position:absolute;z-index:3;opacity:1}
+.serie-mascot.cen{transform:translateX(-50%)}
+.serie-mascot .mascot{animation:none}
+.serie-mascot .mascot.bob{animation:bob 3.4s ease-in-out infinite}
+.serie-mascot .mascot svg{display:block;width:100%;height:auto}
+.serie-mascot .zpup{transition:transform .55s cubic-bezier(.4,1.3,.5,1)}
+
+/* --- checklist (please don't, dealbreakers, some say…) --- */
+.serie-list{position:absolute;display:flex;flex-direction:column;justify-content:center;gap:2.5cqw;z-index:4}
+.serie-row{display:flex;align-items:flex-start;gap:2.4cqw;opacity:1}
+.serie-check{flex:none;width:5cqw;height:5cqw;border-radius:6px;border:2.5px solid var(--el);
+  background:color-mix(in srgb,var(--el) 20%,transparent);color:var(--el);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:3.3cqw;line-height:1;margin-top:.3cqw}
+.serie-txt{font-family:'Baloo 2';font-weight:700;font-size:3.15cqw;line-height:1.17;color:var(--paper)}
+.size-story.serie-checklist .serie-txt,.size-cover.serie-checklist .serie-txt{font-size:3.5cqw}
+.size-story.serie-checklist .serie-check,.size-cover.serie-checklist .serie-check{width:5.6cqw;height:5.6cqw;font-size:3.7cqw}
+
+/* --- fumetto (relationship advice, mood swings, una frase) --- */
+.serie-quote{position:absolute;z-index:5;background:var(--paper);color:var(--ink);
+  border:4px solid #0c0a16;border-radius:20px;padding:3.4% 4%;box-shadow:6px 6px 0 #0c0a16;opacity:1}
+.serie-quote .qmt{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:4.3cqw;line-height:1.22;min-height:1.2em;display:block}
+.size-story.serie-bubble .serie-quote .qmt,.size-cover.serie-bubble .serie-quote .qmt{font-size:4.8cqw}
+.serie-quote.tail-down::after{content:"";position:absolute;left:22%;bottom:-9%;width:0;height:0;
+  border-left:4.4cqw solid transparent;border-right:2cqw solid transparent;border-top:5cqw solid #0c0a16}
+.serie-quote.tail-down::before{content:"";position:absolute;left:23%;bottom:-5%;width:0;height:0;z-index:1;
+  border-left:3.4cqw solid transparent;border-right:1.6cqw solid transparent;border-top:4cqw solid var(--paper)}
+.serie-quote.tail-right::after{content:"";position:absolute;right:-8%;top:44%;width:0;height:0;
+  border-top:3.8cqw solid transparent;border-bottom:3.8cqw solid transparent;border-left:7cqw solid #0c0a16}
+.serie-quote.tail-right::before{content:"";position:absolute;right:-4.2%;top:47%;width:0;height:0;z-index:1;
+  border-top:2.7cqw solid transparent;border-bottom:2.7cqw solid transparent;border-left:5cqw solid var(--paper)}
+.serie-quote .qmt.typing::after{content:"";display:inline-block;width:2px;height:1em;background:currentColor;margin-left:1px;vertical-align:-1px;animation:caret .75s step-end infinite}
+
+/* ============================================================
+   SERIE · PROSE — LUI / LEI (sfondo chiaro azzurro/rosa, paragrafo + badge + starburst)
+   ============================================================ */
+.card.serie-prose{--ink:#15110d;border-color:#15110d}
+.serie-prose.theme-lui{--g:#2f7fd0}
+.serie-prose.theme-lei{--g:#e84d97}
+.serie-prose{box-shadow:11px 13px 0 color-mix(in srgb,var(--g) 55%,#000)}
+.serie-prose .bgbase{background:var(--g)}
+.serie-prose .sun{display:block;
+  background:repeating-conic-gradient(from 6deg at var(--sx,50%) var(--sy,44%),color-mix(in srgb,#fff 30%,var(--g)) 0 10deg,color-mix(in srgb,#000 12%,var(--g)) 10deg 20deg);
+  -webkit-mask-image:radial-gradient(circle at var(--sx,50%) var(--sy,44%),#000 14%,rgba(0,0,0,.6) 52%,transparent 82%);
+  mask-image:radial-gradient(circle at var(--sx,50%) var(--sy,44%),#000 14%,rgba(0,0,0,.6) 52%,transparent 82%)}
+.serie-prose .halftone{display:block;background-image:radial-gradient(rgba(255,255,255,.4) 1.5px,transparent 1.7px);background-size:13px 13px;
+  -webkit-mask-image:radial-gradient(circle at var(--sx,50%) var(--sy,44%),#000 14%,transparent 72%);mask-image:radial-gradient(circle at var(--sx,50%) var(--sy,44%),#000 14%,transparent 72%)}
+.serie-badge{position:absolute;z-index:6;display:inline-flex;align-items:center;gap:.45em;
+  background:#fff6e3;color:var(--g);border:3px solid #15110d;border-radius:9px;padding:1.1% 2.8%;
+  font-family:'Bangers',cursive;letter-spacing:.06em;font-size:4.6cqw;line-height:1;box-shadow:3px 3px 0 #15110d;
+  opacity:1;transform:rotate(-2deg)}
+.serie-badge .bsym{font-family:'Baloo 2';font-weight:800;font-size:.82em;line-height:1}
+.serie-prose-txt{position:absolute;z-index:4;font-family:'Baloo 2';font-weight:700;color:#15110d;
+  font-size:3.5cqw;line-height:1.34;text-align:left;text-wrap:pretty;
+  background:#fff6e3;border:3px solid #15110d;border-radius:14px;box-shadow:4px 4px 0 #15110d;padding:3.4% 3.8%;opacity:1}
+.size-story.serie-prose .serie-prose-txt,.size-cover.serie-prose .serie-prose-txt{font-size:3.95cqw}
+.serie-burst{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:144%;aspect-ratio:1/1;z-index:0}
+.serie-burst svg{display:block;width:100%;height:100%;filter:drop-shadow(0 6px 7px rgba(0,0,0,.22))}
+.serie-prose .serie-mascot .mascot{position:relative;z-index:1}
+.serie-prose .serie-mascot .mascot svg{filter:drop-shadow(0 4px 5px rgba(0,0,0,.25))}
+
+/* ============================================================
+   SERIE · SCATTER — frasi sparse attorno alla mascotte (sfondo dark)
+   ============================================================ */
+.serie-scatter .scat{position:absolute;z-index:4;font-family:'Baloo 2';font-weight:700;
+  font-size:3cqw;line-height:1.16;color:var(--paper);text-shadow:0 2px 7px rgba(0,0,0,.62),0 0 3px rgba(0,0,0,.6);
+  opacity:1;transform:rotate(var(--rot,0deg))}
+.serie-scatter .scat.L{text-align:right}
+.serie-scatter .scat.R{text-align:left}
+.serie-scatter .scat.C{left:50%;text-align:center;transform:translateX(-50%) rotate(var(--rot,0deg))}
+.serie-scatter .scat.hot{color:var(--el);text-shadow:0 0 15px color-mix(in srgb,var(--el) 70%,transparent),0 2px 6px rgba(0,0,0,.5)}
+.size-story.serie-scatter .scat{font-size:3.3cqw}
+.size-cover.serie-scatter .scat{font-size:3.4cqw}
+
+/* ogni scatter ha uno sfondo diverso (testo chiaro su fondo scuro in tutti i casi) */
+.serie-bg-say .bgbase{background:radial-gradient(circle at 50% 46%,color-mix(in srgb,var(--el) 42%,#15102a),#0c0814 70%)}
+.serie-bg-say .watermark{inset:0;transform:none;opacity:1;background-image:repeating-conic-gradient(from 8deg at 50% 46%,rgba(255,255,255,.06) 0 9deg,transparent 9deg 18deg);background-size:auto;
+  -webkit-mask-image:radial-gradient(circle at 50% 46%,#000 12%,transparent 72%);mask-image:radial-gradient(circle at 50% 46%,#000 12%,transparent 72%)}
+.serie-bg-say .glow{background:radial-gradient(circle at 50% 46%,color-mix(in srgb,var(--el) 55%,transparent),transparent 44%)}
+
+.serie-bg-annoy .bgbase{background:linear-gradient(158deg,#1b1726,#0b0912 72%)}
+.serie-bg-annoy .watermark{inset:0;transform:none;opacity:1;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 2px,transparent 2px 14px);background-size:auto}
+.serie-bg-annoy .glow{background:radial-gradient(circle at 50% 44%,color-mix(in srgb,var(--el) 24%,transparent),transparent 52%);filter:saturate(.55)}
+
+.serie-bg-seduce .bgbase{background:radial-gradient(circle at 50% 44%,#3c1232,#160a18 74%)}
+.serie-bg-seduce .watermark{inset:0;transform:none;opacity:1;background-image:radial-gradient(rgba(255,150,196,.12) 2px,transparent 2.4px);background-size:22px 22px}
+.serie-bg-seduce .glow{background:radial-gradient(circle at 50% 44%,color-mix(in srgb,#ff5fa2 42%,transparent),transparent 50%)}
+
+/* ============================================================
+   SFONDI EXTRA creativi (uso generale · singolo segno Pop)
+   pois · griglia · chevron · memphis · bolle
+   ============================================================ */
+.dir-pop.bgskin-pois .bgbase{background:color-mix(in srgb,var(--el) 30%,#fff6e3)}
+.dir-pop.bgskin-pois .sun{display:none}
+.dir-pop.bgskin-pois .halftone{background-image:radial-gradient(color-mix(in srgb,var(--el) 72%,#fff) 8.5px,transparent 9.5px);background-size:44px 44px;opacity:.85}
+
+.dir-pop.bgskin-griglia .bgbase{background:color-mix(in srgb,var(--el) 20%,#fff6e3)}
+.dir-pop.bgskin-griglia .sun{display:none}
+.dir-pop.bgskin-griglia .halftone{background-image:repeating-linear-gradient(0deg,color-mix(in srgb,var(--el) 50%,transparent) 0 2px,transparent 2px 30px),repeating-linear-gradient(90deg,color-mix(in srgb,var(--el) 50%,transparent) 0 2px,transparent 2px 30px);opacity:.55}
+
+.dir-pop.bgskin-chevron .bgbase{background:color-mix(in srgb,var(--el) 24%,#fff6e3)}
+.dir-pop.bgskin-chevron .sun{display:none}
+.dir-pop.bgskin-chevron .halftone{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='22'%3E%3Cpath d='M0,18 L10,6 L20,18 L30,6 L40,18' fill='none' stroke='%2315110d' stroke-width='4' stroke-opacity='0.3'/%3E%3C/svg%3E");background-size:40px 22px}
+
+.dir-pop.bgskin-memphis .bgbase{background:color-mix(in srgb,var(--el) 18%,#fff6e3)}
+.dir-pop.bgskin-memphis .sun{display:none}
+.dir-pop.bgskin-memphis .halftone{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='92' height='92'%3E%3Cg fill='none' stroke='%2315110d' stroke-width='3' stroke-opacity='0.24' stroke-linecap='round'%3E%3Ccircle cx='18' cy='20' r='7'/%3E%3Cpath d='M64,52 q9,-9 0,-18 q-9,9 0,18'/%3E%3Cpath d='M10,64 h14 M17,57 v14'/%3E%3Cpath d='M40,76 q6,-7 12,0 q6,7 12,0'/%3E%3C/g%3E%3Cg fill='%2315110d' fill-opacity='0.24'%3E%3Cpath d='M58,12 l8,14 l-16,0 Z'/%3E%3Ccircle cx='82' cy='80' r='3'/%3E%3Ccircle cx='34' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E");background-size:92px 92px}
+
+.dir-pop.bgskin-bolle .bgbase{background:color-mix(in srgb,var(--el) 26%,#fff6e3)}
+.dir-pop.bgskin-bolle .sun{display:none}
+.dir-pop.bgskin-bolle .halftone{background-image:radial-gradient(circle,transparent 9px,color-mix(in srgb,var(--el) 50%,#fff) 10px 12px,transparent 13px);background-size:38px 38px}
+
+/* ===== EMBLEMI · coppie (per lente) + simbolo pianeta (angolo) ===== */
+.couple-emblem{position:absolute;top:3.5%;left:3.5%;z-index:7;width:15.5%;padding:1.7%;
+  background:#fff6e3;border:3px solid var(--ink);border-radius:12px;box-shadow:3px 3px 0 var(--ink);transform:rotate(-4deg)}
+.couple-emblem svg{display:block;width:100%;height:auto}
+.size-story .couple-emblem,.size-cover .couple-emblem{width:18%}
+.planet .planet-emblem{position:absolute;top:-9%;z-index:2;width:50%;aspect-ratio:1/1;pointer-events:none;
+  display:flex;align-items:center;justify-content:center}
+.planet .planet-emblem.pe-left{left:-10%}
+.planet .planet-emblem.pe-right{right:-10%}
+.planet .planet-emblem svg{display:block;width:100%;height:100%;filter:drop-shadow(0 4px 5px rgba(0,0,0,.28))}
+.size-story .planet .planet-emblem{width:52%}
+.size-cover .planet .planet-emblem{width:52%}
+
+/* SEXUAL · "a letto" — cuscini dietro + piumone sopra le mascotte */
+.couple-bed-back{position:absolute;left:50%;top:23%;transform:translateX(-50%);z-index:2;width:74%}
+.couple-bed-front{position:absolute;left:50%;top:43%;transform:translateX(-50%);z-index:4;width:82%}
+.couple-bed-back svg,.couple-bed-front svg{display:block;width:100%;height:auto}
+.size-story .couple-bed-back{top:14%;width:80%}
+.size-story .couple-bed-front{top:27%;width:88%}
+.size-cover .couple-bed-back{top:32%;width:78%}
+.size-cover .couple-bed-front{top:46%;width:84%}
+.couple-house{position:absolute;left:50%;top:12%;transform:translateX(-50%);z-index:2;width:52%}
+.couple-house svg{display:block;width:100%;height:auto}
+.size-story .couple-house{top:9%;width:64%}
+.size-cover .couple-house{top:15%;width:60%}
+.couple-front{position:absolute;z-index:4;pointer-events:none}
+.couple-front svg{display:block;width:100%;height:auto;filter:drop-shadow(0 4px 5px rgba(0,0,0,.25))}
+.couple-kid{position:absolute;z-index:4;pointer-events:none}
+.couple-kid svg{display:block;width:100%;height:auto;filter:drop-shadow(0 5px 6px rgba(0,0,0,.28))}
+.couple-kid.baby .kid-paci{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);width:32%;line-height:0}
+.couple-kid.baby .kid-paci svg{filter:drop-shadow(0 2px 2px rgba(0,0,0,.22))}
+.couple-heart{position:absolute;z-index:2;pointer-events:none}
+.couple-heart svg{display:block;width:100%;height:auto;filter:drop-shadow(0 5px 7px rgba(0,0,0,.2))}

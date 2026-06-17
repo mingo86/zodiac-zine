@@ -14,7 +14,7 @@
     return `<path d="M${x},${(y-r*0.45).toFixed(1)} C${(x-r*0.55).toFixed(1)},${(y-r*1.25).toFixed(1)} ${(x-r*1.5).toFixed(1)},${(y-r*0.15).toFixed(1)} ${x},${(y+r*0.8).toFixed(1)} C${(x+r*1.5).toFixed(1)},${(y-r*0.15).toFixed(1)} ${(x+r*0.55).toFixed(1)},${(y-r*1.25).toFixed(1)} ${x},${(y-r*0.45).toFixed(1)} Z" fill="${col}"/>`;
   }
 
-  /* faccina riutilizzabile — mood: happy|neutral|sad|love|angry · K.variant: m|f */
+  /* faccina riutilizzabile — mood: happy|neutral|sad|love|angry|annoyed · K.variant: m|f */
   function face(cx, cy, sc, K, mood, look){
     const ex=12*sc, er=8*sc, pr=3.4*sc, dx=look*3*sc;
     const v=K.variant, inlove=mood==="love", angry=mood==="angry";
@@ -37,6 +37,11 @@
       const mbw=3.8*sc;
       s+=`<path d="M${cx-ex-7*sc},${cy-8.5*sc} L${cx-ex+5.5*sc},${cy-10.5*sc}" fill="none" stroke="${K.face}" stroke-width="${mbw}" stroke-linecap="round"/>`;
       s+=`<path d="M${cx+ex+7*sc},${cy-8.5*sc} L${cx+ex-5.5*sc},${cy-10.5*sc}" fill="none" stroke="${K.face}" stroke-width="${mbw}" stroke-linecap="round"/>`;
+    }
+    if(mood==="annoyed"){
+      // palpebre abbassate (occhi a mezz'asta) = scocciata
+      s+=`<path d="M${cx-ex-er*0.9},${cy-er*0.15} L${cx-ex+er*0.9},${cy-er*0.15}" fill="none" stroke="${K.face}" stroke-width="${2.4*sc}" stroke-linecap="round"/>`;
+      s+=`<path d="M${cx+ex-er*0.9},${cy-er*0.15} L${cx+ex+er*0.9},${cy-er*0.15}" fill="none" stroke="${K.face}" stroke-width="${2.4*sc}" stroke-linecap="round"/>`;
     }
     if(v==="f" && !inlove){
       // ciglia lunghe e ricurve (più femminili)
@@ -62,6 +67,7 @@
     if(angry){ mp=`M${cx-9*sc},${my+2} Q${cx},${my-7*sc} ${cx+9*sc},${my+2}`; }
     else if(mood==="happy"||inlove){ mp=`M${cx-9*sc},${my-2} Q${cx},${my+8*sc} ${cx+9*sc},${my-2}`; }
     else if(mood==="sad"){ mp=`M${cx-9*sc},${my+3} Q${cx},${my-6*sc} ${cx+9*sc},${my+3}`; }
+    else if(mood==="annoyed"){ mp=`M${cx-8*sc},${my-1} L${cx+7*sc},${my+3*sc}`; }
     else { mp=`M${cx-8*sc},${my} L${cx+8*sc},${my}`; }
     s+=`<path d="${mp}" fill="none" stroke="${K.face}" stroke-width="${3*sc}" stroke-linecap="round"/>`;
     if(v==="f" && !inlove && !angry){

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zodiac Â· Social â€” Sfondi per lente</title>
+<title>Zodiac · Social — Sfondi per lente</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="social/cards.css?v=18">
+<link rel="stylesheet" href="social/cards.css?v=24">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Baloo 2',system-ui,sans-serif;color:var(--paper);min-height:100vh;
@@ -39,67 +39,76 @@ select,.btn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 13p
 </head>
 <body>
   <div class="top">
-    <div class="kick">â˜… Zodiac Â· social studio</div>
+    <div class="kick">★ Zodiac · social studio</div>
     <h1>Sfondi per lente</h1>
-    <p class="sub">Ogni relazione ha il suo mood: colore + dettaglio dello sfondo cambiano con la <b>lente</b>. E l'<b>intensitÃ </b> segue l'affinitÃ : piÃ¹ alta la %, piÃ¹ lo sfondo Ã¨ caldo e vivo.</p>
+    <p class="sub">Ogni relazione ha il suo mood: colore + dettaglio dello sfondo cambiano con la <b>lente</b>. E l'<b>intensità</b> segue l'affinità: più alta la %, più lo sfondo è caldo e vivo.</p>
     <div class="bar">
+      <div class="ctrl"><label>Lingua</label><select id="lang"></select></div>
       <div class="ctrl"><label>Coppia (per le skin)</label><select id="pair"></select></div>
       <div class="ctrl"><label>Stile</label><select id="dir"><option value="pop">Pop</option><option value="cosmo">Cosmo</option><option value="adesivi">Adesivi</option></select></div>
-      <button class="btn" id="replay">â†» rigioca</button>
+      <button class="btn" id="replay">↻ rigioca</button>
     </div>
   </div>
 
-  <div class="h2">Le skin â€” una per lente</div>
+  <div class="h2">Le skin — una per lente</div>
   <div class="grid" id="grid"></div>
 
-  <div class="h2">IntensitÃ  per affinitÃ  â€” stessa lente, % diverse</div>
+  <div class="h2">Intensità per affinità — stessa lente, % diverse</div>
   <div class="intens" id="intens"></div>
 
-  <p class="note">Le skin sono declinazioni dello stile <b>Pop</b> (lo stile principale). Cosmo e Adesivi restano come sono. Tutto Ã¨ automatico: scegli la lente nella pagina <b>Coppie</b> e lo sfondo si adatta da solo. Dimmi quali tenere/affinare.</p>
+  <p class="note">Le skin sono declinazioni dello stile <b>Pop</b> (lo stile principale). Cosmo e Adesivi restano come sono. Tutto è automatico: scegli la lente nella pagina <b>Coppie</b> e lo sfondo si adatta da solo. Dimmi quali tenere/affinare.</p>
 
-<script src="coppie/engine.js"></script>
+<script src="coppie/engine.js"></script><script>window.ZODIAC_IT=window.ZODIAC;</script>
 <script src="coppie/mascots.js"></script>
 <script src="data/signs.it.js"></script>
 <script src="data/extra.it.js"></script>
-<script src="social/cardkit.js?v=22"></script>
+<script src="social/i18n.js?v=27"></script>
+<script>ZI18N.loadData({extra:true,engine:true,v:27});</script>
+<script src="social/cardkit.js?v=27"></script>
 <script>
 (function(){
-  var LENSES=(window.ZODIAC.LENSES||[]).map(function(l){return l.k;}); // amore..capo
-  var SIGNS=window.ZSIGNS_IT.map(function(s){return s.k;});
+  window.ZI18N.mount('lang');
+  var ZE=window['ZODIAC_'+window.ZLANG.toUpperCase()]||window.ZODIAC;
+  var LENSES=(ZE.LENSES||[]).map(function(l){return l.k;}); // amore..capo
+  var SIGNS=(window['ZSIGNS_'+window.ZLANG.toUpperCase()]||window.ZSIGNS_IT).map(function(s){return s.k;});
+  var SOBJ=(window['ZSIGNS_'+window.ZLANG.toUpperCase()]||window.ZSIGNS_IT);
+  var NM=function(k){var s=SOBJ.filter(function(x){return x.k===k;})[0];return s?s.n:k;};
+  var amoreLabel=(ZE.LBY&&ZE.LBY['amore']?ZE.LBY['amore'].label:'amore');
+  var sexLabel=({it:"A letto",en:"In bed",de:"Im Bett",fr:"Au lit",es:"En la cama",pt:"Na cama"})[window.ZLANG]||"A letto";
   var pairSel=document.getElementById('pair');
   var dirSel=document.getElementById('dir');
   var PAIRS=[['leone','sagittario'],['toro','vergine'],['ariete','cancro'],['gemelli','bilancia'],['scorpione','pesci'],['capricorno','acquario']];
-  pairSel.innerHTML=PAIRS.map(function(p,i){return '<option value="'+i+'">'+p[0]+' & '+p[1]+'</option>';}).join('');
+  pairSel.innerHTML=PAIRS.map(function(p,i){return '<option value="'+i+'">'+NM(p[0])+' & '+NM(p[1])+'</option>';}).join('');
 
   var skinCards=[], intensCards=[];
   function buildGrid(){
     var p=PAIRS[+pairSel.value];
     var grid=document.getElementById('grid'); grid.innerHTML=''; skinCards=[];
-    var lensMeta=window.ZODIAC.LENSES;
+    var lensMeta=ZE.LENSES;
     LENSES.concat(['sexual']).forEach(function(lk){
       var cell=document.createElement('div'); cell.className='cell';
       var card=document.createElement('div'); card.className='card';
       var cap=document.createElement('div'); cap.className='cap';
       var meta=lensMeta.filter(function(l){return l.k===lk;})[0];
-      cap.innerHTML=(meta?meta.g+' '+meta.label:'ðŸ”¥ A letto')+'<small>skin Â· '+lk+'</small>';
+      cap.innerHTML=(meta?meta.g+' '+meta.label:'🔥 '+sexLabel)+'<small>skin · '+lk+'</small>';
       cell.appendChild(card); cell.appendChild(cap); grid.appendChild(cell);
-      var opts={a:p[0],b:p[1],dir:dirSel.value,size:'post',still:true};
+      var opts={a:p[0],b:p[1],dir:dirSel.value,size:'post',still:true,lang:window.ZLANG};
       if(lk==='sexual') opts.mode='sexual'; else opts.lens=lk;
       skinCards.push(window.CARDKIT.buildCouple(card,opts));
     });
 
-    // intensitÃ : stessa lente (amore), 4 coppie con score crescente
+    // intensità: stessa lente (amore), 4 coppie con score crescente
     var iwrap=document.getElementById('intens'); iwrap.innerHTML=''; intensCards=[];
     var TIERS=[['ariete','capricorno'],['leone','toro'],['cancro','pesci'],['toro','vergine']];
     TIERS.forEach(function(pr){
       var cell=document.createElement('div'); cell.className='cell';
       var card=document.createElement('div'); card.className='card';
       var cap=document.createElement('div'); cap.className='cap';
-      var R=window.ZODIAC.computeCouple(pr[0],pr[1],'amore');
+      var R=ZE.computeCouple(pr[0],pr[1],'amore');
       var pct=Math.round(56+(R.score-2)*13);
-      cap.innerHTML=pr[0]+' & '+pr[1]+'<small>amore Â· '+pct+'%</small>';
+      cap.innerHTML=NM(pr[0])+' & '+NM(pr[1])+'<small>'+amoreLabel+' · '+pct+'%</small>';
       cell.appendChild(card); cell.appendChild(cap); iwrap.appendChild(cell);
-      intensCards.push(window.CARDKIT.buildCouple(card,{a:pr[0],b:pr[1],lens:'amore',dir:dirSel.value,size:'post',still:true}));
+      intensCards.push(window.CARDKIT.buildCouple(card,{a:pr[0],b:pr[1],lens:'amore',dir:dirSel.value,size:'post',still:true,lang:window.ZLANG}));
     });
   }
   function replay(){ /* still mode: rebuild */ buildGrid(); }

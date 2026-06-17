@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zodiac Â· Social â€” Coppie</title>
+<title>Zodiac · Social — Coppie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="social/cards.css?v=18">
+<link rel="stylesheet" href="social/cards.css?v=54">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Baloo 2',system-ui,sans-serif;color:var(--paper);min-height:100vh;
@@ -36,52 +36,58 @@ select,.btn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 13p
 </head>
 <body>
   <div class="top">
-    <div class="kick">â˜… Zodiac Â· social studio</div>
+    <div class="kick">★ Zodiac · social studio</div>
     <h1>Coppie</h1>
-    <p class="sub">Due segni, due mascotte, il punteggio di affinitÃ  e i punti forti di ciascuno. 144 coppie Ã— 7 lenti, generate dal motore. Tutto animato.</p>
+    <p class="sub">Due segni, due mascotte, il punteggio di affinità e i punti forti di ciascuno. 144 coppie × 7 lenti, generate dal motore. Tutto animato.</p>
     <div class="bar">
+      <div class="ctrl"><label>Lingua</label><select id="lang"></select></div>
       <div class="ctrl"><label>Segno A</label><select id="sa"></select></div>
       <div class="ctrl"><label>Segno B</label><select id="sb"></select></div>
-      <div class="ctrl"><label>Tipo</label><select id="mode"><option value="">Relazione</option><option value="sexual">A letto ðŸ”¥</option></select></div>
+      <div class="ctrl"><label>Tipo</label><select id="mode"><option value="">Relazione</option><option value="sexual">A letto 🔥</option></select></div>
       <div class="ctrl" id="lensCtrl"><label>Lente</label><select id="lens"></select></div>
       <div class="ctrl"><label>Stile</label><select id="dir">
         <option value="pop">Pop</option><option value="cosmo">Cosmo</option><option value="adesivi">Adesivi</option>
+        <option value="notte">Notte</option><option value="vintage">Vintage</option><option value="neon">Neon</option><option value="crema">Crema</option><option value="candy">Candy</option>
       </select></div>
-      <button class="btn" id="rnd">ðŸŽ² caso</button>
-      <button class="btn" id="replay">â†» rigioca</button>
+      <button class="btn" id="rnd">🎲 caso</button>
+      <button class="btn" id="replay">↻ rigioca</button>
     </div>
   </div>
 
   <div class="row">
-    <div class="col"><div class="lab"><span class="n">Post</span><span class="d">feed Â· 1:1</span></div><div class="f-post"><div class="card" id="c-post"></div></div></div>
-    <div class="col"><div class="lab"><span class="n">Story / Reel</span><span class="d">verticale Â· 9:16</span></div><div class="f-story"><div class="card" id="c-story"></div></div></div>
-    <div class="col"><div class="lab"><span class="n">Cover</span><span class="d">carosello Â· 4:5</span></div><div class="f-cover"><div class="card" id="c-cover"></div></div></div>
+    <div class="col"><div class="lab"><span class="n">Post</span><span class="d">feed · 1:1</span></div><div class="f-post"><div class="card" id="c-post"></div></div></div>
+    <div class="col"><div class="lab"><span class="n">Story / Reel</span><span class="d">verticale · 9:16</span></div><div class="f-story"><div class="card" id="c-story"></div></div></div>
+    <div class="col"><div class="lab"><span class="n">Cover</span><span class="d">carosello · 4:5</span></div><div class="f-cover"><div class="card" id="c-cover"></div></div></div>
   </div>
 
-  <p class="note">Il badge centrale mostra l'<b>affinitÃ  %</b> del motore; le due colonne sono i <b>green flag</b> di ciascun segno, colorati per elemento; il mantra Ã¨ il <b>verdetto</b>. Cambia <b>lente</b> per amore, amicizia, lavoro, famiglia, convivenza, ex, capo&team.</p>
+  <p class="note">Il badge centrale mostra l'<b>affinità %</b> del motore; le due colonne sono i <b>green flag</b> di ciascun segno, colorati per elemento; il mantra è il <b>verdetto</b>. Cambia <b>lente</b> per amore, amicizia, lavoro, famiglia, convivenza, ex, capo&team.</p>
 
-<script src="coppie/engine.js"></script>
-<script src="coppie/mascots.js"></script>
+<script src="coppie/engine.js"></script><script>window.ZODIAC_IT=window.ZODIAC;</script>
+<script src="coppie/mascots.js?v=28"></script>
 <script src="data/signs.it.js"></script>
 <script src="data/extra.it.js"></script>
-<script src="social/cardkit.js?v=22"></script>
+<script src="social/i18n.js?v=27"></script>
+<script>ZI18N.loadData({extra:true,engine:true,v:27});</script>
+<script src="social/cardkit.js?v=53"></script>
 <script>
 (function(){
   var SIZES=['post','story','cover'];
   var cards={};
   var saSel=document.getElementById('sa'),sbSel=document.getElementById('sb'),lensSel=document.getElementById('lens'),dirSel=document.getElementById('dir'),modeSel=document.getElementById('mode');
-  var SIGNS=window.ZSIGNS_IT||[];
+  window.ZI18N.mount('lang');
+  var ZE=window['ZODIAC_'+window.ZLANG.toUpperCase()]||window.ZODIAC;
+  var SIGNS=window['ZSIGNS_'+window.ZLANG.toUpperCase()]||window.ZSIGNS_IT||[];
   var opts=SIGNS.map(function(s){return '<option value="'+s.k+'">'+s.g+'  '+s.n+'</option>';}).join('');
   saSel.innerHTML=opts; sbSel.innerHTML=opts;
   saSel.value='bilancia'; sbSel.value='capricorno';
-  lensSel.innerHTML=(window.ZODIAC.LENSES||[]).map(function(l){return '<option value="'+l.k+'">'+l.g+'  '+l.label+'</option>';}).join('');
+  lensSel.innerHTML=(ZE.LENSES||[]).map(function(l){return '<option value="'+l.k+'">'+l.g+'  '+l.label+'</option>';}).join('');
 
   function buildAll(){
     var a=saSel.value,b=sbSel.value,lens=lensSel.value,dir=dirSel.value,mode=modeSel.value;
     document.getElementById('lensCtrl').style.display = mode==='sexual' ? 'none' : '';
     var still=location.hash.indexOf('still')>=0;
     SIZES.forEach(function(sz){
-      cards[sz]=window.CARDKIT.buildCouple(document.getElementById('c-'+sz),{a:a,b:b,lens:lens,dir:dir,size:sz,still:still,mode:mode});
+      cards[sz]=window.CARDKIT.buildCouple(document.getElementById('c-'+sz),{a:a,b:b,lens:lens,dir:dir,size:sz,still:still,mode:mode,lang:window.ZLANG});
     });
   }
   function replay(){ SIZES.forEach(function(sz){ cards[sz]&&cards[sz].replay(); }); }

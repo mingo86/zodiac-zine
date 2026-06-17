@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zodiac · Social Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="social/cards.css?v=56">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Baloo 2',system-ui,sans-serif;color:var(--paper);min-height:100vh;
+  background-image:radial-gradient(circle,rgba(0,0,0,.18) 1.6px,transparent 1.8px),linear-gradient(135deg,#2c2138,#171022);
+  background-size:15px 15px,100% 100%;padding:26px 18px 90px}
+.top{max-width:1180px;margin:0 auto 14px;text-align:center}
+.kick{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#b9a7ff}
+h1{font-family:'Bangers',cursive;font-size:clamp(30px,5.4vw,50px);letter-spacing:1.5px;color:var(--yellow);
+  -webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink);margin:5px 0 4px}
+.sub{font-weight:600;color:#cdbfff;font-size:14px;max-width:680px;margin:0 auto;line-height:1.5}
+.modebar{display:flex;justify-content:center;margin:18px auto 0}
+.seg{display:inline-flex;border:3px solid var(--ink);border-radius:13px;overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.seg button{font-family:'Baloo 2';font-weight:800;font-size:15px;padding:11px 26px;border:0;background:var(--paper);color:var(--ink);cursor:pointer}
+.seg button.on{background:var(--yellow)}
+.seg button:active{transform:translateY(1px)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:flex-end;margin:16px auto 0;max-width:1180px}
+.ctrl{display:flex;flex-direction:column;gap:3px;text-align:left}
+.ctrl label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:#9c8fc8;padding-left:4px}
+select,.btn{font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 13px;border:3px solid var(--ink);
+  border-radius:11px;background:var(--paper);color:var(--ink);box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+.btn{background:var(--yellow)}
+.btn:active,select:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.row{max-width:1180px;margin:30px auto 0;display:flex;gap:30px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+.col{display:flex;flex-direction:column;align-items:center;gap:13px}
+.lab{display:flex;flex-direction:column;align-items:center;gap:1px}
+.lab .n{font-family:'Bangers',cursive;font-size:21px;letter-spacing:.05em;color:var(--paper)}
+.lab .d{font-family:'Space Mono',monospace;font-size:11px;color:#9c8fc8}
+.f-post{width:340px}.f-story{width:288px}.f-cover{width:328px}
+.note{max-width:780px;margin:34px auto 0;text-align:center;font-size:13px;color:#b6a9d6;line-height:1.6;font-weight:600}
+.note b{color:#efe7ff}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="kick">★ Zodiac · social studio</div>
+    <h1>Social Studio</h1>
+    <p class="sub">Un solo posto per ogni combinazione. Scegli <b>Singoli</b> o <b>Coppie</b>, poi categoria, segno, stile e formato. Tre tagli pronti (post · story · cover), tutti animati.</p>
+    <div class="modebar">
+      <div class="seg">
+        <button id="m-singoli" class="on">Singoli</button>
+        <button id="m-coppie">Coppie</button>
+      </div>
+    </div>
+    <div class="bar">
+      <div class="ctrl" id="ctrlLang"><label>Lingua</label><select id="lang"></select></div>
+
+      <div class="ctrl" id="ctrlCat"><label>Categoria</label><select id="cat">
+        <option value="taglio">Carta · taglio</option>
+        <option value="serie">Serie</option>
+        <option value="pianeti">Pianeti</option>
+        <option value="compat">Compatibilità</option>
+      </select></div>
+      <div class="ctrl" id="ctrlSegno"><label>Segno</label><select id="sign"></select></div>
+      <div class="ctrl" id="ctrlFmt"><label>Format</label><select id="fmt">
+        <option value="facts">cosa mi rende un…</option>
+        <option value="date">come conquistare un…</option>
+        <option value="flags">le mie bandiere…</option>
+      </select></div>
+      <div class="ctrl" id="ctrlSerie"><label>Serie</label><select id="serie">
+        <option value="pleasedont">per favore non… (checklist)</option>
+        <option value="dealbreakers">cosa rompe la relazione (checklist)</option>
+        <option value="whoami">sono fatto così (checklist)</option>
+        <option value="frase">in una frase… (fumetto)</option>
+        <option value="consiglio">il mio consiglio… (fumetto)</option>
+        <option value="say" selected>cose che dico… (scatter)</option>
+        <option value="annoy">cose che mi annoiano… (scatter)</option>
+        <option value="seduce">come conquistarmi… (scatter)</option>
+        <option value="lui">♂ LUI (prosa)</option>
+        <option value="lei">♀ LEI (prosa)</option>
+      </select></div>
+      <div class="ctrl" id="ctrlPlanet"><label>Pianeta</label><select id="planet">
+        <option value="sole">☉ Sole · identità</option>
+        <option value="luna">☾ Luna · emozioni</option>
+        <option value="mercurio">☿ Mercurio · mente</option>
+        <option value="venere">♀ Venere · amore</option>
+        <option value="marte">♂ Marte · grinta</option>
+        <option value="ascendente">↑ Ascendente · impressione</option>
+      </select></div>
+
+      <div class="ctrl" id="ctrlSa"><label>Segno A</label><select id="sa"></select></div>
+      <div class="ctrl" id="ctrlSb"><label>Segno B</label><select id="sb"></select></div>
+      <div class="ctrl" id="ctrlTipo"><label>Tipo</label><select id="tipo">
+        <option value="">Relazione</option>
+        <option value="sexual">A letto 🔥</option>
+      </select></div>
+      <div class="ctrl" id="ctrlLens"><label>Lente</label><select id="lens"></select></div>
+
+      <div class="ctrl" id="ctrlDir"><label>Stile</label><select id="dir">
+        <option value="pop">Pop</option>
+        <option value="cosmo">Cosmo</option>
+        <option value="adesivi">Adesivi</option>
+        <option value="notte">Notte</option>
+        <option value="vintage">Vintage</option>
+        <option value="neon">Neon</option>
+        <option value="crema">Crema</option>
+        <option value="candy">Candy</option>
+      </select></div>
+      <div class="ctrl" id="ctrlBg"><label>Sfondo (Pop)</label><select id="bg">
+        <option value="raggi">Raggi</option>
+        <option value="pieno">Pieno</option>
+        <option value="bold">Bold</option>
+        <option value="onde">Onde</option>
+        <option value="stelle">Stelle</option>
+        <option value="pois">Pois</option>
+        <option value="griglia">Griglia</option>
+        <option value="chevron">Chevron</option>
+        <option value="memphis">Memphis</option>
+        <option value="bolle">Bolle</option>
+      </select></div>
+      <button class="btn" id="replay">↻ rigioca</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col"><div class="lab"><span class="n">Post</span><span class="d">feed · 1:1</span></div><div class="f-post"><div class="card" id="c-post"></div></div></div>
+    <div class="col"><div class="lab"><span class="n">Story / Reel</span><span class="d">verticale · 9:16</span></div><div class="f-story"><div class="card" id="c-story"></div></div></div>
+    <div class="col"><div class="lab"><span class="n">Cover</span><span class="d">carosello · 4:5</span></div><div class="f-cover"><div class="card" id="c-cover"></div></div></div>
+  </div>
+
+  <p class="note">Tutto in un'unica pagina: <b>singoli</b> (taglio · serie · pianeti · compatibilità) e <b>coppie</b> (relazione · a letto). Apri con <b>#still</b> per il frame fermo.</p>
+
+<script src="coppie/engine.js"></script><script>window.ZODIAC_IT=window.ZODIAC;</script>
+<script src="coppie/mascots.js?v=28"></script>
+<script src="data/signs.it.js"></script>
+<script src="data/extra.it.js"></script>
+<script src="data/series.it.js?v=2"></script>
+<script src="social/i18n.js?v=27"></script>
+<script>ZI18N.loadData({extra:true,engine:true,v:27});</script>
+<script src="social/cardkit.js?v=56"></script>
+<script>
+(function(){
+  var SIZES=['post','story','cover'];
+  var cards={};
+  var $=function(id){return document.getElementById(id);};
+  window.ZI18N.mount('lang');
+  var ZLANG=window.ZLANG;
+  var ZE=window['ZODIAC_'+ZLANG.toUpperCase()]||window.ZODIAC;
+  var SIGNS=window['ZSIGNS_'+ZLANG.toUpperCase()]||window.ZSIGNS_IT||[];
+
+  var signSel=$('sign'),catSel=$('cat'),fmtSel=$('fmt'),serieSel=$('serie'),planetSel=$('planet'),
+      saSel=$('sa'),sbSel=$('sb'),tipoSel=$('tipo'),lensSel=$('lens'),dirSel=$('dir'),bgSel=$('bg');
+
+  var signOpts=SIGNS.map(function(s){return '<option value="'+s.k+'">'+s.g+'  '+s.n+'</option>';}).join('');
+  signSel.innerHTML=signOpts; signSel.value='capricorno';
+  saSel.innerHTML=signOpts; sbSel.innerHTML=signOpts; saSel.value='bilancia'; sbSel.value='capricorno';
+  lensSel.innerHTML=((ZE&&ZE.LENSES)||[]).map(function(l){return '<option value="'+l.k+'">'+l.g+'  '+l.label+'</option>';}).join('');
+
+  var mode='singoli';
+  function show(el,on){ el.style.display = on ? '' : 'none'; }
+  function refreshUI(){
+    var sing=mode==='singoli', cat=catSel.value;
+    show($('ctrlCat'),sing); show($('ctrlSegno'),sing);
+    show($('ctrlFmt'),sing&&cat==='taglio'); show($('ctrlBg'),sing&&cat==='taglio');
+    show($('ctrlSerie'),sing&&cat==='serie'); show($('ctrlPlanet'),sing&&cat==='pianeti');
+    show($('ctrlSa'),!sing); show($('ctrlSb'),!sing); show($('ctrlTipo'),!sing);
+    show($('ctrlLens'),!sing&&tipoSel.value!=='sexual');
+    show($('ctrlDir'),!(sing&&cat==='serie'));
+    $('m-singoli').classList.toggle('on',sing);
+    $('m-coppie').classList.toggle('on',!sing);
+  }
+  function buildOne(host,sz,still){
+    var dir=dirSel.value;
+    if(mode==='coppie'){
+      var o={a:saSel.value,b:sbSel.value,dir:dir,size:sz,still:still,lang:ZLANG};
+      if(tipoSel.value==='sexual'){o.mode='sexual';o.lens='amore';} else {o.lens=lensSel.value;}
+      return window.CARDKIT.buildCouple(host,o);
+    }
+    var key=signSel.value, cat=catSel.value;
+    if(cat==='serie') return window.CARDKIT.buildSeries(host,{key:key,serie:serieSel.value,size:sz,still:still,lang:ZLANG});
+    if(cat==='pianeti') return window.CARDKIT.buildPlanet(host,{planet:planetSel.value,key:key,dir:dir,size:sz,still:still,lang:ZLANG});
+    if(cat==='compat') return window.CARDKIT.buildCompat(host,{key:key,dir:dir,size:sz,still:still,lang:ZLANG});
+    return window.CARDKIT.build(host,{key:key,dir:dir,format:fmtSel.value,size:sz,still:still,bg:bgSel.value,lang:ZLANG});
+  }
+  function buildAll(){
+    refreshUI();
+    var still=location.hash.indexOf('still')>=0;
+    SIZES.forEach(function(sz){ cards[sz]=buildOne($('c-'+sz),sz,still); });
+  }
+  function replay(){ SIZES.forEach(function(sz){ cards[sz]&&cards[sz].replay(); }); }
+  function refit(){ SIZES.forEach(function(sz){ cards[sz]&&cards[sz].fit(); }); }
+
+  $('m-singoli').addEventListener('click',function(){mode='singoli';buildAll();});
+  $('m-coppie').addEventListener('click',function(){mode='coppie';buildAll();});
+  [catSel,signSel,fmtSel,serieSel,planetSel,saSel,sbSel,tipoSel,lensSel,dirSel,bgSel].forEach(function(s){s.addEventListener('change',buildAll);});
+  $('replay').addEventListener('click',replay);
+  window.addEventListener('resize',function(){clearTimeout(window.__rt);window.__rt=setTimeout(refit,150);});
+
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(buildAll);}
+  buildAll();
+})();
+</script>
+</body>
+</html>

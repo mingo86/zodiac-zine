@@ -1,0 +1,31 @@
+/* Zodiac · social — font self-hosted (same-origin) per export deterministico.
+   html-to-image embedda sempre i font same-origin → titoli Bangers corretti
+   in PNG/canvas su qualsiasi ambiente. Path relativi a questo file. */
+@font-face{
+  font-family:'Bangers';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url("fonts/Bangers-Regular.ttf") format("truetype");
+}
+@font-face{
+  font-family:'Baloo 2';
+  font-style:normal;
+  font-weight:400 800;
+  font-display:swap;
+  src:url("fonts/Baloo2-VF.ttf") format("truetype");
+}
+@font-face{
+  font-family:'Space Mono';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url("fonts/SpaceMono-Regular.ttf") format("truetype");
+}
+@font-face{
+  font-family:'Space Mono';
+  font-style:normal;
+  font-weight:700;
+  font-display:swap;
+  src:url("fonts/SpaceMono-Bold.ttf") format("truetype");
+}
