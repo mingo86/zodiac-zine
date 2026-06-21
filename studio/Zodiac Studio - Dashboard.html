@@ -138,7 +138,10 @@ main{padding:22px}
 .cap-main .cap-fmt .pill{font-size:9px; color:#fff; padding:1px 7px; border-radius:7px; margin-left:6px; vertical-align:middle}
 .cap-text{font-size:13px; line-height:1.5; white-space:pre-wrap; background:#fff; border:1px solid var(--border);
   border-radius:10px; padding:9px 11px; margin:6px 0}
-.cap-tags{font-family:'Space Mono',monospace; font-size:11px; color:var(--p4); line-height:1.6}
+.cap-tags{font-family:'Space Mono',monospace; font-size:11px; color:var(--p4); line-height:1.6; margin-top:6px}
+.cap-collab{font-size:11.5px; color:var(--p3); margin-top:6px; font-weight:600}
+.cap-collab b{color:var(--ink)}
+.cap-engage{font-family:'Space Mono',monospace; font-size:11px; color:var(--p2); line-height:1.6; margin-top:3px}
 .cap-why{font-size:11.5px; color:var(--muted); margin-top:5px; font-style:italic}
 .copybtn{font-family:'Baloo 2'; font-weight:700; font-size:11px; border:2px solid var(--ink); background:var(--card);
   border-radius:9px; padding:6px 10px; cursor:pointer; white-space:nowrap}
@@ -513,6 +516,21 @@ const TAG_FMT = {
   luilei:{it:['#luielei','#relazioni'],en:['#himvsher','#relationships'],de:['#beziehung'],fr:['#relations'],es:['#relaciones'],pt:['#relacionamentos']},
 };
 
+/* ---------- ACCOUNT & CO-POST ---------- */
+/* nome segno in inglese: usato per gli handle (@zodiac.capricorn, @capricorn.italia) */
+const SIGN_EN={ariete:'aries',toro:'taurus',gemelli:'gemini',cancro:'cancer',leone:'leo',vergine:'virgo',bilancia:'libra',scorpione:'scorpio',sagittario:'sagittarius',capricorno:'capricorn',acquario:'aquarius',pesci:'pisces'};
+/* community pages da taggare per reach (per lingua) — {s} = nome segno EN */
+const ENGAGE_TPL={
+  it:s=>[`@${s}.italia`, `@${s}.oroscopo`, `@oroscopo.zodiaco`],
+  en:s=>[`@${s}.nation`, `@${s}.facts`, `@zodiac.daily`],
+  de:s=>[`@${s}.deutschland`, `@${s}.horoskop`, `@sternzeichen.daily`],
+  fr:s=>[`@${s}.france`, `@${s}.astro`, `@astro.quotidien`],
+  es:s=>[`@${s}.espana`, `@${s}.latam`, `@horoscopo.diario`],
+  pt:s=>[`@${s}.brasil`, `@${s}.astrologia`, `@horoscopo.do.dia`],
+};
+const CREDIT={it:'Pubblicato e co-postato da',en:'Posted & co-posted by',de:'Gepostet & co-gepostet von',fr:'Publié et co-posté par',es:'Publicado y co-posteado por',pt:'Publicado e co-postado por'};
+const ENGAGE_LAB={it:'In collab visiva con',en:'In visual collab with',de:'In Zusammenarbeit mit',fr:'En collab avec',es:'En colaboración con',pt:'Em colaboração com'};
+
 /* ============================================================ */
 const App = {
   mode:'demo', market:'it', view:new Date(2026,5,1), realData:null, charts:{},
@@ -574,6 +592,28 @@ const App = {
     const arr=[...base, signTag, ...fmt];
     if(post.format==='couple') arr.push('#'+NAMES[post.b][lang].toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''));
     return [...new Set(arr)].slice(0,12);
+  },
+  /* account co-post: brand del mercato + account per-segno (entrambi i segni se coppia) */
+  coPost(post){
+    const arr=[MARKETS[post.mkt].handle];
+    if(post.format==='couple'){ arr.push('@zodiac.'+SIGN_EN[post.a], '@zodiac.'+SIGN_EN[post.b]); }
+    else { arr.push('@zodiac.'+SIGN_EN[post.sign]); }
+    return [...new Set(arr)];
+  },
+  /* community pages da taggare per engagement */
+  engageTags(post,lang){
+    const tpl=ENGAGE_TPL[lang]||ENGAGE_TPL.en;
+    let arr=tpl(SIGN_EN[post.sign]);
+    if(post.format==='couple') arr=arr.concat(tpl(SIGN_EN[post.b]).slice(0,2));
+    return [...new Set(arr)];
+  },
+  /* testo completo pronto da incollare */
+  fullText(post,lang){
+    const cap=this.caption(post,lang);
+    const tags=this.tags(post,lang).join(' ');
+    const credit=`✦ ${CREDIT[lang]||CREDIT.en} ${this.coPost(post).join(' ')}`;
+    const engage=`📣 ${this.engageTags(post,lang).join(' ')}`;
+    return `${cap}\n\n${credit}\n${engage}\n\n${tags}`;
   },
 
   /* demo insights for a post */
@@ -734,6 +774,8 @@ const App = {
       const s=this.signObj(post.sign), pil=PILLARS[post.pillar];
       const cap=this.caption(post,lang);
       const tags=this.tags(post,lang).join(' ');
+      const copost=this.coPost(post).join(' ');
+      const engage=this.engageTags(post,lang).join(' ');
       const why=post.rotWhy;
       html+=`<div class="cap">
         <div class="cap-date"><div class="cd-d">${post.date.getDate()}</div><div class="cd-m">${MES[post.date.getMonth()]}</div></div>
@@ -741,6 +783,8 @@ const App = {
           <div class="cap-fmt">${s.g} ${FMT_LABEL[post.format]}${post.format==='couple'?` · ${NAMES[post.a][lang]}+${NAMES[post.b][lang]}`:` · ${NAMES[post.sign][lang]}`}
             <span class="pill" style="background:${pil.c}">${PILLARS[post.pillar].name}</span></div>
           <div class="cap-text">${cap}</div>
+          <div class="cap-collab">🤝 ${CREDIT[lang]||CREDIT.en}: <b>${copost}</b></div>
+          <div class="cap-engage">📣 Tag engagement: ${engage}</div>
           <div class="cap-tags">${tags}</div>
           <div class="cap-why">💡 ${why}  ·  ⏰ ${post.time}</div>
         </div>
@@ -754,7 +798,7 @@ const App = {
     const lang=document.getElementById('capLang').value;
     const post=this.monthPosts(this.market).find(p=>p.id===id);
     if(!post) return;
-    this.copy(this.caption(post,lang)+'\n\n'+this.tags(post,lang).join(' '));
+    this.copy(this.fullText(post,lang));
   },
   toast(msg){
     let t=document.getElementById('_toast'); if(!t){ t=document.createElement('div'); t.id='_toast';
@@ -897,6 +941,10 @@ const App = {
           <div style="font-size:13px;line-height:1.5">${(MARKETS[post.mkt].wf&&MARKETS[post.mkt].wf[post.format])||MARKETS[post.mkt].why}</div></div>
         <div class="mb-row"><div class="mb-lab">Caption (${lang.toUpperCase()})</div>
           <div class="mb-text">${cap}</div></div>
+        <div class="mb-row"><div class="mb-lab">🤝 Co-post (collab)</div>
+          <div class="mb-text" style="font-family:'Space Mono';color:var(--p3)">${this.coPost(post).join('  ')}</div></div>
+        <div class="mb-row"><div class="mb-lab">📣 Tag engagement (community)</div>
+          <div class="mb-text" style="font-family:'Space Mono';color:var(--p2)">${this.engageTags(post,lang).join('  ')}</div></div>
         <div class="mb-row"><div class="mb-lab">Hashtag</div>
           <div class="mb-text" style="font-family:'Space Mono';color:var(--p4)">${tags}</div></div>
         <div class="mb-row"><div class="mb-lab">Insights ${this.mode==='demo'?'(simulati)':'(reali)'}</div>${statsHtml}</div>
