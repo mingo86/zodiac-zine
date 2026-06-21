@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac · Dashboard di Pubblicazione</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --paper:#fff6e3; --ink:#15110d; --muted:#6b5e52; --border:#e8d8b8; --card:#fffbf0;
+  --p1:#EF9F27; --p2:#D4537E; --p3:#1D9E75; --p4:#378ADD; --p5:#7F77DD;
+  --shadow:0 2px 0 #15110d, 4px 6px 0 rgba(21,17,13,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Baloo 2',system-ui,sans-serif; color:var(--ink);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.07) 1px, transparent 0) 0 0/22px 22px,
+    #1a1530;
+  min-height:100vh; padding:18px; font-size:14px;
+}
+.wrap{max-width:1180px; margin:0 auto; background:var(--paper); border:3px solid var(--ink);
+  border-radius:22px; box-shadow:8px 10px 0 rgba(0,0,0,.35); overflow:hidden}
+
+/* HEADER */
+header{padding:18px 22px; border-bottom:3px solid var(--ink);
+  background:linear-gradient(100deg,#fff6e3,#ffeccb); display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+.logo{font-family:'Bangers',cursive; font-size:30px; letter-spacing:1px; line-height:1; display:flex; align-items:center; gap:8px}
+.logo .star{color:var(--p1)}
+.logo small{display:block; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px;
+  color:var(--muted); font-weight:700; margin-top:2px}
+.hspace{flex:1}
+
+/* TOGGLE DEMO/REAL */
+.modebox{display:flex; align-items:center; gap:10px; background:var(--ink); border-radius:30px; padding:5px 6px}
+.modebtn{border:none; cursor:pointer; font-family:'Space Mono',monospace; font-weight:700; font-size:11px;
+  letter-spacing:1px; padding:7px 14px; border-radius:24px; background:transparent; color:#bdae9a; transition:.15s}
+.modebtn.on{background:var(--p1); color:var(--ink)}
+.modebtn.on.real{background:var(--p3); color:#fff}
+
+.marketsel{display:flex; align-items:center; gap:6px}
+.marketsel select{font-family:'Baloo 2'; font-weight:700; font-size:13px; padding:7px 10px;
+  border:2px solid var(--ink); border-radius:12px; background:var(--card); cursor:pointer}
+
+/* NAV */
+nav{display:flex; gap:4px; padding:10px 16px; background:#fbe8c9; border-bottom:3px solid var(--ink); flex-wrap:wrap}
+.tab{font-family:'Baloo 2'; font-weight:700; font-size:13px; padding:8px 16px; border-radius:14px 14px 0 0;
+  border:2px solid transparent; border-bottom:none; cursor:pointer; color:var(--muted); transition:.12s}
+.tab:hover{color:var(--ink); background:#ffffff66}
+.tab.active{background:var(--paper); color:var(--ink); border-color:var(--ink); margin-bottom:-3px; padding-bottom:11px}
+
+main{padding:22px}
+.panel{display:none; animation:fade .25s}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* BANNER */
+.banner{border:2px dashed var(--p4); background:#378ADD12; border-radius:14px; padding:12px 16px;
+  margin-bottom:16px; font-size:13px; line-height:1.55; display:none}
+.banner.show{display:block}
+.banner code{font-family:'Space Mono',monospace; background:#37449a18; padding:1px 5px; border-radius:5px; font-size:12px}
+.banner b{color:var(--p4)}
+
+/* SECTION TITLE */
+.sec-h{font-family:'Bangers',cursive; font-size:22px; letter-spacing:.5px; margin-bottom:4px}
+.sec-sub{color:var(--muted); font-size:13px; margin-bottom:16px}
+
+/* CALENDAR MONTH */
+.cal-nav{display:flex; align-items:center; gap:12px; margin-bottom:14px}
+.cal-nav button{font-family:'Baloo 2'; font-weight:700; border:2px solid var(--ink); background:var(--card);
+  border-radius:10px; padding:6px 12px; cursor:pointer; font-size:14px}
+.cal-nav button:hover{background:var(--p1)}
+.cal-title{font-family:'Bangers',cursive; font-size:24px; letter-spacing:.5px; min-width:230px}
+.month{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
+.dow{font-family:'Space Mono',monospace; font-weight:700; font-size:10px; letter-spacing:1px; text-align:center;
+  color:var(--muted); padding:4px 0}
+.day{background:var(--card); border:2px solid var(--border); border-radius:10px; min-height:84px; padding:6px;
+  cursor:pointer; transition:.12s; position:relative; overflow:hidden}
+.day:hover{border-color:var(--ink); transform:translateY(-2px); box-shadow:2px 3px 0 rgba(0,0,0,.15)}
+.day.empty{background:transparent; border:none; cursor:default}
+.day.today{border-color:var(--p2); box-shadow:0 0 0 2px #D4537E33}
+.day .dnum{font-weight:800; font-size:13px}
+.day .dsign{font-size:16px; position:absolute; top:5px; right:7px}
+.day .dchip{font-size:9px; font-weight:700; color:#fff; border-radius:6px; padding:2px 5px; margin-top:5px;
+  display:inline-block; line-height:1.3; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.day .dtime{font-family:'Space Mono',monospace; font-size:9px; color:var(--muted); margin-top:4px}
+
+/* WEEK VIEW */
+.weekgrid{display:flex; flex-direction:column; gap:8px}
+.wrow{display:grid; grid-template-columns:120px 1fr; gap:12px; align-items:stretch;
+  background:var(--card); border:2px solid var(--border); border-radius:14px; overflow:hidden}
+.wrow.today{border-color:var(--p2)}
+.wday{padding:12px 14px; display:flex; flex-direction:column; justify-content:center; color:#fff}
+.wday .wd-name{font-family:'Bangers',cursive; font-size:18px; letter-spacing:.5px}
+.wday .wd-date{font-family:'Space Mono',monospace; font-size:11px; opacity:.9}
+.wbody{padding:12px 14px; display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+.wbody .wsign{font-size:34px}
+.wbody .winfo{flex:1; min-width:160px}
+.wbody .wfmt{font-weight:800; font-size:15px}
+.wbody .wpill{font-size:10px; font-weight:700; color:#fff; padding:2px 8px; border-radius:8px; display:inline-block; margin-top:3px}
+.wbody .wwhy{font-size:12px; color:var(--muted); margin-top:5px; line-height:1.45}
+.wbody .wtime{font-family:'Space Mono',monospace; font-size:11px; font-weight:700; color:var(--ink);
+  background:#fff; border:2px solid var(--ink); border-radius:8px; padding:4px 8px}
+
+/* COUNTRIES */
+.mkt-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:14px}
+.mkt{background:var(--card); border:2px solid var(--ink); border-radius:16px; padding:16px; box-shadow:var(--shadow)}
+.mkt-top{display:flex; align-items:center; gap:10px; margin-bottom:8px}
+.mkt-flag{font-size:30px}
+.mkt-name{font-family:'Bangers',cursive; font-size:22px; letter-spacing:.5px; line-height:1}
+.mkt-handle{font-family:'Space Mono',monospace; font-size:11px; color:var(--muted)}
+.mkt-status{font-size:10px; font-weight:700; padding:3px 9px; border-radius:20px; margin-left:auto}
+.st-live{background:#1D9E7522; color:#1D9E75}
+.st-plan{background:#EF9F2722; color:#b87510}
+.st-later{background:#88888822; color:#777}
+.mkt-meta{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0}
+.mkt-tag{font-size:10px; font-weight:700; background:#15110d0d; border-radius:8px; padding:3px 8px}
+.mkt-why{font-size:12.5px; line-height:1.55; color:var(--ink); margin:8px 0}
+.mkt-times{font-family:'Space Mono',monospace; font-size:11px; color:var(--muted); margin-top:6px}
+.mkt-fmts{margin-top:10px; border-top:1px dashed var(--border); padding-top:10px}
+.mkt-fmts summary{cursor:pointer; font-weight:700; font-size:12px; color:var(--p4)}
+.mkt-fmts .ff{font-size:12px; margin:6px 0; line-height:1.45}
+.mkt-fmts .ff b{color:var(--ink)}
+
+/* CAPTIONS */
+.cap-bar{display:flex; gap:10px; align-items:center; margin-bottom:14px; flex-wrap:wrap}
+.cap-bar select{font-family:'Baloo 2'; font-weight:700; padding:6px 10px; border:2px solid var(--ink); border-radius:10px; background:var(--card)}
+.cap-list{display:flex; flex-direction:column; gap:10px}
+.cap{background:var(--card); border:2px solid var(--border); border-radius:14px; padding:14px; display:grid;
+  grid-template-columns:54px 1fr auto; gap:12px; align-items:start}
+.cap-date{text-align:center}
+.cap-date .cd-d{font-family:'Bangers',cursive; font-size:24px; line-height:1}
+.cap-date .cd-m{font-family:'Space Mono',monospace; font-size:9px; color:var(--muted); text-transform:uppercase}
+.cap-main .cap-fmt{font-weight:800; font-size:13px; margin-bottom:2px}
+.cap-main .cap-fmt .pill{font-size:9px; color:#fff; padding:1px 7px; border-radius:7px; margin-left:6px; vertical-align:middle}
+.cap-text{font-size:13px; line-height:1.5; white-space:pre-wrap; background:#fff; border:1px solid var(--border);
+  border-radius:10px; padding:9px 11px; margin:6px 0}
+.cap-tags{font-family:'Space Mono',monospace; font-size:11px; color:var(--p4); line-height:1.6}
+.cap-why{font-size:11.5px; color:var(--muted); margin-top:5px; font-style:italic}
+.copybtn{font-family:'Baloo 2'; font-weight:700; font-size:11px; border:2px solid var(--ink); background:var(--card);
+  border-radius:9px; padding:6px 10px; cursor:pointer; white-space:nowrap}
+.copybtn:hover{background:var(--p1)}
+
+/* INSIGHTS */
+.kpi-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:18px}
+.kpi{background:var(--card); border:2px solid var(--ink); border-radius:14px; padding:14px; box-shadow:var(--shadow)}
+.kpi .k-lab{font-family:'Space Mono',monospace; font-size:10px; letter-spacing:1px; color:var(--muted); text-transform:uppercase}
+.kpi .k-val{font-family:'Bangers',cursive; font-size:30px; line-height:1.1; margin-top:4px}
+.kpi .k-delta{font-size:11px; font-weight:700; margin-top:2px}
+.k-up{color:var(--p3)} .k-down{color:var(--p2)}
+.chart-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px}
+.chart-box{background:var(--card); border:2px solid var(--ink); border-radius:14px; padding:14px; box-shadow:var(--shadow)}
+.chart-box h4{font-family:'Bangers',cursive; font-size:17px; letter-spacing:.5px; margin-bottom:10px}
+.chart-box.full{grid-column:1/-1}
+.chart-canvas-wrap{position:relative; height:230px}
+table.posts{width:100%; border-collapse:collapse; font-size:12px}
+table.posts th{font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.5px; text-transform:uppercase;
+  color:var(--muted); text-align:right; padding:7px 8px; border-bottom:2px solid var(--border)}
+table.posts th:first-child,table.posts td:first-child{text-align:left}
+table.posts td{padding:8px; border-bottom:1px solid var(--border)}
+table.posts tr:hover td{background:#fff}
+.post-mini{display:flex; align-items:center; gap:7px}
+.post-mini .pm-sign{font-size:18px}
+.post-mini .pm-fmt{font-weight:700; font-size:12px}
+.post-mini .pm-mkt{font-size:13px}
+.num{font-family:'Space Mono',monospace; font-weight:700; text-align:right}
+.empty-state{text-align:center; padding:50px 20px; color:var(--muted)}
+.empty-state .es-emoji{font-size:46px; margin-bottom:10px}
+
+/* MODAL */
+.modal-bg{position:fixed; inset:0; background:rgba(20,15,30,.6); display:none; align-items:center; justify-content:center; z-index:50; padding:20px}
+.modal-bg.show{display:flex}
+.modal{background:var(--paper); border:3px solid var(--ink); border-radius:18px; max-width:480px; width:100%;
+  max-height:88vh; overflow:auto; box-shadow:8px 10px 0 rgba(0,0,0,.4)}
+.modal-h{padding:14px 18px; border-bottom:3px solid var(--ink); display:flex; align-items:center; gap:10px;
+  position:sticky; top:0; background:var(--paper)}
+.modal-h .mh-sign{font-size:30px}
+.modal-h .mh-t{font-family:'Bangers',cursive; font-size:22px; line-height:1}
+.modal-h .mh-d{font-family:'Space Mono',monospace; font-size:11px; color:var(--muted)}
+.modal-h .closex{margin-left:auto; border:2px solid var(--ink); background:var(--card); border-radius:9px;
+  width:30px; height:30px; cursor:pointer; font-weight:700; font-size:16px}
+.modal-b{padding:18px}
+.mb-row{margin-bottom:14px}
+.mb-row .mb-lab{font-family:'Space Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:4px}
+.mb-pill{font-size:11px; font-weight:700; color:#fff; padding:3px 10px; border-radius:10px; display:inline-block}
+.mb-text{font-size:13px; line-height:1.5; white-space:pre-wrap; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px}
+.mb-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+.mb-stat{background:var(--card); border:2px solid var(--border); border-radius:10px; padding:8px; text-align:center}
+.mb-stat .s-v{font-family:'Bangers',cursive; font-size:22px; line-height:1}
+.mb-stat .s-l{font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px}
+
+footer{padding:14px 22px; border-top:3px solid var(--ink); background:#fbe8c9; font-size:11px;
+  color:var(--muted); font-family:'Space Mono',monospace; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+@media(max-width:780px){
+  .chart-grid{grid-template-columns:1fr}
+  .cap{grid-template-columns:44px 1fr; }
+  .copybtn{grid-column:2}
+  .day{min-height:64px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <span class="star">✦</span>
+      <div>Zodiac · Dashboard
+        <small>PUBLISHING CONTROL · IG + TIKTOK</small>
+      </div>
+    </div>
+    <div class="hspace"></div>
+    <div class="marketsel">
+      <select id="marketSel" onchange="App.setMarket(this.value)"></select>
+    </div>
+    <div class="modebox" title="Sorgente dati">
+      <button class="modebtn on" id="mode-demo" onclick="App.setMode('demo')">● DEMO</button>
+      <button class="modebtn real" id="mode-real" onclick="App.setMode('real')">○ REALE</button>
+    </div>
+  </header>
+
+  <nav>
+    <div class="tab active" data-tab="month" onclick="App.tab('month')">📅 Mese</div>
+    <div class="tab" data-tab="week" onclick="App.tab('week')">📆 Settimana</div>
+    <div class="tab" data-tab="countries" onclick="App.tab('countries')">🌍 Paesi & Logica</div>
+    <div class="tab" data-tab="captions" onclick="App.tab('captions')">✍️ Caption & Tag</div>
+    <div class="tab" data-tab="insights" onclick="App.tab('insights')">📊 Insights</div>
+  </nav>
+
+  <main>
+    <div class="banner" id="realBanner">
+      <b>Modalità REALE attiva.</b> La dashboard cerca i dati in <code>data/dashboard/calendar.json</code> e
+      <code>data/dashboard/insights.json</code> (scritti dal pipeline GitHub Actions). <span id="realStatus"></span>
+    </div>
+
+    <!-- MONTH -->
+    <div class="panel active" id="panel-month">
+      <div class="cal-nav">
+        <button onclick="App.shiftMonth(-1)">◀</button>
+        <div class="cal-title" id="calTitle"></div>
+        <button onclick="App.shiftMonth(1)">▶</button>
+        <button onclick="App.goToday()" style="margin-left:auto">Oggi</button>
+      </div>
+      <div class="month" id="monthGrid"></div>
+    </div>
+
+    <!-- WEEK -->
+    <div class="panel" id="panel-week">
+      <div class="sec-h">Rotazione settimanale</div>
+      <div class="sec-sub">Lo schema fisso dei 7 pilastri di contenuto — la spina dorsale del calendario annuale.</div>
+      <div class="weekgrid" id="weekGrid"></div>
+    </div>
+
+    <!-- COUNTRIES -->
+    <div class="panel" id="panel-countries">
+      <div class="sec-h">Perché pubblicare cosa, in quale paese</div>
+      <div class="sec-sub">Ogni mercato ha pubblico, fuso orario, tono e orari ottimali diversi. Stessa card, caption e timing localizzati.</div>
+      <div class="mkt-grid" id="mktGrid"></div>
+    </div>
+
+    <!-- CAPTIONS -->
+    <div class="panel" id="panel-captions">
+      <div class="cap-bar">
+        <div class="sec-h" style="margin:0">Caption & Tag</div>
+        <div style="flex:1"></div>
+        <label style="font-size:12px;font-weight:700;color:var(--muted)">Lingua caption:</label>
+        <select id="capLang" onchange="App.renderCaptions()">
+          <option value="it">🇮🇹 Italiano</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="pt">🇧🇷 Português</option>
+        </select>
+      </div>
+      <div class="sec-sub" id="capSub"></div>
+      <div class="cap-list" id="capList"></div>
+    </div>
+
+    <!-- INSIGHTS -->
+    <div class="panel" id="panel-insights">
+      <div class="sec-h">Insights & Performance</div>
+      <div class="sec-sub" id="insSub"></div>
+      <div id="insContent">
+        <div class="kpi-row" id="kpiRow"></div>
+        <div class="chart-grid">
+          <div class="chart-box"><h4>📈 Reach giornaliera</h4><div class="chart-canvas-wrap"><canvas id="chReach"></canvas></div></div>
+          <div class="chart-box"><h4>🍩 Reach per mercato</h4><div class="chart-canvas-wrap"><canvas id="chMarket"></canvas></div></div>
+          <div class="chart-box"><h4>📊 Engagement per formato</h4><div class="chart-canvas-wrap"><canvas id="chFormat"></canvas></div></div>
+          <div class="chart-box"><h4>🔁 Interazioni (like / commenti / salvataggi / reshare)</h4><div class="chart-canvas-wrap"><canvas id="chInteract"></canvas></div></div>
+        </div>
+        <div class="chart-box full">
+          <h4>🏆 Top post del mese</h4>
+          <table class="posts" id="topPosts"></table>
+        </div>
+      </div>
+      <div class="empty-state" id="insEmpty" style="display:none">
+        <div class="es-emoji">🛰️</div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:6px">Nessun dato reale ancora</div>
+        <div style="max-width:480px;margin:0 auto;line-height:1.6">Il pipeline non ha ancora scritto <code style="font-family:'Space Mono'">data/dashboard/insights.json</code>.
+        Passa a <b>DEMO</b> per esplorare la struttura, oppure attiva il workflow di raccolta insights (Fase 4 della roadmap).</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span class="dot" id="footDot" style="background:var(--p1)"></span>
+    <span id="footMode">Sorgente: DEMO (dati simulati)</span>
+    <span style="flex:1"></span>
+    <span>Zodiac · Social Studio</span>
+  </footer>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)App.closeModal()">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+/* ============================================================
+   ZODIAC DASHBOARD — dati & logica
+   Toggle DEMO/REALE: demo = dati simulati deterministici;
+   reale = fetch da data/dashboard/{calendar,insights}.json
+   ============================================================ */
+
+const SIGNS = [
+  {k:'ariete',     g:'♈', el:'fuoco', start:[3,21],  tr:{it:'energia e coraggio', en:'energy & courage'}},
+  {k:'toro',       g:'♉', el:'terra', start:[4,20],  tr:{it:'stabilità e piacere', en:'stability & pleasure'}},
+  {k:'gemelli',    g:'♊', el:'aria',  start:[5,21],  tr:{it:'curiosità e parola', en:'curiosity & wit'}},
+  {k:'cancro',     g:'♋', el:'acqua', start:[6,21],  tr:{it:'cura e memoria', en:'care & memory'}},
+  {k:'leone',      g:'♌', el:'fuoco', start:[7,23],  tr:{it:'orgoglio e calore', en:'pride & warmth'}},
+  {k:'vergine',    g:'♍', el:'terra', start:[8,23],  tr:{it:'precisione e metodo', en:'precision & method'}},
+  {k:'bilancia',   g:'♎', el:'aria',  start:[9,23],  tr:{it:'armonia e charme', en:'harmony & charm'}},
+  {k:'scorpione',  g:'♏', el:'acqua', start:[10,23], tr:{it:'intensità e mistero', en:'intensity & mystery'}},
+  {k:'sagittario', g:'♐', el:'fuoco', start:[11,22], tr:{it:'libertà e avventura', en:'freedom & adventure'}},
+  {k:'capricorno', g:'♑', el:'terra', start:[12,22], tr:{it:'ambizione e disciplina', en:'ambition & discipline'}},
+  {k:'acquario',   g:'♒', el:'aria',  start:[1,20],  tr:{it:'visione e ribellione', en:'vision & rebellion'}},
+  {k:'pesci',      g:'♓', el:'acqua', start:[2,19],  tr:{it:'sogno ed empatia', en:'dreams & empathy'}},
+];
+const NAMES = {
+  ariete:{it:'Ariete',en:'Aries',de:'Widder',fr:'Bélier',es:'Aries',pt:'Áries'},
+  toro:{it:'Toro',en:'Taurus',de:'Stier',fr:'Taureau',es:'Tauro',pt:'Touro'},
+  gemelli:{it:'Gemelli',en:'Gemini',de:'Zwillinge',fr:'Gémeaux',es:'Géminis',pt:'Gêmeos'},
+  cancro:{it:'Cancro',en:'Cancer',de:'Krebs',fr:'Cancer',es:'Cáncer',pt:'Câncer'},
+  leone:{it:'Leone',en:'Leo',de:'Löwe',fr:'Lion',es:'Leo',pt:'Leão'},
+  vergine:{it:'Vergine',en:'Virgo',de:'Jungfrau',fr:'Vierge',es:'Virgo',pt:'Virgem'},
+  bilancia:{it:'Bilancia',en:'Libra',de:'Waage',fr:'Balance',es:'Libra',pt:'Libra'},
+  scorpione:{it:'Scorpione',en:'Scorpio',de:'Skorpion',fr:'Scorpion',es:'Escorpio',pt:'Escorpião'},
+  sagittario:{it:'Sagittario',en:'Sagittarius',de:'Schütze',fr:'Sagittaire',es:'Sagitario',pt:'Sagitário'},
+  capricorno:{it:'Capricorno',en:'Capricorn',de:'Steinbock',fr:'Capricorne',es:'Capricornio',pt:'Capricórnio'},
+  acquario:{it:'Acquario',en:'Aquarius',de:'Wassermann',fr:'Verseau',es:'Acuario',pt:'Aquário'},
+  pesci:{it:'Pesci',en:'Pisces',de:'Fische',fr:'Poissons',es:'Piscis',pt:'Peixes'},
+};
+const EL = {
+  fuoco:{it:'Fuoco',en:'Fire',de:'Feuer',fr:'Feu',es:'Fuego',pt:'Fogo'},
+  terra:{it:'Terra',en:'Earth',de:'Erde',fr:'Terre',es:'Tierra',pt:'Terra'},
+  aria:{it:'Aria',en:'Air',de:'Luft',fr:'Air',es:'Aire',pt:'Ar'},
+  acqua:{it:'Acqua',en:'Water',de:'Wasser',fr:'Eau',es:'Agua',pt:'Água'},
+};
+
+const PILLARS = {
+  P1:{name:'Oroscopo', c:'#EF9F27'},
+  P2:{name:'Match',    c:'#D4537E'},
+  P3:{name:'Mascotte', c:'#1D9E75'},
+  P4:{name:'Edu',      c:'#378ADD'},
+  P5:{name:'Community', c:'#7F77DD'},
+};
+
+/* rotazione settimanale: 0=Dom ... 6=Sab */
+const ROTATION = {
+  1:{format:'facts',   label:'Oroscopo · Fatti',        pillar:'P1', dir:'pop',     why:'Lunedì = pubblico riparte: contenuto leggero e identitario che genera tag tra amici.'},
+  2:{format:'series',  label:'Serie · Non dirmi mai',   pillar:'P4', dir:'adesivi', why:'Martedì = formato checklist ironico, altissimo tasso di salvataggio.'},
+  3:{format:'couple',  label:'Coppia della settimana',  pillar:'P2', dir:'cosmo',   why:'Mercoledì = pieno della settimana: coppie segno+segno, le più condivise in DM.'},
+  4:{format:'planet',  label:'Pianeta del giorno',      pillar:'P4', dir:'notte',   why:'Giovedì = contenuto educational (Luna/Venere): autorevolezza e profondità.'},
+  5:{format:'compat',  label:'Compatibilità weekend',   pillar:'P2', dir:'pop',     why:'Venerdì = si pensa al weekend: best/worst match, screenshot e invii.'},
+  6:{format:'cover',   label:'Cover premium',           pillar:'P3', dir:'cosmo',   why:'Sabato = feed estetico: cover curate che attirano follow e cross-post Pinterest.'},
+  0:{format:'luilei',  label:'Lui / Lei',               pillar:'P5', dir:'vintage', why:'Domenica = narrativa di coppia/genere, tono caldo per la community.'},
+};
+const FMT_LABEL = {facts:'Oroscopo · Fatti', series:'Serie', couple:'Coppia', planet:'Pianeta', compat:'Compatibilità', cover:'Cover premium', luilei:'Lui / Lei'};
+
+const MARKETS = {
+  it:{flag:'🇮🇹', name:'Italia', handle:'@zodiac.zine', tz:'CET', status:'live', reachBase:5200, follBase:8200,
+    times:['13:00','19:30','21:30'],
+    meta:['Mercato home','Community matura','Sera forte'],
+    why:'Mercato di partenza con la community più affiatata. Gli italiani interagiscono soprattutto la sera (post-cena) e adorano taggarsi a vicenda: l\'oroscopo è cultura pop quotidiana. Il tono ironico funziona meglio della serietà.',
+    wf:{facts:'I "fatti sul segno" innescano i tag tra amici — la leva di crescita #1 in IT.',
+        couple:'Le card coppia segno+segno sono il formato più inoltrato nelle chat di amiche.',
+        compat:'Compatibilità = screenshot da mandare in DM: ottimo reach organico.',
+        planet:'Pubblico curioso ma non tecnico: "Luna in..." sì, ma spiegato semplice.',
+        series:'Checklist ironica ("Non dirmi mai...") = picco di salvataggi.',
+        cover:'Cover estetiche del sabato per curare il feed e attrarre follow.',
+        luilei:'Lui/Lei la domenica: narrativa rilassata, tanti commenti.'}},
+  de:{flag:'🇩🇪', name:'Germania', handle:'@zodiac.zine.de', tz:'CET', status:'plan', reachBase:1800, follBase:2100,
+    times:['07:30','12:30','18:00'],
+    meta:['Premium +4.56% CAGR','Berlin/München/HH','€5.99/mese'],
+    why:'Mercato premium in forte crescita. Pubblico urbano e benestante (Berlino, Monaco, Amburgo) che apprezza precisione, design pulito e zero clickbait. Forte engagement nel commuting mattutino e nella prima serata. Qui si può convertire ad abbonamento a prezzo più alto.',
+    wf:{facts:'Il pubblico DE premia struttura e accuratezza: dati chiari, niente esagerazioni.',
+        couple:'Funziona inquadrato come compatibilità analitica, non come gossip.',
+        compat:'Percentuali e grafici performano: i tedeschi amano il dato misurabile.',
+        planet:'Spazio per contenuti astro più approfonditi e "tecnici".',
+        series:'Ironia sì, ma asciutta: "Was man einem Steinbock NIE sagen sollte".',
+        cover:'Design minimale premium: leva diretta per l\'abbonamento €5.99.',
+        luilei:'Tono diretto e non stereotipato — il pubblico DE è sensibile al gender.'}},
+  en:{flag:'🇬🇧', name:'UK / US / Global', handle:'@zodiac.zine.en', tz:'GMT→EST', status:'plan', reachBase:3400, follBase:4600,
+    times:['08:00 GMT','17:00 GMT','21:00 EST'],
+    meta:['Reach massima','Doppio fuso','Hook forte'],
+    why:'Massimo potenziale di reach (UK + US + audience globale). Pubblico vasto e veloce che scorre: serve un hook nei primi 3 secondi. Il fuso orario ampio consente doppio slot (sera UK + sera US). Il formato meme/relatable è quello che esplode.',
+    wf:{facts:'Contenuto "this is SO [sign]" relatable = condivisioni di massa.',
+        couple:'Angle "couple goals / red flags": enorme sul pubblico EN.',
+        compat:'Best/worst match = "tag your match", viralità altissima.',
+        planet:'I "Big Three" (sun/moon/rising) sono mainstream: spingi luna e ascendente.',
+        series:'Checklist in formato meme: reshare e salvataggi elevati.',
+        cover:'Cover aesthetic ottimizzate per cross-post su Pinterest.',
+        luilei:'"He says / She says": formato carosello molto condiviso.'}},
+  es:{flag:'🇪🇸', name:'Spagna + LATAM', handle:'@zodiac.zine.es', tz:'CET+LATAM', status:'later', reachBase:1500, follBase:1400,
+    times:['14:00','21:00','23:00'],
+    meta:['Fase 4','ES+LATAM','Community calda'],
+    why:'Mercato fase 4 con doppio bacino (Spagna + America Latina): fusi orari diversi, quindi serve doppio slot. Community calorosa e molto interattiva: tanti commenti e tag. La sera tardi performa fortissimo.',
+    wf:{}},
+  fr:{flag:'🇫🇷', name:'Francia', handle:'@zodiac.zine.fr', tz:'CET', status:'later', reachBase:900, follBase:850,
+    times:['12:30','19:00','22:00'],
+    meta:['Fase 4','Estetica','Tono spiritoso'],
+    why:'Mercato fase 4. Pubblico raffinato che apprezza il tono spiritoso e l\'estetica curata. Picchi a pranzo e a tarda sera. Attenzione alla qualità della lingua: il francese mediocre viene punito.',
+    wf:{}},
+  pt:{flag:'🇧🇷', name:'Brasile', handle:'@zodiac.zine.pt', tz:'BRT', status:'later', reachBase:1100, follBase:1000,
+    times:['12:00','19:00','21:30'],
+    meta:['Fase 4','Brasile','Mobile-first'],
+    why:'Mercato fase 4 con focus Brasile: pubblico enorme, affettuoso e mobile-first. Altissima interazione e cultura astrologica molto radicata. La sera è il momento d\'oro.',
+    wf:{}},
+};
+const MARKET_ORDER = ['it','de','en','es','fr','pt'];
+
+/* ---------- CAPTION TEMPLATES ---------- */
+/* placeholder: {n}=nome segno, {e}=glifo, {el}=elemento, {trait}=tratto, {a}/{b}=coppia */
+const CAP = {
+  facts:{
+    it:"{e} {n} — {trait}.\n\nSe ti rivedi salva la card 👇 e tagga un {n} che conosci.",
+    en:"{e} {n} — {trait}.\n\nSave this if it's you 👇 tag a {n} below.",
+    de:"{e} {n} — {el} pur.\n\nSpeichern, wenn du dich wiedererkennst 👇 markiere einen {n}.",
+    fr:"{e} {n} — énergie {el}.\n\nEnregistre si c'est toi 👇 tague un {n}.",
+    es:"{e} {n} — pura {el}.\n\nGuarda si eres tú 👇 etiqueta a un {n}.",
+    pt:"{e} {n} — puro {el}.\n\nSalva se for você 👇 marca um {n}.",
+  },
+  series:{
+    it:"Cose da NON dire mai a un {n} {e}\n\nQuante ne hai indovinate? 👇 Salva per non sbagliare.",
+    en:"Things you should NEVER say to a {n} {e}\n\nHow many did you guess? 👇 Save it.",
+    de:"Was man einem {n} NIE sagen sollte {e}\n\nWie viele hast du erraten? 👇 Speichern.",
+    fr:"Ce qu'il ne faut JAMAIS dire à un {n} {e}\n\nCombien as-tu deviné ? 👇 Enregistre.",
+    es:"Cosas que NUNCA debes decirle a un {n} {e}\n\n¿Cuántas adivinaste? 👇 Guarda.",
+    pt:"O que NUNCA dizer a um {n} {e}\n\nQuantas você acertou? 👇 Salva.",
+  },
+  couple:{
+    it:"{a} + {b}: funziona o esplode? 💥\n\nTagga la coppia 👇 e dicci se ci avete azzeccato.",
+    en:"{a} + {b}: match or clash? 💥\n\nTag the couple 👇 tell us if we nailed it.",
+    de:"{a} + {b}: passt das? 💥\n\nMarkiere das Paar 👇 stimmt's?",
+    fr:"{a} + {b} : ça matche ou ça clashe ? 💥\n\nTague le couple 👇",
+    es:"{a} + {b}: ¿match o choque? 💥\n\nEtiqueta a la pareja 👇",
+    pt:"{a} + {b}: combina ou explode? 💥\n\nMarca o casal 👇",
+  },
+  compat:{
+    it:"I 3 segni perfetti (e i 3 da evitare) per il {n} {e}\n\nChi è il tuo match? 👇",
+    en:"The 3 best (and 3 worst) matches for {n} {e}\n\nWho's your match? 👇",
+    de:"Die 3 besten (und 3 schlechtesten) Matches für {n} {e}\n\nWer ist dein Match? 👇",
+    fr:"Les 3 meilleurs (et 3 pires) matchs pour {n} {e}\n\nC'est qui ton match ? 👇",
+    es:"Los 3 mejores (y 3 peores) matches para {n} {e}\n\n¿Quién es tu match? 👇",
+    pt:"Os 3 melhores (e 3 piores) matches para {n} {e}\n\nQuem é seu match? 👇",
+  },
+  planet:{
+    it:"{n} {e}: cosa dice la tua Luna 🌙\n\nLa parte di te che pochi vedono. Salva 👇",
+    en:"{n} {e}: what your Moon says 🌙\n\nThe side few people see. Save 👇",
+    de:"{n} {e}: was dein Mond verrät 🌙\n\nDie Seite, die kaum jemand sieht. Speichern 👇",
+    fr:"{n} {e} : ce que dit ta Lune 🌙\n\nLa part de toi que peu voient. 👇",
+    es:"{n} {e}: lo que dice tu Luna 🌙\n\nEl lado que pocos ven. Guarda 👇",
+    pt:"{n} {e}: o que sua Lua diz 🌙\n\nO lado que poucos veem. Salva 👇",
+  },
+  cover:{
+    it:"{n} {e} ✨ {trait}\n\nLa tua estetica del weekend. Salva e condividi in storia 👇",
+    en:"{n} {e} ✨ {trait}\n\nYour weekend aesthetic. Save & share to story 👇",
+    de:"{n} {e} ✨ {el}\n\nDeine Wochenend-Ästhetik. Speichern & teilen 👇",
+    fr:"{n} {e} ✨ énergie {el}\n\nTon esthétique du week-end. 👇",
+    es:"{n} {e} ✨ pura {el}\n\nTu estética de finde. Guarda y comparte 👇",
+    pt:"{n} {e} ✨ puro {el}\n\nSua estética de fim de semana. 👇",
+  },
+  luilei:{
+    it:"LUI {n} vs LEI {n} {e}\n\nQuale ti rappresenta? 👇 Tagga chi deve leggerlo.",
+    en:"HIM {n} vs HER {n} {e}\n\nWhich one is you? 👇 Tag who needs this.",
+    de:"ER {n} vs SIE {n} {e}\n\nWas trifft auf dich zu? 👇",
+    fr:"LUI {n} vs ELLE {n} {e}\n\nLequel te ressemble ? 👇",
+    es:"ÉL {n} vs ELLA {n} {e}\n\n¿Cuál eres tú? 👇",
+    pt:"ELE {n} vs ELA {n} {e}\n\nQual é você? 👇",
+  },
+};
+
+/* ---------- HASHTAGS ---------- */
+const TAG_BASE = {
+  it:['#oroscopo','#segnizodiacali','#astrologia','#zodiaco'],
+  en:['#horoscope','#zodiacsigns','#astrology','#zodiac'],
+  de:['#horoskop','#sternzeichen','#astrologie','#tierkreis'],
+  fr:['#horoscope','#astrologie','#signesastrologiques','#zodiaque'],
+  es:['#horóscopo','#signos','#astrología','#zodiaco'],
+  pt:['#horóscopo','#signos','#astrologia','#zodíaco'],
+};
+const TAG_FMT = {
+  facts:{it:['#personalità'],en:['#zodiacfacts','#relatable'],de:['#fakten'],fr:['#personnalité'],es:['#personalidad'],pt:['#personalidade']},
+  series:{it:['#ironia','#meme'],en:['#zodiacmemes','#funny'],de:['#humor'],fr:['#humour'],es:['#humor'],pt:['#humor']},
+  couple:{it:['#coppia','#affinità'],en:['#couplegoals','#compatibility'],de:['#paar'],fr:['#couple'],es:['#pareja'],pt:['#casal']},
+  compat:{it:['#compatibilità','#match'],en:['#compatibility','#zodiacmatch'],de:['#kompatibilität'],fr:['#compatibilité'],es:['#compatibilidad'],pt:['#compatibilidade']},
+  planet:{it:['#luna','#astri'],en:['#moonsign','#bigthree'],de:['#mondzeichen'],fr:['#lune'],es:['#luna'],pt:['#lua']},
+  cover:{it:['#estetica','#aesthetic'],en:['#aesthetic','#zodiacaesthetic'],de:['#ästhetik'],fr:['#esthétique'],es:['#estética'],pt:['#estética']},
+  luilei:{it:['#luielei','#relazioni'],en:['#himvsher','#relationships'],de:['#beziehung'],fr:['#relations'],es:['#relaciones'],pt:['#relacionamentos']},
+};
+
+/* ============================================================ */
+const App = {
+  mode:'demo', market:'it', view:new Date(2026,5,1), realData:null, charts:{},
+
+  signForDate(d){
+    const m=d.getMonth()+1, day=d.getDate();
+    let best=SIGNS[0];
+    // capricorno wraps year-end; handle by ordered comparison
+    const ord=[...SIGNS].sort((a,b)=> (a.start[0]*100+a.start[1])-(b.start[0]*100+b.start[1]));
+    const val=m*100+day;
+    let chosen=ord[ord.length-1]; // default capricorno (dec)
+    for(const s of ord){ if(val>=s.start[0]*100+s.start[1]) chosen=s; }
+    return chosen;
+  },
+  signObj(k){ return SIGNS.find(s=>s.k===k); },
+  complement(s){ // a complementary sign for couple posts
+    const idx=SIGNS.findIndex(x=>x.k===s.k);
+    return SIGNS[(idx+4)%12];
+  },
+
+  /* deterministic rng */
+  hashId(str){ let h=0; for(let i=0;i<str.length;i++){ h=(h<<5)-h+str.charCodeAt(i); h|=0;} return Math.abs(h); },
+  rng(seed){ let t=seed+0x6D2B79F5; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; },
+
+  postId(date,mkt){ return mkt+'-'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); },
+
+  buildPost(date,mkt){
+    const dow=date.getDay();
+    const rot=ROTATION[dow];
+    const sign=this.signForDate(date);
+    const post={
+      id:this.postId(date,mkt), date:new Date(date), mkt, dow,
+      format:rot.format, pillar:rot.pillar, dir:rot.dir, rotWhy:rot.why,
+      sign:sign.k,
+    };
+    if(rot.format==='couple'){ post.b=this.complement(sign).k; post.a=sign.k; }
+    post.time=MARKETS[mkt].times[ this.hashId(post.id)%MARKETS[mkt].times.length ];
+    return post;
+  },
+
+  caption(post,lang){
+    const s=this.signObj(post.sign);
+    const tpl=(CAP[post.format]&&CAP[post.format][lang])||CAP[post.format].en;
+    const trait=(s.tr[lang]||s.tr.en);
+    let out=tpl
+      .replaceAll('{n}',NAMES[post.sign][lang])
+      .replaceAll('{e}',s.g)
+      .replaceAll('{el}',(EL[s.el][lang]||EL[s.el].en).toLowerCase())
+      .replaceAll('{trait}',trait);
+    if(post.format==='couple'){
+      out=out.replaceAll('{a}',NAMES[post.a][lang]).replaceAll('{b}',NAMES[post.b][lang]);
+    }
+    return out;
+  },
+  tags(post,lang){
+    const base=TAG_BASE[lang]||TAG_BASE.en;
+    const fmt=(TAG_FMT[post.format]&&TAG_FMT[post.format][lang])||[];
+    const signTag='#'+NAMES[post.sign][lang].toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+    const arr=[...base, signTag, ...fmt];
+    if(post.format==='couple') arr.push('#'+NAMES[post.b][lang].toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''));
+    return [...new Set(arr)].slice(0,12);
+  },
+
+  /* demo insights for a post */
+  insights(post){
+    if(this.mode==='real'){
+      const r=this.realData&&this.realData.insights&&this.realData.insights[post.id];
+      return r||null;
+    }
+    const seed=this.hashId(post.id);
+    const M=MARKETS[post.mkt];
+    const statusMul = M.status==='live'?1 : M.status==='plan'?0.45 : 0.18;
+    const reach=Math.round(M.reachBase*statusMul*(0.55+this.rng(seed)*1.0));
+    const impr=Math.round(reach*(1.25+this.rng(seed+9)*0.5));
+    const er=0.03+this.rng(seed+1)*0.055;            // engagement rate
+    const eng=Math.round(reach*er);
+    const likes=Math.round(eng*(0.66+this.rng(seed+2)*0.1));
+    const comments=Math.round(eng*(0.06+this.rng(seed+3)*0.05));
+    const saves=Math.round(eng*(0.10+this.rng(seed+4)*0.08));
+    const shares=Math.max(0, eng-likes-comments-saves);
+    const reshares=Math.round(shares*(0.4+this.rng(seed+5)*0.5));
+    const profileVisits=Math.round(reach*(0.02+this.rng(seed+6)*0.03));
+    const follows=Math.round(profileVisits*(0.05+this.rng(seed+7)*0.1));
+    return {reach,impr,er,likes,comments,saves,shares,reshares,profileVisits,follows};
+  },
+
+  monthPosts(mkt){
+    const y=this.view.getFullYear(), m=this.view.getMonth();
+    const days=new Date(y,m+1,0).getDate();
+    const arr=[];
+    for(let d=1; d<=days; d++) arr.push(this.buildPost(new Date(y,m,d),mkt));
+    return arr;
+  },
+
+  /* ---------- RENDER ---------- */
+  init(){
+    const sel=document.getElementById('marketSel');
+    sel.innerHTML=MARKET_ORDER.map(c=>`<option value="${c}">${MARKETS[c].flag} ${MARKETS[c].name}</option>`).join('');
+    sel.value=this.market;
+    this.renderAll();
+  },
+  renderAll(){ this.renderMonth(); this.renderWeek(); this.renderCountries(); this.renderCaptions(); this.renderInsights(); },
+
+  setMode(m){
+    this.mode=m;
+    document.getElementById('mode-demo').classList.toggle('on',m==='demo');
+    document.getElementById('mode-real').classList.toggle('on',m==='real');
+    document.getElementById('footDot').style.background = m==='demo'?'var(--p1)':'var(--p3)';
+    document.getElementById('footMode').textContent = m==='demo'?'Sorgente: DEMO (dati simulati)':'Sorgente: REALE (data/dashboard/*.json)';
+    document.getElementById('realBanner').classList.toggle('show',m==='real');
+    if(m==='real') this.loadReal(); else { this.realData=null; this.renderAll(); }
+  },
+  async loadReal(){
+    const st=document.getElementById('realStatus');
+    st.textContent=' Carico…';
+    try{
+      const [cal,ins]=await Promise.all([
+        fetch('data/dashboard/calendar.json').then(r=>r.ok?r.json():null).catch(()=>null),
+        fetch('data/dashboard/insights.json').then(r=>r.ok?r.json():null).catch(()=>null),
+      ]);
+      if(!cal&&!ins){ st.innerHTML=' <b style="color:#D4537E">Nessun file trovato.</b> Mostro le strutture vuote.'; this.realData={calendar:null,insights:null}; }
+      else { st.innerHTML=' <b style="color:#1D9E75">Dati caricati.</b>'; this.realData={calendar:cal,insights:ins||{}}; }
+    }catch(e){ st.innerHTML=' <b style="color:#D4537E">Errore di caricamento.</b>'; this.realData={calendar:null,insights:null}; }
+    this.renderAll();
+  },
+  setMarket(m){ this.market=m; this.renderAll(); },
+  tab(t){
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.getElementById('panel-'+t).classList.add('active');
+    document.querySelector(`.tab[data-tab="${t}"]`).classList.add('active');
+    if(t==='insights') this.renderInsights();
+  },
+  shiftMonth(n){ this.view=new Date(this.view.getFullYear(),this.view.getMonth()+n,1); this.renderMonth(); this.renderCaptions(); this.renderInsights(); },
+  goToday(){ const t=new Date(); this.view=new Date(t.getFullYear(),t.getMonth(),1); this.renderMonth(); this.renderCaptions(); this.renderInsights(); },
+
+  renderMonth(){
+    const MES=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+    document.getElementById('calTitle').textContent=`${MES[this.view.getMonth()]} ${this.view.getFullYear()} · ${MARKETS[this.market].flag}`;
+    const y=this.view.getFullYear(), m=this.view.getMonth();
+    const first=new Date(y,m,1), offset=(first.getDay()+6)%7; // mon=0
+    const days=new Date(y,m+1,0).getDate();
+    const today=new Date();
+    const dows=['LUN','MAR','MER','GIO','VEN','SAB','DOM'];
+    let html=dows.map(d=>`<div class="dow">${d}</div>`).join('');
+    for(let i=0;i<offset;i++) html+=`<div class="day empty"></div>`;
+    for(let d=1; d<=days; d++){
+      const date=new Date(y,m,d);
+      const post=this.buildPost(date,this.market);
+      const s=this.signObj(post.sign);
+      const pil=PILLARS[post.pillar];
+      const isToday = date.toDateString()===today.toDateString();
+      html+=`<div class="day ${isToday?'today':''}" onclick='App.openModal("${post.id}")'>
+        <span class="dnum">${d}</span><span class="dsign">${s.g}</span>
+        <div class="dchip" style="background:${pil.c}">${FMT_LABEL[post.format]}</div>
+        <div class="dtime">⏰ ${post.time}</div>
+      </div>`;
+    }
+    document.getElementById('monthGrid').innerHTML=html;
+  },
+
+  renderWeek(){
+    const DOW=[['LUN',1],['MAR',2],['MER',3],['GIO',4],['VEN',5],['SAB',6],['DOM',0]];
+    const todayDow=new Date().getDay();
+    let html='';
+    for(const [name,dow] of DOW){
+      const rot=ROTATION[dow], pil=PILLARS[rot.pillar];
+      // example sign = today's-ish; just use a representative for the week's sign-of-day
+      const exampleSign=this.signForDate(new Date());
+      html+=`<div class="wrow ${dow===todayDow?'today':''}">
+        <div class="wday" style="background:${pil.c}">
+          <div class="wd-name">${name}</div>
+          <div class="wd-date">${PILLARS[rot.pillar].name}</div>
+        </div>
+        <div class="wbody">
+          <div class="winfo">
+            <div class="wfmt">${rot.label}</div>
+            <span class="wpill" style="background:${pil.c}">${rot.dir.toUpperCase()} · ${rot.format}</span>
+            <div class="wwhy">${rot.why}</div>
+          </div>
+          <div class="wtime">${MARKETS[this.market].times[0]}</div>
+        </div>
+      </div>`;
+    }
+    document.getElementById('weekGrid').innerHTML=html;
+  },
+
+  renderCountries(){
+    let html='';
+    for(const c of MARKET_ORDER){
+      const M=MARKETS[c];
+      const stc = M.status==='live'?'st-live':M.status==='plan'?'st-plan':'st-later';
+      const stt = M.status==='live'?'ATTIVO':M.status==='plan'?'FASE 2':'FASE 4';
+      const wfKeys=Object.keys(M.wf||{});
+      const wfHtml=wfKeys.length? `<details class="mkt-fmts"><summary>Perché ogni formato funziona qui ▾</summary>
+        ${wfKeys.map(k=>`<div class="ff"><b>${FMT_LABEL[k]}:</b> ${M.wf[k]}</div>`).join('')}</details>`:'';
+      html+=`<div class="mkt">
+        <div class="mkt-top">
+          <span class="mkt-flag">${M.flag}</span>
+          <div><div class="mkt-name">${M.name}</div><div class="mkt-handle">${M.handle} · ${M.tz}</div></div>
+          <span class="mkt-status ${stc}">${stt}</span>
+        </div>
+        <div class="mkt-meta">${M.meta.map(t=>`<span class="mkt-tag">${t}</span>`).join('')}</div>
+        <div class="mkt-why">${M.why}</div>
+        <div class="mkt-times">⏰ Orari migliori: ${M.times.join(' · ')}</div>
+        ${wfHtml}
+      </div>`;
+    }
+    document.getElementById('mktGrid').innerHTML=html;
+  },
+
+  renderCaptions(){
+    const lang=document.getElementById('capLang').value;
+    const posts=this.monthPosts(this.market);
+    const MES=['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+    document.getElementById('capSub').textContent=`${MARKETS[this.market].flag} ${MARKETS[this.market].name} · ${posts.length} post pianificati · caption in ${lang.toUpperCase()}`;
+    let html='';
+    for(const post of posts){
+      const s=this.signObj(post.sign), pil=PILLARS[post.pillar];
+      const cap=this.caption(post,lang);
+      const tags=this.tags(post,lang).join(' ');
+      const why=post.rotWhy;
+      html+=`<div class="cap">
+        <div class="cap-date"><div class="cd-d">${post.date.getDate()}</div><div class="cd-m">${MES[post.date.getMonth()]}</div></div>
+        <div class="cap-main">
+          <div class="cap-fmt">${s.g} ${FMT_LABEL[post.format]}${post.format==='couple'?` · ${NAMES[post.a][lang]}+${NAMES[post.b][lang]}`:` · ${NAMES[post.sign][lang]}`}
+            <span class="pill" style="background:${pil.c}">${PILLARS[post.pillar].name}</span></div>
+          <div class="cap-text">${cap}</div>
+          <div class="cap-tags">${tags}</div>
+          <div class="cap-why">💡 ${why}  ·  ⏰ ${post.time}</div>
+        </div>
+        <button class="copybtn" onclick="App.copyPost('${post.id}')">📋 Copia</button>
+      </div>`;
+    }
+    document.getElementById('capList').innerHTML=html;
+  },
+  copy(txt){ navigator.clipboard.writeText(txt).then(()=>{ this.toast('Copiato!'); }); },
+  copyPost(id){
+    const lang=document.getElementById('capLang').value;
+    const post=this.monthPosts(this.market).find(p=>p.id===id);
+    if(!post) return;
+    this.copy(this.caption(post,lang)+'\n\n'+this.tags(post,lang).join(' '));
+  },
+  toast(msg){
+    let t=document.getElementById('_toast'); if(!t){ t=document.createElement('div'); t.id='_toast';
+      t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#15110d;color:#fff;padding:10px 18px;border-radius:12px;font-weight:700;z-index:99;font-family:Baloo 2'; document.body.appendChild(t);}
+    t.textContent=msg; t.style.opacity='1'; clearTimeout(this._tt); this._tt=setTimeout(()=>t.style.opacity='0',1400);
+  },
+
+  renderInsights(){
+    const noData = this.mode==='real' && (!this.realData || !this.realData.insights || Object.keys(this.realData.insights||{}).length===0);
+    document.getElementById('insContent').style.display = noData?'none':'block';
+    document.getElementById('insEmpty').style.display = noData?'block':'none';
+    document.getElementById('insSub').textContent = this.mode==='demo'
+      ? `Dati simulati · ${MARKETS[this.market].flag} ${MARKETS[this.market].name} · mese corrente in vista`
+      : `Dati reali da pipeline · ${MARKETS[this.market].flag} ${MARKETS[this.market].name}`;
+    if(noData) return;
+
+    const posts=this.monthPosts(this.market).map(p=>({p, i:this.insights(p)})).filter(x=>x.i);
+    if(!posts.length){ document.getElementById('insContent').style.display='none'; document.getElementById('insEmpty').style.display='block'; return; }
+
+    // KPI
+    const sum=(f)=>posts.reduce((a,x)=>a+(x.i[f]||0),0);
+    const totReach=sum('reach'), totEng=sum('likes')+sum('comments')+sum('saves')+sum('shares');
+    const avgER=(totEng/Math.max(1,totReach)*100);
+    const totFollows=sum('follows'), totReshares=sum('reshares'), totSaves=sum('saves');
+    const fmtN=(n)=> n>=1000? (n/1000).toFixed(1)+'k' : ''+n;
+    const kpis=[
+      {l:'Reach totale', v:fmtN(totReach), d:'+12% vs mese prec.', up:true},
+      {l:'Engagement rate', v:avgER.toFixed(1)+'%', d:avgER>4?'sopra media':'in linea', up:avgER>4},
+      {l:'Nuovi follower', v:fmtN(totFollows), d:'+'+fmtN(Math.round(totFollows*0.3)), up:true},
+      {l:'Reshare', v:fmtN(totReshares), d:'condivisioni esterne', up:true},
+      {l:'Salvataggi', v:fmtN(totSaves), d:'intent forte', up:true},
+    ];
+    document.getElementById('kpiRow').innerHTML=kpis.map(k=>`<div class="kpi">
+      <div class="k-lab">${k.l}</div><div class="k-val">${k.v}</div>
+      <div class="k-delta ${k.up?'k-up':'k-down'}">${k.up?'▲':'▼'} ${k.d}</div></div>`).join('');
+
+    // chart: reach per day
+    const days=posts.map(x=>x.p.date.getDate());
+    const reachData=posts.map(x=>x.i.reach);
+    this.lineChart('chReach', days, reachData);
+
+    // chart: reach per market (all markets, this month)
+    const mktReach=MARKET_ORDER.map(c=>{
+      return this.monthPosts(c).reduce((a,p)=>{ const ins=this.insights({...p}); return a+(ins?ins.reach:0); },0);
+    });
+    this.doughnut('chMarket', MARKET_ORDER.map(c=>MARKETS[c].name), mktReach, MARKET_ORDER.map(c=>{
+      return {it:'#EF9F27',de:'#15110d',en:'#378ADD',es:'#D4537E',fr:'#7F77DD',pt:'#1D9E75'}[c];
+    }));
+
+    // chart: engagement rate per format
+    const fmtMap={};
+    posts.forEach(x=>{ const f=x.p.format; (fmtMap[f]=fmtMap[f]||[]).push(x.i.er*100); });
+    const fmtLabels=Object.keys(fmtMap), fmtVals=fmtLabels.map(f=>fmtMap[f].reduce((a,b)=>a+b,0)/fmtMap[f].length);
+    this.barChart('chFormat', fmtLabels.map(f=>FMT_LABEL[f]), fmtVals);
+
+    // chart: interactions stacked
+    this.interactChart('chInteract', days, posts);
+
+    // top posts table
+    const top=[...posts].sort((a,b)=>b.i.reach-a.i.reach).slice(0,8);
+    const MES=['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+    document.getElementById('topPosts').innerHTML=
+      `<thead><tr><th>Post</th><th>Data</th><th>Reach</th><th>Like</th><th>Commenti</th><th>Salv.</th><th>Reshare</th><th>ER</th></tr></thead><tbody>`+
+      top.map(x=>{ const s=this.signObj(x.p.sign);
+        return `<tr><td><div class="post-mini"><span class="pm-sign">${s.g}</span><span class="pm-fmt">${FMT_LABEL[x.p.format]}</span></div></td>
+        <td class="num">${x.p.date.getDate()} ${MES[x.p.date.getMonth()]}</td>
+        <td class="num">${fmtN(x.i.reach)}</td><td class="num">${fmtN(x.i.likes)}</td>
+        <td class="num">${x.i.comments}</td><td class="num">${x.i.saves}</td>
+        <td class="num">${x.i.reshares}</td><td class="num">${(x.i.er*100).toFixed(1)}%</td></tr>`;
+      }).join('')+`</tbody>`;
+  },
+
+  destroyChart(id){ if(this.charts[id]){ this.charts[id].destroy(); delete this.charts[id]; } },
+  lineChart(id,labels,data){
+    this.destroyChart(id);
+    this.charts[id]=new Chart(document.getElementById(id),{type:'line',
+      data:{labels,datasets:[{data,borderColor:'#D4537E',backgroundColor:'#D4537E22',fill:true,tension:.35,pointRadius:2,borderWidth:2}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{ticks:{font:{size:9}}}}}});
+  },
+  barChart(id,labels,data){
+    this.destroyChart(id);
+    this.charts[id]=new Chart(document.getElementById(id),{type:'bar',
+      data:{labels,datasets:[{data,backgroundColor:['#EF9F27','#D4537E','#1D9E75','#378ADD','#7F77DD','#EF9F27','#D4537E']}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toFixed(1)+'%'}}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{ticks:{font:{size:9},callback:v=>v+'%'}}}}});
+  },
+  doughnut(id,labels,data,colors){
+    this.destroyChart(id);
+    this.charts[id]=new Chart(document.getElementById(id),{type:'doughnut',
+      data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:2,borderColor:'#fffbf0'}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:12}}}}});
+  },
+  interactChart(id,labels,posts){
+    this.destroyChart(id);
+    const ds=(f,c)=>({label:f,data:posts.map(x=>x.i[f.toLowerCase()]||0),backgroundColor:c});
+    this.charts[id]=new Chart(document.getElementById(id),{type:'bar',
+      data:{labels,datasets:[
+        {label:'Like',data:posts.map(x=>x.i.likes),backgroundColor:'#EF9F27'},
+        {label:'Commenti',data:posts.map(x=>x.i.comments),backgroundColor:'#378ADD'},
+        {label:'Salvataggi',data:posts.map(x=>x.i.saves),backgroundColor:'#1D9E75'},
+        {label:'Reshare',data:posts.map(x=>x.i.reshares),backgroundColor:'#D4537E'},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:10},boxWidth:12}}},
+        scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:9}}},y:{stacked:true,ticks:{font:{size:9}}}}}});
+  },
+
+  openModal(id){
+    // find post
+    const posts=this.monthPosts(this.market);
+    const post=posts.find(p=>p.id===id); if(!post) return;
+    const s=this.signObj(post.sign), pil=PILLARS[post.pillar];
+    const lang=document.getElementById('capLang').value;
+    const cap=this.caption(post,lang), tags=this.tags(post,lang).join(' ');
+    const ins=this.insights(post);
+    const MES=['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+    const fmtN=(n)=> n>=1000?(n/1000).toFixed(1)+'k':''+n;
+    const statsHtml = ins? `<div class="mb-stats">
+        <div class="mb-stat"><div class="s-v">${fmtN(ins.reach)}</div><div class="s-l">Reach</div></div>
+        <div class="mb-stat"><div class="s-v">${fmtN(ins.likes)}</div><div class="s-l">Like</div></div>
+        <div class="mb-stat"><div class="s-v">${ins.comments}</div><div class="s-l">Commenti</div></div>
+        <div class="mb-stat"><div class="s-v">${ins.saves}</div><div class="s-l">Salvataggi</div></div>
+        <div class="mb-stat"><div class="s-v">${ins.reshares}</div><div class="s-l">Reshare</div></div>
+        <div class="mb-stat"><div class="s-v">${(ins.er*100).toFixed(1)}%</div><div class="s-l">Eng. rate</div></div>
+      </div>` : `<div style="color:var(--muted);font-size:13px">Nessun dato insight per questo post (modalità reale, post non ancora pubblicato).</div>`;
+    document.getElementById('modal').innerHTML=`
+      <div class="modal-h">
+        <span class="mh-sign">${s.g}</span>
+        <div><div class="mh-t">${FMT_LABEL[post.format]}</div>
+        <div class="mh-d">${post.date.getDate()} ${MES[post.date.getMonth()]} ${post.date.getFullYear()} · ${MARKETS[post.mkt].flag} ${MARKETS[post.mkt].name} · ⏰ ${post.time}</div></div>
+        <button class="closex" onclick="App.closeModal()">✕</button>
+      </div>
+      <div class="modal-b">
+        <div class="mb-row"><div class="mb-lab">Pilastro / Stile</div>
+          <span class="mb-pill" style="background:${pil.c}">${PILLARS[post.pillar].name}</span>
+          <span class="mb-pill" style="background:#15110d;margin-left:6px">${post.dir}</span></div>
+        <div class="mb-row"><div class="mb-lab">Perché questo, oggi</div>
+          <div style="font-size:13px;line-height:1.5">${post.rotWhy}</div></div>
+        <div class="mb-row"><div class="mb-lab">Perché in ${MARKETS[post.mkt].name}</div>
+          <div style="font-size:13px;line-height:1.5">${(MARKETS[post.mkt].wf&&MARKETS[post.mkt].wf[post.format])||MARKETS[post.mkt].why}</div></div>
+        <div class="mb-row"><div class="mb-lab">Caption (${lang.toUpperCase()})</div>
+          <div class="mb-text">${cap}</div></div>
+        <div class="mb-row"><div class="mb-lab">Hashtag</div>
+          <div class="mb-text" style="font-family:'Space Mono';color:var(--p4)">${tags}</div></div>
+        <div class="mb-row"><div class="mb-lab">Insights ${this.mode==='demo'?'(simulati)':'(reali)'}</div>${statsHtml}</div>
+        <button class="copybtn" style="width:100%;padding:10px" onclick="App.copyPost('${post.id}')">📋 Copia caption + tag</button>
+      </div>`;
+    document.getElementById('modalBg').classList.add('show');
+  },
+  closeModal(){ document.getElementById('modalBg').classList.remove('show'); },
+};
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') App.closeModal(); });
+App.init();
+</script>
+</body>
+</html>
