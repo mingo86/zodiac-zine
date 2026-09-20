@@ -15,7 +15,13 @@
 *{box-sizing:border-box}html,body{margin:0;padding:0}
 body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#2c2138,#181226);background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;min-height:100vh}
 .wrap{max-width:880px;margin:clamp(10px,3vw,40px) auto;padding:0 0 44px;background:var(--paper);background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.4px,transparent 1.5px);background-size:12px 12px;border:5px solid var(--ink);border-radius:24px;box-shadow:0 16px 0 rgba(0,0,0,.3);overflow:hidden}
-.topbar{display:flex;justify-content:flex-end;padding:12px 16px 0}
+.topbar{background:var(--head);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:5px solid var(--ink)}
+.brand{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;color:var(--yellow);display:flex;align-items:center;gap:8px;text-decoration:none}
+.brand .star{color:#fff}
+.topright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nav{display:flex;gap:7px;flex-wrap:wrap}
+.pill{font-family:'Baloo 2';font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;border:2.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;box-shadow:2px 2px 0 var(--ink);text-decoration:none;display:inline-block}
+.pill.on{background:var(--pink);color:#fff}
 .hero{text-align:center;padding:14px 22px 8px}
 .ksuper{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:3px;color:var(--purple);text-transform:uppercase}
 .htitle{font-family:'Bangers',cursive;font-size:clamp(54px,13vw,104px);color:var(--yellow);-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink);letter-spacing:3px;margin:6px 0 2px;line-height:.95}
@@ -34,7 +40,10 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar"><span id="langPick"></span></div>
+  <div class="topbar">
+    <a class="brand" href="index.html"><span class="star">★</span> ZODIAC ZINE</a>
+    <div class="topright"><div class="nav" id="nav"></div><span id="langPick"></span></div>
+  </div>
   <div class="hero">
     <div class="ksuper" id="ksuper"></div>
     <h1 class="htitle">ZODIAC</h1>
@@ -55,7 +64,7 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
         {ic:"★",n:"Il Libro & i Segni",d:"Le basi, le 12 schede dei segni, le coppie — sfoglia lo zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
         {ic:"◉",n:"Tema Natale",d:"La mappa del tuo cielo: Sole, Luna, Ascendente, pianeti e case",href:"Tema%20Natale.html",c:"c2"},
         {ic:"☀",n:"Oroscopo del Giorno",d:"La lettura di oggi, sul tuo segno o sul tuo tema",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match del Giorno",d:"Chi è il tuo abbinamento migliore, oggi",href:"Match%20del%20Giorno.html",c:"c4"},
+        {ic:"♥",n:"Coppie",d:"Scegli due segni e scopri l'affinità",href:"Zodiac%20Zine.html#compat",c:"c4"},
         {ic:"✎",n:"Componi la Frase",d:"«Sono un Toro, voglio conquistare un Capricorno» → il consiglio",href:"Componi%20la%20Frase.html",c:"c5"}
       ]},
     en:{ksuper:"★ pop astrology · comic edition",
@@ -65,7 +74,7 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
         {ic:"★",n:"The Book & the Signs",d:"The basics, the 12 sign cards, the couples — flip through the zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
         {ic:"◉",n:"Birth Chart",d:"The map of your sky: Sun, Moon, Rising, planets and houses",href:"Tema%20Natale.html",c:"c2"},
         {ic:"☀",n:"Daily Horoscope",d:"Today's reading — for your sign or your full chart",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match of the Day",d:"Who's your best match, today",href:"Match%20del%20Giorno.html",c:"c4"},
+        {ic:"♥",n:"Couples",d:"Pick two signs and see the compatibility",href:"Zodiac%20Zine.html#compat",c:"c4"},
         {ic:"✎",n:"Build the Sentence",d:"“I'm a Taurus, I want to win over a Capricorn” → the advice",href:"Componi%20la%20Frase.html",c:"c5"}
       ]},
     fr:{ksuper:"★ astrologie pop · édition BD",
@@ -75,7 +84,7 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
         {ic:"★",n:"Le Livre & les Signes",d:"Les bases, les 12 fiches des signes, les couples — feuillette le zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
         {ic:"◉",n:"Thème Natal",d:"La carte de ton ciel : Soleil, Lune, Ascendant, planètes et maisons",href:"Tema%20Natale.html",c:"c2"},
         {ic:"☀",n:"Horoscope du Jour",d:"La lecture du jour — pour ton signe ou ton thème complet",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match du Jour",d:"Qui est ton match parfait, aujourd'hui",href:"Match%20del%20Giorno.html",c:"c4"},
+        {ic:"♥",n:"Couples",d:"Choisis deux signes et vois l'affinité",href:"Zodiac%20Zine.html#compat",c:"c4"},
         {ic:"✎",n:"Compose la Phrase",d:"« Je suis Taureau, je veux séduire un Capricorne » → le conseil",href:"Componi%20la%20Frase.html",c:"c5"}
       ]},
     es:{ksuper:"★ astrología pop · edición cómic",
@@ -85,7 +94,7 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
         {ic:"★",n:"El Libro y los Signos",d:"Lo básico, las 12 fichas de los signos, las parejas — hojea el zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
         {ic:"◉",n:"Carta Natal",d:"El mapa de tu cielo: Sol, Luna, Ascendente, planetas y casas",href:"Tema%20Natale.html",c:"c2"},
         {ic:"☀",n:"Horóscopo del Día",d:"La lectura de hoy — para tu signo o tu carta completa",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match del Día",d:"Quién es tu mejor pareja, hoy",href:"Match%20del%20Giorno.html",c:"c4"},
+        {ic:"♥",n:"Parejas",d:"Elige dos signos y descubre la afinidad",href:"Zodiac%20Zine.html#compat",c:"c4"},
         {ic:"✎",n:"Arma la Frase",d:"«Soy Tauro, quiero conquistar a un Capricornio» → el consejo",href:"Componi%20la%20Frase.html",c:"c5"}
       ]},
     pt:{ksuper:"★ astrologia pop · edição quadrinhos",
@@ -95,7 +104,7 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
         {ic:"★",n:"O Livro e os Signos",d:"O básico, as 12 fichas dos signos, os casais — folheie a zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
         {ic:"◉",n:"Mapa Astral",d:"O mapa do seu céu: Sol, Lua, Ascendente, planetas e casas",href:"Tema%20Natale.html",c:"c2"},
         {ic:"☀",n:"Horóscopo do Dia",d:"A leitura de hoje — para o seu signo ou o seu mapa completo",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match do Dia",d:"Quem é o seu par perfeito, hoje",href:"Match%20del%20Giorno.html",c:"c4"},
+        {ic:"♥",n:"Casais",d:"Escolha dois signos e veja a afinidade",href:"Zodiac%20Zine.html#compat",c:"c4"},
         {ic:"✎",n:"Monte a Frase",d:"«Sou de Touro, quero conquistar um Capricórnio» → o conselho",href:"Componi%20la%20Frase.html",c:"c5"}
       ]},
     de:{ksuper:"★ pop-astrologie · comic-edition",
@@ -105,12 +114,22 @@ body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1
         {ic:"★",n:"Das Buch & die Sternzeichen",d:"Die Grundlagen, die 12 Steckbriefe der Zeichen, die Paare — blättere durch das Zine",href:"Zodiac%20Zine.html",c:"c1",full:true},
         {ic:"◉",n:"Geburtshoroskop",d:"Die Karte deines Himmels: Sonne, Mond, Aszendent, Planeten und Häuser",href:"Tema%20Natale.html",c:"c2"},
         {ic:"☀",n:"Horoskop des Tages",d:"Die Lesung von heute — für dein Zeichen oder dein komplettes Horoskop",href:"Oroscopo%20del%20Giorno.html",c:"c3"},
-        {ic:"♥",n:"Match des Tages",d:"Wer heute am besten zu dir passt",href:"Match%20del%20Giorno.html",c:"c4"},
+        {ic:"♥",n:"Paare",d:"Wähle zwei Zeichen und sieh die Kompatibilität",href:"Zodiac%20Zine.html#compat",c:"c4"},
         {ic:"✎",n:"Bau den Satz",d:"«Ich bin Stier, ich will einen Steinbock erobern» → der Rat",href:"Componi%20la%20Frase.html",c:"c5"}
       ]}
   };
+  const NAV={
+    it:[{n:"Le basi",h:"Zodiac%20Zine.html#basi"},{n:"Segni",h:"Zodiac%20Zine.html"},{n:"♥ Coppie",h:"Zodiac%20Zine.html#compat"},{n:"☀ Match del giorno",h:"Match%20del%20Giorno.html"}],
+    en:[{n:"Basics",h:"Zodiac%20Zine.html#basi"},{n:"Signs",h:"Zodiac%20Zine.html"},{n:"♥ Couples",h:"Zodiac%20Zine.html#compat"},{n:"☀ Match of the day",h:"Match%20del%20Giorno.html"}],
+    fr:[{n:"Les bases",h:"Zodiac%20Zine.html#basi"},{n:"Signes",h:"Zodiac%20Zine.html"},{n:"♥ Couples",h:"Zodiac%20Zine.html#compat"},{n:"☀ Match du jour",h:"Match%20del%20Giorno.html"}],
+    es:[{n:"Lo básico",h:"Zodiac%20Zine.html#basi"},{n:"Signos",h:"Zodiac%20Zine.html"},{n:"♥ Parejas",h:"Zodiac%20Zine.html#compat"},{n:"☀ Match del día",h:"Match%20del%20Giorno.html"}],
+    pt:[{n:"O básico",h:"Zodiac%20Zine.html#basi"},{n:"Signos",h:"Zodiac%20Zine.html"},{n:"♥ Casais",h:"Zodiac%20Zine.html#compat"},{n:"☀ Match do dia",h:"Match%20del%20Giorno.html"}],
+    de:[{n:"Basics",h:"Zodiac%20Zine.html#basi"},{n:"Sternzeichen",h:"Zodiac%20Zine.html"},{n:"♥ Paare",h:"Zodiac%20Zine.html#compat"},{n:"☀ Match des Tages",h:"Match%20del%20Giorno.html"}]
+  };
   function render(){
     const L = (window.ZI18N && HOME[window.ZI18N.get()]) ? HOME[window.ZI18N.get()] : HOME.it;
+    const _lg=(window.ZI18N?window.ZI18N.get():"it"); const _nav=NAV[_lg]||NAV.it;
+    document.getElementById("nav").innerHTML=_nav.map(x=>`<a class="pill" href="${x.h}">${x.n}</a>`).join("");
     document.getElementById('ksuper').textContent = L.ksuper;
     document.getElementById('hsub').textContent = L.hsub;
     document.getElementById('foot').textContent = L.foot;
