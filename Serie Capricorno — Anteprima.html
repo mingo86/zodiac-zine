@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac — Serie Capricorno (anteprima)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#15110d;--paper:#fff6e3;--red:#ec2e36;--yellow:#ffd23f;--blue:#37a8e6}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:#241a3e;min-height:100vh;font-family:'Baloo 2',system-ui,sans-serif;padding:26px 12px 60px}
+h1{font-family:'Bangers',cursive;color:#fff6e3;text-align:center;letter-spacing:2px;font-size:30px;margin:0 0 6px}
+.note{font-family:'Space Mono',monospace;font-size:12px;color:#9c8fc8;text-align:center;margin-bottom:24px}
+#root{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;align-items:flex-start;max-width:1000px;margin:0 auto}
+.col{display:flex;flex-direction:column;align-items:center}
+.lab{font-family:'Space Mono',monospace;font-size:11px;color:#cbbff0;text-align:center;margin-bottom:7px}
+.card{position:relative;width:340px;aspect-ratio:1/1;border:6px solid var(--ink);border-radius:18px;box-shadow:0 11px 0 rgba(0,0,0,.42);overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.4px,transparent 1.6px);background-size:20px 20px}
+.hd{position:absolute;top:3%;left:0;right:0;text-align:center;z-index:6}
+.sr{font-family:'Baloo 2';font-weight:700;font-style:italic;line-height:1;font-size:15px;color:#6b6356}
+.sn{font-family:'Bangers',cursive;line-height:.9;letter-spacing:1px;white-space:nowrap;-webkit-text-stroke:2.5px var(--ink)}
+.sub{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:12px;color:#6b6356;margin-top:1px}
+.mw{position:absolute;left:50%;transform:translateX(-50%);z-index:3}
+.mw svg{display:block;width:100%;height:auto;filter:drop-shadow(0 7px 7px rgba(0,0,0,.28))}
+.bx{position:absolute;z-index:4;font-family:'Baloo 2';font-weight:700;font-size:12px;line-height:1.1;color:var(--ink);border:3px solid var(--ink);border-radius:12px;padding:6px 9px;box-shadow:3px 3px 0 var(--ink);filter:saturate(.9)}
+.bx.L{text-align:right}.bx.R{text-align:left}.bx.C{left:50%;transform:translateX(-50%);text-align:center}
+.mn{position:absolute;left:5%;right:5%;bottom:3.4%;z-index:6;display:flex;align-items:center;gap:9px;background:var(--paper);border:3.5px solid var(--ink);border-radius:12px;padding:7px 10px;box-shadow:4px 4px 0 var(--ink)}
+.tg{font-family:'Bangers',cursive;text-transform:uppercase;letter-spacing:.03em;font-size:13px;color:#fff;border:2px solid var(--ink);border-radius:7px;padding:2px 10px;box-shadow:2px 2px 0 var(--ink);transform:rotate(-1.5deg);white-space:nowrap}
+.mt{font-family:'Baloo 2';font-weight:700;font-style:italic;font-size:12px;color:var(--ink)}
+</style>
+</head>
+<body>
+<h1>ZODIAC · SERIE CAPRICORNO</h1>
+<div class="note">anteprima statica · fumetti in cerchio · mascotte reali dal motore · colori diversi per serie</div>
+<div id="root"></div>
+
+<script src="coppie/mascots.js"></script>
+<script>
+(function(){
+  var CAP={k:'capricorno',el:'terra'}, BIL={k:'bilancia',el:'aria'};
+  function masc(sign,col,mood,variant){return window.MASCOT(sign,col,'stampa',1,mood,variant);}
+  function fit(sn,card){var cw=card.clientWidth*0.86,f=44;function sh(x){return Math.round(x*0.09);}sn.style.fontSize=f+'px';sn.style.textShadow=sh(f)+'px '+sh(f)+'px 0 var(--ink)';while(sn.scrollWidth>cw&&f>22){f--;sn.style.fontSize=f+'px';sn.style.textShadow=sh(f)+'px '+sh(f)+'px 0 #15110d';}}
+  var RING=[['TC','C',null,20.5,40],['TR','R',4,31.5,31],['MR','R',2,50,30],['BR','R',5,63,30],['BC','C',null,78.5,40],['BL','L',5,63,30],['ML','L',2,50,30],['TL','L',4,31.5,31]];
+  function frame(lab){var col=document.createElement('div');col.className='col';col.innerHTML='<div class="lab">'+lab+'</div>';var c=document.createElement('div');c.className='card';col.appendChild(c);document.getElementById('root').appendChild(col);return c;}
+  function ringCard(s){
+    var c=frame(s.lab);c.style.background=s.bg;
+    c.innerHTML='<div class="hd"><div class="sr">'+s.series+'</div><div class="sn" style="color:'+s.nameCol+'">CAPRICORNO</div>'+(s.sub?'<div class="sub">'+s.sub+'</div>':'')+'</div>';
+    var mw=document.createElement('div');mw.className='mw';mw.style.top='29%';mw.style.width='29%';mw.innerHTML=masc(CAP,'#36b06a',s.mood||'happy','m');c.appendChild(mw);
+    RING.forEach(function(p,i){var b=document.createElement('div');b.className='bx '+p[1];b.style.top=p[3]+'%';b.style.width=p[4]+'%';if(p[1]==='L')b.style.left=p[2]+'%';if(p[1]==='R')b.style.right=p[2]+'%';b.style.background=(i%2===0)?s.A:s.B;b.textContent=s.T[p[0]];c.appendChild(b);});
+    c.innerHTML+='<div class="mn"><span class="tg" style="background:'+s.tag+'">'+(s.tagTxt||'MANTRA')+'</span><span class="mt">«'+s.mantra+'»</span></div>';
+    fit(c.querySelector('.sn'),c);
+  }
+  function coupleCard(){
+    var c=frame('Bilancia & Capricorno · relationships');c.style.background='#fff6e3';
+    c.innerHTML='<div class="hd"><div class="sn" id="cn" style="font-size:24px"><span style="color:#caa200">BILANCIA</span> <span style="color:#15110d">&amp;</span> <span style="color:#36b06a">CAPRICORNO</span></div><div class="sub">in relationships…</div></div>';
+    var m1=document.createElement('div');m1.className='mw';m1.style.top='35%';m1.style.left='38%';m1.style.width='19%';m1.innerHTML=masc(BIL,'#f5b700','happy','f');c.appendChild(m1);
+    var m2=document.createElement('div');m2.className='mw';m2.style.top='38%';m2.style.left='62%';m2.style.width='18%';m2.innerHTML=masc(CAP,'#36b06a','happy','m');c.appendChild(m2);
+    var P=[['TC','C',null,19,42,'#fff0b3'],['TL','L',3,33,30,'#ffe08a'],['ML','L',2,50,30,'#ffe08a'],['BL','L',4,65,30,'#ffe08a'],['TR','R',3,33,30,'#a9e0bf'],['MR','R',2,50,30,'#a9e0bf'],['BR','R',4,65,30,'#a9e0bf'],['BC','C',null,79,46,'#fff0b3']];
+    var T={TC:'Opposti che si attraggono',TL:'Cerca armonia',ML:'Ama socializzare',BL:'Diplomatica ma indecisa',TR:'Cerca stabilità',MR:'Poche persone vere',BR:'Pratico e deciso',BC:'Sogno + concretezza: si completano'};
+    P.forEach(function(p){var b=document.createElement('div');b.className='bx '+p[1];b.style.top=p[3]+'%';b.style.width=p[4]+'%';if(p[1]==='L')b.style.left=p[2]+'%';if(p[1]==='R')b.style.right=p[2]+'%';b.style.background=p[5];b.textContent=T[p[0]];c.appendChild(b);});
+    fit(c.querySelector('#cn'),c);
+  }
+
+  ringCard({lab:'understanding…',series:'understanding…',nameCol:'#6a4fc0',tag:'#6a4fc0',bg:'#fff6e3',A:'#8fd0ef',B:'#8ad97e',mantra:'Costruisco in silenzio, vinco nel tempo.',
+   T:{TC:'Più dolce di quel che sembro',TR:'Mi serve tempo per fidarmi',MR:'Pianifico ogni dettaglio',BR:'Rispetto chi è leale',BC:'Sotto la corazza, un cuore',BL:'Il lavoro mi dà sicurezza',ML:'Odio perdere tempo',TL:'Sembro serio, ma so ridere'}});
+  ringCard({lab:'rising…',series:'il tuo ascendente',nameCol:'#e0529a',tag:'#e0529a',bg:'#fdeef4',A:'#ffb3cf',B:'#ffd23f',mantra:'La prima impressione la lascio io.',
+   T:{TC:'Sembro maturo e sicuro',TR:"Do un'aria di autorità",MR:'Trasmetto affidabilità',BR:'Eleganza sobria e curata',BC:'Metto soggezione, mio malgrado',BL:'Sembro più grande dei miei anni',ML:'Riservato al primo incontro',TL:'Look classico, mai eccessivo'}});
+  ringCard({lab:'mercury in…',series:'mercury in…',sub:'(comunicazione)',nameCol:'#2f9bdb',tag:'#2f9bdb',bg:'#eef6fb',A:'#9fd4f0',B:'#c7d0d6',mantra:'Parlo poco, ma quel che dico conta.',
+   T:{TC:'Parlo solo se serve',TR:'Vado dritto al punto',MR:'Penso prima di parlare',BR:'Niente giri di parole',BC:'Mantengo la parola data',BL:'Preferisco i fatti alle chiacchiere',ML:'Tono pratico e diretto',TL:'Il sarcasmo è la mia arma'}});
+  ringCard({lab:'how to spot a true…',series:'how to spot a true…',nameCol:'#e8602b',tag:'#e8602b',bg:'#fff3e6',A:'#ffb877',B:'#ffd23f',mantra:'Mi riconosci da quanto punto in alto.',
+   T:{TC:'Sempre impegnato in qualcosa',TR:'Umorismo secco e tagliente',MR:'Punta sempre in alto',BR:'Affidabile come una roccia',BC:'Calmo anche nel caos',BL:'Pochi amici, ma veri',ML:'Ambizioso fino al midollo',TL:'Detesta perdere tempo'}});
+  ringCard({lab:'moon in…',series:'moon in…',sub:'(emozioni)',nameCol:'#6b4fb0',tag:'#6b4fb0',bg:'#f2edfb',A:'#bfa9ec',B:'#86b8ec',mantra:'Sento tutto, lo dico a pochi.',
+   T:{TC:'Le emozioni le tengo per me',TR:'Al sicuro nella routine',MR:'Ho bisogno di stabilità',BR:'Proteggo chi amo in silenzio',BC:'Sotto sotto, molto sensibile',BL:'Il lavoro mi calma',ML:'Mi serve tempo da solo',TL:'Fatico a lasciarmi andare'}});
+  ringCard({lab:'when sad or depressed…',series:'when sad or depressed…',nameCol:'#2b5fa8',tag:'#2b5fa8',tagTxt:'SE STO GIÙ',bg:'#eef3f8',A:'#bcd4ec',B:'#cdd5dd',mood:'sad',mantra:'Datemi tempo: torno più forte.',
+   T:{TC:'Mi isolo da tutti',TR:'Mi sommergo di lavoro',MR:'Divento freddo e distante',BR:'Pessimismo alle stelle',BC:'Mi chiudo nel silenzio',BL:'Rimugino sui fallimenti',ML:'Non chiedo mai aiuto',TL:'Perdo interesse per tutto'}});
+  coupleCard();
+})();
+</script>
+</body>
+</html>

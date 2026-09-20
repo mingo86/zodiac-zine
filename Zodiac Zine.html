@@ -486,7 +486,7 @@ body.theme-adesivi .comicbg::after{background-image:radial-gradient(rgba(150,110
   </svg>
 </template>
 </head><body>
-<div class="nav"><span class="logo" onclick="go('index')">★ Zodiac Zine</span><span class="links"><button onclick="go('basi')" id="navBasi">Le basi</button><button onclick="go('index')" id="navSegni">Segni</button><button class="b" onclick="go('compat')" id="navCoppie">♥ Coppie</button><span id="langPick"></span></span></div><div class="wrap" id="app"></div>
+<div class="nav"><span class="logo" onclick="go('index')">★ Zodiac Zine</span><span class="links"><button onclick="go('basi')" id="navBasi">Le basi</button><button onclick="go('index')" id="navSegni">Segni</button><button class="b" onclick="go('compat')" id="navCoppie">♥ Coppie</button><button onclick="location.href='Match%20del%20Giorno.html'" id="navMatch">☀ Match del giorno</button><span id="langPick"></span></span></div><div class="wrap" id="app"></div>
 <script src="coppie/mascots.js"></script>
 <script src="coppie/anim.js"></script>
 <script src="lang/i18n.js"></script>
@@ -811,7 +811,7 @@ const UI_DICT={
   composeBoxTag:">> componi la frase",composeBoxBody:"Costruisci la tua situazione e ricevi il consiglio su misura.",composeSo:"Sono",
   affUnisce:"Vi unisce:",affScotta:"Può scottare:",affFullCmp:"vedi il confronto completo →",advLabel:"Il consiglio:",
   footSign:(n)=>`campione · ${n}`,
-  compatTitle:"COPPIE",compatName:"Coppie",compatHint:"// scegli due segni e la lente del rapporto",footCompat:"campione · esploratore di compatibilità",
+  compatTitle:"COPPIE",compatName:"Coppie",compatHint:"// scegli due segni e la lente del rapporto",navMatch:"☀ Match del giorno",footCompat:"campione · esploratore di compatibilità",
   cmpDirect:">> confronto diretto",cmpPortrait:">> il ritratto del rapporto",cmpUnisce:">> cosa vi unisce",cmpScotta:">> dove scotta",
   thElem:"elemento",thMod:"modalità",thPlan:"pianeta",thLL:"linguaggio d'amore",thRF:"red flag",
   composeActs:["voglio sedurre…","voglio conquistare…","devo lavorare con…","ho come capo…","convivo con…","sono amico di…","ho un ex…","in famiglia ho…"],
@@ -854,7 +854,7 @@ const UI_DICT={
   composeBoxTag:">> compose the sentence",composeBoxBody:"Build your situation and get tailored advice.",composeSo:"I'm",
   affUnisce:"What brings you together:",affScotta:"What can burn:",affFullCmp:"see the full comparison →",advLabel:"The advice:",
   footSign:(n)=>`sample · ${n}`,
-  compatTitle:"COUPLES",compatName:"Couples",compatHint:"// pick two signs and the lens of the bond",footCompat:"sample · compatibility explorer",
+  compatTitle:"COUPLES",compatName:"Couples",compatHint:"// pick two signs and the lens of the bond",navMatch:"☀ Match of the day",footCompat:"sample · compatibility explorer",
   cmpDirect:">> head to head",cmpPortrait:">> the portrait of the bond",cmpUnisce:">> what brings you together",cmpScotta:">> where it burns",
   thElem:"element",thMod:"mode",thPlan:"planet",thLL:"love language",thRF:"red flag",
   composeActs:["I want to seduce…","I want to win over…","I work with…","my boss is…","I live with…","my best friend is…","my ex is…","in my family there's…"],
@@ -897,7 +897,7 @@ const UI_DICT={
   composeBoxTag:">> compose la phrase",composeBoxBody:"Construis ta situation et reçois un conseil sur mesure.",composeSo:"Je suis",
   affUnisce:"Ce qui vous unit :",affScotta:"Ce qui peut brûler :",affFullCmp:"voir la comparaison complète →",advLabel:"Le conseil :",
   footSign:(n)=>`échantillon · ${n}`,
-  compatTitle:"COUPLES",compatName:"Couples",compatHint:"// choisis deux signes et la lentille de la relation",footCompat:"échantillon · explorateur de compatibilité",
+  compatTitle:"COUPLES",compatName:"Couples",compatHint:"// choisis deux signes et la lentille de la relation",navMatch:"☀ Match du jour",footCompat:"échantillon · explorateur de compatibilité",
   cmpDirect:">> face à face",cmpPortrait:">> le portrait de la relation",cmpUnisce:">> ce qui vous unit",cmpScotta:">> là où ça brûle",
   thElem:"élément",thMod:"mode",thPlan:"planète",thLL:"langage de l'amour",thRF:"red flag",
   composeActs:["je veux séduire…","je veux conquérir…","je bosse avec…","mon boss est…","je vis avec…","mon meilleur pote est…","j'ai un ex…","dans ma famille il y a…"],
@@ -940,7 +940,7 @@ const UI_DICT={
   composeBoxTag:">> arma la frase",composeBoxBody:"Construye tu situación y recibe el consejo a medida.",composeSo:"Soy",
   affUnisce:"Lo que os une:",affScotta:"Lo que puede quemar:",affFullCmp:"ver la comparación completa →",advLabel:"El consejo:",
   footSign:(n)=>`muestra · ${n}`,
-  compatTitle:"PAREJAS",compatName:"Parejas",compatHint:"// elige dos signos y la lente de la relación",footCompat:"muestra · explorador de compatibilidad",
+  compatTitle:"PAREJAS",compatName:"Parejas",compatHint:"// elige dos signos y la lente de la relación",navMatch:"☀ Match del día",footCompat:"muestra · explorador de compatibilidad",
   cmpDirect:">> cara a cara",cmpPortrait:">> el retrato de la relación",cmpUnisce:">> qué os une",cmpScotta:">> dónde quema",
   thElem:"elemento",thMod:"modalidad",thPlan:"planeta",thLL:"lenguaje del amor",thRF:"red flag",
   composeActs:["quiero seducir…","quiero conquistar…","trabajo con…","mi jefe es…","convivo con…","soy amigo de…","tengo un ex…","en mi familia hay…"],
@@ -983,7 +983,7 @@ const UI_DICT={
   composeBoxTag:">> monte a frase",composeBoxBody:"Monte a sua situação e receba o conselho sob medida.",composeSo:"Sou de",
   affUnisce:"O que une vocês:",affScotta:"O que pode pegar fogo:",affFullCmp:"ver a comparação completa →",advLabel:"O conselho:",
   footSign:(n)=>`amostra · ${n}`,
-  compatTitle:"CASAIS",compatName:"Casais",compatHint:"// escolha dois signos e a lente da relação",footCompat:"amostra · explorador de compatibilidade",
+  compatTitle:"CASAIS",compatName:"Casais",compatHint:"// escolha dois signos e a lente da relação",navMatch:"☀ Match do dia",footCompat:"amostra · explorador de compatibilidade",
   cmpDirect:">> frente a frente",cmpPortrait:">> o retrato da relação",cmpUnisce:">> o que une vocês",cmpScotta:">> onde pega fogo",
   thElem:"elemento",thMod:"modalidade",thPlan:"planeta",thLL:"linguagem do amor",thRF:"red flag",
   composeActs:["quero seduzir…","quero conquistar…","trabalho com…","meu chefe é…","moro com…","sou amigo de…","tenho um ex…","na minha família tem…"],
@@ -1026,7 +1026,7 @@ const UI_DICT={
   composeBoxTag:">> bau den Satz",composeBoxBody:"Bau deine Situation und erhalte den maßgeschneiderten Rat.",composeSo:"Ich bin",
   affUnisce:"Was euch verbindet:",affScotta:"Wo es brennen kann:",affFullCmp:"den vollen Vergleich sehen →",advLabel:"Der Rat:",
   footSign:(n)=>`Leseprobe · ${n}`,
-  compatTitle:"PAARE",compatName:"Paare",compatHint:"// wähle zwei Zeichen und die Linse der Beziehung",footCompat:"Leseprobe · Kompatibilitäts-Explorer",
+  compatTitle:"PAARE",compatName:"Paare",compatHint:"// wähle zwei Zeichen und die Linse der Beziehung",navMatch:"☀ Match des Tages",footCompat:"Leseprobe · Kompatibilitäts-Explorer",
   cmpDirect:">> direkter Vergleich",cmpPortrait:">> das Porträt der Beziehung",cmpUnisce:">> was euch verbindet",cmpScotta:">> wo es brennt",
   thElem:"Element",thMod:"Modalität",thPlan:"Planet",thLL:"Liebessprache",thRF:"red flag",
   composeActs:["ich will verführen…","ich will erobern…","ich arbeite mit…","mein Chef ist…","ich wohne mit…","ich bin befreundet mit…","ich habe einen Ex…","in meiner Familie gibt es…"],
@@ -1582,7 +1582,7 @@ function applyLang(){
   buildLenses();
   // chrome statico (nav + theme buttons)
   var set=(id,txt)=>{var el=document.getElementById(id);if(el&&txt!=null)el.textContent=txt;};
-  set("navBasi",U.navBasi);set("navSegni",U.navSegni);set("navCoppie",U.navCoppie);
+  set("navBasi",U.navBasi);set("navSegni",U.navSegni);set("navCoppie",U.navCoppie);set("navMatch",U.navMatch);
   set("btnTheStampa",U.theStampa);set("btnTheAdesivi",U.theAdesivi);
   document.documentElement.lang=LANG;
   if(window.ZI18N&&window.ZI18N.decorate)window.ZI18N.decorate();

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac — Demo Scenetta (bar)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#15110d;--green:#36b06a;--yellow:#ffd23f;--pink:#ff2d6f;}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:linear-gradient(135deg,#2c2138,#181226);min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:14px;padding:24px 12px;font-family:'Baloo 2',system-ui,sans-serif;color:#fff6e3}
+.cap{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:#b9a7ff;text-transform:uppercase}
+
+/* ---- la card scenetta, formato quadrato IG ---- */
+.card{position:relative;width:min(540px,92vw);aspect-ratio:1/1;border:5px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:0 14px 0 rgba(0,0,0,.35);background:#0c0a16}
+.bg{position:absolute;inset:0;width:100%;height:100%}
+/* watermark tiled */
+.wm{position:absolute;inset:0;opacity:.10;pointer-events:none;
+  background-image:repeating-linear-gradient(-20deg,transparent 0 38px, rgba(255,255,255,.0) 38px 39px);
+  font-family:'Space Mono',monospace}
+.wm span{position:absolute;font-size:11px;color:#fff;white-space:nowrap;font-family:'Space Mono',monospace}
+
+.title{position:absolute;top:14px;left:0;right:0;text-align:center;z-index:5}
+.title .t1{font-family:'Baloo 2';font-weight:700;font-size:20px;color:#fff;text-shadow:1px 1px 0 #000}
+.title .t2{font-family:'Bangers',cursive;font-size:40px;letter-spacing:1.5px;color:#36b06a;-webkit-text-stroke:1.5px #000;text-shadow:3px 3px 0 #000;line-height:.9;margin-top:-2px}
+.title .hndl{font-family:'Space Mono',monospace;font-size:10px;color:#ffd23f;font-weight:700}
+
+.checks{position:absolute;top:96px;left:0;right:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;padding:0 16px;z-index:5}
+.chk{display:flex;gap:6px;font-size:12.5px;font-weight:700;color:#fff;text-shadow:1px 1px 2px #000;line-height:1.15}
+.chk .bx{color:#ff2d6f;font-weight:800}
+
+/* mascotte nella scena */
+.stage{position:absolute;left:0;right:0;bottom:0;height:56%;z-index:4;display:flex;align-items:flex-end;justify-content:center;gap:0}
+.m{position:relative;width:38%;max-width:185px}
+.m .omino{width:100%;height:auto;filter:drop-shadow(0 6px 6px rgba(0,0,0,.45))}
+.m.left{margin-right:-6%;z-index:3}
+.m.right{margin-left:-6%;z-index:2}
+.glass{position:absolute;width:30px;height:36px;z-index:6}
+.glass.gl{left:8%;bottom:30%}
+.glass.gr{right:8%;bottom:33%}
+</style>
+</head>
+<body>
+  <div class="cap">★ scenetta demo · "how to date a…" al bar · mascotte Zodiac</div>
+
+  <div class="card" id="card">
+    <!-- FONDALE BAR (SVG) -->
+    <svg class="bg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="room" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3a2b6b"/><stop offset="0.55" stop-color="#241a45"/><stop offset="1" stop-color="#140f28"/>
+        </linearGradient>
+        <linearGradient id="spot" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffe27a" stop-opacity="0.55"/><stop offset="1" stop-color="#ffe27a" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="counter" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#6b4a2a"/><stop offset="1" stop-color="#3a2716"/>
+        </linearGradient>
+      </defs>
+      <rect width="100" height="100" fill="url(#room)"/>
+      <!-- coni di luce -->
+      <polygon points="26,0 34,0 40,52 20,52" fill="url(#spot)"/>
+      <polygon points="66,0 74,0 80,52 60,52" fill="url(#spot)"/>
+      <!-- mensole con bottiglie (silhouette) -->
+      <g opacity="0.5" fill="#1b1430">
+        <rect x="4" y="20" width="40" height="2.2"/><rect x="4" y="33" width="40" height="2.2"/>
+        <rect x="56" y="20" width="40" height="2.2"/><rect x="56" y="33" width="40" height="2.2"/>
+      </g>
+      <g fill="#15102a" opacity="0.85">
+        <!-- bottiglie shelf alto -->
+        <rect x="7" y="9" width="3.4" height="11" rx="1"/><rect x="13" y="7" width="3.4" height="13" rx="1"/>
+        <rect x="19" y="10" width="3" height="10" rx="1"/><rect x="25" y="6" width="3.6" height="14" rx="1"/>
+        <rect x="31" y="9" width="3" height="11" rx="1"/><rect x="37" y="8" width="3.4" height="12" rx="1"/>
+        <rect x="60" y="8" width="3.4" height="12" rx="1"/><rect x="66" y="6" width="3" height="14" rx="1"/>
+        <rect x="72" y="10" width="3.6" height="10" rx="1"/><rect x="78" y="7" width="3" height="13" rx="1"/>
+        <rect x="84" y="9" width="3.4" height="11" rx="1"/><rect x="90" y="8" width="3" height="12" rx="1"/>
+        <!-- shelf medio -->
+        <rect x="9" y="24" width="3" height="9" rx="1"/><rect x="15" y="23" width="3.4" height="10" rx="1"/>
+        <rect x="22" y="25" width="3" height="8" rx="1"/><rect x="29" y="23" width="3.2" height="10" rx="1"/>
+        <rect x="35" y="24" width="3" height="9" rx="1"/>
+        <rect x="62" y="24" width="3" height="9" rx="1"/><rect x="68" y="23" width="3.2" height="10" rx="1"/>
+        <rect x="75" y="25" width="3" height="8" rx="1"/><rect x="82" y="23" width="3.4" height="10" rx="1"/>
+        <rect x="89" y="24" width="3" height="9" rx="1"/>
+      </g>
+      <!-- bancone -->
+      <rect x="0" y="78" width="100" height="22" fill="url(#counter)"/>
+      <rect x="0" y="76" width="100" height="3" fill="#86603a"/>
+      <!-- sgabelli (gambe) -->
+      <g stroke="#0c0a16" stroke-width="1.2"><line x1="22" y1="88" x2="22" y2="100"/><line x1="30" y1="88" x2="30" y2="100"/>
+        <line x1="70" y1="88" x2="70" y2="100"/><line x1="78" y1="88" x2="78" y2="100"/></g>
+    </svg>
+
+    <div class="wm" id="wm"></div>
+
+    <div class="title">
+      <div class="t1">how to date a…</div>
+      <div class="t2">CAPRICORNO</div>
+      <div class="hndl">@zodiac.zine</div>
+    </div>
+
+    <div class="checks" id="checks"></div>
+
+    <div class="stage">
+      <div class="m left" id="mLui">
+        <svg class="glass gl" viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg"><path d="M3 3 H21 L13 15 V25 H18 V28 H6 V25 H11 V15 Z" fill="#bff0ff" stroke="#0c0a16" stroke-width="1.4" stroke-linejoin="round"/><circle cx="9" cy="8" r="1.6" fill="#ff2d6f"/></svg>
+      </div>
+      <div class="m right" id="mLei">
+        <svg class="glass gr" viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg"><path d="M3 3 H21 L13 15 V25 H18 V28 H6 V25 H11 V15 Z" fill="#ffd1e6" stroke="#0c0a16" stroke-width="1.4" stroke-linejoin="round"/><circle cx="15" cy="8" r="1.6" fill="#ffd23f"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="cap" style="max-width:540px;text-align:center;color:#cdbfff">Stesso schema della card di riferimento, ma con le <b>nostre mascotte</b> nel fondale bar. Il fondale è riutilizzabile per qualsiasi segno; se ne possono fare altri (camera, palestra, spiaggia, divano…).</div>
+
+<script src="coppie/mascots.js"></script>
+<script>
+(function(){
+  var cap={k:"capricorno",el:"terra"}, col="#36b06a";
+  document.getElementById("mLui").insertAdjacentHTML("afterbegin", window.MASCOT(cap,col,"stampa",1,"happy","m"));
+  document.getElementById("mLei").insertAdjacentHTML("afterbegin", window.MASCOT(cap,col,"stampa",-1,"love","f"));
+
+  var items=["Abbi la tua vita in ordine","Offrici da bere se vuoi farci sciogliere","Sii una persona responsabile","Portaci in posti belli (e prenotati)","Facci vedere quanto sei in gamba","Sostieni i nostri obiettivi di carriera"];
+  document.getElementById("checks").innerHTML=items.map(function(t){return '<div class="chk"><span class="bx">☑</span><span>'+t+'</span></div>';}).join("");
+
+  // watermark tiled
+  var wm=document.getElementById("wm"),h="";
+  for(var y=4;y<100;y+=7){for(var x=-2;x<100;x+=22){h+='<span style="top:'+y+'%;left:'+x+'%">@zodiac.zine</span>';}}
+  wm.innerHTML=h;
+})();
+</script>
+</body>
+</html>

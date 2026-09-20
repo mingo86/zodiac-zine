@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac — Strategia Social IG & TikTok</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff6e3;--ink:#15110d;--red:#ec2e36;--yellow:#ffd23f;--blue:#2f9bdb;--green:#36b06a;--purple:#6b4ff0;--pink:#ff2d6f;--p1:#EF9F27;--p2:#D4537E;--p3:#1D9E75;--p4:#378ADD;--p5:#7F77DD;--muted:#6b6356;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background-image:radial-gradient(circle,rgba(0,0,0,.13) 1.5px,transparent 1.7px),linear-gradient(135deg,#2c2138,#181226);background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;line-height:1.55;min-height:100vh;}
+.wrap{max-width:960px;margin:clamp(8px,3vw,34px) auto;padding:0 0 60px;background:var(--paper);background-image:radial-gradient(circle,rgba(0,0,0,.04) 1.4px,transparent 1.5px);background-size:12px 12px;border:5px solid var(--ink);border-radius:22px;box-shadow:0 16px 0 rgba(0,0,0,.3);overflow:hidden;}
+.hero{padding:34px 28px 18px;text-align:center;border-bottom:3px solid var(--ink);}
+.ksuper{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--purple);text-transform:uppercase;margin-bottom:6px;}
+h1.t{font-family:'Bangers',cursive;font-size:clamp(36px,8vw,72px);color:var(--blue);-webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink);letter-spacing:2px;margin:6px 0 4px;line-height:.95;}
+.hsub{font-weight:600;color:var(--muted);max-width:640px;margin:8px auto 0;font-size:15px;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 28px;border-bottom:2px solid var(--ink);}
+.stat{border:3px solid var(--ink);border-radius:13px;background:#fff;padding:13px;text-align:center;box-shadow:4px 4px 0 var(--ink);}
+.stat .big{font-family:'Bangers',cursive;font-size:28px;line-height:1;}
+.stat .lab{font-size:11px;font-weight:700;color:var(--muted);margin-top:3px;}
+.tabnav{display:flex;gap:0;border-bottom:3px solid var(--ink);overflow-x:auto;scrollbar-width:none;}
+.tabnav::-webkit-scrollbar{display:none;}
+.tabnav button{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.04em;padding:12px 16px;border:none;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .15s;}
+.tabnav button:hover{color:var(--ink);background:rgba(21,17,13,.04);}
+.tabnav button.active{color:var(--ink);border-bottom-color:var(--yellow);background:rgba(255,210,63,.12);}
+.sec{display:none;padding:24px 28px;}
+.sec.show{display:block;}
+h2.sh{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;color:var(--ink);margin:0 0 16px;display:flex;align-items:center;gap:10px;}
+h2.sh .num{font-family:'Space Mono',monospace;font-size:13px;background:var(--ink);color:var(--yellow);border-radius:8px;padding:2px 9px;}
+h3.ss{font-family:'Bangers',cursive;font-size:20px;letter-spacing:.5px;margin:22px 0 10px;}
+.card{border:3px solid var(--ink);background:#fff;border-radius:14px;padding:16px 18px;}
+.card.s-blue{box-shadow:5px 5px 0 var(--blue);}
+.card.s-green{box-shadow:5px 5px 0 var(--green);}
+.card.s-yellow{box-shadow:5px 5px 0 var(--yellow);}
+.card.s-pink{box-shadow:5px 5px 0 var(--pink);}
+.card.s-purple{box-shadow:5px 5px 0 var(--purple);}
+.card.s-red{box-shadow:5px 5px 0 var(--red);}
+.card.s-default{box-shadow:5px 5px 0 var(--ink);}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+h4{font-family:'Bangers',cursive;font-size:18px;letter-spacing:.5px;margin-bottom:8px;}
+ul.list{padding-left:18px;font-size:13px;font-weight:600;color:#403930;line-height:1.8;}
+.sep{border:none;border-top:2px dashed rgba(21,17,13,.15);margin:18px 0;}
+.pill{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;font-weight:700;padding:2px 8px;border-radius:999px;border:1.5px solid var(--ink);text-transform:uppercase;letter-spacing:.05em;margin:2px;}
+.tag-p1{background:#fdf0d5;color:#7a4900;}
+.tag-p2{background:#fce4ef;color:#7a1040;}
+.tag-p3{background:#d8f5ec;color:#0a4a2a;}
+.tag-p4{background:#d6eaf8;color:#0c3a6a;}
+.tag-p5{background:#eeedfe;color:#3c3489;}
+.win{background:#d8f5ec;color:#0a4a2a;border-color:var(--green);}
+.mid{background:#fdf0d5;color:#7a4900;border-color:var(--p1);}
+.cost{background:#fce4ef;color:#7a1040;border-color:var(--p2);}
+.de-badge{background:#d6eaf8;color:#0c3a6a;border-color:var(--blue);}
+.row-kv{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1.5px solid rgba(21,17,13,.1);font-size:13px;font-weight:600;}
+.row-kv:last-child{border-bottom:none;}
+.row-kv .k{color:var(--muted);}
+.pillar-bar{height:5px;border-radius:3px;margin-bottom:10px;}
+.cal-hdr{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:4px;text-align:center;}
+.cal-hdr span{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);font-weight:700;padding:3px 0;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;}
+.cal-cell{background:#fff;border:2px solid var(--ink);border-radius:10px;padding:7px 6px;min-height:74px;font-size:10px;font-weight:600;color:#403930;}
+.cal-cell .day-n{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:4px;}
+.cal-cell.dimmed{opacity:.15;}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px;vertical-align:middle;}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.filter-btn{font-family:'Space Mono',monospace;font-size:10px;padding:4px 12px;border-radius:999px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;font-weight:700;transition:all .12s;}
+.filter-btn.on{background:var(--ink);color:var(--paper);}
+.hook-box{background:rgba(21,17,13,.04);border-left:4px solid var(--ink);border-radius:0 10px 10px 0;padding:10px 14px;margin-bottom:8px;}
+.hook-box .lbl{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.funnel-step{display:flex;align-items:flex-start;gap:14px;padding:12px 14px;border:2px solid var(--ink);border-radius:12px;margin-bottom:8px;background:#fff;}
+.funnel-num{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--yellow);font-family:'Bangers',cursive;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.phase-card{border:3px solid var(--ink);border-radius:14px;padding:16px;background:#fff;}
+.phase-badge{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;border:2px solid currentColor;display:inline-block;margin-bottom:8px;}
+.pitch{background:var(--ink);color:var(--paper);border-radius:14px;padding:18px 20px;}
+.pitch b{color:var(--yellow);}
+.kbox{background:var(--yellow);border:3px solid var(--ink);border-radius:13px;padding:12px 14px;font-weight:700;font-size:13px;margin:12px 0;}
+@media(max-width:680px){.stats,.grid2,.grid3{grid-template-columns:1fr;}.tabnav button{padding:10px 12px;font-size:10px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="ksuper">★ brand & social strategy · giugno 2026</div>
+  <h1 class="t">ZODIAC · SOCIAL</h1>
+  <p class="hsub">Piano completo Instagram e TikTok per 6 mercati (IT · EN · ES · PT · FR · DE) — 5 pillar, 30 giorni di contenuti, KPI e roadmap 90 giorni.</p>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="big" style="color:var(--p1);">6</div><div class="lab">mercati attivi (+ DE nuovo)</div></div>
+  <div class="stat"><div class="big" style="color:var(--p2);">5K</div><div class="lab">follower IG target a 90gg</div></div>
+  <div class="stat"><div class="big" style="color:var(--p3);">10K</div><div class="lab">TikTok → Creator Rewards</div></div>
+  <div class="stat"><div class="big" style="color:var(--p4);">€320K</div><div class="lab">proiezione anno 1 scenario base</div></div>
+</div>
+
+<div class="tabnav">
+  <button class="active" onclick="show('audience',this)">Audience</button>
+  <button onclick="show('pillars',this)">5 Pillar</button>
+  <button onclick="show('calendar',this)">Calendario 30gg</button>
+  <button onclick="show('ig',this)">Instagram</button>
+  <button onclick="show('tiktok',this)">TikTok</button>
+  <button onclick="show('markets',this)">Mercati & DE</button>
+  <button onclick="show('kpi',this)">KPI & Roadmap</button>
+</div>
+
+<!-- TAB 1 AUDIENCE -->
+<div id="sec-audience" class="sec show">
+  <h2 class="sh"><span class="num">01</span> Audience & posizionamento</h2>
+  <div class="grid2" style="margin-bottom:16px;">
+    <div class="card s-red">
+      <h4>Frustrazioni</h4>
+      <ul class="list"><li>App fredde e complicate</li><li>Contenuti solo in inglese</li><li>Oroscopi troppo generici</li><li>Non capiscono partner e amici</li></ul>
+    </div>
+    <div class="card s-green">
+      <h4>Desideri</h4>
+      <ul class="list"><li>Capire la compatibilità con qualcuno</li><li>Condividere qualcosa di divertente</li><li>Identità visiva forte e riconoscibile</li><li>Crescita personale presentata con leggerezza</li></ul>
+    </div>
+    <div class="card s-purple">
+      <h4>Paure</h4>
+      <ul class="list"><li>Sembrare "creduloni" agli amici</li><li>Abbonamenti che non valgono il prezzo</li><li>App che smettono di essere aggiornate</li></ul>
+    </div>
+    <div class="card s-blue">
+      <h4>Abitudini di consumo</h4>
+      <ul class="list"><li>Oroscopo al mattino (abitudine quotidiana)</li><li>Condividono card su IG stories / WhatsApp</li><li>#AstroTok — miliardi di views su TikTok</li><li>60%+ utenti: donne 18–34</li></ul>
+    </div>
+  </div>
+  <h3 class="ss">Angolazioni di messaggio che fermano lo scroll</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+    <span class="pill tag-p2">Il tuo match di oggi è...</span>
+    <span class="pill tag-p1">Cosa dicono le stelle per [segno] questa settimana</span>
+    <span class="pill tag-p3">POV: sei [segno] e il tuo partner è...</span>
+    <span class="pill tag-p5">Qual è il segno più compatibile con te?</span>
+    <span class="pill tag-p4">Mercurio retrogrado in 60 secondi</span>
+    <span class="pill tag-p3">La mascotte del tuo segno ti rappresenta?</span>
+    <span class="pill tag-p2">Scorpione + Pesci: perché funziona (e dove no)</span>
+  </div>
+  <h3 class="ss">Posizionamento competitivo</h3>
+  <div class="card s-blue" style="margin-bottom:14px;">
+    <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Asse X: formale ↔ informale · Asse Y: educativo ↔ entertainment/virale</p>
+    <div style="position:relative;height:250px;"><canvas id="compChart" role="img" aria-label="Scatter: Zodiac è l'unico brand informale+entertainment, i competitor sono più formali o educational">Zodiac: informale+entertainment. Co-Star: informale/mix. Nebula: neutro/mix. The Pattern: neutro/educativo. CHANI: formale/educativo.</canvas></div>
+    <div style="display:flex;gap:14px;margin-top:8px;font-size:12px;color:var(--muted);">
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--red);margin-right:4px;"></span>Zodiac (tu)</span>
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#888;margin-right:4px;"></span>Competitor</span>
+    </div>
+  </div>
+  <div class="pitch" style="margin-bottom:14px;">
+    <h4 style="color:var(--yellow);font-family:'Bangers',cursive;font-size:20px;letter-spacing:1px;margin-bottom:8px;">★ Unique positioning statement</h4>
+    <p style="font-size:15px;font-weight:600;line-height:1.6;">"L'unica app di astrologia che parla <b>la tua lingua</b> — letteralmente — con personaggi che ami e un match che ti fa venire voglia di condividere."</p>
+  </div>
+  <div class="card s-yellow">
+    <div class="grid2">
+      <div>
+        <p style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Il brand è</p>
+        <p style="font-size:14px;font-weight:700;line-height:2;">Caldo · Fumettistico · Multilingua<br>Condivisibile · Pop · Inclusivo</p>
+      </div>
+      <div>
+        <p style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Il brand non è</p>
+        <p style="font-size:14px;font-weight:700;line-height:2;color:var(--muted);">Freddo · Minimal · Solo inglese<br>Elitario · Accademico · Pesante</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2 PILLARS -->
+<div id="sec-pillars" class="sec">
+  <h2 class="sh"><span class="num">02</span> I 5 pillar di contenuto</h2>
+  <div style="display:flex;flex-direction:column;gap:14px;">
+    <div class="card s-yellow">
+      <div class="pillar-bar" style="background:var(--p1);width:90%;"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><h4>P1 — Oroscopo del giorno</h4><div><span class="pill tag-p1">Reach</span><span class="pill tag-p1">IG+TK</span></div></div>
+      <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;">Il contenuto di abitudine: aperto ogni mattina, condiviso nelle stories. 68% del tempo su app astrologia. Genera traffico organico costante.</p>
+      <ul class="list">
+        <li>"Cosa ti aspetta questa settimana, [segno]" — card condivisibile in IT/ES/PT/DE/FR</li>
+        <li>TikTok 60s: "Le stelle di oggi per ogni elemento" (fuoco/terra/aria/acqua)</li>
+        <li>IG Reel: oroscopo animato con mascotte del segno protagonista</li>
+        <li>"Mercurio retrogrado — come sopravvive ogni segno" (evergreen, alto salvataggio)</li>
+        <li>Stories: poll "Il tuo oroscopo di oggi ti rappresenta?" → genera interazione</li>
+      </ul>
+    </div>
+    <div class="card s-pink">
+      <div class="pillar-bar" style="background:var(--p2);width:80%;"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><h4>P2 — Match & compatibilità</h4><div><span class="pill tag-p2">Viralità</span><span class="pill tag-p2">IG+TK</span></div></div>
+      <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;">Il gancio unico di Zodiac. Cross-tag naturale tra account-segno. Trigger di condivisione fortissimo. Compatibilità = 32% del tempo utente su app astrologia.</p>
+      <ul class="list">
+        <li>"Il match di oggi: [segno A] + [segno B] — ecco perché funziona"</li>
+        <li>TikTok Duet: @zodiac.ariete e @zodiac.bilancia si "rispondono"</li>
+        <li>"Coppie famose e il loro segno" — carrellata (alto engagement)</li>
+        <li>"Chi è il tuo nemico zodiacale?" — poll + commenti accesi</li>
+        <li>Classifica settimanale: i 3 match più compatibili</li>
+      </ul>
+    </div>
+    <div class="card s-green">
+      <div class="pillar-bar" style="background:var(--p3);width:65%;"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><h4>P3 — Mascotte zodiacali</h4><div><span class="pill tag-p3">Brand love</span><span class="pill tag-p3">IG+TK</span></div></div>
+      <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;">Il differenziatore assoluto — nessun competitor le ha. Generano attachment emotivo, riconoscibilità e contenuto "da salvare". Language-agnostic: funzionano in tutte le lingue.</p>
+      <ul class="list">
+        <li>"La mascotte del [segno] quando..." — meme format adattabile a qualsiasi trend</li>
+        <li>Lancio singola mascotte con backstory del personaggio (serie 12 episodi)</li>
+        <li>TikTok: mascotte animata reagisce a un trend virale della settimana</li>
+        <li>IG carousel: "Quanto è accurata la mascotte del tuo segno? vota 1/10"</li>
+        <li>GIF pack / sticker pack (UGC generato dagli utenti)</li>
+      </ul>
+    </div>
+    <div class="card s-blue">
+      <div class="pillar-bar" style="background:var(--p4);width:50%;"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><h4>P4 — Astro-education</h4><div><span class="pill tag-p4">Trust</span><span class="pill tag-p4">Salvataggi</span></div></div>
+      <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;">Contenuto evergreen ad alto salvataggio. Costruisce autorità. Converte il follower casual in utente premium convinto. Usa le mascotte per rendere accessibile anche il tecnico.</p>
+      <ul class="list">
+        <li>"Come leggere il tuo tema natale in 3 passi" — carousel IG (altissimo salvataggio)</li>
+        <li>"Cosa significa l'ascendente — e perché cambia tutto" — Reel 60-90s</li>
+        <li>"Le 12 case astrologiche spiegate con le mascotte" — serie visual</li>
+        <li>"Mercurio retrogrado: mito vs realtà" — formato debunking</li>
+        <li>Q&A settimanale: domande dai follower → risposta in Reel</li>
+      </ul>
+    </div>
+    <div class="card s-purple">
+      <div class="pillar-bar" style="background:var(--p5);width:40%;"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><h4>P5 — Community & UGC</h4><div><span class="pill tag-p5">Engagement</span></div></div>
+      <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;">"Componi la frase" e poll interattivi. Genera contenuto gratuito dagli utenti. Il contenuto UGC costa €0 e spesso supera in reach quello prodotto.</p>
+      <ul class="list">
+        <li>"Componi la frase" — meme generator dall'app (condivisione massiva)</li>
+        <li>Poll stories: "Sei più [tratto A] o [tratto B]?"</li>
+        <li>"Raccontaci il tuo match peggiore [segno + segno]" — commenti virali</li>
+        <li>UGC repost: il miglior contenuto dei follower ripubblicato su @zodiac.zine</li>
+        <li>Challenge: "La mascotte del tuo segno nella vita reale" — #ZodiacChallenge</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3 CALENDARIO -->
+<div id="sec-calendar" class="sec">
+  <h2 class="sh"><span class="num">03</span> Calendario 30 giorni</h2>
+  <div class="filters">
+    <button class="filter-btn on" onclick="filterCal(this,'all')">Tutti</button>
+    <button class="filter-btn" onclick="filterCal(this,'p1')"><span class="dot" style="background:var(--p1);"></span>Oroscopo</button>
+    <button class="filter-btn" onclick="filterCal(this,'p2')"><span class="dot" style="background:var(--p2);"></span>Match</button>
+    <button class="filter-btn" onclick="filterCal(this,'p3')"><span class="dot" style="background:var(--p3);"></span>Mascotte</button>
+    <button class="filter-btn" onclick="filterCal(this,'p4')"><span class="dot" style="background:var(--p4);"></span>Edu</button>
+    <button class="filter-btn" onclick="filterCal(this,'p5')"><span class="dot" style="background:var(--p5);"></span>Community</button>
+    <button class="filter-btn" onclick="filterCal(this,'TK')">Solo TikTok</button>
+    <button class="filter-btn" onclick="filterCal(this,'IG')">Solo IG</button>
+  </div>
+  <div class="cal-hdr"><span>LUN</span><span>MAR</span><span>MER</span><span>GIO</span><span>VEN</span><span>SAB</span><span>DOM</span></div>
+  <div class="cal-grid" id="calGrid"></div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:12px;font-weight:700;color:var(--muted);">
+    <span><span class="dot" style="background:var(--p1);"></span>Oroscopo</span>
+    <span><span class="dot" style="background:var(--p2);"></span>Match</span>
+    <span><span class="dot" style="background:var(--p3);"></span>Mascotte</span>
+    <span><span class="dot" style="background:var(--p4);"></span>Edu</span>
+    <span><span class="dot" style="background:var(--p5);"></span>Community</span>
+  </div>
+</div>
+
+<!-- TAB 4 INSTAGRAM -->
+<div id="sec-ig" class="sec">
+  <h2 class="sh"><span class="num">04</span> Piano Instagram</h2>
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="card s-pink">
+      <h4>Struttura account</h4>
+      <div style="font-size:13px;font-weight:600;line-height:1.9;">
+        <div><b>@zodiac.zine</b> — master, 1 post/giorno + stories + 1 Reel/sett</div>
+        <div><b>@zodiac.fuoco</b> — Ariete, Leone, Sagittario · 3 post/sett</div>
+        <div><b>@zodiac.terra</b> — Toro, Vergine, Capricorno · 3 post/sett</div>
+        <div><b>@zodiac.aria</b> — Gemelli, Bilancia, Acquario · 3 post/sett</div>
+        <div><b>@zodiac.acqua</b> — Cancro, Scorpione, Pesci · 3 post/sett</div>
+      </div>
+    </div>
+    <div class="card s-yellow">
+      <h4>Orari per mercato</h4>
+      <div class="row-kv"><span class="k">IT / DE / FR</span><span>07:30–09:00 e 19:00–21:00 CET</span></div>
+      <div class="row-kv"><span class="k">BR / LatAm</span><span>12:00–14:00 e 20:00–22:00 BRT</span></div>
+      <div class="row-kv"><span class="k">EN / UK</span><span>08:00–09:30 e 18:00–20:00 GMT</span></div>
+      <div class="row-kv"><span class="k">EN / USA</span><span>11:00–13:00 e 19:00–21:00 EST</span></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px;font-weight:700;">Giorni top: martedì, mercoledì, venerdì. Sabato per Match/virale.</div>
+    </div>
+  </div>
+  <h3 class="ss">Multilingua su IG — come gestirlo</h3>
+  <div class="kbox">Regola d'oro: <b>NON fare account separati per ogni segno in ogni lingua.</b> 12 segni × 6 lingue = 72 account — impossibile. Usa invece le 3 strategie qui sotto.</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px;">
+    <div class="hook-box"><div class="lbl">Strategia 1 — Traduzione nativa IG (gratuita)</div>In ogni caption clicca "Aggiungi traduzione" → IG mostra automaticamente all'utente la sua lingua. Funziona in IT, EN, ES, PT, FR, DE. Zero account extra.</div>
+    <div class="hook-box"><div class="lbl">Strategia 2 — Carousel multilingua</div>Stesso post, slide 1 in IT, slide 2 in DE, slide 3 in ES. Le mascotte sono language-agnostic: cambia solo il testo in sovraimpressione. Il Social Studio già genera le card in tutte le lingue.</div>
+    <div class="hook-box"><div class="lbl">Strategia 3 — Account master per mercato (quando scala)</div>Quando DE o BR diventano mercati significativi, apri @zodiac.zine.de o @zodiac.zine.br — UN solo account master per lingua, NON 12 account-segno per lingua.</div>
+  </div>
+  <h3 class="ss">Format per pillar</h3>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px;">
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 var(--p1);"><div style="display:flex;justify-content:space-between;align-items:center;"><div><span class="dot" style="background:var(--p1);"></span><b>Reel 9:16 (30–60s)</b> — oroscopo animato con mascotte. Hook nei primi 2 secondi = segno + claim forte.</div><span class="pill tag-p1">Reach</span></div></div>
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 var(--p2);"><div style="display:flex;justify-content:space-between;align-items:center;"><div><span class="dot" style="background:var(--p2);"></span><b>Carosello 6–10 slide</b> — match compatibilità. Prima slide = hook visivo. Ultima = CTA download app.</div><span class="pill tag-p2">Salvataggi</span></div></div>
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 var(--p3);"><div style="display:flex;justify-content:space-between;align-items:center;"><div><span class="dot" style="background:var(--p3);"></span><b>Post statico card</b> — mascotta con frase. Formato 1:1, share-friendly su WhatsApp e stories.</div><span class="pill tag-p3">Condivisioni</span></div></div>
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 var(--p5);"><div style="display:flex;justify-content:space-between;align-items:center;"><div><span class="dot" style="background:var(--p5);"></span><b>Stories interattive</b> — poll, quiz, slider. Link app in bio.</div><span class="pill tag-p5">Engagement</span></div></div>
+  </div>
+  <h3 class="ss">Hashtag strategy per mercato</h3>
+  <div class="grid2">
+    <div class="card s-red"><h4>IT</h4><div style="font-size:12px;font-weight:600;line-height:2;color:var(--muted);"><b style="color:var(--ink);">[niche]</b> #astrologiaitaliana #zodiacoit #oroscopodelgiorno<br><b style="color:var(--ink);">[mid]</b> #segnizodicali #astrologia #ascendente<br><b style="color:var(--ink);">[broad]</b> #zodiac #oroscopo #compatibilità</div></div>
+    <div class="card s-blue"><h4>DE (premium)</h4><div style="font-size:12px;font-weight:600;line-height:2;color:var(--muted);"><b style="color:var(--ink);">[niche]</b> #astrologie #horoskop #sternzeichen<br><b style="color:var(--ink);">[mid]</b> #zodiac #spiritualität #selbstentwicklung<br><b style="color:var(--ink);">[broad]</b> #horoskopheute #astrology #sternzeichen</div></div>
+    <div class="card s-green"><h4>PT / BR (priorità 1)</h4><div style="font-size:12px;font-weight:600;line-height:2;color:var(--muted);"><b style="color:var(--ink);">[niche]</b> #astrologiabrasileira #signos #mapanatal<br><b style="color:var(--ink);">[mid]</b> #horoscopo #zodiacobr #compatibilidade<br><b style="color:var(--ink);">[broad]</b> #astrologia #signos #astro</div></div>
+    <div class="card s-yellow"><h4>ES / LatAm (priorità 1)</h4><div style="font-size:12px;font-weight:600;line-height:2;color:var(--muted);"><b style="color:var(--ink);">[niche]</b> #astrologialatina #signoszodiacales #cartanatal<br><b style="color:var(--ink);">[mid]</b> #horoscopo #zodiacoes #compatibilidad<br><b style="color:var(--ink);">[broad]</b> #astrologia #astrotok #signos</div></div>
+  </div>
+</div>
+
+<!-- TAB 5 TIKTOK -->
+<div id="sec-tiktok" class="sec">
+  <h2 class="sh"><span class="num">05</span> Piano TikTok</h2>
+  <div class="grid2" style="margin-bottom:16px;">
+    <div class="card s-red">
+      <h4>Struttura account TikTok</h4>
+      <div style="font-size:13px;font-weight:600;line-height:1.9;">
+        <div><b>@zodiac.zine</b> — master, 1–2 video/giorno</div>
+        <div><b>@zodiac.fuoco / .terra / .aria / .acqua</b> — 1 video/giorno ciascuno</div>
+      </div>
+      <div class="kbox" style="margin-top:12px;font-size:12px;">Creator Rewards: 10K follower + 100K views/30gg + video 60s+ → RPM $0,40–1,00/1K views</div>
+    </div>
+    <div class="card s-yellow">
+      <h4>Target TikTok a 90gg</h4>
+      <div class="row-kv"><span class="k">30 giorni</span><b>1.000 follower · 500 views/video</b></div>
+      <div class="row-kv"><span class="k">60 giorni</span><b>5.000 follower · 5K views/video</b></div>
+      <div class="row-kv"><span class="k">90 giorni</span><b style="color:var(--green);">10K follower → Creator Rewards</b></div>
+      <div class="row-kv"><span class="k">1 video virale</span><b>100K views = +2–5K follower</b></div>
+    </div>
+  </div>
+  <h3 class="ss">Format video che performano</h3>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px;">
+    <div class="hook-box"><div class="lbl">POV / soggettivo</div>"POV: sei Scorpione e il tuo partner è Ariete — settimana 1 vs settimana 52" — narrativa episodica, alto re-watch rate.</div>
+    <div class="hook-box"><div class="lbl">Duet (cross-account)</div>@zodiac.ariete posta oroscopo → @zodiac.bilancia fa Duet "la Bilancia risponde" — cross-tag naturale, porta follower da un account all'altro.</div>
+    <div class="hook-box"><div class="lbl">Stitch con trend</div>Trend virale della settimana + "ecco cosa dicono le stelle su questo" — cavalca l'algoritmo senza creare il trend da zero.</div>
+    <div class="hook-box"><div class="lbl">Match reveal (60–90s, Creator Rewards)</div>"Chi è il match perfetto del [segno]? — sveliamo i dati di 10.000 utenti" — suspense + dato dall'app. Formato lungo qualificato per RPM.</div>
+    <div class="hook-box"><div class="lbl">Mascotte reagisce</div>La mascotte del segno animata reagisce a un tweet/commento virale. Umoristico, alto share rate, zero sforzo di scrittura.</div>
+  </div>
+  <div class="grid2">
+    <div class="card s-green">
+      <h4>Hook formula — primi 2 secondi</h4>
+      <ul class="list">
+        <li>"Se sei [segno], smetti di scrollare"</li>
+        <li>"Il tuo match di questa settimana è..."</li>
+        <li>"Nessuno parla di questo per [segno]"</li>
+        <li>"[segno] nel 2026: quello che sta per succedere"</li>
+        <li>"Perché [segno A] e [segno B] non funzionano mai"</li>
+      </ul>
+    </div>
+    <div class="card s-blue">
+      <h4>Contenuto autentico (trend 2026)</h4>
+      <p style="font-size:13px;font-weight:600;line-height:1.7;color:#403930;">TikTok penalizza il contenuto over-prodotto. Zodiac ha un vantaggio: le card fumettistiche sembrano <b>fatte a mano, autentiche</b>, non da agenzia.<br><br>Usa <b>voiceover naturale</b> sulle card generate dall'app. Luce naturale > studio. Stesso contenuto in più lingue = più mercati senza più lavoro.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 6 MERCATI -->
+<div id="sec-markets" class="sec">
+  <h2 class="sh"><span class="num">06</span> Mercati & Germania</h2>
+  <div class="pitch" style="margin-bottom:16px;">
+    <h4 style="color:var(--yellow);font-family:'Bangers',cursive;font-size:20px;letter-spacing:1px;margin-bottom:10px;">★ Nuovo mercato — Germania (DE)</h4>
+    <div class="grid2">
+      <div>
+        <div class="row-kv" style="border-color:rgba(255,246,227,.2);"><span style="color:rgba(255,246,227,.7);">CAGR astrologia</span><b>+4,56% · 2025–2030</b></div>
+        <div class="row-kv" style="border-color:rgba(255,246,227,.2);"><span style="color:rgba(255,246,227,.7);">Hub principali</span><b>Berlino, Monaco, Amburgo</b></div>
+        <div class="row-kv" style="border-color:rgba(255,246,227,.2);"><span style="color:rgba(255,246,227,.7);">Comportamento</span><b>Premium-oriented, pagano per qualità</b></div>
+        <div class="row-kv" style="border-color:rgba(255,246,227,.2);"><span style="color:rgba(255,246,227,.7);">CPI stimato</span><b>~€1–2 (EMEA, Android)</b></div>
+        <div class="row-kv" style="border-color:rgba(255,246,227,.2);"><span style="color:rgba(255,246,227,.7);">Competitor locali</span><b>Mercato meno saturo vs UK/USA</b></div>
+      </div>
+      <div>
+        <p style="color:rgba(255,246,227,.7);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Strategia DE specifica</p>
+        <ul style="padding-left:16px;font-size:13px;font-weight:700;color:var(--paper);line-height:1.9;">
+          <li>Prezzo premium: <b style="color:var(--yellow);">€5,99/mese o €44,99/anno</b></li>
+          <li>Tono più preciso, non meno caldo</li>
+          <li>IG forte fascia 25–34 DE</li>
+          <li>TikTok crescita forte Gen Z DE</li>
+          <li>Hashtag: #horoskop #sternzeichen #astrologie</li>
+          <li>Lancio Fase 2 (settimane 7–10)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <h3 class="ss">Tutti i mercati — priorità e audience</h3>
+  <div style="position:relative;height:270px;margin-bottom:14px;"><canvas id="mktChart" role="img" aria-label="Bubble chart: 6 mercati per priorità lancio vs audience">IT base, ES/PT priorità 1, DE/FR fase 2, EN fase 3 massima audience.</canvas></div>
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 var(--green);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><b>Brasile + LatAm (PT + ES)</b><span class="pill win">Priorità 1 · subito</span></div><p style="font-size:12px;font-weight:600;color:var(--muted);">CPI ~$0,34 · astrologia in boom Gen Z · pagamenti Pix · €1.000 → ~3.000 installazioni</p></div>
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 var(--yellow);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><b>Italia (IT)</b><span class="pill mid">Base · attivo ora</span></div><p style="font-size:12px;font-weight:600;color:var(--muted);">60M parlanti · mercato base di test · CPI EMEA ~€1 · meno presidiato dai big US</p></div>
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 var(--blue);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><b>Germania (DE)</b><span class="pill de-badge">Fase 2 · sett. 7–10</span></div><p style="font-size:12px;font-weight:600;color:var(--muted);">84M parlanti · CAGR +4,56% · ARPU alto (€5,99/mese) · CPI ~€1–2 · mercato meno saturo</p></div>
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 var(--purple);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><b>Francia (FR)</b><span class="pill de-badge">Fase 2 · parallelo DE</span></div><p style="font-size:12px;font-weight:600;color:var(--muted);">310M francofoni · mercato maturo · buona spesa per app · CPI EMEA ~€1</p></div>
+    <div class="card" style="padding:12px 14px;box-shadow:4px 4px 0 #888;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><b>USA / UK / globale (EN)</b><span class="pill cost">Fase 3 · solo con dati solidi</span></div><p style="font-size:12px;font-weight:600;color:var(--muted);">1,5 MLD parlanti · mercato ricco · CPI USA ~$5,28 · competitor aggressivi (Co-Star, Nebula)</p></div>
+  </div>
+</div>
+
+<!-- TAB 7 KPI -->
+<div id="sec-kpi" class="sec">
+  <h2 class="sh"><span class="num">07</span> KPI & roadmap 90 giorni</h2>
+  <h3 class="ss">Funnel — da sconosciuto a premium</h3>
+  <div style="margin-bottom:18px;">
+    <div class="funnel-step"><div class="funnel-num">1</div><div><b>Sconosciuto → Follower</b><br><span style="font-size:12px;font-weight:600;color:var(--muted);">Contenuto: hook virale (Match reveal, mascotte meme). CTA: "Segui per il tuo oroscopo ogni giorno"</span></div></div>
+    <div class="funnel-step"><div class="funnel-num">2</div><div><b>Follower → Utente app (free)</b><br><span style="font-size:12px;font-weight:600;color:var(--muted);">Contenuto: edu-carousel con CTA "Trova il tuo match completo nell'app". Link in bio.</span></div></div>
+    <div class="funnel-step"><div class="funnel-num">3</div><div><b>Utente free → Premium</b><br><span style="font-size:12px;font-weight:600;color:var(--muted);">Trigger: oroscopo personalizzato, tema natale, match illimitati. €4,99/mese · €34,99/anno · DE: €5,99/€44,99</span></div></div>
+    <div class="funnel-step"><div class="funnel-num">4</div><div><b>Premium → Ebook + upsell</b><br><span style="font-size:12px;font-weight:600;color:var(--muted);">Ebook €9,99 · Guide per segno · Bundle "12 segni" · futura lettura live</span></div></div>
+  </div>
+  <h3 class="ss">Crescita follower — target 90gg</h3>
+  <div style="position:relative;height:230px;margin-bottom:14px;"><canvas id="kpiChart" role="img" aria-label="Line chart crescita follower IG e TikTok su 90 giorni">TikTok: 0 → 10.000. Instagram: 0 → 5.000.</canvas></div>
+  <div style="display:flex;gap:14px;margin-bottom:16px;font-size:12px;font-weight:700;color:var(--muted);">
+    <span><span style="display:inline-block;width:16px;height:3px;background:var(--red);margin-right:6px;vertical-align:middle;border-radius:2px;"></span>TikTok</span>
+    <span><span style="display:inline-block;width:16px;height:3px;background:var(--blue);margin-right:6px;vertical-align:middle;border-radius:2px;"></span>Instagram</span>
+  </div>
+  <div class="grid2" style="margin-bottom:18px;">
+    <div class="card s-pink">
+      <h4>Instagram @zodiac.zine</h4>
+      <div class="row-kv"><span class="k">30gg</span><b>500 follower · 3% eng rate</b></div>
+      <div class="row-kv"><span class="k">60gg</span><b>2.000 follower · 50 avg likes</b></div>
+      <div class="row-kv"><span class="k">90gg</span><b style="color:var(--green);">5.000 follower · 200+ clic/sett al link</b></div>
+      <div class="row-kv"><span class="k">10K soglia</span><b>Link sticker stories + monetizzazione</b></div>
+    </div>
+    <div class="card s-red">
+      <h4>TikTok @zodiac.zine</h4>
+      <div class="row-kv"><span class="k">30gg</span><b>1.000 follower · 1K views/video</b></div>
+      <div class="row-kv"><span class="k">60gg</span><b>5.000 follower · 5K views/video</b></div>
+      <div class="row-kv"><span class="k">90gg</span><b style="color:var(--green);">10K follower → Creator Rewards attivo</b></div>
+      <div class="row-kv"><span class="k">1 video virale</span><b>100K views = +2–5K follower</b></div>
+    </div>
+  </div>
+  <h3 class="ss">Roadmap 90 giorni</h3>
+  <div class="grid3" style="margin-bottom:18px;">
+    <div class="phase-card">
+      <span class="phase-badge" style="color:var(--green);">Fase 1 · sett. 1–4</span>
+      <h4>Fondamenta</h4>
+      <ul class="list"><li>Lancia @zodiac.zine + 4 account-elemento IG e TK</li><li>1 post/giorno su @zodiac.zine</li><li>Focus IT + ES + PT/BR</li><li>Zero budget paid</li><li>Misura quali format girano meglio</li></ul>
+      <div style="margin-top:10px;font-family:'Space Mono',monospace;font-size:11px;color:var(--green);font-weight:700;">Target: 500 IG · 1K TK</div>
+    </div>
+    <div class="phase-card">
+      <span class="phase-badge" style="color:var(--p1);">Fase 2 · sett. 5–8</span>
+      <h4>Crescita + DE</h4>
+      <ul class="list"><li>Lancia contenuti DE (Horoskop, Sternzeichen)</li><li>Primo test paid: €500 in BR/LatAm Android</li><li>Attiva Duet TikTok tra account-elemento</li><li>Misura CPI reale e conversione premium</li><li>Lancia ebook se c'è trazione</li></ul>
+      <div style="margin-top:10px;font-family:'Space Mono',monospace;font-size:11px;color:var(--p1);font-weight:700;">Target: 2K IG · 5K TK</div>
+    </div>
+    <div class="phase-card">
+      <span class="phase-badge" style="color:var(--blue);">Fase 3 · sett. 9–13</span>
+      <h4>Monetizzazione</h4>
+      <ul class="list"><li>10K TK → Creator Rewards attivi</li><li>Apri 12 account-segno se macchina gira</li><li>Scala paid dove CPI + retention reggono</li><li>Considera EN se numeri DE/FR solidi</li><li>Primo report mensile entrate app</li></ul>
+      <div style="margin-top:10px;font-family:'Space Mono',monospace;font-size:11px;color:var(--blue);font-weight:700;">Target: 5K IG · 10K TK · primi premium</div>
+    </div>
+  </div>
+  <h3 class="ss">Prossime 3 azioni immediate</h3>
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <div class="card s-yellow" style="padding:12px 16px;display:flex;gap:14px;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--yellow);font-family:'Bangers',cursive;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div><div style="font-size:13px;font-weight:700;">Crea i 5 account social (IG + TK): @zodiac.zine + 4 elementi. Bio in 3 lingue (IT, EN, ES), link unico (Linktree o link app).</div></div>
+    <div class="card s-pink" style="padding:12px 16px;display:flex;gap:14px;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--yellow);font-family:'Bangers',cursive;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div><div style="font-size:13px;font-weight:700;">Produci 7 post di lancio (Reel oroscopo + 2 card match + 1 mascotte + 1 edu + 1 poll + 1 componi-la-frase). Pubblica giorno 1.</div></div>
+    <div class="card s-blue" style="padding:12px 16px;display:flex;gap:14px;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--yellow);font-family:'Bangers',cursive;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div><div style="font-size:13px;font-weight:700;">Attiva versione DE e crea 3 post di lancio in tedesco (#horoskop #sternzeichen #astrologie). Pubblica settimana 2.</div></div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function show(id,btn){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('show'));document.getElementById('sec-'+id).classList.add('show');document.querySelectorAll('.tabnav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+
+var DAYS=[
+  {p:'p1',pl:'IG',t:'Lancio @zodiac.zine — oroscopo Ariete'},
+  {p:'p2',pl:'BOTH',t:'Match del giorno: Scorpione + Pesci'},
+  {p:'p3',pl:'TK',t:'Mascotte Gemelli — chi sei davvero?'},
+  {p:'p4',pl:'IG',t:'Rising sign: cosa cambia tutto'},
+  {p:'p5',pl:'IG',t:'Poll: sei più sole o luna?'},
+  {p:'p1',pl:'TK',t:'Oroscopo ES — Leo: semana de amor'},
+  {p:'p2',pl:'BOTH',t:'Weekly match — i 3 più compatibili'},
+  {p:'p1',pl:'TK',t:'Oroscopo PT/BR — Câncer e amor'},
+  {p:'p3',pl:'IG',t:'Mascotte Leone vs Acquario'},
+  {p:'p4',pl:'IG',t:'Tema natale in 3 passi — carousel'},
+  {p:'p1',pl:'TK',t:'DE launch — Widder Tageshoroskop'},
+  {p:'p2',pl:'IG',t:'Coppie famose e il loro segno'},
+  {p:'p5',pl:'IG',t:'Componi la frase — Bilancia'},
+  {p:'p2',pl:'BOTH',t:'Monthly recap: match top 5'},
+  {p:'p1',pl:'TK',t:'Oroscopo FR — Gémeaux cette semaine'},
+  {p:'p4',pl:'IG',t:'Le 12 case astrologiche — serie'},
+  {p:'p3',pl:'TK',t:'Mascotte DE: Steinbock-Persönlichkeit'},
+  {p:'p2',pl:'BOTH',t:'Match: Capricorno + Cancro perché funziona'},
+  {p:'p5',pl:'IG',t:'UGC: miglior frase dei follower'},
+  {p:'p1',pl:'TK',t:'Mercurio retrogrado — sopravvivi così'},
+  {p:'p2',pl:'TK',t:'Duet: @fuoco risponde a @acqua'},
+  {p:'p1',pl:'TK',t:'EN launch — Scorpio season vibes'},
+  {p:'p4',pl:'IG',t:'Ascendente spiegato in 60 secondi'},
+  {p:'p3',pl:'BOTH',t:'Mascotte Sagittario in viaggio'},
+  {p:'p5',pl:'IG',t:'Challenge: #ZodiacChallenge lancio'},
+  {p:'p2',pl:'TK',t:'Match reveal: dati da 10K utenti'},
+  {p:'p1',pl:'TK',t:'FR: Gémeaux vs Sagittaire — chi vince?'},
+  {p:'p2',pl:'BOTH',t:'Oroscopo settimanale — tutti i 12 segni'},
+  {p:'p5',pl:'IG',t:'UGC: frase del mese vincitrice'},
+  {p:'p2',pl:'BOTH',t:'Match del mese — classifica finale'}
+];
+var PCOLS={p1:'#EF9F27',p2:'#D4537E',p3:'#1D9E75',p4:'#378ADD',p5:'#7F77DD'};
+var activeF='all';
+function renderCal(){
+  var g=document.getElementById('calGrid');g.innerHTML='';
+  DAYS.forEach(function(d,i){
+    var el=document.createElement('div');el.className='cal-cell';
+    var vis=activeF==='all'||activeF===d.p||(activeF==='IG'&&(d.pl==='IG'||d.pl==='BOTH'))||(activeF==='TK'&&(d.pl==='TK'||d.pl==='BOTH'));
+    if(!vis)el.classList.add('dimmed');
+    var pc=d.pl==='TK'?'#ec2e36':d.pl==='IG'?'#6b4ff0':'#1D9E75';
+    var pt=d.pl==='BOTH'?'IG+TK':d.pl;
+    el.innerHTML='<div class="day-n">'+(i+1)+' <span style="color:'+pc+';font-size:9px;">'+pt+'</span></div><div><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+PCOLS[d.p]+';margin-right:3px;vertical-align:middle;"></span>'+d.t+'</div>';
+    g.appendChild(el);
+  });
+}
+function filterCal(btn,f){
+  activeF=f;
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  renderCal();
+}
+renderCal();
+
+new Chart(document.getElementById('compChart'),{type:'scatter',data:{datasets:[
+  {label:'Zodiac (tu)',data:[{x:-0.9,y:0.85}],pointRadius:16,pointStyle:'star',backgroundColor:'#ec2e36',borderColor:'#15110d',borderWidth:2},
+  {label:'Co-Star',data:[{x:-0.5,y:0.3}],pointRadius:9,backgroundColor:'#888',borderColor:'#15110d',borderWidth:1.5},
+  {label:'Nebula',data:[{x:0.2,y:0.4}],pointRadius:9,backgroundColor:'#888',borderColor:'#15110d',borderWidth:1.5},
+  {label:'The Pattern',data:[{x:0.1,y:-0.5}],pointRadius:9,backgroundColor:'#888',borderColor:'#15110d',borderWidth:1.5},
+  {label:'CHANI',data:[{x:0.6,y:-0.3}],pointRadius:9,backgroundColor:'#888',borderColor:'#15110d',borderWidth:1.5}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.dataset.label;}}}},scales:{x:{min:-1.2,max:1.2,title:{display:true,text:'← informale   formale →',font:{size:11}},grid:{color:'rgba(21,17,13,.08)'},ticks:{callback:function(v){return v===0?'neutro':null;}}},y:{min:-1,max:1.1,title:{display:true,text:'↑ entertainment   educativo ↓',font:{size:11}},grid:{color:'rgba(21,17,13,.08)'},ticks:{callback:function(v){return v===0?'mix':null;}}}}}});
+
+new Chart(document.getElementById('mktChart'),{type:'bubble',data:{datasets:[
+  {label:'PT/BR',data:[{x:1,y:210,r:16}],backgroundColor:'#1D9E75',borderColor:'#15110d',borderWidth:1.5},
+  {label:'ES/LatAm',data:[{x:1,y:490,r:20}],backgroundColor:'#1D9E75',borderColor:'#15110d',borderWidth:1.5},
+  {label:'IT',data:[{x:2,y:60,r:11}],backgroundColor:'#EF9F27',borderColor:'#15110d',borderWidth:1.5},
+  {label:'DE',data:[{x:2,y:84,r:13}],backgroundColor:'#378ADD',borderColor:'#15110d',borderWidth:2},
+  {label:'FR',data:[{x:2,y:310,r:15}],backgroundColor:'#7F77DD',borderColor:'#15110d',borderWidth:1.5},
+  {label:'EN',data:[{x:3,y:1500,r:26}],backgroundColor:'#888',borderColor:'#15110d',borderWidth:1.5}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.raw.y+'M parlanti';}}}},scales:{x:{min:0,max:4,title:{display:true,text:'Priorità lancio',font:{size:11}},ticks:{callback:function(v){return['','Priorità 1','Fase 2','Fase 3',''][v]||'';}},grid:{color:'rgba(21,17,13,.08)'}},y:{min:0,max:1600,title:{display:true,text:'Audience (M parlanti)',font:{size:11}},grid:{color:'rgba(21,17,13,.08)'}}}}});
+
+new Chart(document.getElementById('kpiChart'),{type:'line',data:{labels:['Lancio','Sett 2','Sett 4','Sett 6','Sett 8','Sett 10','90gg'],datasets:[
+  {label:'TikTok',data:[0,300,1000,3000,5500,8000,10000],borderColor:'#ec2e36',backgroundColor:'rgba(236,46,54,.08)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#ec2e36'},
+  {label:'Instagram',data:[0,150,500,1200,2200,3500,5000],borderColor:'#2f9bdb',backgroundColor:'rgba(47,155,219,.08)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#2f9bdb'}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(21,17,13,.08)'}},x:{grid:{color:'rgba(21,17,13,.08)'}}}}});
+</script>
+</body>
+</html>

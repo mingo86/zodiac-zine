@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac — Social Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff6e3;--ink:#15110d;--red:#ec2e36;--green:#36b06a;--yellow:#ffd23f;--blue:#2f9bdb;--pink:#ff2d6f;--purple:#6b4ff0;}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#2c2138,#181226);background-size:15px 15px,100% 100%;color:#fff6e3;font-family:'Baloo 2',system-ui,sans-serif;min-height:100vh;padding:18px 12px 60px}
+.head{max-width:1000px;margin:0 auto 14px;text-align:center}
+.ksuper{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:3px;color:#b9a7ff;text-transform:uppercase}
+h1{font-family:'Bangers',cursive;font-size:clamp(30px,6vw,52px);color:var(--yellow);-webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink);letter-spacing:1.5px;margin:4px 0}
+.sub{font-weight:600;color:#cdbfff;font-size:14px;max-width:640px;margin:0 auto}
+.shell{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:330px 1fr;gap:18px}
+@media(max-width:820px){.shell{grid-template-columns:1fr}}
+.panel{background:var(--paper);color:var(--ink);border:4px solid var(--ink);border-radius:16px;box-shadow:6px 6px 0 rgba(0,0,0,.35);padding:16px}
+.panel h2{font-family:'Bangers',cursive;letter-spacing:1px;font-size:20px;margin:0 0 10px}
+label.f{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#6b6356;margin:10px 0 4px}
+select,.seg{width:100%;font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 11px;border:3px solid var(--ink);border-radius:10px;background:#fff;color:var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer}
+.seg{display:flex;gap:0;padding:0;overflow:hidden}
+.seg button{flex:1;border:none;background:#fff;font-family:'Baloo 2';font-weight:700;font-size:13px;padding:9px 4px;cursor:pointer;color:var(--ink)}
+.seg button.on{background:var(--ink);color:var(--yellow)}
+.seg button+button{border-left:2px solid var(--ink)}
+.tabs{display:flex;gap:6px;justify-content:center;margin:0 auto 14px;max-width:1000px;flex-wrap:wrap}
+.tab{font-family:'Baloo 2';font-weight:800;font-size:13px;padding:8px 16px;border-radius:999px;border:3px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.tab.on{background:var(--yellow)}
+.view{display:none}.view.on{display:block}
+
+/* ---- CARD ---- */
+.cardwrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.card{position:relative;width:min(540px,90vw);aspect-ratio:1/1;border:5px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:0 12px 0 rgba(0,0,0,.4);background:#0c0a16}
+.card .bg{position:absolute;inset:0;width:100%;height:100%}
+.card .title{position:absolute;top:12px;left:0;right:0;text-align:center;z-index:6;padding:0 10px}
+.card .title .t1{font-family:'Baloo 2';font-weight:700;font-size:18px;color:#fff;text-shadow:1px 1px 0 #000,0 0 6px #000}
+.card .title .t2{font-family:'Bangers',cursive;font-size:34px;letter-spacing:1px;-webkit-text-stroke:1.4px #000;text-shadow:3px 3px 0 #000;line-height:.92}
+.card .checks{position:absolute;top:86px;left:0;right:0;display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;padding:0 16px;z-index:6}
+.card .chk{display:flex;gap:5px;font-size:12px;font-weight:700;color:#fff;text-shadow:1px 1px 2px #000,0 0 4px #000;line-height:1.12}
+.card .chk .bx{color:var(--pink);font-weight:800}
+.card .annot{position:absolute;inset:64px 0 0;z-index:6;pointer-events:none}
+.card .an{position:absolute;max-width:38%;font-size:11px;font-weight:700;line-height:1.12;text-shadow:1px 1px 2px #000,0 0 4px #000}
+.card .stage{position:absolute;left:0;right:0;bottom:0;height:54%;z-index:4;display:flex;align-items:flex-end;justify-content:center}
+.card .m{position:relative;width:36%;max-width:180px}
+.card .m .omino{width:100%;height:auto;filter:drop-shadow(0 5px 5px rgba(0,0,0,.5))}
+.card .m.left{margin-right:-5%;z-index:3}.card .m.right{margin-left:-5%;z-index:2}
+.card .mark{position:absolute;right:9px;bottom:7px;z-index:7;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:#fff;opacity:.6;text-shadow:0 0 4px #000}
+.btn{font-family:'Baloo 2';font-weight:700;font-size:13px;padding:8px 14px;border-radius:999px;border:2.5px solid var(--ink);background:var(--yellow);color:var(--ink);cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.cap{background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:12px;padding:12px;width:min(540px,90vw);box-shadow:4px 4px 0 rgba(0,0,0,.3)}
+.cap h3{font-family:'Bangers',cursive;letter-spacing:.5px;margin:0 0 6px;font-size:16px;display:flex;justify-content:space-between;align-items:center}
+.cap .txt{font-size:13px;line-height:1.4;white-space:pre-wrap;font-weight:600}
+.cap .tags{font-size:11.5px;color:#3f6ea5;font-weight:700;margin-top:6px;line-height:1.5}
+.copy{font-size:11px;padding:4px 10px}
+/* playbook */
+.pb{max-width:820px;margin:0 auto;background:var(--paper);color:var(--ink);border:4px solid var(--ink);border-radius:16px;padding:20px 22px;box-shadow:6px 6px 0 rgba(0,0,0,.35)}
+.pb h2{font-family:'Bangers',cursive;font-size:24px;margin:20px 0 6px}
+.pb h2:first-child{margin-top:0}
+.pb p,.pb li{font-size:14px;line-height:1.5;font-weight:600;color:#3f3930}
+.pb table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+.pb th,.pb td{text-align:left;padding:6px 8px;border-bottom:2px solid #e3dcc8;vertical-align:top}
+.pb th{font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;border-bottom:3px solid var(--ink)}
+.kbox{background:var(--yellow);border:3px solid var(--ink);border-radius:12px;padding:11px 13px;font-weight:700;font-size:13px;box-shadow:3px 3px 0 var(--ink);margin:10px 0}
+</style>
+</head>
+<body>
+<div class="head">
+  <div class="ksuper">★ social studio · crea i contenuti instagram</div>
+  <h1>ZODIAC · SOCIAL STUDIO</h1>
+  <p class="sub">Componi le "scenette" con le mascotte (Lui/Lei) dentro un fondale, scegli il format, e copia caption + hashtag pronti. Poi fai screenshot della card.</p>
+</div>
+
+<div class="tabs">
+  <button class="tab on" data-v="gen">🎴 Generatore</button>
+  <button class="tab" data-v="play">📋 Playbook</button>
+</div>
+
+<!-- GENERATORE -->
+<div class="view on" id="v-gen">
+  <div class="shell">
+    <div class="panel">
+      <h2>★ Componi</h2>
+      <label class="f">Format</label>
+      <select id="fmt">
+        <option value="couple">Coppia — "in relationships"</option>
+        <option value="howto">Come conquistare — checklist</option>
+      </select>
+      <label class="f">Scena</label>
+      <select id="scene">
+        <option value="bar">Bar / cena</option>
+        <option value="sofa">Divano / Netflix</option>
+        <option value="bed">Camera da letto</option>
+        <option value="out">Esterno (natura)</option>
+      </select>
+      <label class="f">Lingua</label>
+      <select id="lang"><option value="it">Italiano</option><option value="en">English</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option></select>
+      <div id="signs2">
+        <label class="f">Segno A (Lui)</label>
+        <select id="sA"></select>
+        <label class="f">Segno B (Lei)</label>
+        <select id="sB"></select>
+      </div>
+      <div id="signs1" style="display:none">
+        <label class="f">Segno</label>
+        <select id="sOne"></select>
+      </div>
+      <button class="btn" id="rnd" style="margin-top:14px;width:100%">🎲 Combinazione casuale</button>
+    </div>
+
+    <div class="cardwrap">
+      <div class="card" id="card"></div>
+      <button class="btn" id="dl">⬇︎ Scarica la card (PNG)</button>
+      <div class="cap">
+        <h3>Caption <button class="btn copy" data-t="capTxt">copia</button></h3>
+        <div class="txt" id="capTxt"></div>
+        <div class="tags" id="capTags"></div>
+        <button class="btn copy" data-t="capTags" style="margin-top:8px">copia hashtag</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAYBOOK -->
+<div class="view" id="v-play">
+  <div class="pb">
+    <h2>📋 Il sistema in 6 format</h2>
+    <p>Pochi schemi ripetibili = riconoscibilità del brand. Ognuno mappa una feature che l'app <b>già genera</b>.</p>
+    <table>
+      <tr><th>Format</th><th>Cosa mostra</th><th>Feature app</th></tr>
+      <tr><td><b>X & Y in relationships</b></td><td>Coppia nella scena + annotazioni nei 2 colori</td><td>Match del Giorno / affinità</td></tr>
+      <tr><td><b>Come conquistare un… X</b></td><td>Checklist con le spunte</td><td>Dati segno (deal/advice)</td></tr>
+      <tr><td><b>X relationship advice</b></td><td>Fumetto, citazione in 1ª persona</td><td>Componi la Frase / voci mascotte</td></tr>
+      <tr><td><b>X things I say</b></td><td>Ritratto + battute sparse</td><td>Voci mascotte (ZVOCI)</td></tr>
+      <tr><td><b>venus/moon in… X</b></td><td>Pianeta nel segno, checklist "io…"</td><td>Tema natale</td></tr>
+      <tr><td><b>truth about… X</b></td><td>Ritratto del segno</td><td>Pagina segno (zine)</td></tr>
+    </table>
+    <h2>✍️ La formula della caption (3 parti)</h2>
+    <p>1) <b>Nugget astrologico</b> (1-2 frasi con una verità vera) → autorevolezza.<br>
+    2) <b>CTA che fa taggare</b>: "Sei stato in una coppia X & Y? Taggala!" → reach organica.<br>
+    3) <b>Blocco hashtag</b>: ~25-30 (per-segno ×2 + generici).</p>
+    <div class="kbox">La CTA "tagga" è il cross-tagging fatto bene — ed è esattamente ciò che il Match del Giorno genera già. Niente watermark a tappeto: basta una piccola firma.</div>
+    <h2>🗓️ Calendario 30 giorni (ritmo consigliato)</h2>
+    <p>1 post/giorno, alternando i format e i segni. Lunedì coppia · Martedì advice · Mercoledì "things I say" · Giovedì come-conquistare · Venerdì venus/moon · Sabato match del giorno · Domenica ritratto/truth. Ripeti per 4 settimane cambiando i segni → 30 contenuti senza ripetersi.</p>
+    <h2>📈 Hashtag: strategia</h2>
+    <p>Per ogni post: i tag del/dei segno/i (×2 se coppia) + i generici. Il generatore te li costruisce già. Localizza i generici quando posti in IT/ES/PT.</p>
+  </div>
+</div>
+
+<script src="lang/i18n.js"></script>
+<script src="coppie/mascots.js"></script>
+<script src="coppie/anim.js"></script>
+<script src="coppie/engine.js"></script>
+<script src="coppie/engine.en.js"></script>
+<script src="coppie/engine.fr.js"></script>
+<script src="coppie/engine.es.js"></script>
+<script src="coppie/engine.pt.js"></script>
+<script src="coppie/engine.de.js"></script>
+<script src="lang/wire.js"></script>
+<script src="natal/engine.js"></script>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var EL={fuoco:"#ec2e36",terra:"#36b06a",aria:"#f5b700",acqua:"#2f9bdb"};
+  var SIGNS=[
+    {k:"ariete",el:"fuoco",g:"♈"},{k:"toro",el:"terra",g:"♉"},{k:"gemelli",el:"aria",g:"♊"},
+    {k:"cancro",el:"acqua",g:"♋"},{k:"leone",el:"fuoco",g:"♌"},{k:"vergine",el:"terra",g:"♍"},
+    {k:"bilancia",el:"aria",g:"♎"},{k:"scorpione",el:"acqua",g:"♏"},{k:"sagittario",el:"fuoco",g:"♐"},
+    {k:"capricorno",el:"terra",g:"♑"},{k:"acquario",el:"aria",g:"♒"},{k:"pesci",el:"acqua",g:"♓"}
+  ];
+  var NAME={
+    it:["Ariete","Toro","Gemelli","Cancro","Leone","Vergine","Bilancia","Scorpione","Sagittario","Capricorno","Acquario","Pesci"],
+    en:["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"],
+    de:["Widder","Stier","Zwillinge","Krebs","Löwe","Jungfrau","Waage","Skorpion","Schütze","Steinbock","Wassermann","Fische"],
+    fr:["Bélier","Taureau","Gémeaux","Cancer","Lion","Vierge","Balance","Scorpion","Sagittaire","Capricorne","Verseau","Poissons"],
+    es:["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"],
+    pt:["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"]
+  };
+  var TAG=["aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces"];
+  function idx(k){for(var i=0;i<SIGNS.length;i++)if(SIGNS[i].k===k)return i;return 0;}
+  function nm(k,lang){return NAME[lang]?NAME[lang][idx(k)]:NAME.it[idx(k)];}
+
+  var UI={
+    it:{inrel:"in coppia…",howto:"come conquistare…",cta:function(a,b){return "Vi ritrovate in "+a+" & "+b+"? Taggala! 👇";},ctaSign:function(s){return "Tagga un/una "+s+" che fa proprio così! 👇";}},
+    en:{inrel:"in relationships…",howto:"how to date a…",cta:function(a,b){return "Tag a "+a+" & "+b+" couple you know! 👇";},ctaSign:function(s){return "Tag a "+s+" who does exactly this! 👇";}},
+    de:{inrel:"in Beziehungen…",howto:"so datest du…",cta:function(a,b){return "Markiere ein "+a+" & "+b+" Paar! 👇";},ctaSign:function(s){return "Markiere einen "+s+", der genau so ist! 👇";}},
+    fr:{inrel:"en couple…",howto:"comment séduire un…",cta:function(a,b){return "Identifie un couple "+a+" & "+b+" ! 👇";},ctaSign:function(s){return "Identifie un "+s+" qui fait pareil ! 👇";}},
+    es:{inrel:"en pareja…",howto:"cómo conquistar a un…",cta:function(a,b){return "¡Etiqueta a una pareja "+a+" & "+b+"! 👇";},ctaSign:function(s){return "¡Etiqueta a un "+s+" que hace justo esto! 👇";}},
+    pt:{inrel:"em relacionamentos…",howto:"como conquistar um…",cta:function(a,b){return "Marque um casal "+a+" & "+b+"! 👇";},ctaSign:function(s){return "Marque um "+s+" que faz exatamente isso! 👇";}}
+  };
+  function ui(lang){return UI[lang]||UI.it;}
+
+  // checklist "come conquistare" (IT + EN; altre lingue → EN)
+  var HOWTO={
+   it:{ariete:["Sta' al mio passo","Sfidami, non annoiarmi","Vai dritto, niente giochetti","Lasciami vincere ogni tanto","Tieni la mia energia"],
+    toro:["Portami a mangiare bene","Niente fretta, mai","Sii affidabile come una roccia","Comfort prima di tutto","Mostrami che resti"],
+    gemelli:["Fammi ridere e ragionare","Niente noia","Reggi le mie mille idee","Scrivimi e stimolami","Dammi spazio per cambiare idea"],
+    cancro:["Falmi sentire al sicuro","Ricorda le piccole cose","Niente freddezza","Costruiamo casa","Proteggi quel che proviamo"],
+    leone:["Trattami da protagonista","Niente confronti con altri","Apprezzami ad alta voce","Sii fiero di me","Dammi attenzione vera"],
+    vergine:["Abbi la tua vita in ordine","Niente caos o drammi","Sii pulito e puntuale","Non scaricarmi tutto","Apprezza i dettagli"],
+    bilancia:["Niente litigi inutili","Trattami con eleganza","Decidi tu ogni tanto","Tieni tutto armonioso","Fammi sentire scelto/a"],
+    scorpione:["Lealtà o niente","Niente bugie, le sento","Dammi intimità vera","Non giocare col mio cuore","Reggi la mia intensità"],
+    sagittario:["Dammi libertà","Niente gabbie o routine","Dì sempre la verità","Parti con me all'improvviso","Non tarparmi le ali"],
+    capricorno:["Abbi la tua vita in ordine","Offrimi da bere per sciogliermi","Sii responsabile","Portami in posti belli (prenotati)","Sostieni i miei obiettivi"],
+    acquario:["Rispetta i miei spazi","Prima amico, poi amante","Niente gelosie","Stupiscimi con le idee","Lasciami essere strano/a"],
+    pesci:["Dammi tanto affetto","Sii dolce e creativo","Niente durezza","Sogna con me","Capiscimi al volo"]},
+   en:{ariete:["Keep up with my pace","Challenge me, don't bore me","Be direct — no mind games","Let me win sometimes","Match my energy"],
+    toro:["Take me somewhere with good food","No rushing, ever","Be reliable as a rock","Comfort above all","Show me you'll stay"],
+    gemelli:["Make me laugh and think","No boredom","Handle my thousand ideas","Text me and stimulate me","Let me change my mind"],
+    cancro:["Make me feel safe","Remember the little things","No coldness","Let's build a home","Protect what we feel"],
+    leone:["Treat me like the lead","Don't compare me to others","Praise me out loud","Be proud of me","Give me real attention"],
+    vergine:["Have your life together","No chaos or drama","Be clean and on time","Don't dump it all on me","Notice the details"],
+    bilancia:["No pointless fights","Treat me with class","Decide sometimes","Keep things harmonious","Make me feel chosen"],
+    scorpione:["Loyalty or nothing","No lies — I can tell","Give me real intimacy","Don't play with my heart","Handle my intensity"],
+    sagittario:["Give me freedom","No cages or routine","Always tell the truth","Take off with me","Don't clip my wings"],
+    capricorno:["Have your life together","Buy us a drink to loosen up","Be responsible","Take us to nice places (booked)","Support our goals"],
+    acquario:["Respect my space","Friend first, lover second","No jealousy","Wow me with ideas","Let me be weird"],
+    pesci:["Give me lots of affection","Be sweet and creative","No harshness","Dream with me","Get me without words"]}
+  };
+  function howtoItems(k,lang){var d=HOWTO[lang]||HOWTO.en;return d[k]||HOWTO.en[k];}
+
+  /* ---------------- SCENE (fondali SVG) ---------------- */
+  function scene(id){
+    if(id==="sofa") return ''
+      +'<svg class="bg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'
+      +'<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2e5e"/><stop offset="1" stop-color="#241b40"/></linearGradient>'
+      +'<linearGradient id="tv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fd4ff"/><stop offset="1" stop-color="#2f7fd0"/></linearGradient></defs>'
+      +'<rect width="100" height="100" fill="url(#wall)"/>'
+      +'<rect x="0" y="74" width="100" height="26" fill="#2a2140"/>'
+      +'<rect x="26" y="14" width="48" height="28" rx="2" fill="#0c0a16" stroke="#000" stroke-width="1.2"/><rect x="29" y="17" width="42" height="22" rx="1" fill="url(#tv)" opacity=".9"/>'
+      +'<g fill="#fff" opacity=".25"><polygon points="32,38 40,20 44,20 36,38"/><polygon points="48,38 58,20 61,20 51,38"/></g>'
+      +'<rect x="6" y="70" width="88" height="8" rx="4" fill="#c0506a"/>'
+      +'<rect x="2" y="60" width="22" height="22" rx="6" fill="#d65f7a" stroke="#000" stroke-width="1"/><rect x="76" y="60" width="22" height="22" rx="6" fill="#d65f7a" stroke="#000" stroke-width="1"/>'
+      +'<circle cx="14" cy="40" r="2.6" fill="#ffd23f"/><line x1="14" y1="0" x2="14" y2="37" stroke="#1a1430" stroke-width="1"/>'
+      +'</svg>';
+    if(id==="bed") return ''
+      +'<svg class="bg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'
+      +'<defs><linearGradient id="nite" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2c6b"/><stop offset="1" stop-color="#1a1336"/></linearGradient></defs>'
+      +'<rect width="100" height="100" fill="url(#nite)"/>'
+      +'<rect x="62" y="10" width="30" height="26" rx="2" fill="#0e1430" stroke="#0c0a16" stroke-width="1.2"/><circle cx="84" cy="18" r="5" fill="#ffe27a"/><g fill="#fff" opacity=".7"><circle cx="68" cy="16" r=".6"/><circle cx="73" cy="24" r=".6"/><circle cx="78" cy="14" r=".5"/></g>'
+      +'<rect x="-2" y="60" width="104" height="14" rx="3" fill="#5a3b6e"/>'
+      +'<rect x="-2" y="68" width="104" height="32" fill="#caa8e0"/>'
+      +'<rect x="-2" y="68" width="104" height="9" fill="#e7d4f2"/>'
+      +'<rect x="8" y="62" width="20" height="10" rx="4" fill="#fff" opacity=".9"/><rect x="72" y="62" width="20" height="10" rx="4" fill="#fff" opacity=".9"/>'
+      +'</svg>';
+    if(id==="out") return ''
+      +'<svg class="bg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'
+      +'<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="0.5" stop-color="#ff9ec2"/><stop offset="1" stop-color="#8ec5ff"/></linearGradient></defs>'
+      +'<rect width="100" height="100" fill="url(#sky)"/>'
+      +'<circle cx="74" cy="26" r="11" fill="#fff3c4"/><circle cx="74" cy="26" r="15" fill="#fff3c4" opacity=".35"/>'
+      +'<g fill="#fff" opacity=".8"><ellipse cx="22" cy="20" rx="11" ry="5"/><ellipse cx="30" cy="17" rx="7" ry="4"/></g>'
+      +'<path d="M0,72 Q30,60 55,72 T100,70 V100 H0 Z" fill="#5bb85f"/>'
+      +'<path d="M0,82 Q40,72 70,84 T100,80 V100 H0 Z" fill="#3f9e51"/>'
+      +'<g><rect x="12" y="60" width="3" height="16" fill="#7a4a25"/><circle cx="13.5" cy="56" r="8" fill="#2f8f43"/></g>'
+      +'</svg>';
+    // default: bar
+    return ''
+      +'<svg class="bg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'
+      +'<defs><linearGradient id="room" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2b6b"/><stop offset="0.55" stop-color="#241a45"/><stop offset="1" stop-color="#140f28"/></linearGradient>'
+      +'<linearGradient id="spot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe27a" stop-opacity="0.5"/><stop offset="1" stop-color="#ffe27a" stop-opacity="0"/></linearGradient>'
+      +'<linearGradient id="cnt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4a2a"/><stop offset="1" stop-color="#3a2716"/></linearGradient></defs>'
+      +'<rect width="100" height="100" fill="url(#room)"/>'
+      +'<polygon points="26,0 34,0 40,52 20,52" fill="url(#spot)"/><polygon points="66,0 74,0 80,52 60,52" fill="url(#spot)"/>'
+      +'<g fill="#15102a" opacity="0.85"><rect x="7" y="9" width="3.4" height="11" rx="1"/><rect x="13" y="7" width="3.4" height="13" rx="1"/><rect x="19" y="10" width="3" height="10" rx="1"/><rect x="25" y="6" width="3.6" height="14" rx="1"/><rect x="31" y="9" width="3" height="11" rx="1"/><rect x="37" y="8" width="3.4" height="12" rx="1"/><rect x="60" y="8" width="3.4" height="12" rx="1"/><rect x="66" y="6" width="3" height="14" rx="1"/><rect x="72" y="10" width="3.6" height="10" rx="1"/><rect x="78" y="7" width="3" height="13" rx="1"/><rect x="84" y="9" width="3.4" height="11" rx="1"/><rect x="90" y="8" width="3" height="12" rx="1"/></g>'
+      +'<rect x="0" y="78" width="100" height="22" fill="url(#cnt)"/><rect x="0" y="76" width="100" height="3" fill="#86603a"/>'
+      +'</svg>';
+  }
+
+  /* ---------------- RENDER CARD ---------------- */
+  var st={fmt:"couple",scene:"bar",lang:"it",a:"ariete",b:"bilancia",one:"capricorno"};
+  var lastCap="",lastTags="";
+
+  function massc(k,look,variant,mood){var s=bySign(k);return window.MASCOT({k:k,el:s.el},EL[s.el],"stampa",look,variant==="m"?(mood||"happy"):(mood||"love"),variant);}
+  function bySign(k){return SIGNS[idx(k)];}
+
+  function render(){
+    var L=st.lang, U=ui(L), card=$("card");
+    var html=scene(st.scene);
+    if(st.fmt==="couple"){
+      var a=bySign(st.a), b=bySign(st.b);
+      var colA=EL[a.el], colB=EL[b.el];
+      var R=null;
+      try{ if(window.ZWIRE) window.ZWIRE.activate(L); R=window.ZODIAC.computeCouple(st.a,st.b,"amore"); }catch(e){}
+      var nA=nm(st.a,L), nB=nm(st.b,L);
+      html+='<div class="title"><div class="t2" style="color:'+colA+'">'+nA+' <span style="color:#fff">&amp;</span> <span style="color:'+colB+'">'+nB+'</span></div><div class="t1">'+U.inrel+'</div></div>';
+      // annotazioni: 3 a sinistra (colA), 3 a destra (colB)
+      var left=[], right=[];
+      if(R){
+        left=[R.unisce, R.h2h[0].lab+": "+R.h2h[0].va, R.h2h[3].va];
+        right=[R.scotta, R.h2h[0].lab+": "+R.h2h[1].vb, R.h2h[4].vb];
+      }
+      var posL=[[3,4],[3,30],[3,56]], posR=[[58,8],[60,34],[60,60]];
+      var an="";
+      left.forEach(function(t,i){ an+='<div class="an" style="left:'+posL[i][0]+'%;top:'+posL[i][1]+'%;color:'+colA+'">'+esc(t)+'</div>'; });
+      right.forEach(function(t,i){ an+='<div class="an" style="left:'+posR[i][0]+'%;top:'+posR[i][1]+'%;text-align:right;color:'+colB+'">'+esc(t)+'</div>'; });
+      html+='<div class="annot">'+an+'</div>';
+      html+='<div class="stage"><div class="m left">'+massc(st.a,1,"m","love")+'</div><div class="m right">'+massc(st.b,-1,"f","love")+'</div></div>';
+      // caption
+      var verd=R?R.verdict:"";
+      lastCap=nA+" & "+nB+" "+U.inrel+"\n\n"+verd+"\n\n"+U.cta(nA,nB);
+      lastTags=tagsFor([st.a,st.b]);
+    } else {
+      var k=st.one, s=bySign(k), col=EL[s.el], nme=nm(k,L);
+      html+='<div class="title"><div class="t1">'+U.howto+'</div><div class="t2" style="color:'+col+'">'+nme.toUpperCase()+'</div></div>';
+      var items=howtoItems(k,L);
+      var ch=items.map(function(t){return '<div class="chk"><span class="bx">☑</span><span>'+esc(t)+'</span></div>';}).join("");
+      html+='<div class="checks">'+ch+'</div>';
+      html+='<div class="stage"><div class="m left">'+massc(k,1,"m","happy")+'</div><div class="m right">'+massc(k,-1,"f","love")+'</div></div>';
+      lastCap=U.howto+" "+nme+" "+s.g+"\n\n• "+items.join("\n• ")+"\n\n"+U.ctaSign(nme);
+      lastTags=tagsFor([k]);
+    }
+    html+='<div class="mark">zodiac</div>';
+    card.innerHTML=html;
+    $("capTxt").textContent=lastCap;
+    $("capTags").textContent=lastTags;
+    if(window.ZANIM){ try{window.ZANIM.idle(card);}catch(e){} }
+  }
+  function esc(t){return (t==null?"":(""+t)).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+  function tagsFor(keys){
+    var g=["zodiac","zodiacsigns","zodiacmemes","astrology","astrologymemes","horoscope","zodiacposts","dailyhoroscope","relationships","zodiaczine"];
+    var out=[];
+    keys.forEach(function(k){var t=TAG[idx(k)];out.push(t,t+"season",t+"memes","team"+t,t+"baby");});
+    out=out.concat(g);
+    return out.map(function(t){return "#"+t;}).join(" ");
+  }
+
+  /* ---------------- UI WIRING ---------------- */
+  function fillSelect(sel,withNames){
+    sel.innerHTML=SIGNS.map(function(s,i){return '<option value="'+s.k+'">'+s.g+' '+NAME.it[i]+'</option>';}).join("");
+  }
+  fillSelect($("sA")); fillSelect($("sB")); fillSelect($("sOne"));
+  $("sA").value=st.a; $("sB").value=st.b; $("sOne").value=st.one;
+
+  $("fmt").onchange=function(){st.fmt=this.value; $("signs2").style.display=st.fmt==="couple"?"":"none"; $("signs1").style.display=st.fmt==="couple"?"none":""; render();};
+  $("scene").onchange=function(){st.scene=this.value;render();};
+  $("lang").onchange=function(){st.lang=this.value;render();};
+  $("sA").onchange=function(){st.a=this.value;render();};
+  $("sB").onchange=function(){st.b=this.value;render();};
+  $("sOne").onchange=function(){st.one=this.value;render();};
+  $("rnd").onclick=function(){
+    function rk(){return SIGNS[Math.floor(Math.random()*12)].k;}
+    if(st.fmt==="couple"){st.a=rk();st.b=rk();$("sA").value=st.a;$("sB").value=st.b;}
+    else{st.one=rk();$("sOne").value=st.one;}
+    var scenes=["bar","sofa","bed","out"];st.scene=scenes[Math.floor(Math.random()*4)];$("scene").value=st.scene;
+    render();
+  };
+  // copia
+  document.querySelectorAll(".copy").forEach(function(b){b.onclick=function(){
+    var t=$(b.dataset.t).textContent;
+    navigator.clipboard&&navigator.clipboard.writeText(t);
+    var o=b.textContent;b.textContent="✓ copiato";setTimeout(function(){b.textContent=o;},1200);
+  };});
+  // download PNG (html2canvas non disponibile offline → istruzione screenshot)
+  $("dl").onclick=function(){ alert("Per ora: fai uno screenshot della card (è già in formato quadrato IG). L'export PNG automatico lo aggiungiamo se vuoi."); };
+  // tabs
+  document.querySelectorAll(".tab").forEach(function(t){t.onclick=function(){
+    document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("on");});
+    t.classList.add("on");
+    document.querySelectorAll(".view").forEach(function(v){v.classList.remove("on");});
+    $("v-"+t.dataset.v).classList.add("on");
+  };});
+
+  render();
+})();
+</script>
+</body>
+</html>

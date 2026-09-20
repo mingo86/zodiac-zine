@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac — Demo Mascotte (Lui / Lei + animazioni)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Baloo+2:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff6e3;--red:#ec2e36;--yellow:#ffd23f;--blue:#2f9bdb;--green:#36b06a;--ink:#15110d;--pink:#ff2d6f;--purple:#6b4ff0;}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background-image:radial-gradient(circle,rgba(0,0,0,.16) 1.6px,transparent 1.8px),linear-gradient(135deg,#2c2138,#181226);background-size:15px 15px,100% 100%;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif}
+.wrap{max-width:1040px;margin:clamp(8px,3vw,30px) auto;padding:0 0 50px;background:var(--paper);background-image:radial-gradient(circle,rgba(0,0,0,.045) 1.4px,transparent 1.5px);background-size:12px 12px;border:5px solid var(--ink);border-radius:22px;box-shadow:0 16px 0 rgba(0,0,0,.3);overflow:hidden}
+.hero{padding:30px 24px 6px;text-align:center}
+.ksuper{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:3px;color:var(--purple);text-transform:uppercase}
+h1{font-family:'Bangers',cursive;font-size:clamp(34px,7vw,60px);color:var(--pink);-webkit-text-stroke:2.5px var(--ink);text-shadow:5px 5px 0 var(--ink);letter-spacing:2px;margin:6px 0 2px;line-height:1}
+.hsub{font-weight:600;color:#5b5347;max-width:620px;margin:8px auto 0;font-size:15px}
+h2{font-family:'Bangers',cursive;font-size:26px;letter-spacing:1px;margin:30px 24px 6px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 24px}
+@media(max-width:780px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+.card{border:4px solid var(--ink);border-radius:16px;background:#fff;box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+.card .title{display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Bangers',cursive;letter-spacing:1px;font-size:21px;color:#fff;padding:7px;border-bottom:4px solid var(--ink)}
+.duo{display:grid;grid-template-columns:1fr 1fr}
+.slot{text-align:center;padding:10px 4px 12px}
+.slot+.slot{border-left:3px dashed #e3dcc8}
+.slot .lab{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8a8275}
+.omino{width:108px;height:142px;display:inline-block;transform-origin:50% 90%}
+.note{margin:6px 24px 0;font-size:12px;color:#8a8275;font-weight:600}
+.matchrow{display:flex;align-items:flex-end;justify-content:center;gap:8px;margin:10px 24px;border:4px solid var(--ink);border-radius:16px;background:#fff;box-shadow:6px 6px 0 var(--pink);padding:18px}
+.matchrow .omino{width:140px;height:184px}
+.heart{font-size:38px;color:var(--pink);align-self:center;filter:drop-shadow(2px 2px 0 var(--ink))}
+.ctl{margin:10px 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{font-family:'Baloo 2';font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;border:2.5px solid var(--ink);background:var(--yellow);cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.foot{margin:26px 24px 0;font-size:12px;color:#9a9183;font-weight:600;border-top:2px dashed #d8cdb0;padding-top:14px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="ksuper">★ prova mascotte · lui / lei + animazioni</div>
+    <h1>LUI &amp; LEI</h1>
+    <p class="hsub">Ogni segno nelle due varianti (Lui / Lei) usando il <b>motore mascotte di Zodiac</b>, con le animazioni idle attive. In fondo, un esempio di <b>match animato</b> con i cuoricini.</p>
+  </div>
+
+  <h2>★ I 12 segni · Lui &amp; Lei</h2>
+  <p class="note">Differenza attuale (a livello facciale): <b>Lui</b> = sopracciglia folte + baffi/pizzetto · <b>Lei</b> = ciglia, ombretto, rossetto, guance rosa, fiocco. Le mascotte si muovono da sole (gesti casuali).</p>
+  <div class="grid" id="grid"></div>
+
+  <h2>♥ Match animato (coppia)</h2>
+  <div class="matchrow" id="matchRow"></div>
+  <div class="ctl"><button class="btn" id="replay">▶ Rigioca l'animazione coppia</button></div>
+  <p class="note">Questa è l'animazione che potremmo usare per il "Match del Giorno" in versione Reel/Story.</p>
+
+  <div class="foot">
+    Demo tecnica: usa <code>coppie/mascots.js</code> (parametro <code>variant: m|f</code>) e <code>coppie/anim.js</code> (gesti idle + animazione coppia). Va aperta dalla cartella del progetto perché carica quei due file. Nessun dato esterno.
+  </div>
+</div>
+
+<script src="coppie/mascots.js"></script>
+<script src="coppie/anim.js"></script>
+<script>
+(function(){
+  var EL={fuoco:"#ec2e36",terra:"#36b06a",aria:"#f5b700",acqua:"#2f9bdb"};
+  var SIGNS=[
+    {k:"ariete",el:"fuoco",g:"♈",n:"Ariete"},{k:"toro",el:"terra",g:"♉",n:"Toro"},
+    {k:"gemelli",el:"aria",g:"♊",n:"Gemelli"},{k:"cancro",el:"acqua",g:"♋",n:"Cancro"},
+    {k:"leone",el:"fuoco",g:"♌",n:"Leone"},{k:"vergine",el:"terra",g:"♍",n:"Vergine"},
+    {k:"bilancia",el:"aria",g:"♎",n:"Bilancia"},{k:"scorpione",el:"acqua",g:"♏",n:"Scorpione"},
+    {k:"sagittario",el:"fuoco",g:"♐",n:"Sagittario"},{k:"capricorno",el:"terra",g:"♑",n:"Capricorno"},
+    {k:"acquario",el:"aria",g:"♒",n:"Acquario"},{k:"pesci",el:"acqua",g:"♓",n:"Pesci"}
+  ];
+  var M=window.MASCOT;
+  var grid=document.getElementById("grid");
+  grid.innerHTML=SIGNS.map(function(s){
+    var col=EL[s.el];
+    var lui=M(s,col,"stampa",1,"happy","m");
+    var lei=M(s,col,"stampa",-1,"happy","f");
+    return '<div class="card"><div class="title" style="background:'+col+'"><span>'+s.g+'</span> '+s.n+'</div>'+
+      '<div class="duo"><div class="slot"><div>'+lui+'</div><div class="lab">Lui ♂</div></div>'+
+      '<div class="slot"><div>'+lei+'</div><div class="lab">Lei ♀</div></div></div></div>';
+  }).join("");
+
+  // match animato: una lei + un lui che si guardano, con cuori
+  var mr=document.getElementById("matchRow");
+  function buildMatch(){
+    var a=SIGNS[0], b=SIGNS[6]; // Ariete (lui) + Bilancia (lei)
+    mr.innerHTML='<div>'+M(a,EL[a.el],"stampa",1,"love","m")+'</div>'+
+                 '<div class="heart">♥</div>'+
+                 '<div>'+M(b,EL[b.el],"stampa",-1,"love","f")+'</div>';
+    if(window.ZANIM){ window.ZANIM.pair(mr, 5); }
+  }
+
+  if(window.ZANIM){
+    if(window.ZANIM.inject) window.ZANIM.inject();
+    window.ZANIM.idle(grid);
+  }
+  buildMatch();
+  document.getElementById("replay").onclick=buildMatch;
+})();
+</script>
+</body>
+</html>
